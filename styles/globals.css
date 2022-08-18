@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General */
+*{
+    box-sizing: border-box;
+}
+html, body{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+/* Link */
+a{
+    text-decoration: none;
+    transition: all 250ms ease;
+}
+a:active{
+    transition: transform 50ms ease;
+    transform: scale(0.95);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(237, 237, 237);
+    border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+    background-color: #39577F;
+}
+
+/* Placeholder */
+::-webkit-input-placeholder { /* Edge */
+    color: red;
+    font-size: 15px;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: red;
+    font-size: 15px;
+}
+::placeholder {
+    color: red;
+    font-size: 15px;
+}
