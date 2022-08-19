@@ -14,22 +14,24 @@ const MobileButton: React.FC<MobileButtonProps> = ({ menu, setMenu }) => {
 
     return (
         <div
-            className="p-4 -m-4 z-50 cursor-pointer lg:hidden"
+            className="z-50 cursor-pointer lg:hidden fixed bottom-4 md:bottom-5 right-8 md:right-7 bg-gray-800 rounded-full w-12 h-12 md:w-16 md:h-16 flex justify-center items-center -mr-4 mt-1"
             onClick={() => setMenu(prev => !prev)}
         >
-            {menu ? (
-                <div className="mr-1">
-                    {darkTheme ? <CloseIcon /> : <CloseIconOrange />}
-                </div>
-            ) : (
-                <div>
-                    {darkTheme ? (
-                        <HamburgerIcon width={24} height={18} />
-                    ) : (
-                        <HamburgerIconOrange />
-                    )}
-                </div>
-            )}
+            <div className="scale-90 md:scale-100">
+                {menu ? (
+                    <div className="mr-0">
+                        {darkTheme ? <CloseIcon /> : <CloseIconOrange />}
+                    </div>
+                ) : (
+                    <div>
+                        {darkTheme ? (
+                            <HamburgerIcon width={24} height={18} />
+                        ) : (
+                            <HamburgerIconOrange />
+                        )}
+                    </div>
+                )}
+            </div>
         </div>
     )
 }

@@ -6,7 +6,7 @@ const ButtonTheme: React.FC = () => {
     const toggleTheme = useThemeUpdate()
 
     return (
-        <button onClick={toggleTheme} className="text-sm">
+        <button onClick={toggleTheme} className="text-md">
             Night Mode{' '}
             <span className="dark:text-white text-black">
                 {darkTheme ? 'On' : 'Off'}

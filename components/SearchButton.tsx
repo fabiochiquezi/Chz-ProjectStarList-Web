@@ -43,7 +43,7 @@ const SearchButton: React.FC = () => {
             <input
                 type="text"
                 placeholder="Search..."
-                className={`w-32 mr-3 h-8 md:w-48 sm:w-48 bg-transparent border-b-2 border-indigo-500 rounded-none py-4 px-2 inline-block focus-visible:border-transparent ${
+                className={`w-2/3 mr-3 h-8 md:w-48 sm:w-48 bg-transparent border-b-2 border-indigo-500 rounded-none py-4 px-2 inline-block focus-visible:border-transparent ${
                     inputHidden ? 'hidden' : ''
                 } `}
                 ref={inputRef}
