@@ -5,7 +5,7 @@ import React from 'react'
 const List: React.FC = () => {
     return (
         <main
-            className="container mx-auto px-4 pb-32 mt-20 lg:mt-32 grid sm:grid-cols-3 justify-items-center
+            className="container mx-auto px-4 pb-32 mt-20 lg:mt-16 grid sm:grid-cols-3 justify-items-center
                        lg:justify-items-end 2xl:justify-items-center lg:grid-cols-5 xl:grid-cols-6
                        xl:grid-cols-7"
         >
@@ -14,21 +14,21 @@ const List: React.FC = () => {
                            lg:col-start-4 xl:col-start-4 xl:col-span-4 xl:mr-2 2xl:col-start-5
                            2xl:col-span-3 2xl:justify-self-end 2xl:mr-6"
             >
-                <li className="mr-4 mb-12 active:scale-95 ease-in duration-100">
+                <li className="mr-4 mb-12 lg:mb-8 active:scale-95 ease-in duration-100">
                     <Link href="/">
                         <a className="uppercase p-2 border-orange-400 text-orange-400 border-2 rounded-md hover:opacity-50 lg:-border-none lg:text-sm">
                             Watching
                         </a>
                     </Link>
                 </li>
-                <li className="mr-4 mb-12 active:scale-95 ease-in duration-100">
+                <li className="mr-4 mb-12 lg:mb-8 active:scale-95 ease-in duration-100">
                     <Link href="/">
                         <a className="uppercase p-2 border-white border-2 rounded-md hover:opacity-50 lg:text-sm">
                             WatchList
                         </a>
                     </Link>
                 </li>
-                <li className="mb-8 active:scale-95 ease-in duration-100">
+                <li className="mb-8 lg:mb-8 active:scale-95 ease-in duration-100">
                     <Link href="/">
                         <a className="uppercase p-2 border-white border-2 rounded-md hover:opacity-50 lg:text-sm">
                             Watched

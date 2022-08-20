@@ -10,7 +10,7 @@ import { useTheme } from './ThemeContext'
 
 const Header: React.FC = () => {
     const darkTheme = useTheme()
-    const [menu, setMenu] = useState(false)
+    const [menu, setMenu] = useState(true)
     const menuOpenClass = menu ? 'fixed' : 'hidden'
 
     useEffect(() => {
@@ -23,7 +23,13 @@ const Header: React.FC = () => {
     }, [menu])
 
     return (
-        <header className="flex justify-center lg:justify-between items-center container mx-auto px-4 py-8 lg:pt-7 mb-8 lg:mb-0 h-[43px] absolute lg:left-2/4 lg:-ml-[530px]  bg-transparent">
+        <header
+            className="
+                flex justify-center lg:justify-between items-center
+                container mx-auto px-4 py-8 lg:pt-7 mb-8 lg:mb-0 h-[43px]
+                absolute sm:left-2/4 sm:-ml-[320px] md:-ml-[384px] lg:-ml-[512px] xl:-ml-[640px] 2xl:-ml-[768px]
+                bg-transparent"
+        >
             <Link href="/">
                 <a className="logo z-10 hover:opacity-80">
                     {darkTheme ? <Logo /> : <LogoOrange />}
@@ -42,7 +48,7 @@ const Header: React.FC = () => {
                     <Menu setMenu={setMenu} />
 
                     <ul className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 lg:flex-row text-center">
-                        <li className="flex items-center mb-7 justify-center lg:mb-0 lg:w-auto">
+                        <li className="flex items-center mb-7 justify-center lg:mb-0 w-full max-w-xs  lg:w-auto">
                             <SearchButton />
                         </li>
 
