@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
     const date = mm + '/' + dd + '/' + yyyy
 
     return (
-        <div className="bg-gray-900 py-24 lg: pb-16">
+        <div className="bg-gray-900 py-24 lg:pb-16">
             <BannerFooter />
             <div className="container mx-auto">
                 <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between lg:flex-row lg:items-start 2xl:w-5/6">
@@ -37,21 +37,21 @@ const Footer: React.FC = () => {
                         <ul>
                             <li>
                                 <Link href="/">
-                                    <a className="text-lg mb-2 inline-block">
+                                    <a className="text-lg mb-2 inline-block simple-button">
                                         - Movies
                                     </a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/">
-                                    <a className="text-lg mb-2 inline-block">
+                                    <a className="text-lg mb-2 inline-block simple-button">
                                         - Series
                                     </a>
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/">
-                                    <a className="text-lg mb-2 inline-block">
+                                    <a className="text-lg mb-2 inline-block simple-button">
                                         - Movies
                                     </a>
                                 </Link>
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
                             better!
                         </p>
                         <a
-                            className="text-blue-400 break-all"
+                            className="text-blue-400 break-all simple-button"
                             href="www.github.com/fabiochiquezi/my-personal-project"
                             target="_blank"
                         >
@@ -83,17 +83,29 @@ const Footer: React.FC = () => {
                         </h3>
                         <ul className="flex mt-8 ml-0 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 ">
                             <li className="mr-4">
-                                <a href="" target="_blank">
+                                <a
+                                    href=""
+                                    className="simple-button"
+                                    target="_blank"
+                                >
                                     <DiscordIcon />
                                 </a>
                             </li>
                             <li className="mr-4">
-                                <a href="" target="_blank">
+                                <a
+                                    href=""
+                                    className="simple-button"
+                                    target="_blank"
+                                >
                                     <GithubIcon />
                                 </a>
                             </li>
                             <li>
-                                <a href="" target="_blank">
+                                <a
+                                    href=""
+                                    className="simple-button"
+                                    target="_blank"
+                                >
                                     <WhatsAppIcon />
                                 </a>
                             </li>

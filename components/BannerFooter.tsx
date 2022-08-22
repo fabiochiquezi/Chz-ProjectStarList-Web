@@ -19,14 +19,14 @@ const BannerFooter: React.FC = () => {
                 <div className="flex flex-col items-center sm:flex-row justify-center">
                     <a
                         href="http://google.com"
-                        className="text-xl bg-indigo-800 inline-block w-48 text-center p-4 mb-6 sm:mb-0 sm:mr-6"
+                        className="text-xl bg-indigo-800 inline-block w-48 text-center p-4 mb-6 sm:mb-0 sm:mr-6 simple-button"
                         target="_blank"
                     >
                         My Portfolio
                     </a>
                     <a
                         href="http://google.com"
-                        className="text-xl bg-indigo-800 inline-block w-48 text-center p-4"
+                        className="text-xl bg-indigo-800 inline-block w-48 text-center p-4 simple-button"
                         target="_blank"
                     >
                         My GitHub

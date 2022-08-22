@@ -55,7 +55,7 @@ const SearchButton: React.FC = () => {
                 onFocus={e => console.log('e')}
             />
             <div
-                className="cursor-pointer"
+                className="simple-button"
                 onClick={() => {
                     handleClick()
                 }}

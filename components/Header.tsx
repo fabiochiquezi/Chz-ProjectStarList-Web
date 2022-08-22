@@ -44,7 +44,7 @@ const Header: React.FC = () => {
                 lg:block lg:w-[82%] xl:w-[85%] lg:h-auto lg:bg-transparent lg:pt-0 lg:static
                  z-20`}
             >
-                <div className="fixed lg:static w-full left-0 top-[50%] -mt-[225px] lg:-mt-0 lg:top-0 lg:flex lg:justify-between lg:items-center">
+                <div className="fixed lg:static w-full left-0 top-[50%] -mt-[225px] md:-mt-[325px] lg:-mt-0 lg:top-0 lg:flex lg:justify-between lg:items-center">
                     <Menu setMenu={setMenu} />
 
                     <ul className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 lg:flex-row text-center">
@@ -52,9 +52,10 @@ const Header: React.FC = () => {
                             <SearchButton />
                         </li>
 
-                        <li className="dark:text-gray-500 text-gray-300 lg:ml-8 -mt-1 cursor-pointer">
+                        {/* <li className="dark:text-gray-500 text-gray-300 lg:ml-8 -mt-1 cursor-pointer">
                             <ButtonTheme />
                         </li>
+                        */}
                     </ul>
                 </div>
             </div>

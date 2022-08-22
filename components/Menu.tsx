@@ -13,7 +13,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
     const activeMenuItem = 'text-orange-400'
     const LiClass = 'border-b-2 w-3/4 border-gray-800 lg:border-none'
     const AClass = `py-4 inline-block md:py-10 uppercase md:text-3xl lg:text-[14px]
-        lg:py-0 lg:mr-8 hover:opacity-80 `
+        lg:py-0 lg:mr-8 hover:opacity-80`
 
     return (
         <>

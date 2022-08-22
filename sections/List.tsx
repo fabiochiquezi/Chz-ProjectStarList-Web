@@ -5,7 +5,7 @@ import React from 'react'
 const List: React.FC = () => {
     return (
         <main
-            className="container mx-auto px-4 pb-32 mt-20 lg:mt-16 grid sm:grid-cols-3 justify-items-center
+            className="container mx-auto px-4 pb-32 md:pb-28 mt-10 md:mt-16 lg:mt-8 grid sm:grid-cols-3 justify-items-center
                        lg:justify-items-end 2xl:justify-items-center lg:grid-cols-5 xl:grid-cols-6
                        xl:grid-cols-7"
         >
@@ -69,7 +69,7 @@ const List: React.FC = () => {
             </div>
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/02.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -84,7 +84,7 @@ const List: React.FC = () => {
             </div>{' '}
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/03.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -99,7 +99,7 @@ const List: React.FC = () => {
             </div>{' '}
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/04.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -114,7 +114,7 @@ const List: React.FC = () => {
             </div>{' '}
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/05.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -129,7 +129,7 @@ const List: React.FC = () => {
             </div>{' '}
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/06.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -144,7 +144,7 @@ const List: React.FC = () => {
             </div>{' '}
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/07.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -159,7 +159,7 @@ const List: React.FC = () => {
             </div>{' '}
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/08.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -174,7 +174,7 @@ const List: React.FC = () => {
             </div>{' '}
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/09.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -189,7 +189,7 @@ const List: React.FC = () => {
             </div>
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/10.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -204,7 +204,7 @@ const List: React.FC = () => {
             </div>
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/11.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -219,7 +219,7 @@ const List: React.FC = () => {
             </div>
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/12.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -234,7 +234,7 @@ const List: React.FC = () => {
             </div>
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/13.jpg"
                     layout="fixed"
                     width={170}
                     height={220}
@@ -249,7 +249,7 @@ const List: React.FC = () => {
             </div>
             <div className="mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100">
                 <Image
-                    src="/listExamples/01.jpg"
+                    src="/listExamples/14.jpg"
                     layout="fixed"
                     width={170}
                     height={220}

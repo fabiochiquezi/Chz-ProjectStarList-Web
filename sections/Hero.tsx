@@ -37,22 +37,10 @@ const Hero: React.FC = () => {
                         <a
                             href="https://www.youtube.com"
                             target="_blank"
-                            className="text-xl md:text-2xl"
+                            className="text-xl md:text-2xl simple-button"
                         >
                             Watch trailer
                         </a>
-                        <div className="hidden">
-                            <div className="cover">
-                                <span></span>
-                            </div>
-                            <div className="title">
-                                <i />
-                                <p>
-                                    <span></span>
-                                    <span></span>
-                                </p>
-                            </div>
-                        </div>
                     </div>
                 </main>
             </div>
