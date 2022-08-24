@@ -18,19 +18,19 @@ const Footer: React.FC = () => {
     const date = mm + '/' + dd + '/' + yyyy
 
     return (
-        <div className="bg-gray-900 py-24 lg:pb-16">
+        <div className="bg-[#111] py-24 lg:pb-16">
             <BannerFooter />
             <div className="container mx-auto">
                 <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between lg:flex-row lg:items-start 2xl:w-5/6">
-                    <div className="text-sm mb-16 lg:mt-2 lg:mb-0">
-                        {darkTheme ? <Logo /> : <LogoOrange />}
+                    <div className="text-sm lg:mt-2 lg:mb-0 order-4 lg:order-1">
+                        <Logo />
                         <p className="mt-3 text-gray-400">
                             © All rights reserved -{' '}
                             <span className="italic">{date}</span>
                         </p>
                     </div>
 
-                    <div className="w-52 xl:w-64 w-52 mb-16 lg:mb-0">
+                    <div className="w-52 xl:w-64 w-52 mb-16 lg:mb-0 order-2">
                         <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
                             Links
                         </h3>
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
 
-                    <div className="w-52 xl:w-64 mb-16 lg:mb-0">
+                    <div className="w-52 xl:w-64 mb-16 lg:mb-0 order-0 lg:order-2">
                         <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
                             GitHub
                         </h3>
@@ -77,12 +77,12 @@ const Footer: React.FC = () => {
                         </a>
                     </div>
 
-                    <div className="w-52 xl:w-64">
+                    <div className="w-52 mb-16 xl:w-64 order-1 lg:order-4">
                         <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
                             Follow-me
                         </h3>
-                        <ul className="flex mt-8 ml-0 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 ">
-                            <li className="mr-4">
+                        <ul className="flex mt-8 ml-0 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 xl:justify-start">
+                            <li className="mr-4 xl:mr-2">
                                 <a
                                     href=""
                                     className="simple-button"
@@ -91,7 +91,7 @@ const Footer: React.FC = () => {
                                     <DiscordIcon />
                                 </a>
                             </li>
-                            <li className="mr-4">
+                            <li className="mr-4 xl:mr-2">
                                 <a
                                     href=""
                                     className="simple-button"

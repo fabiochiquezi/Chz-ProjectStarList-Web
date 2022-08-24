@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
-import Logo from '../public/Logo'
-import LogoOrange from '../public/LogoOrange'
-import Button01 from './Button01'
-import Menu from './Menu'
-import MobileButton from './MobileButton'
-import SearchButton from './SearchButton'
-import { useTheme } from './ThemeContext'
+import Logo from '../../public/Logo'
+import LogoOrange from '../../public/LogoOrange'
+import Button01 from '../../components/Button01'
+import Menu from '../../components/Menu'
+import MobileButton from '../../components/MobileButton'
+import SearchButton from '../../components/SearchButton'
+import { useTheme } from '../../components/ThemeContext'
 
 const Header: React.FC = () => {
     const darkTheme = useTheme()
@@ -55,11 +55,6 @@ const Header: React.FC = () => {
                         <li className="lg:ml-8 -mt-1 cursor-pointer">
                             <Button01 text="Login" path="/" />
                         </li>
-
-                        {/* <li className="dark:text-gray-500 text-gray-300 lg:ml-8 -mt-1 cursor-pointer">
-                            <ButtonTheme />
-                        </li>
-                        */}
                     </ul>
                 </div>
             </div>

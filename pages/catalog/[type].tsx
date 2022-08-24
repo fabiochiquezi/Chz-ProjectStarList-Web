@@ -1,9 +1,9 @@
 import type { GetServerSideProps, NextPage } from 'next'
 import { catalogI } from '../../general/types/catalog'
-import listData from './../../general/listData.json'
-import Hero from '../../sections/Hero'
+import listData from './../../general/data/catalog.json'
+import Hero from '../../sections/Hero/Hero'
 import List from '../../sections/List'
-import Header from '../../components/Header'
+import Header from '../../sections/Header/Header'
 
 interface props {
     listData: catalogI[]
@@ -25,9 +25,9 @@ const Catalog: NextPage<props> = ({ listData, titleList, descriptionList }) => {
 
                 <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
                     <List
-                        titleList={titleList}
-                        descriptionList={descriptionList}
-                        listData={listData}
+                        title={titleList}
+                        description={descriptionList}
+                        catalog={listData}
                     />
                 </div>
             </div>

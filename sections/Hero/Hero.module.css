@@ -1,15 +1,18 @@
 .heroWrapper {
     background-color: red;
     height: 100vh;
-    background: url('../public/bannersExample/banner-5.jpg') no-repeat center center;
+    background: url('../../public/bannersExample/banner-5.jpg') no-repeat center center;
     background-size: cover;
     position: relative;
+    max-height: 900px;
   }
-  @media (min-width: 1024px){
-    .heroWrapper{
-        height: 100vh;
+  /*
+    @media (min-width: 1024px){
+        .heroWrapper{
+            height: 70vh;
+        }
     }
-  }
+  */
 
   .overlayAll{
     background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(23,23,23,1));
@@ -19,6 +22,13 @@
     left: 0;
     bottom: 0;
   }
+  @media (min-width: 1024px){
+    .overlayAll{
+        background-image: linear-gradient(to left, rgba(0,0,0,0), rgba(23,23,23,1));
+        width: 50%;
+        height: 100%;
+    }
+}
 
   .overlayBottom {
     background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(23,23,23,1));
@@ -36,55 +46,4 @@
     position: absolute;
     left: 0;
     top: 0;
-  }
-
-  .container{
-    position: relative;
-    left: 0;
-    top:0;
-  }
-
-  .aside{
-    position: absolute;
-    z-index: 10;
-    bottom: 65px;
-    text-align: left;
-  }
-
-  .main{
-    position: absolute;
-    z-index: 10;
-    bottom: 32px;
-    width: 90%;
-    max-width: 420px;
-  }
-  @media(min-width: 768px){
-    .main{
-        width: 100%;
-        max-width: 520px;
-      }
-  }
-  @media(min-width: 1280px){
-    .main{
-        width: 100%;
-        max-width: 620px;
-      }
-  }
-
-  .main h1{
-    font-size: 40px;
-    font-weight: bold;
-    margin-bottom: 12px;
-    line-height: 120%;
-  }
-  @media(min-width: 768px){
-    .main h1{
-        font-size: 72px;
-        margin-bottom: 18px;
-      }
-  }
-  @media(min-width: 1280px){
-    .main h1{
-        margin-bottom: 15px;
-      }
   }

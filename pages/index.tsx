@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
-import HeaderLogin from '../components/HeaderLogin'
-import HeroLogin from '../sections/HeroLogin'
+import HeaderLogin from '../sections/Header/HeaderLogin'
+import HeroLogin from '../sections/Hero/HeroLogin'
 import List from '../sections/List'
 import catalog from '../general/data/catalog.json'
 
@@ -13,11 +13,12 @@ const Home: NextPage = () => {
                     title="Your list of great works souvenirs"
                     description="Mount your own list of movies, cartoons, series, books and games."
                 />
-                <div className="pb-14 md:pb-16 lg:pb-28 pt-12 md:pt-20">
+
+                <div className="py-16">
                     <List
                         catalog={catalog}
-                        title="Build your own list"
-                        description="aaaaaaaa"
+                        title="Build your memory list of the greatest"
+                        description="From watching, reading or playing..."
                         menu={false}
                     />
                 </div>
