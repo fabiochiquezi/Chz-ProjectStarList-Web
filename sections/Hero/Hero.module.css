@@ -54,7 +54,7 @@
   .main{
     position: absolute;
     z-index: 10;
-    bottom: 100px;
+    bottom: 32px;
     width: 90%;
     max-width: 420px;
   }
@@ -87,16 +87,4 @@
     .main h1{
         margin-bottom: 15px;
       }
-  }
-  .main p{
-    font-size: 18px;
-  }
-  @media(min-width: 768px){
-      .main p{
-          font-size: 22px;
-        }
-    }
-
-    .main hr{
-    display: none;
   }

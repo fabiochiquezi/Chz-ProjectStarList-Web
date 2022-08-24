@@ -23,6 +23,9 @@ module.exports = {
         colors: {
           primary: '#FA7723',
           secondary: '#39577F'
+        },
+        animation: {
+            'spin-slow': 'spin 10s linear infinite',
         }
       },
     },

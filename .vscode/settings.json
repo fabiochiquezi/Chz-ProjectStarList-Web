@@ -18,7 +18,9 @@
         ".prettierrc": true,
         "postcss.config.js": true,
         "tailwind.config.js": true,
+        "package.json": true,
 
-        "pages/api": true
+        "pages/api": true,
+        "pages/_document.tsx": true
     }
 }

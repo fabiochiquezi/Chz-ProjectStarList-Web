@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Logo from '../public/Logo'
 import LogoOrange from '../public/LogoOrange'
-import ButtonTheme from './ButtonTheme'
+import Button01 from './Button01'
 import Menu from './Menu'
 import MobileButton from './MobileButton'
 import SearchButton from './SearchButton'
@@ -10,7 +10,7 @@ import { useTheme } from './ThemeContext'
 
 const Header: React.FC = () => {
     const darkTheme = useTheme()
-    const [menu, setMenu] = useState(true)
+    const [menu, setMenu] = useState(false)
     const menuOpenClass = menu ? 'fixed' : 'hidden'
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const Header: React.FC = () => {
         <header
             className="
                 flex justify-center lg:justify-between items-center
-                container mx-auto px-4 py-8 lg:pt-7 mb-8 lg:mb-0 h-[43px]
+                container mx-auto px-4 py-8 lg:pt-8 mb-8 lg:mb-0 h-[43px]
                 absolute sm:left-2/4 sm:-ml-[320px] md:-ml-[384px] lg:-ml-[512px] xl:-ml-[640px] 2xl:-ml-[768px]
                 bg-transparent"
         >
@@ -50,6 +50,10 @@ const Header: React.FC = () => {
                     <ul className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 lg:flex-row text-center">
                         <li className="flex items-center mb-7 justify-center lg:mb-0 w-full max-w-xs  lg:w-auto">
                             <SearchButton />
+                        </li>
+
+                        <li className="lg:ml-8 -mt-1 cursor-pointer">
+                            <Button01 text="Login" path="/" />
                         </li>
 
                         {/* <li className="dark:text-gray-500 text-gray-300 lg:ml-8 -mt-1 cursor-pointer">
