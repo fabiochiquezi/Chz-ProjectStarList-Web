@@ -1,5 +1,5 @@
 import React from 'react'
-import Button01 from '../../components/Button01'
+import Button01 from '../../components/Buttons/Button01'
 
 const StateButtons: React.FC = () => {
     return (

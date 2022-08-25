@@ -14,7 +14,7 @@ const Home: NextPage = () => {
                     description="Mount your own list of movies, cartoons, series, books and games."
                 />
 
-                <div className="py-16">
+                <div className="pt-20 pb-16">
                     <List
                         catalog={catalog}
                         title="Build your memory list of the greatest"

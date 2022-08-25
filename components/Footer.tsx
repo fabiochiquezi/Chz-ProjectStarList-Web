@@ -36,25 +36,13 @@ const Footer: React.FC = () => {
                         </h3>
                         <ul>
                             <li>
-                                <Link href="/">
-                                    <a className="text-lg mb-2 inline-block simple-button">
-                                        - Movies
-                                    </a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/">
-                                    <a className="text-lg mb-2 inline-block simple-button">
-                                        - Series
-                                    </a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/">
-                                    <a className="text-lg mb-2 inline-block simple-button">
-                                        - Movies
-                                    </a>
-                                </Link>
+                                <a
+                                    href="https://github.com/fabiochiquezi"
+                                    target="_blank"
+                                    className="text-lg mb-2 inline-block simple-button"
+                                >
+                                    - My GitHub
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -70,10 +58,10 @@ const Footer: React.FC = () => {
                         </p>
                         <a
                             className="text-blue-400 break-all simple-button"
-                            href="www.github.com/fabiochiquezi/my-personal-project"
+                            href="https://github.com/fabiochiquezi/projectOpen-frontEnd-myStarList"
                             target="_blank"
                         >
-                            www.github.com/fabiochiquezi/my-personal-project
+                            https://github.com/fabiochiquezi/projectOpen-frontEnd-myStarList
                         </a>
                     </div>
 
@@ -83,17 +71,16 @@ const Footer: React.FC = () => {
                         </h3>
                         <ul className="flex mt-8 ml-0 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 xl:justify-start">
                             <li className="mr-4 xl:mr-2">
-                                <a
-                                    href=""
-                                    className="simple-button"
-                                    target="_blank"
-                                >
+                                <div className="relative">
                                     <DiscordIcon />
-                                </a>
+                                    <span className="absolute -bottom-5 -left-2 text-xs mt-2">
+                                        Chiquezi#3816
+                                    </span>
+                                </div>
                             </li>
                             <li className="mr-4 xl:mr-2">
                                 <a
-                                    href=""
+                                    href="https://github.com/fabiochiquezi"
                                     className="simple-button"
                                     target="_blank"
                                 >
@@ -102,7 +89,7 @@ const Footer: React.FC = () => {
                             </li>
                             <li>
                                 <a
-                                    href=""
+                                    href="https://api.whatsapp.com/send?phone=5519983127035&text=Hi%20there!"
                                     className="simple-button"
                                     target="_blank"
                                 >

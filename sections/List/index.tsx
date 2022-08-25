@@ -1,6 +1,6 @@
 import { catalogI } from '../../general/types/catalog'
 import React, { useState } from 'react'
-import ButtonLoad from '../../components/ButtonLoad'
+import ButtonLoad from '../../components/Buttons/ButtonLoad'
 import StateButtons from './StateButtons'
 import Title from './Title'
 import Thumb from '../../components/Thumb'

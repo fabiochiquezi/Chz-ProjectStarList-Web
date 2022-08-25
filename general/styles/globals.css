@@ -3,10 +3,11 @@
 @tailwind utilities;
 
 /* General */
-*{
+* {
     box-sizing: border-box;
 }
-html, body{
+html,
+body {
     padding: 0;
     margin: 0;
     font-family: 'Roboto';
@@ -14,11 +15,11 @@ html, body{
 }
 
 /* Link */
-a{
+a {
     text-decoration: none;
     transition: all 250ms ease;
 }
-a:active{
+a:active {
     transition: transform 50ms ease;
     transform: scale(0.95);
 }
@@ -32,15 +33,17 @@ a:active{
     border-radius: 40px;
 }
 ::-webkit-scrollbar-track {
-    background-color: #39577F;
+    background-color: #39577f;
 }
 
 /* Placeholder */
-::-webkit-input-placeholder { /* Edge */
+::-webkit-input-placeholder {
+    /* Edge */
     color: red;
     font-size: 15px;
 }
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
     color: red;
     font-size: 15px;
 }
@@ -50,24 +53,38 @@ a:active{
 }
 
 /* Buttons */
-.simple-button{
+.simple-button {
     transition: all 200ms ease;
     cursor: pointer;
 }
-.simple-button:hover{
+.simple-button:hover {
     opacity: 0.7;
 }
-.simple-button:active{
+.simple-button:active {
     transition: transform 50ms ease;
     transform: scale(0.95);
 }
 
-@layer components{
-    .btn-transparent{
+@layer components {
+    .btn-transparent {
         @apply uppercase text-center border-2 rounded-md simple-button inline-block;
     }
 
     .btn-solid {
-        @apply uppercase text-center text-white lg:text-sm rounded-md hover:opacity-50 simple-button inline-block tracking-wide
+        @apply uppercase text-center text-white lg:text-sm rounded-md hover:opacity-50 simple-button inline-block tracking-wide;
+    }
+}
+
+/* Skeleton */
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 20%);
+    }
+    100% {
+        background-color: hsl(200, 20%, 30%);
     }
 }

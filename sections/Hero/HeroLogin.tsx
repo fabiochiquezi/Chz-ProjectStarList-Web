@@ -1,5 +1,6 @@
 import React from 'react'
 import ButtonsSignIn2 from '../../components/Buttons/ButtonSignIn2'
+import { useSetAuth } from '../../context/AuthContext'
 import styles from './Hero.module.css'
 
 type props = {
@@ -8,8 +9,10 @@ type props = {
 }
 
 const HeroLogin: React.FC<props> = ({ title, description }) => {
+    const useAuth = useSetAuth()
+
     return (
-        <section className={styles.heroWrapper}>
+        <section className={styles.heroWrapper + ' skeleton'}>
             <div className={styles.overlayAll}></div>
             <div className={styles.overlayBottom}></div>
             <div className={styles.overlayTop}></div>
@@ -34,7 +37,7 @@ const HeroLogin: React.FC<props> = ({ title, description }) => {
                             {description}
                         </p>
 
-                        <ButtonsSignIn2 />
+                        <ButtonsSignIn2 onClick={useAuth.signIn} />
                     </main>
                 </div>
             </div>

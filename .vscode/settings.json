@@ -21,6 +21,12 @@
         "package.json": true,
 
         "pages/api": true,
-        "pages/_document.tsx": true
+        "pages/_document.tsx": true,
+
+        "deploy": true,
+        ".firebase": true,
+        ".firebaserc": true,
+        "firestore.indexes.json": true,
+        "firestore.rules": true
     }
 }
