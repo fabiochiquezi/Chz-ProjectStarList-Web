@@ -29,6 +29,51 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
+                                Doing
+                            </a>
+                        </Link>
+                    </li>
+                    <li className={LiClass}>
+                        <Link href="/?category=movies">
+                            <a
+                                className={`${AClass} ${
+                                    (category === 'movies' ||
+                                        category === undefined) &&
+                                    activeMenuItem
+                                }`}
+                                onClick={() => setMenu(false)}
+                            >
+                                Do
+                            </a>
+                        </Link>
+                    </li>
+                    <li className={LiClass}>
+                        <Link href="/?category=movies">
+                            <a
+                                className={`${AClass} ${
+                                    (category === 'movies' ||
+                                        category === undefined) &&
+                                    activeMenuItem
+                                }`}
+                                onClick={() => setMenu(false)}
+                            >
+                                Did
+                            </a>
+                        </Link>
+                    </li>
+
+                    <li className={LiClass + ' mr-8'}>|</li>
+
+                    <li className={LiClass}>
+                        <Link href="/?category=movies">
+                            <a
+                                className={`${AClass} ${
+                                    (category === 'movies' ||
+                                        category === undefined) &&
+                                    activeMenuItem
+                                }`}
+                                onClick={() => setMenu(false)}
+                            >
                                 Movies
                             </a>
                         </Link>

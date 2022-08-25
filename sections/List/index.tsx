@@ -45,7 +45,14 @@ const List: React.FC<props> = ({
             {catalog &&
                 catalog.map(({ thumb, name }, index) => {
                     if (index > limit) return
-                    return <Thumb index={index} thumb={thumb} name={name} />
+                    return (
+                        <Thumb
+                            key={index}
+                            index={index}
+                            thumb={thumb}
+                            name={name}
+                        />
+                    )
                 })}
 
             {menu && limit < max && catalog.length && (

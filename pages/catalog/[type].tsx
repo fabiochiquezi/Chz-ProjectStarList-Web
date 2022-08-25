@@ -16,12 +16,12 @@ const Catalog: NextPage<props> = ({ listData, titleList, descriptionList }) => {
         <>
             <Header />
             <div className="mb-48 sm:mb-36 lg:mb-24">
-                <Hero
+                {/*<Hero
                     title="Lionsgate Movies"
                     description="Lionsgate’s feature film production and distribution
                         operation encompasses a diverse slate of tentpoles,
                         star-driven event films and branded properties"
-                />
+                />*/}
 
                 <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
                     <List

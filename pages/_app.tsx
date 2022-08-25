@@ -1,12 +1,16 @@
 import type { AppProps } from 'next/app'
 import '@fontsource/roboto'
 import '../general/styles/globals.css'
-import { ThemeProvider } from '../components/ThemeContext'
 import Footer from '../components/Footer'
 import { useEffect, useState } from 'react'
 import AuthProvider from '../context/AuthContext'
+import { useRouter } from 'next/router'
+import ProtectedRouter from '../components/ProtectedRouter'
+
+const noAuthRequired = ['/']
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+    const router = useRouter()
     const [isSSR, setIsSSR] = useState(true)
 
     useEffect(() => {
@@ -16,12 +20,16 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     if (isSSR) return null
     return (
         <div className="dark:bg-primary dark:text-white bg-white text-black">
-            <ThemeProvider>
-                <AuthProvider>
+            <AuthProvider>
+                {noAuthRequired.includes(router.pathname) ? (
                     <Component {...pageProps} />
-                </AuthProvider>
-                <Footer />
-            </ThemeProvider>
+                ) : (
+                    <ProtectedRouter>
+                        <Component {...pageProps} />
+                    </ProtectedRouter>
+                )}
+            </AuthProvider>
+            <Footer />
         </div>
     )
 }

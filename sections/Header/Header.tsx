@@ -6,10 +6,8 @@ import Button01 from '../../components/Buttons/Button01'
 import Menu from '../../components/Menu'
 import MobileButton from '../../components/Buttons/MobileButton'
 import SearchButton from '../../components/SearchButton'
-import { useTheme } from '../../components/ThemeContext'
 
 const Header: React.FC = () => {
-    const darkTheme = useTheme()
     const [menu, setMenu] = useState(false)
     const menuOpenClass = menu ? 'fixed' : 'hidden'
 
@@ -32,7 +30,7 @@ const Header: React.FC = () => {
         >
             <Link href="/">
                 <a className="logo z-10 hover:opacity-80">
-                    {darkTheme ? <Logo /> : <LogoOrange />}
+                    <Logo />
                 </a>
             </Link>
 

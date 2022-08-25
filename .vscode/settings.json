@@ -24,6 +24,7 @@
         "pages/_document.tsx": true,
 
         "deploy": true,
+        "firebase.json":true,
         ".firebase": true,
         ".firebaserc": true,
         "firestore.indexes.json": true,

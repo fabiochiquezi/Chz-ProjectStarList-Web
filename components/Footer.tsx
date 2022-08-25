@@ -1,15 +1,11 @@
-import Link from 'next/link'
 import React from 'react'
 import DiscordIcon from '../public/icons/DiscordIcon'
 import GithubIcon from '../public/icons/GithubIcon'
 import WhatsAppIcon from '../public/icons/WhatsAppIcon'
 import Logo from '../public/Logo'
-import LogoOrange from '../public/LogoOrange'
 import BannerFooter from './BannerFooter'
-import { useTheme } from './ThemeContext'
 
 const Footer: React.FC = () => {
-    const darkTheme = useTheme()
     const today = new Date()
     const dd = String(today.getDate()).padStart(2, '0')
     const mm = String(today.getMonth() + 1).padStart(2, '0')

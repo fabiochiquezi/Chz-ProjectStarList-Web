@@ -21,6 +21,7 @@ export const useSetAuth = () => useContext(AuthUpdateContext)
 export function AuthProvider({ children }: props) {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)
+    console.log(user)
 
     async function signIn() {
         if (loading) return
