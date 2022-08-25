@@ -2,7 +2,6 @@ import React from 'react'
 import Logo from '../../public/Logo'
 import ButtonnSignIn1 from '../../components/Buttons/ButtonnSignIn1'
 import ButtonGitHub from '../../components/Buttons/ButtonGitHub'
-import { authGoogle } from '../../firebase/auth/google'
 import { useSetAuth } from '../../context/AuthContext'
 
 const HeaderLogin: React.FC = () => {

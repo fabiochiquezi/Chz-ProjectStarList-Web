@@ -3,7 +3,7 @@ import DiscordIcon from '../public/icons/DiscordIcon'
 import GithubIcon from '../public/icons/GithubIcon'
 import WhatsAppIcon from '../public/icons/WhatsAppIcon'
 import Logo from '../public/Logo'
-import BannerFooter from './BannerFooter'
+import BannerJob from './BannerJob'
 
 const Footer: React.FC = () => {
     const today = new Date()
@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
 
     return (
         <div className="bg-[#111] py-24 lg:pb-16">
-            <BannerFooter />
+            <BannerJob />
             <div className="container mx-auto">
                 <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between lg:flex-row lg:items-start 2xl:w-5/6">
                     <div className="text-sm lg:mt-2 lg:mb-0 order-4 lg:order-1">

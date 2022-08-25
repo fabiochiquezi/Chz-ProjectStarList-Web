@@ -2,7 +2,6 @@ import CloseIcon from '../../public/icons/CloseIcon'
 import CloseIconOrange from '../../public/icons/CloseIconOrange'
 import HamburgerIcon from '../../public/icons/HamburgerIcon'
 import HamburgerIconOrange from '../../public/icons/HamburgerIconOrange'
-import { useTheme } from '../ThemeContext'
 
 type MobileButtonProps = {
     menu: boolean
@@ -10,8 +9,6 @@ type MobileButtonProps = {
 }
 
 const MobileButton: React.FC<MobileButtonProps> = ({ menu, setMenu }) => {
-    const darkTheme = useTheme()
-
     return (
         <div
             className="z-50 cursor-pointer lg:hidden fixed bottom-4 md:bottom-5 right-8 md:right-7 bg-gray-800 rounded-full w-12 h-12 md:w-16 md:h-16 flex justify-center items-center -mr-4 mt-1 simple-button"
@@ -20,15 +17,11 @@ const MobileButton: React.FC<MobileButtonProps> = ({ menu, setMenu }) => {
             <div className="scale-90 md:scale-100">
                 {menu ? (
                     <div className="mr-0">
-                        {darkTheme ? <CloseIcon /> : <CloseIconOrange />}
+                        <CloseIcon />
                     </div>
                 ) : (
                     <div>
-                        {darkTheme ? (
-                            <HamburgerIcon width={24} height={18} />
-                        ) : (
-                            <HamburgerIconOrange />
-                        )}
+                        <HamburgerIcon width={24} height={18} />
                     </div>
                 )}
             </div>

@@ -2,11 +2,8 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
 import { isDesktop } from '../helpers/device'
 import SearchIcon from '../public/icons/SearchIcon'
-import SearchIconOrange from '../public/icons/SearchIconOrange'
-import { useTheme } from './ThemeContext'
 
-const SearchButton: React.FC = () => {
-    const darkTheme = useTheme()
+const SearchBar: React.FC = () => {
     const [inputHidden, setInputHidden] = useState(true)
     const inputRef = useRef<HTMLInputElement>(null)
     const [searchInput, setSearchInput] = useState<string>('')
@@ -60,10 +57,10 @@ const SearchButton: React.FC = () => {
                     handleClick()
                 }}
             >
-                {darkTheme ? <SearchIcon /> : <SearchIconOrange />}
+                <SearchIcon />
             </div>
         </>
     )
 }
 
-export default SearchButton
+export default SearchBar

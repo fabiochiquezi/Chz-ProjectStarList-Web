@@ -2,7 +2,7 @@ import React from 'react'
 
 // import { Container } from './styles';
 
-const BannerFooter: React.FC = () => {
+const BannerJob: React.FC = () => {
     return (
         <div
             className="container mx-auto mt-[-340px] mb-20 p-6
@@ -48,4 +48,4 @@ const BannerFooter: React.FC = () => {
     )
 }
 
-export default BannerFooter
+export default BannerJob

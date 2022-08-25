@@ -1,11 +1,10 @@
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Logo from '../../public/Logo'
-import LogoOrange from '../../public/LogoOrange'
 import Button01 from '../../components/Buttons/Button01'
 import Menu from '../../components/Menu'
 import MobileButton from '../../components/Buttons/MobileButton'
-import SearchButton from '../../components/SearchButton'
+import SearchBar from '../../components/SearchBar'
 
 const Header: React.FC = () => {
     const [menu, setMenu] = useState(false)
@@ -47,7 +46,7 @@ const Header: React.FC = () => {
 
                     <ul className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 lg:flex-row text-center">
                         <li className="flex items-center mb-7 justify-center lg:mb-0 w-full max-w-xs  lg:w-auto">
-                            <SearchButton />
+                            <SearchBar />
                         </li>
 
                         <li className="lg:ml-8 -mt-1 cursor-pointer">
