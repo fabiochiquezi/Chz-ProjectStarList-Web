@@ -32,7 +32,7 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
                 )}
             </div>
 
-            <h3 className="mt-3 text-[16px] break-word">{name}</h3>
+            {/*<h3 className="mt-3 text-[16px] break-word">{name}</h3>*/}
         </div>
     )
 }

@@ -4,14 +4,17 @@ import listData from './../../general/data/catalog.json'
 import Hero from '../../sections/Hero/Hero'
 import List from '../../sections/List'
 import Header from '../../sections/Header/Header'
+import { getFireDoc } from '../../firebase/firestore/get'
 
 interface props {
-    listData: catalogI[]
+    data: catalogI[]
     titleList: string
     descriptionList: string
 }
 
-const Catalog: NextPage<props> = ({ listData, titleList, descriptionList }) => {
+const Catalog: NextPage<props> = ({ data, titleList, descriptionList }) => {
+    console.log(data, 'front')
+    data.map(item => console.log(item))
     return (
         <>
             <Header />
@@ -25,9 +28,9 @@ const Catalog: NextPage<props> = ({ listData, titleList, descriptionList }) => {
 
                 <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
                     <List
-                        title={titleList}
-                        description={descriptionList}
-                        catalog={listData}
+                        title="NEW & UPCOMING MOVIES"
+                        description="Exciting, emotional and unexpected"
+                        catalog={data}
                     />
                 </div>
             </div>
@@ -36,24 +39,24 @@ const Catalog: NextPage<props> = ({ listData, titleList, descriptionList }) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async context => {
-    const type = context.query.type
-    switch (type) {
-        case 'movies':
-            return {
-                props: {
-                    listData,
-                    titleList: 'NEW & UPCOMING MOVIES',
-                    descriptionList: 'Exciting, emotional and unexpected'
-                }
+    try {
+        const data = await getFireDoc('doing')
+        console.log(data)
+        return {
+            props: {
+                ok: true,
+                data: data.list,
+                error: null
             }
-        default:
-            return {
-                props: {
-                    listData,
-                    titleList: 'NEW & UPCOMING MOVIES',
-                    descriptionList: 'Exciting, emotional and unexpected'
-                }
+        }
+    } catch (e) {
+        return {
+            props: {
+                ok: false,
+                data: {},
+                error: e
             }
+        }
     }
 }
 

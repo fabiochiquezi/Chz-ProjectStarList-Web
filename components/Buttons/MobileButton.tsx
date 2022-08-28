@@ -11,7 +11,7 @@ type MobileButtonProps = {
 const MobileButton: React.FC<MobileButtonProps> = ({ menu, setMenu }) => {
     return (
         <div
-            className="z-50 cursor-pointer lg:hidden fixed bottom-4 md:bottom-5 right-8 md:right-7 bg-gray-800 rounded-full w-12 h-12 md:w-16 md:h-16 flex justify-center items-center -mr-4 mt-1 simple-button"
+            className="z-25 cursor-pointer lg:hidden fixed bottom-4 md:bottom-5 right-8 md:right-7 bg-gray-800 rounded-full w-12 h-12 md:w-16 md:h-16 flex justify-center items-center -mr-4 mt-1 simple-button"
             onClick={() => setMenu(prev => !prev)}
         >
             <div className="scale-90 md:scale-100">

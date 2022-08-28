@@ -4,6 +4,8 @@ import ButtonLoad from '../../components/Buttons/ButtonLoad'
 import StateButtons from './StateButtons'
 import Title from './Title'
 import Thumb from '../../components/Thumb'
+import AddThumb from '../../components/Thumb/AddThumb'
+import { useSetUtils } from '../../context/UtilsContext'
 
 interface props {
     catalog: catalogI[]
@@ -18,6 +20,7 @@ const List: React.FC<props> = ({
     description,
     menu = true
 }) => {
+    const { setModal } = useSetUtils()
     const [limit, setLimit] = useState(15)
     const max = catalog ? catalog.length : 0
 
@@ -36,11 +39,13 @@ const List: React.FC<props> = ({
             {!max ? (
                 <Title
                     titleList="Your List is Empty"
-                    descriptionList="Start add items in your list."
+                    descriptionList="Start adding items in your list."
                 />
             ) : (
                 <Title titleList={title} descriptionList={description} />
             )}
+
+            {menu && menu && <AddThumb onClick={() => setModal(true)} />}
 
             {catalog &&
                 catalog.map(({ thumb, name }, index) => {

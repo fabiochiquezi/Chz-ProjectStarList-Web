@@ -10,10 +10,17 @@ type AuthT = { user: null | User; loading: boolean }
 const AuthContext = createContext<AuthT>({ user: null, loading: false })
 export const useAuth = () => useContext(AuthContext)
 
-type AuthUpdT = { signIn: () => Promise<void>; signOut: () => Promise<void> }
+type AuthUpdT = {
+    signIn: () => Promise<void>
+    signOut: () => Promise<void>
+    setUser: React.Dispatch<React.SetStateAction<User | null>>
+    setLoading: React.Dispatch<React.SetStateAction<boolean>>
+}
 const AuthUpdateContext = createContext<AuthUpdT>({
     signIn: async () => {},
-    signOut: async () => {}
+    signOut: async () => {},
+    setUser: () => null,
+    setLoading: () => false
 })
 export const useSetAuth = () => useContext(AuthUpdateContext)
 
@@ -21,15 +28,14 @@ export const useSetAuth = () => useContext(AuthUpdateContext)
 export function AuthProvider({ children }: props) {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)
-    console.log(user)
 
     async function signIn() {
         if (loading) return
         try {
             setLoading(true)
             const auth = await authGoogle()
-            setUser(auth.user)
-            Router.push('/catalogs/movies')
+            //setUser(auth.user)
+            Router.push('/catalog/movies')
         } catch (e) {
             console.log(e)
         } finally {
@@ -48,7 +54,9 @@ export function AuthProvider({ children }: props) {
 
     return (
         <AuthContext.Provider value={{ user, loading }}>
-            <AuthUpdateContext.Provider value={{ signIn, signOut }}>
+            <AuthUpdateContext.Provider
+                value={{ signIn, signOut, setUser, setLoading }}
+            >
                 {children}
             </AuthUpdateContext.Provider>
         </AuthContext.Provider>
