@@ -47,7 +47,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                     <li className={LiClass}>
                         <Link href="/catalog/did">
                             <a
-                                className={`md:text-3xl lg:text-[14px] lg:mr-6 ${AClass} ${
+                                className={`md:text-3xl lg:text-[14px] lg:mr-4 xl:mr-6 ${AClass} ${
                                     type === 'did' && activeMenuItem
                                 }`}
                                 onClick={() => setMenu(false)}
@@ -57,8 +57,8 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                         </Link>
                     </li>
 
-                    <div className="hidden xl:flex mt-[-4px]">
-                        <li className="mr-6 text-[16px] mt-[4px]">/</li>
+                    <div className="hidden lg:flex mt-[-4px]">
+                        <li className="mr-4 xl:mr-6 text-[16px] mt-[4px]">/</li>
 
                         <li className={LiClass}>
                             <a
@@ -67,7 +67,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
-                                Movies
+                                Watching
                             </a>
                         </li>
 
@@ -78,7 +78,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
-                                Series
+                                Playing
                             </a>
                         </li>
 
@@ -89,28 +89,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
-                                Animations
-                            </a>
-                        </li>
-
-                        <li className={LiClass}>
-                            <a
-                                className={`text-[14px] lg:mr-4 ${AClass} ${
-                                    category === 4 && activeCategory
-                                }`}
-                                onClick={() => setMenu(false)}
-                            >
-                                Books
-                            </a>
-                        </li>
-                        <li className={LiClass}>
-                            <a
-                                className={`text-[14px] lg:mr-4 ${AClass} ${
-                                    category === 5 && activeCategory
-                                }`}
-                                onClick={() => setMenu(false)}
-                            >
-                                Games
+                                Reading
                             </a>
                         </li>
                     </div>

@@ -3,17 +3,11 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import { useAuth, useSetAuth } from '../context/AuthContext'
 import { authState } from '../firebase/auth/authState'
-import SpinIcon from '../public/icons/SpinIcon'
+import Loading from './Loading'
 
 interface props {
     children: React.ReactNode
 }
-
-const Loading = () => (
-    <div className="flex flex-col items-center justify-center h-screen">
-        <SpinIcon />
-    </div>
-)
 
 const ProtectedRouter: React.FC<props> = ({ children }) => {
     const { user } = useAuth()

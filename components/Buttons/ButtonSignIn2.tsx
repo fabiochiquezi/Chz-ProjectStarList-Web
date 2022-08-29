@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth } from '../../context/AuthContext'
 import GoogleIcon from '../../public/icons/GoogleIcon'
 import SpinIcon from '../../public/icons/SpinIcon'
+import SpinIcon2 from '../../public/icons/SpinIcon2'
 
 interface props {
     className?: string
@@ -17,7 +18,9 @@ const ButtonsSignIn2: React.FC<props> = ({ className, onClick }) => {
             onClick={onClick}
         >
             {loading ? (
-                <SpinIcon color="#FB923C" />
+                <div className="mt-3">
+                    <SpinIcon2 width={20} height={20} color="#FB923C" />
+                </div>
             ) : (
                 <>
                     <span>Sign In</span>

@@ -3,10 +3,18 @@ import HeaderLogin from '../sections/Header/HeaderLogin'
 import HeroLogin from '../sections/Hero/HeroLogin'
 import List from '../sections/List'
 import catalog from '../general/data/catalog.json'
+import Head from 'next/head'
 
 const Home: NextPage = () => {
     return (
-        <>
+        <div>
+            <Head>
+                <title>Star List | Home</title>
+                <meta
+                    name="description"
+                    content="Create your album of memories about movies, series, animations, books and games"
+                />
+            </Head>
             <HeaderLogin />
             <div className="mb-48 sm:mb-36 lg:mb-24">
                 <HeroLogin
@@ -23,7 +31,7 @@ const Home: NextPage = () => {
                     />
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

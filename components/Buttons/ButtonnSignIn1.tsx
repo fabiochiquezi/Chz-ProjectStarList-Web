@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuth } from '../../context/AuthContext'
 import GoogleIcon from '../../public/icons/GoogleIcon'
-import SpinIcon from '../../public/icons/SpinIcon'
+import SpinIcon2 from '../../public/icons/SpinIcon2'
 
 interface props {
     className?: string
@@ -17,10 +17,12 @@ const ButtonnSignIn1: React.FC<props> = ({ className, onClick }) => {
             onClick={onClick}
         >
             {loading ? (
-                <SpinIcon />
+                <div className="mt-[7px]">
+                    <SpinIcon2 />
+                </div>
             ) : (
                 <>
-                    <span>Sign In</span>
+                    <span className="md:text-sm lg:text-md">Sign In</span>
                     <GoogleIcon
                         width={20}
                         height={20}

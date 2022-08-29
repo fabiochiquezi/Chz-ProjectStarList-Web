@@ -4,11 +4,11 @@ import Logo from '../../public/Logo'
 import Menu from '../../components/Menu'
 import MobileButton from '../../components/Buttons/MobileButton'
 import SearchBar from '../../components/SearchBar'
-import { useAuth } from '../../context/AuthContext'
-import { isDesktop } from '../../helpers/device'
+import { useAuth, useSetAuth } from '../../context/AuthContext'
 
 const Header: React.FC = () => {
     const { user } = useAuth()
+    const { signOut } = useSetAuth()
     const [menu, setMenu] = useState(false)
     const menuOpenClass = menu ? 'fixed' : 'hidden'
 
@@ -61,7 +61,10 @@ const Header: React.FC = () => {
                                 |
                             </li>
                             <li className="text-sm ml-4 lg:m-0">
-                                <button className="border-white lg:border-none  border-2 rounded px-4 py-2 mt-2 lg:p-0 lg:mt-0 simple-button cursor-pointer">
+                                <button
+                                    onClick={signOut}
+                                    className="border-white lg:border-none  border-2 rounded px-4 py-2 mt-2 lg:p-0 lg:mt-0 simple-button cursor-pointer"
+                                >
                                     Sign Out
                                 </button>
                             </li>

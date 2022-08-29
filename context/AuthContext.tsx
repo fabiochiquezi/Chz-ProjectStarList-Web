@@ -35,7 +35,7 @@ export function AuthProvider({ children }: props) {
             setLoading(true)
             const auth = await authGoogle()
             //setUser(auth.user)
-            Router.push('/catalog/movies')
+            Router.push('/catalog/doing')
         } catch (e) {
             console.log(e)
         } finally {

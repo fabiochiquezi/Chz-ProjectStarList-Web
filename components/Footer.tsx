@@ -14,11 +14,11 @@ const Footer: React.FC = () => {
     const date = mm + '/' + dd + '/' + yyyy
 
     return (
-        <div className="bg-[#111] py-24 lg:pb-16">
+        <div className="bg-[#111] py-24 lg:pb-16 relative z-10">
             <BannerJob />
             <div className="container mx-auto">
                 <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between lg:flex-row lg:items-start 2xl:w-5/6">
-                    <div className="text-sm lg:mt-2 lg:mb-0 order-4 lg:order-1">
+                    <div className="text-sm lg:mt-1 lg:mb-0 order-4 lg:order-1">
                         <Logo />
                         <p className="mt-3 text-gray-400">
                             © All rights reserved -{' '}
