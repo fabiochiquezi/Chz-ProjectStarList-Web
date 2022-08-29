@@ -39,7 +39,7 @@ const List: React.FC<props> = ({
             {!max ? (
                 <Title
                     titleList="Your List is Empty"
-                    descriptionList="Start adding items in your list."
+                    descriptionList="Start adding items in your list"
                 />
             ) : (
                 <Title titleList={title} descriptionList={description} />

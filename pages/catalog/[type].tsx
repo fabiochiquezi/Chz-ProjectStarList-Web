@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import { catalogI } from '../../general/types/catalog'
 import Hero from '../../sections/Hero/Hero'
 import List from '../../sections/List'
@@ -9,18 +9,39 @@ import { useRouter } from 'next/router'
 import Loading from '../../components/Loading'
 import { getAuth } from 'firebase/auth'
 import { useEffect, useState } from 'react'
-import SpinIcon2 from '../../public/icons/SpinIcon2'
 
-interface props {
-    data?: catalogI[]
-    ok?: boolean
-    error?: Error
+function getTitle(query: string) {
+    switch (query) {
+        case 'doing':
+            return {
+                title: "All works I'm following",
+                subtitle: 'Exciting, emotional and unexpected'
+            }
+        case 'illdo':
+            return {
+                title: 'Works that I need to see',
+                subtitle: 'Exciting, emotional and unexpected'
+            }
+        case 'did':
+            return {
+                title: "All works I've completed",
+                subtitle: 'Exciting, emotional and unexpected'
+            }
+        default:
+            return {
+                title: 'All the works I"m following',
+                subtitle: 'Exciting, emotional and unexpected'
+            }
+    }
 }
 
-const Catalog: NextPage<props> = () => {
+const Catalog: NextPage = () => {
     const [data, setData] = useState<catalogI[] | null>(null)
     const router = useRouter()
+    const query = router.query.type as string
     const auth = getAuth()
+    const id = auth.currentUser?.uid as string
+    const { title, subtitle } = getTitle(query)
 
     useEffect(() => {
         getData()
@@ -28,8 +49,6 @@ const Catalog: NextPage<props> = () => {
 
     async function getData() {
         try {
-            const id = auth.currentUser?.uid as string
-            const query = router.query.type as string
             const data = await getFireDoc(query, id)
             setData(data.list as catalogI[])
         } catch (e) {
@@ -64,11 +83,7 @@ const Catalog: NextPage<props> = () => {
                         star-driven event films and branded properties"
                 />*/}
                 <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
-                    <List
-                        title="NEW & UPCOMING MOVIES"
-                        description="Exciting, emotional and unexpected"
-                        catalog={data}
-                    />
+                    <List title={title} description={subtitle} catalog={data} />
                 </div>
             </div>
         </>

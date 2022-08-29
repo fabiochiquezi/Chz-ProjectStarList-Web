@@ -19,6 +19,7 @@
         "postcss.config.js": true,
         "tailwind.config.js": true,
         "package.json": true,
+        ".env*": true,
 
         "pages/api": true,
         "pages/_document.tsx": true,

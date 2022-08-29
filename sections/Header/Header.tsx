@@ -17,7 +17,7 @@ const Header: React.FC = () => {
     }, [])
 
     useEffect(() => {
-        const body = document.querySelector('body') as HTMLElement
+        const body = document.querySelector('html') as HTMLElement
         body.style.overflow = menu ? 'hidden' : 'auto'
     }, [menu])
 

@@ -14,7 +14,7 @@ export const useSetUtils = () => useContext(SetUtilsContext)
 
 // Provider
 export function UtilsProvider({ children }: props) {
-    const [modal, setModal] = React.useState(false)
+    const [modal, setModal] = React.useState(true)
     return (
         <UtilsContext.Provider value={{ modal }}>
             <SetUtilsContext.Provider value={{ setModal }}>

@@ -11,6 +11,7 @@
     .heroWrapper {
         background: url('https://images4.alphacoders.com/909/thumb-1920-909185.jpg')
             no-repeat center center;
+        background-size: cover;
     }
 }
 /*
