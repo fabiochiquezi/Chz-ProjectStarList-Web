@@ -18,7 +18,7 @@ const SpinIcon2: React.FC<props> = ({
 }) => {
     return (
         <div
-            className={styles.ldsRing}
+            className={`${styles.ldsRing} ${className}`}
             style={{ width: width + 20, height: height + 20 }}
         >
             <div

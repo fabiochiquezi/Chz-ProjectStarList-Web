@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ButtonsSignIn2 from '../../components/Buttons/ButtonSignIn2'
 import { useSetAuth } from '../../context/AuthContext'
 import styles from './Hero.module.css'

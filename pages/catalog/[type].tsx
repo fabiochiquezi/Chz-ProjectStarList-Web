@@ -42,21 +42,21 @@ const Catalog: NextPage = () => {
     const auth = getAuth()
     const id = auth.currentUser?.uid as string
     const { title, subtitle } = getTitle(query)
-
     useEffect(() => {
         getData()
-    }, [])
+    }, [router.asPath])
 
     async function getData() {
         try {
             const data = await getFireDoc(query, id)
             setData(data.list as catalogI[])
         } catch (e) {
+            console.log(e)
             router.push('/404')
         }
     }
 
-    if (!data) {
+    if (data === null) {
         return (
             <div>
                 <Header />

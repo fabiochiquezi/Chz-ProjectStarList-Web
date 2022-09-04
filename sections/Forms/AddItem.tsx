@@ -1,17 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Input from '../../components/Forms/Input'
 import { useSetUtils } from '../../context/UtilsContext'
 import CloseIcon from '../../public/icons/CloseIcon'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
+import Select from '../../components/Forms/Select'
+import SpinIcon2 from '../../public/icons/SpinIcon2'
+import { postFireDoc } from '../../firebase/firestore/post'
+import { useAuth } from '../../context/AuthContext'
+
+type dataForm = {
+    name: string
+    thumb: string
+    state: string
+    type: string
+}
 
 const validate = Yup.object({
     thumb: Yup.string().required('Required'),
-    name: Yup.string().required('Required')
+    name: Yup.string().required('Required'),
+    state: Yup.string().required('Required'),
+    type: Yup.string().required('Required')
 })
 
 const AddItem: React.FC = () => {
     const { setModal } = useSetUtils()
+    const [loading, setLoading] = useState(false)
+    const { user } = useAuth()
+
+    async function handleSubmit(data: dataForm) {
+        const { name, thumb, state, type } = data
+        if (loading) return
+        setLoading(true)
+
+        try {
+            if (!user) throw new Error('User not identified')
+            await postFireDoc(state, user.uid, { name, thumb, type })
+        } catch (e) {
+            console.log('error AddItem', e)
+        } finally {
+            setLoading(false)
+            setModal(false)
+        }
+    }
+
     return (
         <div
             className="absolute w-[90%] w-[316px] mx-auto z-50 left-[50%] ml-[-158px] top-[10%]
@@ -23,13 +55,16 @@ const AddItem: React.FC = () => {
                 initialValues={{
                     name: '',
                     thumb: '',
-                    background: '',
-                    rate: '',
-                    category: '',
+                    state: '',
                     type: ''
                 }}
                 validationSchema={validate}
-                onSubmit={data => console.log(data)}
+                validateOnChange={false}
+                validateOnBlur={false}
+                onSubmit={(data, props) => {
+                    props.validateForm()
+                    handleSubmit(data)
+                }}
             >
                 {formik => (
                     <form
@@ -50,7 +85,7 @@ const AddItem: React.FC = () => {
                         <div className="mt-3 md:grid grid-cols-2 gap-x-8">
                             <Input
                                 label="Name"
-                                className="mb-7"
+                                className="mb-9"
                                 name="name"
                                 type="text"
                                 onChange={formik.handleChange}
@@ -59,7 +94,7 @@ const AddItem: React.FC = () => {
                             />
                             <Input
                                 label="Thumb"
-                                className="mb-7"
+                                className="mb-9"
                                 placeholder="http://example.com"
                                 name="thumb"
                                 type="text"
@@ -67,49 +102,72 @@ const AddItem: React.FC = () => {
                                 value={formik.values.thumb}
                                 error={formik.errors.thumb}
                             />
-                            <Input
-                                label="Background"
-                                className="mb-7"
-                                name="background"
-                                type="text"
+                            <Select
+                                label="State"
+                                className="mb-9"
+                                name="state"
                                 onChange={formik.handleChange}
-                                value={formik.values.background}
-                                error={formik.errors.background}
-                            />
-                            <Input
-                                label="Rate"
-                                className="mb-7"
-                                name="rate"
-                                type="number"
-                                onChange={formik.handleChange}
-                                value={formik.values.rate}
-                                error={formik.errors.rate}
-                            />
-                            <Input
-                                label="Category"
-                                className="mb-7"
-                                name="category"
-                                type="text"
-                                onChange={formik.handleChange}
-                                value={formik.values.category}
-                                error={formik.errors.category}
-                            />
-                            <Input
+                                value={formik.values.state}
+                                error={formik.errors.state}
+                            >
+                                <option
+                                    className="bg-primary text-white"
+                                    value={'doing'}
+                                >
+                                    Doing
+                                </option>
+                                <option
+                                    className="bg-primary text-white"
+                                    value={'illdo'}
+                                >
+                                    I'll Do
+                                </option>
+                                <option
+                                    className="bg-primary text-white"
+                                    value={'did'}
+                                >
+                                    Did
+                                </option>
+                            </Select>
+                            <Select
                                 label="Type"
-                                className="mb-7"
+                                className="mb-9"
                                 name="type"
-                                type="text"
                                 onChange={formik.handleChange}
                                 value={formik.values.type}
                                 error={formik.errors.type}
-                            />
+                            >
+                                <option
+                                    className="bg-primary text-white"
+                                    value={'watch'}
+                                >
+                                    Watch
+                                </option>
+                                <option
+                                    className="bg-primary text-white"
+                                    value={'play'}
+                                >
+                                    Play
+                                </option>
+                                <option
+                                    className="bg-primary text-white"
+                                    value={'read'}
+                                >
+                                    Read
+                                </option>
+                            </Select>
                         </div>
 
                         <button
-                            className=" mt-8 btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm sm:mt-9 md:mt-2"
+                            className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
                             type="submit"
+                            disabled={loading ? true : false}
                         >
-                            <span className="">Send</span>
+                            {!loading ? (
+                                <span className="">Send</span>
+                            ) : (
+                                <SpinIcon2 className="positive -top-1" />
+                            )}
                         </button>
                     </form>
                 )}

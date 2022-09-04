@@ -53,7 +53,8 @@ a:active {
 }
 
 textarea:focus,
-input:focus {
+input:focus,
+select {
     outline: none;
 }
 

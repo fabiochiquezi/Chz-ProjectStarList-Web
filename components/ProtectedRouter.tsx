@@ -22,14 +22,6 @@ const ProtectedRouter: React.FC<props> = ({ children }) => {
         router.push('/')
     })
 
-    /*
-        useEffect(() => {
-            if (!user) {
-                router.push('/')
-            }
-        }, [router, user])
-    */
-
     return <>{user ? children : <Loading />}</>
 }
 

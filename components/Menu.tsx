@@ -56,7 +56,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                             </a>
                         </Link>
                     </li>
-
+                    {/*
                     <div className="hidden lg:flex mt-[-4px]">
                         <li className="mr-4 xl:mr-6 text-[16px] mt-[4px]">/</li>
 
@@ -93,6 +93,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                             </a>
                         </li>
                     </div>
+                    */}
                 </ul>
             </nav>
         </>

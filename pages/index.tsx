@@ -15,7 +15,9 @@ const Home: NextPage = () => {
                     content="Create your album of memories about movies, series, animations, books and games"
                 />
             </Head>
+
             <HeaderLogin />
+
             <div className="mb-48 sm:mb-36 lg:mb-24">
                 <HeroLogin
                     title="Your list of great works souvenirs"

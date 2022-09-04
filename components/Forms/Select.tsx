@@ -1,27 +1,27 @@
 import React, { useRef, useState } from 'react'
 
 type props = {
+    children: React.ReactNode
     label: string
     className?: string
     placeholder?: string
     name: string
-    type: string
     onChange: any
     value: any
     error: any
 }
 
-const Input: React.FC<props> = ({
+const Select: React.FC<props> = ({
+    children,
     label,
     className,
     placeholder = '',
     name,
-    type,
     onChange,
     value,
     error
 }) => {
-    const inputRef = useRef<HTMLInputElement | null>(null)
+    const inputRef = useRef<HTMLSelectElement | null>(null)
     const [active, setActive] = useState(false)
 
     return (
@@ -40,9 +40,8 @@ const Input: React.FC<props> = ({
                 )}
             </label>
 
-            <input
+            <select
                 name={name}
-                type={type}
                 onChange={onChange}
                 value={value}
                 className={`ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8 bg-transparent border-b-[1px] border-gray-400 text-sm ${
@@ -58,7 +57,14 @@ const Input: React.FC<props> = ({
                     if (inputRef.current && !inputRef.current.value.length)
                         setActive(false)
                 }}
-            />
+            >
+                <option
+                    className="bg-primary text-white"
+                    selected
+                    disabled
+                ></option>
+                {children}
+            </select>
             {error ? (
                 <p className="absolute -bottom-[22px] left-0 text-[11px] text-red-500 text-right w-full">
                     * {error}
@@ -68,4 +74,4 @@ const Input: React.FC<props> = ({
     )
 }
 
-export default Input
+export default Select
