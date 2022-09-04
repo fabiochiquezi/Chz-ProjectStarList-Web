@@ -29,7 +29,7 @@ const Header: React.FC = () => {
                 absolute sm:left-2/4 sm:-ml-[320px] md:-ml-[384px] lg:-ml-[512px] xl:-ml-[640px] 2xl:-ml-[768px]
                 bg-transparent"
         >
-            <Link href="/">
+            <Link href="/catalog/doing">
                 <a className="logo z-10 hover:opacity-80">
                     <Logo />
                 </a>
@@ -47,9 +47,9 @@ const Header: React.FC = () => {
                     <Menu setMenu={setMenu} />
 
                     <ul className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-[0px] lg:w-auto lg:mx-0 lg:flex-row text-center">
-                        <li className="flex items-center mb-7 justify-center lg:mb-0 w-full max-w-xs lg:w-auto">
+                        {/*<li className="flex items-center mb-7 justify-center lg:mb-0 w-full max-w-xs lg:w-auto">
                             <SearchBar />
-                        </li>
+                        </li>*/}
 
                         <div className="flex mt-8 lg:mt-0 items-center">
                             <li className="pt-1 lg:p-0 lg:m-0 lg:ml-8 mb-2 mt-4 text-sm">

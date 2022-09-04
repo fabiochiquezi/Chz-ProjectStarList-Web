@@ -27,7 +27,7 @@ const Home: NextPage = () => {
                 <div className="pt-20 pb-16">
                     <List
                         catalog={catalog}
-                        title="Build your memory list of the greatest"
+                        title="YOUR VIRTUAL MEMORY LIST"
                         description="From watching, reading or playing..."
                         menu={false}
                     />
