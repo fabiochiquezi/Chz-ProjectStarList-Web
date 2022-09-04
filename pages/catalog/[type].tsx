@@ -10,6 +10,7 @@ import { getAuth } from 'firebase/auth'
 import { useEffect } from 'react'
 import { useCatalogStore } from '../../store/catalogStore'
 import { getTitle } from './getTitle'
+import Footer from '../../sections/Footer'
 
 const Catalog: NextPage = () => {
     const router = useRouter()
@@ -59,6 +60,8 @@ const Catalog: NextPage = () => {
                     <List title={title} description={subtitle} catalog={list} />
                 </div>
             </div>
+
+            <Footer />
         </>
     )
 }

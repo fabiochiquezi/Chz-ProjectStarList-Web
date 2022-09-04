@@ -25,6 +25,8 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
                                 const item = e.target as HTMLElement
                                 item.style.display = 'none'
                             }}
+                            alt={name}
+                            title={name}
                         />
                     </div>
                 ) : (

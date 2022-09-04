@@ -1,7 +1,6 @@
 import type { AppProps } from 'next/app'
 import '@fontsource/roboto'
 import '../general/styles/globals.css'
-import Footer from '../components/Footer'
 import { useEffect, useState } from 'react'
 import AuthProvider, { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/router'
@@ -12,7 +11,7 @@ import { noAuthRequired } from '../general/data/routes'
 const MyApp = ({ Component, pageProps }: AppProps) => {
     const router = useRouter()
     const [isSSR, setIsSSR] = useState(true)
-    const { user } = useAuth()
+    const isPublic = noAuthRequired.includes(router.pathname)
 
     useEffect(() => {
         setIsSSR(false)
@@ -23,15 +22,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <AuthProvider>
             <div className="dark:bg-primary dark:text-white bg-white text-black">
                 <UtilsProvider>
-                    {noAuthRequired.includes(router.pathname) ? (
-                        <>
-                            <Component {...pageProps} />
-                            <Footer />
-                        </>
+                    {isPublic ? (
+                        <Component {...pageProps} />
                     ) : (
                         <ProtectedRouter>
                             <Component {...pageProps} />
-                            <Footer />
                         </ProtectedRouter>
                     )}
                 </UtilsProvider>

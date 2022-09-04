@@ -4,6 +4,7 @@ import HeroLogin from '../sections/Hero/HeroLogin'
 import List from '../sections/List'
 import catalog from '../general/data/catalog.json'
 import Head from 'next/head'
+import Footer from '../sections/Footer'
 
 const Home: NextPage = () => {
     return (
@@ -33,6 +34,8 @@ const Home: NextPage = () => {
                     />
                 </div>
             </div>
+
+            <Footer />
         </div>
     )
 }

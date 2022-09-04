@@ -1,16 +1,15 @@
 import React from 'react'
-import DiscordIcon from '../public/icons/DiscordIcon'
-import GithubIcon from '../public/icons/GithubIcon'
-import WhatsAppIcon from '../public/icons/WhatsAppIcon'
-import Logo from '../public/Logo'
-import BannerJob from './BannerJob'
+import DiscordIcon from '../../public/icons/DiscordIcon'
+import GithubIcon from '../../public/icons/GithubIcon'
+import WhatsAppIcon from '../../public/icons/WhatsAppIcon'
+import Logo from '../../public/Logo'
+import BannerJob from '../../components/BannerJob'
 
 const Footer: React.FC = () => {
     const today = new Date()
     const dd = String(today.getDate()).padStart(2, '0')
     const mm = String(today.getMonth() + 1).padStart(2, '0')
     const yyyy = today.getFullYear()
-
     const date = mm + '/' + dd + '/' + yyyy
 
     return (

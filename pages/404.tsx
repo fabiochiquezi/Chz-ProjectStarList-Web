@@ -4,6 +4,7 @@ import HeaderLogin from '../sections/Header/HeaderLogin'
 import { useAuth } from '../context/AuthContext'
 import Header from '../sections/Header/Header'
 import Link from 'next/link'
+import Footer from '../sections/Footer'
 
 const Page404: React.FC = () => {
     const { user } = useAuth()
@@ -24,6 +25,7 @@ const Page404: React.FC = () => {
                     </Link>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }
