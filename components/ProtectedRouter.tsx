@@ -3,7 +3,7 @@ import Loading from './Loading'
 import { User } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { authState } from 'firebase/auth/authState'
-import { useAuth, useSetAuth } from 'context/AuthContext'
+import { useAuth, useSetAuth } from 'context/AuthContext/types'
 
 interface props {
     children: React.ReactNode

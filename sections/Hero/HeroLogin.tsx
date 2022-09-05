@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Hero.module.css'
-import { useSetAuth } from 'context/AuthContext'
+import { useSetAuth } from 'context/AuthContext/types'
 import ButtonsSignIn2 from 'components/Buttons/ButtonSignIn2'
 
 type props = {

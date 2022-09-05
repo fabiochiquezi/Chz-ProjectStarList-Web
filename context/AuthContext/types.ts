@@ -20,4 +20,4 @@ export const AuthUpdateContext = createContext<AuthUpdT>({
 export const useSetAuth = () => useContext(AuthUpdateContext)
 
 // Provider
-type props = { children: React.ReactNode }
+export type props = { children: React.ReactNode }

@@ -1,32 +1,11 @@
 import { User } from 'firebase/auth'
-import { useSetUtils } from './UtilsContext'
+import React, { useState } from 'react'
+import { useSetUtils } from '../UtilsContext'
 import Router, { useRouter } from 'next/router'
 import { authGoogle } from 'firebase/auth/google'
 import { authState } from 'firebase/auth/authState'
-import { signOut as goOut } from '../firebase/auth/signOut'
-import React, { createContext, useContext, useState } from 'react'
-
-// SetUp hooks
-type AuthT = { user: null | User; loading: boolean }
-const AuthContext = createContext<AuthT>({ user: null, loading: false })
-export const useAuth = () => useContext(AuthContext)
-
-type AuthUpdT = {
-    signIn: () => Promise<void>
-    signOut: () => Promise<void>
-    setUser: React.Dispatch<React.SetStateAction<User | null>>
-    setLoading: React.Dispatch<React.SetStateAction<boolean>>
-}
-const AuthUpdateContext = createContext<AuthUpdT>({
-    signIn: async () => {},
-    signOut: async () => {},
-    setUser: () => null,
-    setLoading: () => false
-})
-export const useSetAuth = () => useContext(AuthUpdateContext)
-
-// Provider
-type props = { children: React.ReactNode }
+import { signOut as goOut } from 'firebase/auth/signOut'
+import { AuthContext, AuthUpdateContext, props } from './types'
 
 export function AuthProvider({ children }: props) {
     const [user, setUser] = useState<User | null>(null)
@@ -44,8 +23,8 @@ export function AuthProvider({ children }: props) {
     }
 
     async function signIn() {
-        if (loading) return
         try {
+            if (loading) return
             setLoading(true)
             const auth = await authGoogle()
             setUser(auth.user)

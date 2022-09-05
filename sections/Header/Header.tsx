@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Logo from 'public/Logo'
 import Menu from 'components/Menu'
 import React, { useEffect, useState } from 'react'
-import { useAuth, useSetAuth } from 'context/AuthContext'
+import { useAuth, useSetAuth } from 'context/AuthContext/types'
 import MobileButton from 'components/Buttons/MobileButton'
 
 const Header: React.FC = () => {

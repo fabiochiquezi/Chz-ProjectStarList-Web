@@ -1,15 +1,15 @@
 import Fields from './Fields'
 import { Formik } from 'formik'
 import { dataForm } from './types'
+import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { validation } from './validation'
-import { useAuth } from 'context/AuthContext'
 import SpinIcon2 from 'public/icons/SpinIcon2'
 import { useSetUtils } from 'context/UtilsContext'
+import { useAuth } from 'context/AuthContext/types'
 import { useCatalogStore } from 'store/catalogStore'
 import { postFireDoc } from 'firebase/firestore/post'
-import ModalForm from '../ModalForm'
 
 const AddItem: React.FC = () => {
     const { setModal, openAlert } = useSetUtils()
