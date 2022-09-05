@@ -1,8 +1,8 @@
+import { props, SetUtilsContext, UtilsContext } from './types'
 import React, { useEffect, useState } from 'react'
 import AddItem from 'sections/Forms/AddItem'
-import Modal from 'components/Modal'
-import Alert from 'components/Alert'
-import { props, SetUtilsContext, UtilsContext } from './types'
+import Modal from 'components/Modals/Modal'
+import Alert from 'components/Alerts/Alert'
 
 export function UtilsProvider({ children }: props) {
     const [modal, setModal] = useState(false)

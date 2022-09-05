@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import AuthProvider from 'context/AuthContext'
 import UtilsProvider from 'context/UtilsContext'
 import { noAuthRequired } from 'general/data/routes'
-import ProtectedRouter from 'components/ProtectedRouter'
+import ProtectedRouter from 'components/Structure/ProtectedRouter'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     const { pathname } = useRouter()

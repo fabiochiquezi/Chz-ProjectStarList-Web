@@ -1,8 +1,8 @@
 import React from 'react'
 import Logo from 'public/Logo'
-import BannerJob from 'components/BannerJob'
 import GithubIcon from 'public/icons/GithubIcon'
 import DiscordIcon from 'public/icons/DiscordIcon'
+import BannerJob from 'components/Banners/BannerJob'
 import WhatsAppIcon from 'public/icons/WhatsAppIcon'
 
 const Footer: React.FC = () => {

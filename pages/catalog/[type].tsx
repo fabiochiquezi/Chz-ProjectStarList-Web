@@ -5,12 +5,12 @@ import Footer from 'sections/Footer'
 import { getTitle } from './getTitle'
 import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
-import Loading from 'components/Loading'
+import ErrorSection from 'sections/Error'
 import Header from 'sections/Header/Header'
 import { useEffect, useState } from 'react'
+import Loading from 'components/Structure/Loading'
 import { getFireDoc } from 'firebase/firestore/get'
 import { useCatalogStore } from 'store/catalogStore'
-import ErrorSection from 'sections/Error'
 
 const HeadData = () => (
     <Head>

@@ -1,9 +1,9 @@
-import Thumb from 'components/Thumb'
+import Thumb from 'components/Thumbs/Thumb'
 import React, { useState } from 'react'
 import StateButtons from './StateButtons'
 import Title, { TitleEmpty } from './Title'
 import { catalogI } from 'general/types/catalog'
-import AddThumb from 'components/Thumb/AddThumb'
+import AddThumb from 'components/Thumbs/AddThumb'
 import ButtonLoad from 'components/Buttons/ButtonLoad'
 import { useSetUtils } from 'context/UtilsContext/types'
 
