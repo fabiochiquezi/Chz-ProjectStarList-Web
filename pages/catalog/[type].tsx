@@ -7,7 +7,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import Loading from '../../components/Loading'
 import { getAuth } from 'firebase/auth'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useCatalogStore } from '../../store/catalogStore'
 import { getTitle } from './getTitle'
 import Footer from '../../sections/Footer'
@@ -20,6 +20,9 @@ const Catalog: NextPage = () => {
     const { title, subtitle } = getTitle(query)
     const store = useCatalogStore(state => state)
     const list = store.data[query]
+    const is404 = list === undefined || list === null
+    const [loadingPage, setLoadingPage] = useState(true)
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         if (list && !list.length) getData()
@@ -30,13 +33,36 @@ const Catalog: NextPage = () => {
             const data = await getFireDoc(query, id)
             store.setData(data.list, query)
         } catch (e) {
+            setError(true)
             console.log(e)
+        } finally {
+            setLoadingPage(false)
         }
     }
 
-    if (!list) router.push('/404')
-    if (!list || !list.length) return <Loading />
+    if (is404) {
+        router.push('/404')
+        return <Loading />
+    }
+    if (error) {
+        return (
+            <div>
+                <Header />
+                <div className="relative h-[600px] w-full">
+                    <p className="text-red-600 text-2xl pt-[200px] max-w-[300px] mx-auto text-center">
+                        <span className="text-5xl mb-6 font-bold inline-block">
+                            ERROR ;(
+                        </span>
+                        <br />
+                        Sorry, but something went wrong
+                    </p>
+                </div>
+                <Footer />
+            </div>
+        )
+    }
 
+    if (loadingPage) return <Loading />
     return (
         <>
             <Head>

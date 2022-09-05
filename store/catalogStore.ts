@@ -1,12 +1,13 @@
 import create from 'zustand'
 import { catalogI } from '../general/types/catalog'
 
-interface DoingState {
+interface CatalogState {
     data: any
-    setData: (data: catalogI[], type: string) => void
+    setData: (newData: catalogI[], type: string) => void
+    addItem: (item: catalogI, type: string) => void
 }
 
-const useCatalogStore = create<DoingState>(set => ({
+const useCatalogStore = create<CatalogState>(set => ({
     data: {
         doing: [],
         illdo: [],
@@ -14,7 +15,12 @@ const useCatalogStore = create<DoingState>(set => ({
     },
     setData: (newData, type) =>
         set(state => {
-            state.data[type] = newData
+            if (newData) state.data[type] = newData
+            return { ...state.data }
+        }),
+    addItem: (item, type) =>
+        set(state => {
+            state.data[type] = [...state.data[type], item]
             return { ...state.data }
         })
 }))

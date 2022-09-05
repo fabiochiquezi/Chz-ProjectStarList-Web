@@ -23,7 +23,7 @@ const Alert: React.FC<props> = ({ message = '', state = 0, closeAlert }) => {
 
     return (
         <div
-            className={`fixed left-[0px] ml-[5%] top-10 w-[90%] mx-auto text-left rounded py-4 px-4 z-30 flex justify-between items-center sm:max-w-[420px] sm:left-[50%] sm:ml-[-210px] ${stateClass}`}
+            className={`fixed left-[0px] ml-[5%] top-10 w-[90%] mx-auto text-left rounded py-4 px-4 z-50 flex justify-between items-center sm:max-w-[420px] sm:left-[50%] sm:ml-[-210px] ${stateClass}`}
         >
             <p className="text-lg text-white mr-2 ml-2">{message}</p>
 

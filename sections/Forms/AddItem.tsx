@@ -8,6 +8,8 @@ import Select from '../../components/Forms/Select'
 import SpinIcon2 from '../../public/icons/SpinIcon2'
 import { postFireDoc } from '../../firebase/firestore/post'
 import { useAuth } from '../../context/AuthContext'
+import { useCatalogStore } from '../../store/catalogStore'
+import { useRouter } from 'next/router'
 
 type dataForm = {
     name: string
@@ -19,28 +21,32 @@ type dataForm = {
 const validate = Yup.object({
     thumb: Yup.string().required('Required'),
     name: Yup.string().required('Required'),
-    state: Yup.string().required('Required'),
     type: Yup.string().required('Required')
 })
 
 const AddItem: React.FC = () => {
-    const { setModal } = useSetUtils()
+    const { setModal, openAlert } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
+    const store = useCatalogStore()
+    const { query } = useRouter()
+    const state = query.type as string
 
     async function handleSubmit(data: dataForm) {
-        const { name, thumb, state, type } = data
+        const { name, thumb, type } = data
         if (loading) return
         setLoading(true)
 
         try {
             if (!user) throw new Error('User not identified')
             await postFireDoc(state, user.uid, { name, thumb, type })
+            store.addItem({ name, thumb, type }, state)
+            openAlert('Item added successfully', 1)
+            setModal(false)
         } catch (e) {
-            console.log('error AddItem', e)
+            openAlert('Sorry, but something went wrong. Try again', 2)
         } finally {
             setLoading(false)
-            setModal(false)
         }
     }
 
@@ -102,6 +108,7 @@ const AddItem: React.FC = () => {
                                 value={formik.values.thumb}
                                 error={formik.errors.thumb}
                             />
+                            {/*
                             <Select
                                 label="State"
                                 className="mb-9"
@@ -129,6 +136,7 @@ const AddItem: React.FC = () => {
                                     Did
                                 </option>
                             </Select>
+                            */}
                             <Select
                                 label="Type"
                                 className="mb-9"

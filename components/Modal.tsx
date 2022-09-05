@@ -16,7 +16,7 @@ const Modal: React.FC<props> = ({ children, isOpen }) => {
 
     if (!isOpen) return null
     return (
-        <div className="fixed w-full h-full left-0 top-0 z-50 overflow-y-scroll overflow-x-hidden">
+        <div className="fixed w-full h-full left-0 top-0 z-40 overflow-y-scroll overflow-x-hidden">
             <div
                 className="absolute w-full h-full left-0 top-0 bg-black opacity-75"
                 onClick={() => setModal(false)}
