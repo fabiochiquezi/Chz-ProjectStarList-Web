@@ -1,4 +1,4 @@
-import { arrayUnion, doc, setDoc, updateDoc } from 'firebase/firestore'
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../../firebaseSettings'
 
 export async function postFireDoc(

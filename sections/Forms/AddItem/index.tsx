@@ -1,15 +1,15 @@
-import Fields from './fields'
+import Fields from './Fields'
 import { Formik } from 'formik'
 import { dataForm } from './types'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { validation } from './validation'
 import { useAuth } from 'context/AuthContext'
-import CloseIcon from 'public/icons/CloseIcon'
 import SpinIcon2 from 'public/icons/SpinIcon2'
 import { useSetUtils } from 'context/UtilsContext'
 import { useCatalogStore } from 'store/catalogStore'
 import { postFireDoc } from 'firebase/firestore/post'
+import ModalForm from '../ModalForm'
 
 const AddItem: React.FC = () => {
     const { setModal, openAlert } = useSetUtils()
@@ -39,25 +39,9 @@ const AddItem: React.FC = () => {
     }
 
     return (
-        <div
-            className="absolute w-[90%] w-[316px] mx-auto z-50 left-[50%] ml-[-158px] top-[10%]
-                    sm:max-w-[440px] sm:ml-[-220px] sm:top-[10%] sm:w-full
-                    md:max-w-[600px] md:ml-[-300px] md:top-[20%]
-                    lg:top-[25%]"
-        >
-            <div
-                onClick={() => setModal(false)}
-                className="absolute right-4 top-0 p-8 -mr-8 -mt-8 simple-button z-10"
-            >
-                <CloseIcon width={22} height={16} />
-            </div>
-
+        <ModalForm>
             <Formik
-                initialValues={{
-                    name: '',
-                    thumb: '',
-                    type: ''
-                }}
+                initialValues={{ name: '', thumb: '', type: '' }}
                 validationSchema={validation}
                 validateOnChange={false}
                 validateOnBlur={false}
@@ -89,7 +73,7 @@ const AddItem: React.FC = () => {
                     </form>
                 )}
             </Formik>
-        </div>
+        </ModalForm>
     )
 }
 

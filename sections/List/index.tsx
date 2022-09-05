@@ -1,7 +1,7 @@
-import Title from './Title'
 import Thumb from 'components/Thumb'
 import React, { useState } from 'react'
 import StateButtons from './StateButtons'
+import Title, { TitleEmpty } from './Title'
 import { catalogI } from 'general/types/catalog'
 import AddThumb from 'components/Thumb/AddThumb'
 import { useSetUtils } from 'context/UtilsContext'
@@ -24,6 +24,9 @@ const List: React.FC<props> = ({
     const [limit, setLimit] = useState(15)
     const max = catalog ? catalog.length : 0
 
+    const TitleDefault = <Title titleH1={title} description={description} />
+    const TitlePage = () => (!max ? TitleEmpty : TitleDefault)
+
     function turnUpLimit() {
         setLimit(limit => limit + 15)
     }
@@ -34,18 +37,9 @@ const List: React.FC<props> = ({
             sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
             justify-items-center lg:justify-items-end 2xl:justify-items-center"
         >
-            {menu && menu && <StateButtons />}
-
-            {!max ? (
-                <Title
-                    titleList="YOUR LIST IS EMPTY"
-                    descriptionList="Start adding movies, books... Right now!"
-                />
-            ) : (
-                <Title titleList={title} descriptionList={description} />
-            )}
-
-            {menu && menu && <AddThumb onClick={() => setModal(true)} />}
+            {menu && <StateButtons />}
+            <TitlePage />
+            {menu && <AddThumb onClick={() => setModal(true)} />}
 
             {catalog &&
                 catalog.map(({ thumb, name }, index) => {

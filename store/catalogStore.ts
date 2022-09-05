@@ -16,12 +16,12 @@ const useCatalogStore = create<CatalogState>(set => ({
     setData: (newData, type) =>
         set(state => {
             if (newData) state.data[type] = newData
-            return { ...state.data }
+            return state.data
         }),
     addItem: (item, type) =>
         set(state => {
             state.data[type] = [...state.data[type], item]
-            return { ...state.data }
+            return state.data
         })
 }))
 
