@@ -3,7 +3,6 @@ import List from 'sections/List'
 import type { NextPage } from 'next'
 import Footer from 'sections/Footer'
 import { getTitle } from './getTitle'
-import Hero from 'sections/Hero/Hero'
 import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import Loading from 'components/Loading'
@@ -11,6 +10,17 @@ import Header from 'sections/Header/Header'
 import { useEffect, useState } from 'react'
 import { getFireDoc } from 'firebase/firestore/get'
 import { useCatalogStore } from 'store/catalogStore'
+import ErrorSection from 'sections/Error'
+
+const HeadData = () => (
+    <Head>
+        <title>Star List | Catalog</title>
+        <meta
+            name="description"
+            content="See all of your memories about movies, series, animations, books and games"
+        />
+    </Head>
+)
 
 const Catalog: NextPage = () => {
     const router = useRouter()
@@ -34,47 +44,19 @@ const Catalog: NextPage = () => {
             store.setData(data.list, query)
         } catch (e) {
             setError(true)
-            console.log(e)
         } finally {
             setLoadingPage(false)
         }
     }
 
-    if (is404) {
-        router.push('/404')
-        return <Loading />
-    }
-    if (error) {
-        return (
-            <div>
-                <Header />
-                <div className="relative h-[600px] w-full">
-                    <p className="text-red-600 text-2xl pt-[200px] max-w-[300px] mx-auto text-center">
-                        <span className="text-5xl mb-6 font-bold inline-block">
-                            ERROR ;(
-                        </span>
-                        <br />
-                        Sorry, but something went wrong
-                    </p>
-                </div>
-                <Footer />
-            </div>
-        )
-    }
-
+    if (is404) router.push('/404')
+    if (error) return <ErrorSection />
     if (loadingPage) return <Loading />
+
     return (
         <>
-            <Head>
-                <title>Star List | Catalog</title>
-                <meta
-                    name="description"
-                    content="See all of your memories about movies, series, animations, books and games"
-                />
-            </Head>
-
+            <HeadData />
             <Header />
-
             <div className="mb-48 sm:mb-36 lg:mb-24">
                 {/*<Hero
                     title="Lionsgate Movies"

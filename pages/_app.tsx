@@ -9,27 +9,25 @@ import { noAuthRequired } from 'general/data/routes'
 import ProtectedRouter from 'components/ProtectedRouter'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-    const router = useRouter()
+    const { pathname } = useRouter()
     const [isSSR, setIsSSR] = useState(true)
-    const isPublic = noAuthRequired.includes(router.pathname)
+    const isPublic = noAuthRequired.includes(pathname)
 
-    useEffect(() => {
-        setIsSSR(false)
-    }, [])
+    const publicRoute = <Component {...pageProps} />
+    const privateRoute = (
+        <ProtectedRouter>
+            <Component {...pageProps} />
+        </ProtectedRouter>
+    )
+    const Page = isPublic ? publicRoute : privateRoute
 
+    useEffect(() => setIsSSR(false), [])
     if (isSSR) return null
+
     return (
         <AuthProvider>
             <div className="dark:bg-primary dark:text-white bg-white text-black">
-                <UtilsProvider>
-                    {isPublic ? (
-                        <Component {...pageProps} />
-                    ) : (
-                        <ProtectedRouter>
-                            <Component {...pageProps} />
-                        </ProtectedRouter>
-                    )}
-                </UtilsProvider>
+                <UtilsProvider>{Page}</UtilsProvider>
             </div>
         </AuthProvider>
     )
