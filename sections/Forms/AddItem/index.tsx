@@ -6,10 +6,10 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { validation } from './validation'
 import SpinIcon2 from 'public/icons/SpinIcon2'
-import { useSetUtils } from 'context/UtilsContext'
 import { useAuth } from 'context/AuthContext/types'
 import { useCatalogStore } from 'store/catalogStore'
 import { postFireDoc } from 'firebase/firestore/post'
+import { useSetUtils } from 'context/UtilsContext/types'
 
 const AddItem: React.FC = () => {
     const { setModal, openAlert } = useSetUtils()

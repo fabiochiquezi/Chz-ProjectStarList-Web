@@ -1,12 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
 
-type props = {
-    children: React.ReactNode
-}
-
+type props = { children: React.ReactNode }
 const ThemeContext = createContext(true)
 const ThemeUpdateContext = createContext(() => {})
-
 export const useTheme = () => useContext(ThemeContext)
 export const useThemeUpdate = () => useContext(ThemeUpdateContext)
 

@@ -1,4 +1,4 @@
-import { useSetUtils } from 'context/UtilsContext'
+import { useSetUtils } from 'context/UtilsContext/types'
 import CloseIcon from 'public/icons/CloseIcon'
 import React from 'react'
 

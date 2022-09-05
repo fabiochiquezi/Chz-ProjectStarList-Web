@@ -1,25 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AddItem from 'sections/Forms/AddItem'
 import Modal from 'components/Modal'
 import Alert from 'components/Alert'
-
-// SetUp hooks
-type UtilsT = { modal: boolean }
-const UtilsContext = createContext<UtilsT>({ modal: false })
-export const useUtils = () => useContext(UtilsContext)
-
-type SetUtilsT = {
-    setModal: React.Dispatch<React.SetStateAction<boolean>>
-    openAlert: (message: string, state: number) => void
-}
-const SetUtilsContext = createContext<SetUtilsT>({
-    setModal: () => false,
-    openAlert: () => {}
-})
-export const useSetUtils = () => useContext(SetUtilsContext)
-
-// Provider
-type props = { children: React.ReactNode }
+import { props, SetUtilsContext, UtilsContext } from './types'
 
 export function UtilsProvider({ children }: props) {
     const [modal, setModal] = useState(false)

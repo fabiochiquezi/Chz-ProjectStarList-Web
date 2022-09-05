@@ -4,8 +4,8 @@ import StateButtons from './StateButtons'
 import Title, { TitleEmpty } from './Title'
 import { catalogI } from 'general/types/catalog'
 import AddThumb from 'components/Thumb/AddThumb'
-import { useSetUtils } from 'context/UtilsContext'
 import ButtonLoad from 'components/Buttons/ButtonLoad'
+import { useSetUtils } from 'context/UtilsContext/types'
 
 interface props {
     catalog: catalogI[]
