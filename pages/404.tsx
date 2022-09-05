@@ -1,10 +1,10 @@
 import React from 'react'
-import Head from 'next/head'
-import HeaderLogin from '../sections/Header/HeaderLogin'
-import { useAuth } from '../context/AuthContext'
-import Header from '../sections/Header/Header'
 import Link from 'next/link'
-import Footer from '../sections/Footer'
+import Head from 'next/head'
+import Footer from 'sections/Footer'
+import Header from 'sections/Header/Header'
+import { useAuth } from 'context/AuthContext'
+import HeaderLogin from 'sections/Header/HeaderLogin'
 
 const Page404: React.FC = () => {
     const { user } = useAuth()

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useSetUtils } from '../context/UtilsContext'
+import { useSetUtils } from 'context/UtilsContext'
 
 interface props {
     children?: React.ReactNode

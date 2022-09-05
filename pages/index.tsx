@@ -1,10 +1,10 @@
-import type { NextPage } from 'next'
-import HeaderLogin from '../sections/Header/HeaderLogin'
-import HeroLogin from '../sections/Hero/HeroLogin'
-import List from '../sections/List'
-import catalog from '../general/data/catalog.json'
 import Head from 'next/head'
-import Footer from '../sections/Footer'
+import List from 'sections/List'
+import type { NextPage } from 'next'
+import Footer from 'sections/Footer'
+import HeroLogin from 'sections/Hero/HeroLogin'
+import catalog from 'general/data/catalog.json'
+import HeaderLogin from 'sections/Header/HeaderLogin'
 
 const Home: NextPage = () => {
     return (

@@ -1,9 +1,9 @@
+import React from 'react'
+import Loading from './Loading'
 import { User } from 'firebase/auth'
 import { useRouter } from 'next/router'
-import React from 'react'
-import { useAuth, useSetAuth } from '../context/AuthContext'
-import { authState } from '../firebase/auth/authState'
-import Loading from './Loading'
+import { authState } from 'firebase/auth/authState'
+import { useAuth, useSetAuth } from 'context/AuthContext'
 
 interface props {
     children: React.ReactNode

@@ -1,12 +1,12 @@
-import type { AppProps } from 'next/app'
+import 'styles/globals.css'
 import '@fontsource/roboto'
-import '../general/styles/globals.css'
-import { useEffect, useState } from 'react'
-import AuthProvider, { useAuth } from '../context/AuthContext'
 import { useRouter } from 'next/router'
-import ProtectedRouter from '../components/ProtectedRouter'
-import UtilsProvider from '../context/UtilsContext'
-import { noAuthRequired } from '../general/data/routes'
+import type { AppProps } from 'next/app'
+import { useEffect, useState } from 'react'
+import AuthProvider from 'context/AuthContext'
+import UtilsProvider from 'context/UtilsContext'
+import { noAuthRequired } from 'general/data/routes'
+import ProtectedRouter from 'components/ProtectedRouter'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     const router = useRouter()

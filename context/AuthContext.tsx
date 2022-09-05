@@ -1,12 +1,10 @@
 import { User } from 'firebase/auth'
-import Router, { useRouter } from 'next/router'
-import React, { createContext, useContext, useState } from 'react'
-import { authState } from '../firebase/auth/authState'
-import { authGoogle } from '../firebase/auth/google'
-import { signOut as goOut } from '../firebase/auth/signOut'
-import { noAuthRequired } from '../general/data/routes'
 import { useSetUtils } from './UtilsContext'
-type props = { children: React.ReactNode }
+import Router, { useRouter } from 'next/router'
+import { authGoogle } from 'firebase/auth/google'
+import { authState } from 'firebase/auth/authState'
+import { signOut as goOut } from '../firebase/auth/signOut'
+import React, { createContext, useContext, useState } from 'react'
 
 // SetUp hooks
 type AuthT = { user: null | User; loading: boolean }
@@ -28,6 +26,8 @@ const AuthUpdateContext = createContext<AuthUpdT>({
 export const useSetAuth = () => useContext(AuthUpdateContext)
 
 // Provider
+type props = { children: React.ReactNode }
+
 export function AuthProvider({ children }: props) {
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)

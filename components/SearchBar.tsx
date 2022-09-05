@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
-import { isDesktop } from '../helpers/device'
-import SearchIcon from '../public/icons/SearchIcon'
+import { isDesktop } from 'helpers/device'
+import SearchIcon from 'public/icons/SearchIcon'
 
 const SearchBar: React.FC = () => {
     const [inputHidden, setInputHidden] = useState(true)

@@ -1,11 +1,11 @@
-import { catalogI } from '../../general/types/catalog'
-import React, { useState } from 'react'
-import ButtonLoad from '../../components/Buttons/ButtonLoad'
-import StateButtons from './StateButtons'
 import Title from './Title'
-import Thumb from '../../components/Thumb'
-import AddThumb from '../../components/Thumb/AddThumb'
-import { useSetUtils } from '../../context/UtilsContext'
+import Thumb from 'components/Thumb'
+import React, { useState } from 'react'
+import StateButtons from './StateButtons'
+import { catalogI } from 'general/types/catalog'
+import AddThumb from 'components/Thumb/AddThumb'
+import { useSetUtils } from 'context/UtilsContext'
+import ButtonLoad from 'components/Buttons/ButtonLoad'
 
 interface props {
     catalog: catalogI[]

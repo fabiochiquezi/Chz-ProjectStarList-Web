@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
-import ButtonsSignIn2 from '../../components/Buttons/ButtonSignIn2'
-import { useSetAuth } from '../../context/AuthContext'
+import React from 'react'
 import styles from './Hero.module.css'
+import { useSetAuth } from 'context/AuthContext'
+import ButtonsSignIn2 from 'components/Buttons/ButtonSignIn2'
 
 type props = {
     title: string

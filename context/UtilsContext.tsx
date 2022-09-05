@@ -1,8 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react'
-import AddItem from '../sections/Forms/AddItem'
-import Modal from '../components/Modal'
-import Alert from '../components/Alert'
-type props = { children: React.ReactNode }
+import AddItem from 'sections/Forms/AddItem'
+import Modal from 'components/Modal'
+import Alert from 'components/Alert'
 
 // SetUp hooks
 type UtilsT = { modal: boolean }
@@ -20,6 +19,8 @@ const SetUtilsContext = createContext<SetUtilsT>({
 export const useSetUtils = () => useContext(SetUtilsContext)
 
 // Provider
+type props = { children: React.ReactNode }
+
 export function UtilsProvider({ children }: props) {
     const [modal, setModal] = useState(false)
     const [alert, setAlert] = useState({

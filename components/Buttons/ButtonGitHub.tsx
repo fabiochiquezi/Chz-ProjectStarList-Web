@@ -1,5 +1,5 @@
 import React from 'react'
-import GithubIcon2 from '../../public/icons/GithubIcon2'
+import GithubIcon2 from 'public/icons/GithubIcon2'
 
 // import { Container } from './styles';
 

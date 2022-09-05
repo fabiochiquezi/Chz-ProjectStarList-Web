@@ -1,8 +1,7 @@
 import React from 'react'
-import { useAuth } from '../../context/AuthContext'
-import GoogleIcon from '../../public/icons/GoogleIcon'
-import SpinIcon from '../../public/icons/SpinIcon'
-import SpinIcon2 from '../../public/icons/SpinIcon2'
+import { useAuth } from 'context/AuthContext'
+import SpinIcon2 from 'public/icons/SpinIcon2'
+import GoogleIcon from 'public/icons/GoogleIcon'
 
 interface props {
     className?: string

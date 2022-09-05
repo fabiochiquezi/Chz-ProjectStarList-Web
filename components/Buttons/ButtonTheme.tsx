@@ -1,5 +1,5 @@
 import React from 'react'
-import { useTheme, useThemeUpdate } from '../../context/ThemeContext'
+import { useTheme, useThemeUpdate } from 'context/ThemeContext'
 
 const ButtonTheme: React.FC = () => {
     const darkTheme = useTheme()

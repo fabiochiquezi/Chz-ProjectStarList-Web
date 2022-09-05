@@ -1,5 +1,5 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
-import { db } from '../../firebaseSettings'
+import { db } from './../../firebaseSettings'
+import { doc, getDoc } from 'firebase/firestore'
 
 export async function getFireDoc(col: string, id: string) {
     const docRef = doc(db, col, id)

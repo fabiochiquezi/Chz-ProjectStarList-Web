@@ -1,5 +1,5 @@
 import React from 'react'
-import CloseIcon from '../public/icons/CloseIcon'
+import CloseIcon from 'public/icons/CloseIcon'
 
 type props = {
     message: string

@@ -1,7 +1,5 @@
-import CloseIcon from '../../public/icons/CloseIcon'
-import CloseIconOrange from '../../public/icons/CloseIconOrange'
-import HamburgerIcon from '../../public/icons/HamburgerIcon'
-import HamburgerIconOrange from '../../public/icons/HamburgerIconOrange'
+import CloseIcon from 'public/icons/CloseIcon'
+import HamburgerIcon from 'public/icons/HamburgerIcon'
 
 type MobileButtonProps = {
     menu: boolean
