@@ -94,3 +94,18 @@ select {
         background-color: hsl(200, 20%, 30%);
     }
 }
+
+/* keyframes */
+.alert-anim {
+    animation: comeFromTop 300ms ease-in-out;
+}
+@keyframes comeFromTop {
+    from {
+        top: 20px;
+        opacity: 0;
+    }
+    to {
+        top: 40px;
+        opacity: 1;
+    }
+}

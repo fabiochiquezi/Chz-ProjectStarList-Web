@@ -1,10 +1,10 @@
 import { User } from 'firebase/auth'
 import React, { useState } from 'react'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import { authGoogle } from 'firebase/auth/google'
-import { useSetUtils } from '../UtilsContext/types'
 import { authState } from 'firebase/auth/authState'
 import { signOut as goOut } from 'firebase/auth/signOut'
+import { useSetUtils } from 'context/UtilsContext/types'
 import { AuthContext, AuthUpdateContext, props } from './types'
 
 export function AuthProvider({ children }: props) {
@@ -29,10 +29,9 @@ export function AuthProvider({ children }: props) {
             const auth = await authGoogle()
             setUser(auth.user)
             openAlert('Login Successfully', 1)
-            Router.push('/catalog/doing')
+            router.push('/catalog/doing')
         } catch (e) {
-            console.log(e)
-            openAlert('Some error occurred', 2)
+            openAlert('Sorry, something went wrong', 2)
         } finally {
             setLoading(false)
         }
@@ -40,7 +39,7 @@ export function AuthProvider({ children }: props) {
 
     async function signOut() {
         try {
-            Router.push('/')
+            router.push('/')
             await goOut()
         } finally {
             setLoading(false)

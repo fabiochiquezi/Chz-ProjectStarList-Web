@@ -1,99 +1,99 @@
 [
     {
         "id": "01",
-        "name": "Spider-Man | No Way Home",
-        "thumb": "https://terrigen-cdn-dev.marvel.com/content/prod/1x/snh_online_6072x9000_posed_01.jpg",
+        "name": "The Alchemist",
+        "thumb": "https://images.booksense.com/images/007/315/9780062315007.jpg",
         "type": ""
     },
     {
         "id": "02",
+        "name": "Assassins Creed: Valhalla",
+        "thumb": "https://image.jeuxvideo.com/medias/158826/1588264397-5261-jaquette-avant.jpg",
+        "type": ""
+    },
+    {
+        "id": "03",
         "name": "Batman: The Dark Knight",
         "thumb": "https://external-preview.redd.it/Ln1XH9TGAW5TdDQEOin0NK-eRTB7VtHpTw0_WjBBfd8.jpg?auto=webp&s=58813512113aa8864f2c0ceb3873ef2624f35954",
         "type": ""
     },
     {
-        "id": "03",
-        "name": "X-Men | First Class",
-        "thumb": "https://i.pinimg.com/originals/6d/fe/79/6dfe79bfba5c338738a40531fe6809bb.jpg",
-        "type": ""
-    },
-    {
         "id": "04",
-        "name": "Captain America",
-        "thumb": "https://i.pinimg.com/564x/55/d4/6c/55d46ceff3431c98fbe7e56cd26ebc7f.jpg",
+        "name": "Naruto",
+        "thumb": "https://i.pinimg.com/originals/48/75/f4/4875f4d1c476b802a0cc85cd0a3e9796.jpg",
         "type": ""
     },
     {
         "id": "05",
-        "name": "Thor",
-        "thumb": "https://lumiere-a.akamaihd.net/v1/images/p_thorloveandthunder_22808_89cd85bd.jpeg",
+        "name": "World of Warcraft",
+        "thumb": "https://images.blz-contentstack.com/v3/assets/blt3452e3b114fab0cd/blt228c0f96aa27d238/60cbb8004ff91563ab257682/art-box-wow-7.jpg?auto=webp&quality=75",
         "type": ""
     },
     {
         "id": "06",
-        "name": "Black Panther",
-        "thumb": "https://m.media-amazon.com/images/M/MV5BMTg1MTY2MjYzNV5BMl5BanBnXkFtZTgwMTc4NTMwNDI@._V1_.jpg",
+        "name": "Dungeons And Dragons",
+        "thumb": "https://m.media-amazon.com/images/M/MV5BOWM0MjNkMjEtY2IyNi00ODdmLTk0ODctNjY3YTQzN2Y3N2ZiXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
         "type": ""
     },
     {
         "id": "07",
-        "name": "Iron Man",
-        "thumb": "https://i.annihil.us/u/prod/marvel/i/mg/0/03/5182d4c122627/clean.jpg",
+        "name": "Friends",
+        "thumb": "https://media2.fdncms.com/ntslo/imager/u/original/8764372/musicartsculture_movies2-1-dec5f3efa10728c3.jpg",
         "type": ""
     },
     {
         "id": "08",
-        "name": "Doctor Strange",
-        "thumb": "https://i.pinimg.com/originals/04/ce/81/04ce81130157bcab2755cc1472ccc9b3.jpg",
+        "name": "Spider Man",
+        "thumb": "https://destakjornal.com.br/wp-content/uploads/2022/04/asm2022008-cov-998x1536-1-768x1182.jpg",
         "type": ""
     },
     {
         "id": "09",
-        "name": "Loki",
-        "thumb": "https://img.olhardigital.com.br/wp-content/uploads/2021/03/loki-poster-novo-691x1024.jpg",
+        "name": "Demon Slayer",
+        "thumb": "https://i.pinimg.com/736x/49/81/71/498171df70c2b5c392b744efa0039a1d.jpg",
         "type": ""
     },
     {
         "id": "10",
-        "name": "The Incredible Hulk",
-        "thumb": "https://flxt.tmsimg.com/assets/p176337_p_v8_am.jpg",
+        "name": "The Witcher",
+        "thumb": "https://www.mobygames.com/images/covers/l/392214-the-witcher-3-wild-hunt-xbox-one-front-cover.png",
         "type": ""
     },
     {
         "id": "11",
-        "name": "Man of steel",
-        "thumb": "https://cdn.awsli.com.br/600x700/1610/1610163/produto/62279892/poster-superman-homem-de-aco-e-e713a179.jpg",
+        "name": "Dragon Ball Z",
+        "thumb": "https://img1.ak.crunchyroll.com/i/spire2/ab001b1cb053ec0d7b1b47b0f7bf98e71647329181_full.jpg",
         "type": ""
 
     },
     {
         "id": "12",
-        "name": "Aquaman",
-        "thumb": "https://m.media-amazon.com/images/M/MV5BOTk5ODg0OTU5M15BMl5BanBnXkFtZTgwMDQ3MDY3NjM@._V1_.jpg",
+        "name": "Game of Thrones",
+        "thumb": "http://prodimage.images-bn.com/pimages/9780553805444_p0_v5_s1200x630.jpg",
         "type": ""
     },
     {
         "id": "13",
         "name": "Joker",
-        "thumb": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg",
+        "thumb": "https://www.midtowncomics.com/images/PRODUCT/XL/1932761_xl.jpg",
         "type": ""
     },
     {
         "id": "14",
-        "name": "Wonder Woman",
-        "thumb": "https://m.media-amazon.com/images/M/MV5BMTYzODQzYjQtNTczNC00MzZhLTg1ZWYtZDUxYmQ3ZTY4NzA1XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+        "name": "Lord of Rings",
+        "thumb": "https://kbimages1-a.akamaihd.net/66a1591c-0b63-4f05-8385-64434a80b250/1200/1200/False/the-return-of-the-king-the-lord-of-the-rings-book-3-1.jpg",
         "type": ""
     },
     {
         "id": "15",
-        "name": "Green Lantern",
-        "thumb": "https://m.media-amazon.com/images/M/MV5BZjQ1YTIxNzEtMzcxNC00NTUzLThkZjktMmJlYTcyMjBhMGUyXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_FMjpg_UX1000_.jpg",
+        "name": "Star Wars",
+        "thumb": "https://images-na.ssl-images-amazon.com/images/I/71Jc8+hEt7L.jpg",
         "type": ""
     },
     {
         "id": "16",
-        "name": "Black Widow",
-        "thumb": "https://upload.wikimedia.org/wikipedia/pt/thumb/8/88/Black_Widow_%282020%29.jpg/250px-Black_Widow_%282020%29.jpg",
+        "name": "Guardians of Galaxy",
+        "thumb": "https://theslingsandarrows.com/wp-content/uploads/2020/05/Guardians-of-the-Galaxy-by-Bendis-hc-V1.jpg",
         "type": ""
     }
 ]

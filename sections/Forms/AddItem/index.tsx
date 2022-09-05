@@ -22,11 +22,11 @@ const AddItem: React.FC = () => {
         !loading ? <span>Send</span> : <SpinIcon2 className="positive -top-1" />
 
     async function handleSubmit(data: dataForm) {
-        if (!user) throw new Error('User not identified')
-        if (loading) return
-        setLoading(true)
-
         try {
+            if (!user) throw new Error('User not identified')
+            if (loading) return
+            setLoading(true)
+
             await postFireDoc(state, user.uid, data)
             store.addItem(data, state)
             openAlert('Item added successfully', 1)

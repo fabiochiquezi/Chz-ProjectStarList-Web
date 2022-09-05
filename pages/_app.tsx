@@ -25,11 +25,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     if (isSSR) return null
 
     return (
-        <AuthProvider>
-            <div className="dark:bg-primary dark:text-white bg-white text-black">
-                <UtilsProvider>{Page}</UtilsProvider>
-            </div>
-        </AuthProvider>
+        <UtilsProvider>
+            <AuthProvider>
+                <div className="dark:bg-primary dark:text-white bg-white text-black">
+                    {Page}
+                </div>
+            </AuthProvider>
+        </UtilsProvider>
     )
 }
 
