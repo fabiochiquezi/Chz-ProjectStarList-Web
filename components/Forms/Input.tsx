@@ -29,7 +29,7 @@ const Input: React.FC<props> = ({
             <label
                 htmlFor={name}
                 className={`ease-in-out duration-300 absolute left-0 text-sm text-[#666] ${
-                    active ? 'text-[11px] -top-[16px] text-gray-300' : 'top-1'
+                    active ? 'text-[11px] -top-[16px]' : 'top-1'
                 }`}
             >
                 {label}{' '}

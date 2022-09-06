@@ -54,8 +54,28 @@ a:active {
 
 textarea:focus,
 input:focus,
-select {
+select:focus {
     outline: none;
+}
+input,
+select,
+textarea {
+    color: #fff;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    color: #fff;
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px rgb(23 23 23Z) inset;
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 /* Buttons */
@@ -96,16 +116,44 @@ select {
 }
 
 /* keyframes */
+/* Alert */
 .alert-anim {
-    animation: comeFromTop 300ms ease-in-out;
+    animation: comeFromTopAlert 300ms ease-in-out;
 }
-@keyframes comeFromTop {
+@keyframes comeFromTopAlert {
     from {
-        top: 20px;
+        left: 48%;
         opacity: 0;
     }
     to {
-        top: 40px;
+        left: 50%;
+        opacity: 1;
+    }
+}
+
+/* Modal */
+.modal-anim {
+    animation: fadeModal 300ms ease-in-out;
+}
+@keyframes fadeModal {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+.form-add-anim {
+    opacity: 0;
+    animation: comeFromTopFormAdd 300ms forwards 300ms;
+}
+@keyframes comeFromTopFormAdd {
+    from {
+        left: 48%;
+        opacity: 0;
+    }
+    to {
+        left: 50%;
         opacity: 1;
     }
 }

@@ -32,10 +32,15 @@ const Catalog: NextPage = () => {
     const list = store.data[query]
     const is404 = list === undefined || list === null
     const [loadingPage, setLoadingPage] = useState(true)
+    const [loadContent, seLoadContent] = useState(false)
     const [error, setError] = useState(false)
 
     useEffect(() => {
+        seLoadContent(true)
         if (list && !list.length) getData()
+        setTimeout(() => {
+            seLoadContent(false)
+        }, 600)
     }, [query])
 
     async function getData() {
@@ -43,6 +48,7 @@ const Catalog: NextPage = () => {
             const data = await getFireDoc(query, id)
             store.setData(data.list, query)
         } catch (e) {
+            console.log(e, 'errorrr')
             setError(true)
         } finally {
             setLoadingPage(false)
@@ -64,9 +70,18 @@ const Catalog: NextPage = () => {
                         operation encompasses a diverse slate of tentpoles,
                         star-driven event films and branded properties"
                 />*/}
-                <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
-                    <List title={title} description={subtitle} catalog={list} />
-                </div>
+
+                {loadContent ? (
+                    <Loading />
+                ) : (
+                    <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
+                        <List
+                            title={title}
+                            description={subtitle}
+                            catalog={list}
+                        />
+                    </div>
+                )}
             </div>
 
             <Footer />

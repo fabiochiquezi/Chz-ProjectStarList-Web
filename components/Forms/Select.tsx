@@ -43,7 +43,7 @@ const Select: React.FC<props> = ({
             <select
                 name={name}
                 onChange={onChange}
-                value={value}
+                defaultValue=""
                 className={`ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8 bg-transparent border-b-[1px] border-gray-400 text-sm ${
                     active && 'border-green-700'
                 }`}
@@ -60,7 +60,7 @@ const Select: React.FC<props> = ({
             >
                 <option
                     className="bg-primary text-white"
-                    selected
+                    value=""
                     disabled
                 ></option>
                 {children}

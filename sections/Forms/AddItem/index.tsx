@@ -3,7 +3,7 @@ import { Formik } from 'formik'
 import { dataForm } from './types'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { validation } from './validation'
 import SpinIcon2 from 'public/icons/SpinIcon2'
 import { useAuth } from 'context/AuthContext/types'
@@ -18,8 +18,18 @@ const AddItem: React.FC = () => {
     const store = useCatalogStore()
     const { query } = useRouter()
     const state = query.type as string
+    const btnRef = useRef<HTMLButtonElement>(null)
     const BtnSend = () =>
         !loading ? <span>Send</span> : <SpinIcon2 className="positive -top-1" />
+
+    useEffect(() => {
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter' && btnRef.current) {
+                event.preventDefault()
+                btnRef.current.click()
+            }
+        })
+    }, [])
 
     async function handleSubmit(data: dataForm) {
         try {
@@ -32,6 +42,7 @@ const AddItem: React.FC = () => {
             openAlert('Item added successfully', 1)
             setModal(false)
         } catch (e) {
+            console.log(e, 'error')
             openAlert('Sorry, but something went wrong. Try again', 2)
         } finally {
             setLoading(false)
@@ -55,7 +66,7 @@ const AddItem: React.FC = () => {
                         className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700"
                         onSubmit={formik.handleSubmit}
                     >
-                        <h3 className="mb-5 text-xl font-bold mt-1">
+                        <h3 className="mb-5 text-xl text-white font-bold mt-1">
                             Add new item
                         </h3>
 
@@ -67,6 +78,7 @@ const AddItem: React.FC = () => {
                             className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
                             type="submit"
                             disabled={loading ? true : false}
+                            ref={btnRef}
                         >
                             <BtnSend />
                         </button>

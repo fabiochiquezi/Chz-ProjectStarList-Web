@@ -11,7 +11,7 @@ const ModalForm: React.FC<props> = ({ children }) => {
             className="absolute w-[90%] w-[316px] mx-auto z-50 left-[50%] ml-[-158px] top-[10%]
                 sm:max-w-[440px] sm:ml-[-220px] sm:top-[10%] sm:w-full
                 md:max-w-[600px] md:ml-[-300px] md:top-[20%]
-                lg:top-[25%]"
+                lg:top-[25%] form-add-anim"
         >
             <div
                 onClick={() => setModal(false)}

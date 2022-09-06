@@ -43,7 +43,7 @@ const List: React.FC<props> = ({
 
             {catalog &&
                 catalog.map(({ thumb, name }, index) => {
-                    if (index > limit) return
+                    if (index >= limit) return
                     return (
                         <Thumb
                             key={index}
