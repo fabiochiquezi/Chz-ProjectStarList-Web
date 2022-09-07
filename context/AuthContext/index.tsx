@@ -1,23 +1,36 @@
 import { User } from 'firebase/auth'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import { db } from 'firebase/firebaseSettings'
+import { doc, setDoc } from 'firebase/firestore'
 import { authGoogle } from 'firebase/auth/google'
+import { getFireDoc } from 'firebase/firestore/get'
 import { authState } from 'firebase/auth/authState'
+import { useCatalogStore } from 'store/catalogStore'
 import { signOut as goOut } from 'firebase/auth/signOut'
-import { useSetUtils } from 'context/UtilsContext/types'
 import { AuthContext, AuthUpdateContext, props } from './types'
+import { noAuthRequired } from 'data/routes'
 
 export function AuthProvider({ children }: props) {
+    const store = useCatalogStore(state => state)
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)
-    const { openAlert } = useSetUtils()
     const router = useRouter()
+    const isPublic = noAuthRequired.includes(router.pathname)
 
     authState((userFirebase: User) => {
-        if (!user && userFirebase) setUser(userFirebase)
-        redirectSigned(userFirebase)
+        if (!user && userFirebase) {
+            setUser(userFirebase)
+            return
+        }
+        if (!isPublic && !user && !userFirebase) {
+            router.push('/')
+            return
+        }
+        redirectSignedFromHome(userFirebase)
     })
-    function redirectSigned(userFirebase: User) {
+
+    function redirectSignedFromHome(userFirebase: User) {
         if (router.pathname === '/' && userFirebase)
             router.push('/catalog/doing')
     }
@@ -26,12 +39,22 @@ export function AuthProvider({ children }: props) {
         try {
             if (loading) return
             setLoading(true)
+
             const auth = await authGoogle()
+            const { displayName, email, uid } = auth.user
+
+            const getUser = await getFireDoc('users', uid)
+            if (!getUser) {
+                await setDoc(doc(db, 'users', uid), { displayName, email })
+                await setDoc(doc(db, 'doing', uid), { list: [] })
+                await setDoc(doc(db, 'illdo', uid), { list: [] })
+                await setDoc(doc(db, 'did', uid), { list: [] })
+            }
+
             setUser(auth.user)
-            openAlert('Login Successfully', 1)
             router.push('/catalog/doing')
         } catch (e) {
-            openAlert('Sorry, something went wrong', 2)
+            console.log(e)
         } finally {
             setLoading(false)
         }
@@ -39,8 +62,9 @@ export function AuthProvider({ children }: props) {
 
     async function signOut() {
         try {
-            router.push('/')
+            setUser(null)
             await goOut()
+            store.resetData()
         } finally {
             setLoading(false)
         }

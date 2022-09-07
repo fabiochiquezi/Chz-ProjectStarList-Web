@@ -16,6 +16,7 @@ const HeaderLogin: React.FC = () => {
                     <ButtonnSignIn1
                         onClick={signIn.signIn}
                         className="z-50 hidden md:flex"
+                        id="btn-signIn-1"
                     />
                 </div>
             </div>

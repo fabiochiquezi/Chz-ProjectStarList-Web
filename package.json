@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "e2e": "npx nightwatch _e2e_/my-tests/home.test.js --env chrome",
+    "emulators": "firebase emulators:start",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -25,6 +27,7 @@
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "autoprefixer": "^10.4.8",
+    "chromedriver": "^105.0.0",
     "eslint": "^8.0.1",
     "eslint-config-next": "12.2.5",
     "eslint-config-standard-with-typescript": "^22.0.0",
@@ -32,6 +35,8 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.30.1",
+    "geckodriver": "^3.0.2",
+    "nightwatch": "^2.3.4",
     "postcss": "^8.4.16",
     "tailwindcss": "^3.1.8",
     "typescript": "*"

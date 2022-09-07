@@ -29,15 +29,22 @@ const HeroLogin: React.FC<props> = ({ title, description }) => {
                         <h1
                             className="text-5xl font-bold mb-4 leading-tight
                                        md:text-6xl lg:text-7xl lg:leading-[120%]"
+                            id="hero-h1"
                         >
                             {title}
                         </h1>
 
-                        <p className="mb-10 text-xl md:text-2xl lg:mb-8 lg:max-w-[500px] lg:leading-[150%]">
+                        <p
+                            className="mb-10 text-xl md:text-2xl lg:mb-8 lg:max-w-[500px] lg:leading-[150%]"
+                            id="hero-description"
+                        >
                             {description}
                         </p>
 
-                        <ButtonsSignIn2 onClick={useAuth.signIn} />
+                        <ButtonsSignIn2
+                            id="btn-signIn-2"
+                            onClick={useAuth.signIn}
+                        />
                     </main>
                 </div>
             </div>

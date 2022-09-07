@@ -37,3 +37,9 @@ yarn-error.log*
 next-env.d.ts
 
 yarn.lock
+
+ui-debug.log
+firestore-debug.log
+firebase-debug.log
+
+tests_output

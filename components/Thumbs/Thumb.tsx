@@ -10,7 +10,7 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
     return (
         <div
             key={index}
-            className="mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100"
+            className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100"
         >
             <div className="w-[170px] h-[220px] overflow-hidden">
                 <div

@@ -6,15 +6,17 @@ import { useAuth } from 'context/AuthContext/types'
 interface props {
     className?: string
     onClick: () => Promise<any>
+    id?: string
 }
 
-const ButtonnSignIn1: React.FC<props> = ({ className, onClick }) => {
+const ButtonnSignIn1: React.FC<props> = ({ className, onClick, id = '' }) => {
     const { loading } = useAuth()
 
     return (
         <a
             className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md flex justify-center items-center ${className} h-[44px] w-[112px]`}
             onClick={onClick}
+            id={id}
         >
             {loading ? (
                 <div className="mt-[7px]">

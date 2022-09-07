@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react'
 import Loading from 'components/Structure/Loading'
 import { getFireDoc } from 'firebase/firestore/get'
 import { useCatalogStore } from 'store/catalogStore'
+import { DocumentData } from 'firebase/firestore'
 
 const HeadData = () => (
     <Head>
@@ -45,10 +46,9 @@ const Catalog: NextPage = () => {
 
     async function getData() {
         try {
-            const data = await getFireDoc(query, id)
+            const data = (await getFireDoc(query, id)) as DocumentData
             store.setData(data.list, query)
         } catch (e) {
-            console.log(e, 'errorrr')
             setError(true)
         } finally {
             setLoadingPage(false)
