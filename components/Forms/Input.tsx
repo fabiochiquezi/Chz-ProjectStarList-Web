@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 type props = {
     label: string
@@ -23,6 +23,13 @@ const Input: React.FC<props> = ({
 }) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        if (value.length) {
+            setActive(true)
+            return
+        }
+    }, [value])
 
     return (
         <div className={`relative w-full h-8 ${className}`}>

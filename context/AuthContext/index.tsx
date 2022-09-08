@@ -27,13 +27,7 @@ export function AuthProvider({ children }: props) {
             router.push('/')
             return
         }
-        redirectSignedFromHome(userFirebase)
     })
-
-    function redirectSignedFromHome(userFirebase: User) {
-        if (router.pathname === '/' && userFirebase)
-            router.push('/catalog/doing')
-    }
 
     async function signIn() {
         try {
@@ -50,7 +44,6 @@ export function AuthProvider({ children }: props) {
                 await setDoc(doc(db, 'illdo', uid), { list: [] })
                 await setDoc(doc(db, 'did', uid), { list: [] })
             }
-
             setUser(auth.user)
             router.push('/catalog/doing')
         } catch (e) {

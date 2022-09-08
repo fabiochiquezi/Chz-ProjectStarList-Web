@@ -3,9 +3,39 @@ import React, { useEffect, useState } from 'react'
 import AddItem from 'sections/Forms/AddItem'
 import Modal from 'components/Modals/Modal'
 import Alert from 'components/Alerts/Alert'
+import AlterItem from 'sections/Forms/AlterItem'
 
 export function UtilsProvider({ children }: props) {
-    const [modal, setModal] = useState(false)
+    // Modal
+    const [modal, setModal] = useState({
+        name: '',
+        sateModal: false,
+        data: {}
+    })
+
+    function closeModal() {
+        setModal({
+            name: '',
+            sateModal: false,
+            data: {}
+        })
+    }
+    function openModalAlterItem(data: Record<string, any>) {
+        setModal({
+            name: 'AlterItem',
+            sateModal: true,
+            data: data
+        })
+    }
+    function openModalAddItem() {
+        setModal({
+            name: 'AddItem',
+            sateModal: true,
+            data: {}
+        })
+    }
+
+    // Allert
     const [alert, setAlert] = useState({
         message: '',
         state: 0,
@@ -33,7 +63,14 @@ export function UtilsProvider({ children }: props) {
 
     return (
         <UtilsContext.Provider value={{ modal }}>
-            <SetUtilsContext.Provider value={{ setModal, openAlert }}>
+            <SetUtilsContext.Provider
+                value={{
+                    closeModal,
+                    openModalAlterItem,
+                    openModalAddItem,
+                    openAlert
+                }}
+            >
                 {!alert.hide && (
                     <Alert
                         message={alert.message}
@@ -41,8 +78,11 @@ export function UtilsProvider({ children }: props) {
                         closeAlert={closeAlert}
                     />
                 )}
-                <Modal isOpen={modal}>
-                    <AddItem />
+                <Modal isOpen={modal.sateModal}>
+                    {modal.name === 'AlterItem' && (
+                        <AlterItem dataItem={modal.data} />
+                    )}
+                    {modal.name === 'AddItem' && <AddItem />}
                 </Modal>
                 {children}
             </SetUtilsContext.Provider>

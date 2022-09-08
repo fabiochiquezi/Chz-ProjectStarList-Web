@@ -1,16 +1,24 @@
 import { createContext, useContext } from 'react'
 
 // SetUp hooks
-type UtilsT = { modal: boolean }
-export const UtilsContext = createContext<UtilsT>({ modal: false })
+type UtilsT = {
+    modal: { name: string; sateModal: boolean; data: Record<string, any> }
+}
+export const UtilsContext = createContext<UtilsT>({
+    modal: { name: '', sateModal: false, data: {} }
+})
 export const useUtils = () => useContext(UtilsContext)
 
 type SetUtilsT = {
-    setModal: React.Dispatch<React.SetStateAction<boolean>>
+    closeModal: () => void
+    openModalAlterItem: (data: Record<string, any>) => void
+    openModalAddItem: () => void
     openAlert: (message: string, state: number) => void
 }
 export const SetUtilsContext = createContext<SetUtilsT>({
-    setModal: () => false,
+    closeModal: () => {},
+    openModalAlterItem: (data: Record<string, any>) => {},
+    openModalAddItem: () => {},
     openAlert: () => {}
 })
 export const useSetUtils = () => useContext(SetUtilsContext)

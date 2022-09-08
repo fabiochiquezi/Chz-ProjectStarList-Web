@@ -7,7 +7,7 @@ interface props {
 }
 
 const Modal: React.FC<props> = ({ children, isOpen }) => {
-    const { setModal } = useSetUtils()
+    const { closeModal } = useSetUtils()
     useEffect(() => {
         const el = document.querySelector('html')
         if (isOpen && el) el.style.overflow = 'hidden'
@@ -16,7 +16,7 @@ const Modal: React.FC<props> = ({ children, isOpen }) => {
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape' && isOpen) {
                 event.preventDefault()
-                setModal(false)
+                closeModal()
             }
         })
     }, [isOpen])
@@ -26,7 +26,7 @@ const Modal: React.FC<props> = ({ children, isOpen }) => {
         <div className="modal-anim fixed w-full h-full left-0 top-0 z-40 overflow-y-scroll overflow-x-hidden">
             <div
                 className="absolute w-full h-full left-0 top-0 bg-black opacity-75"
-                onClick={() => setModal(false)}
+                onClick={() => closeModal()}
             ></div>
             {children}
         </div>
