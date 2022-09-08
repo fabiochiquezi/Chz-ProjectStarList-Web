@@ -3,21 +3,14 @@ import { Formik } from 'formik'
 import { dataForm } from './types'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { validation } from './validation'
 import SpinIcon2 from 'public/icons/SpinIcon2'
 import { useAuth } from 'context/AuthContext/types'
 import { useCatalogStore } from 'store/catalogStore'
-import { postFireDoc } from 'firebase/firestore/post'
 import { useSetUtils } from 'context/UtilsContext/types'
 import { db } from 'firebase/firebaseSettings'
-import {
-    arrayRemove,
-    arrayUnion,
-    doc,
-    setDoc,
-    updateDoc
-} from 'firebase/firestore'
+import { doc, setDoc } from 'firebase/firestore'
 
 type props = { dataItem: { index: number; thumb: string } }
 const AlterItem: React.FC<props> = ({ dataItem }) => {
@@ -28,41 +21,44 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
     const { query } = useRouter()
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
-    const BtnSend = () =>
+    const BtnSend = ({ text }: { text: string }) =>
         !loading ? (
-            <span>Update</span>
+            <span>{text}</span>
         ) : (
             <SpinIcon2 className="positive -top-1" />
         )
-
-    /*
-    useEffect(() => {
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' && btnRef.current) {
-                event.preventDefault()
-                btnRef.current.click()
-            }
-        })
-    }, [])
-    */
 
     async function handleUpdate(data: dataForm) {
         try {
             if (!user) throw new Error('User not identified')
             if (loading) return
             setLoading(true)
-            store.data[state].map((item: any, index: any) => {
-                console.log(item)
-            })
 
+            store.updateItem(dataItem.index, data, state)
             const ref = doc(db, state, user.uid)
-            //setDoc(ref, { list: [] });
+            await setDoc(ref, { list: [...store.data[state]] })
 
-            //await updateDoc(ref, { list: arrayRemove({ dataItem }) })
-            //await updateDoc(ref, { list: arrayUnion({ ...data }) })
+            openAlert('Item Updated successfully', 1)
+            closeModal()
+        } catch (e) {
+            console.log(e, 'error')
+            openAlert('Sorry, but something went wrong. Try again', 2)
+        } finally {
+            setLoading(false)
+        }
+    }
 
-            //store.addItem(data, state)
-            openAlert('Item Update successfully', 1)
+    async function handleDelete() {
+        try {
+            if (!user) throw new Error('User not identified')
+            if (loading) return
+            setLoading(true)
+
+            store.deleteItem(dataItem.index, state)
+            const ref = doc(db, state, user.uid)
+            await setDoc(ref, { list: [...store.data[state]] })
+
+            openAlert('Item deleted successfully', 1)
             closeModal()
         } catch (e) {
             console.log(e, 'error')
@@ -104,14 +100,16 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
                                 disabled={loading ? true : false}
                                 ref={btnRef}
                             >
-                                <BtnSend />
+                                <BtnSend text="Update" />
                             </button>
-                            {/*<button
+                            <button
                                 className="btn-solid bg-red-600 py-[8px] h-[39px] w-[90px]
                                         self-start items-center relative left-6 md:top-1 text-sm"
+                                disabled={loading ? true : false}
+                                onClick={handleDelete}
                             >
-                                Delete
-                            </button> */}
+                                <BtnSend text="Delete" />
+                            </button>
                         </div>
                     </form>
                 )}
