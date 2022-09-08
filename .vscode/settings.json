@@ -33,6 +33,7 @@
         "firebase-debug.log": true,
         "firestore-debug.log": true,
         "ui-debug.log": true,
+        "emulators-data": true,
 
         "nightwatch.conf.js": true,
         "tests_output": true,
