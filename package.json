@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "e2e": "npx nightwatch _e2e_/my-tests/home.test.js --env chrome",
-    "emulators": "firebase emulators:start",
+    "emulators": "firebase emulators:start --import=./emulators-data",
+    "emulators:datarun": "firebase emulators:start --import=./emulators-data --export-on-exit",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
