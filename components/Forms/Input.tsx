@@ -25,7 +25,7 @@ const Input: React.FC<props> = ({
     const [active, setActive] = useState(false)
 
     useEffect(() => {
-        if (value.length) {
+        if (value && value.length) {
             setActive(true)
             return
         }
