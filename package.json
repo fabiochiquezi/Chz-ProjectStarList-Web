@@ -9,7 +9,7 @@
     "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\"",
     "build": "next build",
     "start": "next start",
-    "e2e": "cypress open",
+    "e2e": "concurrently --kill-others \"yarn emulators\" \"yarn development\" \"cypress open\"",
     "test": "jest --runInBand --watch",
     "test:coverage": "jest --coverage --runInBand --watch"
   },
