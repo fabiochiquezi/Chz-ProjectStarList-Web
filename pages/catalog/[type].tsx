@@ -2,7 +2,6 @@ import Head from 'next/head'
 import List from 'sections/List'
 import type { NextPage } from 'next'
 import Footer from 'sections/Footer'
-import { getTitle } from './getTitle'
 import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import ErrorSection from 'sections/Error'
@@ -12,6 +11,7 @@ import Loading from 'components/Structure/Loading'
 import { getFireDoc } from 'firebase/firestore/get'
 import { useCatalogStore } from 'store/catalogStore'
 import { DocumentData } from 'firebase/firestore'
+import { getTitle } from 'general/functions/getTitle'
 
 const HeadData = () => (
     <Head>

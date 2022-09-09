@@ -80,7 +80,11 @@ export function UtilsProvider({ children }: props) {
                 )}
                 <Modal isOpen={modal.sateModal}>
                     {modal.name === 'AlterItem' && (
-                        <AlterItem dataItem={modal.data} />
+                        <AlterItem
+                            dataItem={
+                                modal.data as { index: number; thumb: string }
+                            }
+                        />
                     )}
                     {modal.name === 'AddItem' && <AddItem />}
                 </Modal>
