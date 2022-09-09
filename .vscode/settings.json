@@ -21,11 +21,14 @@
         "package.json": true,
         ".env*": true,
         "design": true,
+        "jest.config.ts": true,
+        "test-setup.ts": true,
 
         "pages/api": true,
         "pages/_document.tsx": true,
 
         "deploy": true,
+        "coverage": true,
         "firebase.json":true,
         ".firebase": true,
         ".firebaserc": true,
