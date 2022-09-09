@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-
     "emulators": "firebase emulators:start --import=./emulators-data",
     "emulators:datarun": "firebase emulators:start --import=./emulators-data --export-on-exit",
     "development": "next dev",
@@ -38,6 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "autoprefixer": "^10.4.8",
     "chromedriver": "^105.0.0",
+    "concurrently": "^7.4.0",
     "eslint": "^8.0.1",
     "eslint-config-next": "12.2.5",
     "eslint-config-standard-with-typescript": "^22.0.0",

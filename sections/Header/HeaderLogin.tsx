@@ -12,7 +12,10 @@ const HeaderLogin: React.FC = () => {
             <div className="flex justify-between items-center container mx-auto px-4 py-6 bg-transparent">
                 <Logo className="z-10" />
                 <div className="z-10 flex items-center">
-                    <ButtonGitHub />
+                    <ButtonGitHub
+                        href="https://github.com/fabiochiquezi"
+                        className="md:mr-3"
+                    />
                     <ButtonnSignIn1
                         onClick={signIn.signIn}
                         className="z-50 hidden md:flex"
