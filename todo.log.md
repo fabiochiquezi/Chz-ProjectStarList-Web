@@ -38,6 +38,7 @@ Up to the GitHub with the project
 
 . Tests
 Settled up jest/react-testing library
+Add tests for some components
 
 . Create todo.log.md
 Create a method of document the needs of the project.
