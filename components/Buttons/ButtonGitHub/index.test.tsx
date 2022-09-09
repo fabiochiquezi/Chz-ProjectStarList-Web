@@ -1,7 +1,7 @@
-const { render, fireEvent } = require('@testing-library/react')
+const { render, screen } = require('@testing-library/react')
 import ButtonGitHub from './index'
 
-describe.only('ButtonGitHub', () => {
+describe('ButtonGitHub', () => {
     // props
     const href = 'https://github.com/'
     const id = 'my-button'
@@ -17,15 +17,19 @@ describe.only('ButtonGitHub', () => {
             target={target}
         />
     )
-    const { getByTestId, getByText } = render(Elem)
-    const el = getByTestId('button-github')
+    let el: HTMLElement | null = null
 
-    test('if exist', () => {
-        expect(el).toBeInTheDocument()
-        expect(getByText('GitHub')).toBeInTheDocument()
+    beforeEach(() => {
+        const { getByTestId } = render(Elem)
+        el = getByTestId('button-github')
     })
 
-    it('should have all props', () => {
+    test('exist', () => {
+        expect(el).toBeInTheDocument()
+        expect(screen.getByText('GitHub')).toBeInTheDocument()
+    })
+
+    it('props', () => {
         expect(el).toHaveAttribute('href', href)
         expect(el).toHaveAttribute('target', '_blank')
         expect(el).toHaveClass(className)
