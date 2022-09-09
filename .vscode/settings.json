@@ -20,6 +20,7 @@
         "tailwind.config.js": true,
         "package.json": true,
         ".env*": true,
+        "design": true,
 
         "pages/api": true,
         "pages/_document.tsx": true,
