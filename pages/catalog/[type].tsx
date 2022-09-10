@@ -6,14 +6,14 @@ import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import ErrorSection from 'sections/Error'
 import Header from 'sections/Header/Header'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Loading from 'components/Structure/Loading'
 import { getFireDoc } from 'firebase/firestore/get'
 import { useCatalogStore } from 'store/catalogStore'
 import { DocumentData } from 'firebase/firestore'
 import { getTitle } from 'general/functions/getTitle'
 
-const HeadData = () => (
+const HeadData = (): React.ReactElement => (
     <Head>
         <title>Star List | Catalog</title>
         <meta
@@ -44,7 +44,7 @@ const Catalog: NextPage = () => {
         }, 600)
     }, [query])
 
-    async function getData() {
+    async function getData(): Promise<void> {
         try {
             const data = (await getFireDoc(query, id)) as DocumentData
             store.setData(data.list, query)
@@ -64,12 +64,12 @@ const Catalog: NextPage = () => {
             <HeadData />
             <Header />
             <div className="mb-48 sm:mb-36 lg:mb-24">
-                {/*<Hero
+                {/* <Hero
                     title="Lionsgate Movies"
                     description="Lionsgate’s feature film production and distribution
                         operation encompasses a diverse slate of tentpoles,
                         star-driven event films and branded properties"
-                />*/}
+                /> */}
 
                 {loadContent ? (
                     <Loading />

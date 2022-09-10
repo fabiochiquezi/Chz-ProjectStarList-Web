@@ -1,9 +1,8 @@
 import Input from 'components/Forms/Input'
-import Select from 'components/Forms/Select'
 import { FormikProps } from 'formik'
 import React from 'react'
 
-type props = {
+interface props {
     formik: FormikProps<{
         name: string
         thumb: string

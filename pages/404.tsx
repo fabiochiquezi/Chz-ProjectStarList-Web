@@ -6,7 +6,7 @@ import Header from 'sections/Header/Header'
 import { useAuth } from 'context/AuthContext/types'
 import HeaderLogin from 'sections/Header/HeaderLogin'
 
-const HeadData = () => (
+const HeadData = (): React.ReactElement => (
     <Head>
         <title>Star List | 404</title>
     </Head>
@@ -14,8 +14,10 @@ const HeadData = () => (
 
 const Page404: React.FC = () => {
     const { user } = useAuth()
-    const homeLink = user ? '/catalog/doing' : '/'
-    const HeaderPage = () => (user ? <Header /> : <HeaderLogin />)
+    const homeLink = user != null ? '/catalog/doing' : '/'
+    const HeaderPage = (): React.ReactElement => {
+        return user != null ? <Header /> : <HeaderLogin />
+    }
 
     return (
         <div>

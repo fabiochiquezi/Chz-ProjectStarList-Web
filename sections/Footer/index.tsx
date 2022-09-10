@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
     const dd = String(today.getDate()).padStart(2, '0')
     const mm = String(today.getMonth() + 1).padStart(2, '0')
     const yyyy = today.getFullYear()
-    const date = mm + '/' + dd + '/' + yyyy
+    const date = `${mm}/${dd}/${yyyy}`
 
     return (
         <div className="bg-[#111] py-24 lg:pb-16 relative z-10">
@@ -35,6 +35,7 @@ const Footer: React.FC = () => {
                                     href="https://github.com/fabiochiquezi"
                                     target="_blank"
                                     className="text-lg mb-2 inline-block simple-button"
+                                    rel="noreferrer"
                                 >
                                     - My GitHub
                                 </a>
@@ -55,6 +56,7 @@ const Footer: React.FC = () => {
                             className="text-blue-400 break-all simple-button"
                             href="https://github.com/fabiochiquezi/projectOpen-frontEnd-myStarList"
                             target="_blank"
+                            rel="noreferrer"
                         >
                             https://github.com/fabiochiquezi/projectOpen-frontEnd-myStarList
                         </a>
@@ -78,6 +80,7 @@ const Footer: React.FC = () => {
                                     href="https://github.com/fabiochiquezi"
                                     className="simple-button"
                                     target="_blank"
+                                    rel="noreferrer"
                                 >
                                     <GithubIcon />
                                 </a>
@@ -87,6 +90,7 @@ const Footer: React.FC = () => {
                                     href="https://api.whatsapp.com/send?phone=5519983127035&text=Hi%20there!"
                                     className="simple-button"
                                     target="_blank"
+                                    rel="noreferrer"
                                 >
                                     <WhatsAppIcon />
                                 </a>

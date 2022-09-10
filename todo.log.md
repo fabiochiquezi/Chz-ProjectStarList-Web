@@ -17,6 +17,7 @@
 
 ## ToDo List:
 
+[ ] Refact all code with typescript rules
 [ ] Tests
 . E2E
 . Unit

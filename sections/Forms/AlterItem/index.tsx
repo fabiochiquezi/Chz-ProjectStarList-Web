@@ -12,7 +12,9 @@ import { useSetUtils } from 'context/UtilsContext/types'
 import { db } from 'firebase/firebaseSettings'
 import { doc, setDoc } from 'firebase/firestore'
 
-type props = { dataItem: { index: number; thumb: string } }
+interface props {
+    dataItem: { index: number; thumb: string }
+}
 const AlterItem: React.FC<props> = ({ dataItem }) => {
     const { closeModal, openAlert } = useSetUtils()
     const [loading, setLoading] = useState(false)
@@ -28,9 +30,9 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
             <SpinIcon2 className="positive -top-1" />
         )
 
-    async function handleUpdate(data: dataForm) {
+    async function handleUpdate(data: dataForm): Promise<void> {
         try {
-            if (!user) throw new Error('User not identified')
+            if (user == null) throw new Error('User not identified')
             if (loading) return
             setLoading(true)
 
@@ -48,9 +50,9 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
         }
     }
 
-    async function handleDelete() {
+    async function handleDelete(): Promise<void> {
         try {
-            if (!user) throw new Error('User not identified')
+            if (user == null) throw new Error('User not identified')
             if (loading) return
             setLoading(true)
 
@@ -97,7 +99,7 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
                             <button
                                 className="btn-solid bg-indigo-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-0 md:top-1 text-sm"
                                 type="submit"
-                                disabled={loading ? true : false}
+                                disabled={!!loading}
                                 ref={btnRef}
                             >
                                 <BtnSend text="Update" />
@@ -105,7 +107,7 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
                             <button
                                 className="btn-solid bg-red-600 py-[8px] h-[39px] w-[90px]
                                         self-start items-center relative left-6 md:top-1 text-sm"
-                                disabled={loading ? true : false}
+                                disabled={!!loading}
                                 onClick={handleDelete}
                             >
                                 <BtnSend text="Delete" />

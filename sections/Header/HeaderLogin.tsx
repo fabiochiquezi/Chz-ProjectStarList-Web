@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from 'public/Logo'
 import { useSetAuth } from 'context/AuthContext/types'
 import ButtonGitHub from 'components/Buttons/ButtonGitHub'
-import ButtonnSignIn1 from 'components/Buttons/ButtonnSignIn1'
+import ButtonnSignIn1 from 'components/Buttons/ButtonSignIn1'
 
 const HeaderLogin: React.FC = () => {
     const signIn = useSetAuth()

@@ -25,16 +25,16 @@ const AddItem: React.FC = () => {
 
     useEffect(() => {
         document.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' && btnRef.current) {
+            if (event.key === 'Enter' && btnRef.current != null) {
                 event.preventDefault()
                 btnRef.current.click()
             }
         })
     }, [])
 
-    async function handleSubmit(data: dataForm) {
+    async function handleSubmit(data: dataForm): Promise<void> {
         try {
-            if (!user) throw new Error('User not identified')
+            if (user == null) throw new Error('User not identified')
             if (loading) return
             setLoading(true)
 
@@ -85,7 +85,7 @@ const AddItem: React.FC = () => {
                         <button
                             className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
                             type="submit"
-                            disabled={loading ? true : false}
+                            disabled={!!loading}
                             ref={btnRef}
                         >
                             <BtnSend />

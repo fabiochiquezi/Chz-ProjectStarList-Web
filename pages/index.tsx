@@ -1,3 +1,4 @@
+import React from 'react'
 import Head from 'next/head'
 import List from 'sections/List'
 import type { NextPage } from 'next'
@@ -6,7 +7,7 @@ import HeroLogin from 'sections/Hero/HeroLogin'
 import catalog from 'general/data/catalog.json'
 import HeaderLogin from 'sections/Header/HeaderLogin'
 
-const HeadData = () => (
+const HeadData = (): React.ReactElement => (
     <Head>
         <title>Star List | Home</title>
         <meta
