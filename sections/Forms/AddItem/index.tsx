@@ -58,42 +58,44 @@ const AddItem: React.FC = () => {
     }
 
     return (
-        <ModalForm>
-            <Formik
-                initialValues={{ name: '', thumb: '', type: '' }}
-                validationSchema={validation}
-                validateOnChange={false}
-                validateOnBlur={false}
-                onSubmit={(data, props) => {
-                    props.validateForm()
-                    handleSubmit(data)
-                }}
-            >
-                {formik => (
-                    <form
-                        className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700"
-                        onSubmit={formik.handleSubmit}
-                    >
-                        <h3 className="mb-5 text-xl text-white font-bold mt-1">
-                            Add new item
-                        </h3>
-
-                        <div className="mt-3 md:grid grid-cols-2 gap-x-8">
-                            <Fields formik={formik} />
-                        </div>
-
-                        <button
-                            className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
-                            type="submit"
-                            disabled={!!loading}
-                            ref={btnRef}
+        <div data-cy="form-addNewItem">
+            <ModalForm>
+                <Formik
+                    initialValues={{ name: '', thumb: '', type: '' }}
+                    validationSchema={validation}
+                    validateOnChange={false}
+                    validateOnBlur={false}
+                    onSubmit={(data, props) => {
+                        props.validateForm()
+                        handleSubmit(data)
+                    }}
+                >
+                    {formik => (
+                        <form
+                            className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700"
+                            onSubmit={formik.handleSubmit}
                         >
-                            <BtnSend />
-                        </button>
-                    </form>
-                )}
-            </Formik>
-        </ModalForm>
+                            <h3 className="mb-5 text-xl text-white font-bold mt-1">
+                                Add new item
+                            </h3>
+
+                            <div className="mt-3 md:grid grid-cols-2 gap-x-8">
+                                <Fields formik={formik} />
+                            </div>
+
+                            <button
+                                className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
+                                type="submit"
+                                disabled={!!loading}
+                                ref={btnRef}
+                            >
+                                <BtnSend />
+                            </button>
+                        </form>
+                    )}
+                </Formik>
+            </ModalForm>
+        </div>
     )
 }
 

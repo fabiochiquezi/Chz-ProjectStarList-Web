@@ -43,3 +43,7 @@ firestore-debug.log
 firebase-debug.log
 
 tests_output
+
+#Important
+serviceAccount.json
+cypress.config.ts

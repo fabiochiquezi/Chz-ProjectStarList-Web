@@ -16,7 +16,10 @@ export const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
 
+// Doesn't work with cypress well
+/*
 if (process.env.NODE_ENV === 'development') {
     connectFirestoreEmulator(db, 'localhost', 8080)
     connectAuthEmulator(auth, 'http://localhost:9099')
 }
+*/

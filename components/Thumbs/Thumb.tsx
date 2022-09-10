@@ -15,10 +15,13 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
             key={index}
             className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 cursor-pointer simple-button"
             onClick={() => openModalAlterItem({ index, thumb })}
+            data-cy="thumb-default"
         >
             <div className="w-[170px] h-[220px] overflow-hidden">
                 <div
-                    className={`w-[170px] h-[220px] overflow-hidden rounded skeleton`}
+                    className={
+                        'w-[170px] h-[220px] overflow-hidden rounded skeleton'
+                    }
                 >
                     <img
                         src={thumb}

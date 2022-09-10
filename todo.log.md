@@ -17,6 +17,9 @@
 
 ## ToDo List:
 
+[ ] Add script for build first tables on firestore w/ cypress
+[ ] Implement Readme for cypress
+Builg ingnore files rightfully for protection
 [ ] Refact all code with typescript rules
 [ ] Tests
 . E2E

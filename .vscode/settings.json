@@ -41,7 +41,7 @@
 
         "cypress.config.ts": true,
         "cypress/downloads": true,
-        "cypress/support/e2e.ts": true,
+        //"cypress/support/e2e.ts": true,
         "cypress/fixtures/example.json": true
     }
 }

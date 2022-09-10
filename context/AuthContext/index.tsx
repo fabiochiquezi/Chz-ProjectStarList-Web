@@ -19,13 +19,12 @@ export function AuthProvider({ children }: props) {
     const isPublic = noAuthRequired.includes(router.pathname)
 
     authState((userFirebase: User) => {
-        if (!user && userFirebase) {
+        if (user == null && userFirebase) {
             setUser(userFirebase)
             return
         }
-        if (!isPublic && !user && !userFirebase) {
+        if (!isPublic && user == null && !userFirebase) {
             router.push('/')
-            return
         }
     })
 
@@ -38,7 +37,7 @@ export function AuthProvider({ children }: props) {
             const { displayName, email, uid } = auth.user
 
             const getUser = await getFireDoc('users', uid)
-            if (!getUser) {
+            if (getUser == null) {
                 await setDoc(doc(db, 'users', uid), { displayName, email })
                 await setDoc(doc(db, 'doing', uid), { list: [] })
                 await setDoc(doc(db, 'illdo', uid), { list: [] })

@@ -5,11 +5,8 @@ describe('Home', () => {
     const hero = '[data-cy="hero-showProject"]'
     const list = '[data-cy="section-list"]'
 
-    beforeEach(() => {
-        cy.visit('/')
-    })
-
     it('data', () => {
+        cy.visit('/')
         cy.get(btnSign1)
         cy.get(btnSign2)
         cy.get(btnGithub)

@@ -20,7 +20,7 @@ const Page404: React.FC = () => {
     }
 
     return (
-        <div>
+        <div data-cy="404-page">
             <HeadData />
             <HeaderPage />
             <div className="h-[100vh] w-full bg-primary relative z-0 lg:h-[70vh]">
