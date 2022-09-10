@@ -9,7 +9,7 @@ describe('Home', () => {
         cy.visit('/')
     })
 
-    test('data', () => {
+    it('data', () => {
         cy.get(btnSign1)
         cy.get(btnSign2)
         cy.get(btnGithub)
@@ -30,11 +30,10 @@ describe('Home', () => {
         cy.get(list).within(() => {
             cy.get('h1').should('exist')
             cy.get('h1').should('contain.text', 'YOUR VIRTUAL MEMORY LIST')
-            cy.get('p').should('exist')
-            cy.get('p').should(
-                'contain.text',
-                'From watching, reading or playing...'
-            )
+            cy.get('h1').find('span').should('exist')
+            cy.get('h1')
+                .find('span')
+                .should('contain.text', 'From watching, reading or playing...')
         })
     })
 })

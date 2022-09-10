@@ -17,7 +17,7 @@ const ButtonnSignIn1: React.FC<props> = ({ className, onClick, id = '' }) => {
             className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md flex justify-center items-center ${className} h-[44px] w-[112px]`}
             onClick={onClick}
             id={id}
-            data-cy="btn-singIn1"
+            data-cy="btn-signIn1"
         >
             {loading ? (
                 <div className="mt-[7px]">
