@@ -3,7 +3,7 @@ import styles from './Hero.module.css'
 import { useSetAuth } from 'context/AuthContext/types'
 import ButtonsSignIn2 from 'components/Buttons/ButtonSignIn2'
 
-type props = {
+interface props {
     title: string
     description: string
 }
@@ -12,7 +12,10 @@ const HeroLogin: React.FC<props> = ({ title, description }) => {
     const useAuth = useSetAuth()
 
     return (
-        <section className={styles.heroWrapper + ' skeleton'}>
+        <section
+            className={`${styles.heroWrapper} skeleton`}
+            data-cy="hero-showProject"
+        >
             <div className={styles.overlayAll}></div>
             <div className={styles.overlayBottom}></div>
             <div className={styles.overlayTop}></div>

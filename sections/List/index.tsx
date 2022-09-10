@@ -36,6 +36,7 @@ const List: React.FC<props> = ({
             className="container mx-auto px-4 grid
             sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
             justify-items-center lg:justify-items-end 2xl:justify-items-center"
+            data-cy="section-list"
         >
             {menu && <StateButtons />}
             <TitlePage />

@@ -1,5 +1,5 @@
-const { render, screen } = require('@testing-library/react')
 import ButtonGitHub from './index'
+const { render, screen } = require('@testing-library/react')
 
 describe('ButtonGitHub', () => {
     // props
