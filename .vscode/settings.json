@@ -41,7 +41,9 @@
 
         "cypress.config.ts": true,
         "cypress/downloads": true,
-        //"cypress/support/e2e.ts": true,
-        "cypress/fixtures/example.json": true
+        "cypress/support/e2e.ts": true,
+        "cypress/fixtures/example.json": true,
+        "cypress/tsconfig.json": true,
+        "cypress/e2e/__createTables.cy.ts": true
     }
 }
