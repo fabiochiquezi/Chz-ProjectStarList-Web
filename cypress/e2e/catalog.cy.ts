@@ -1,18 +1,24 @@
+import { myID } from 'firebase.mysettings'
+
 describe('Catalog', () => {
     const coverImg =
         'http://cdn.shopify.com/s/files/1/0552/4976/4526/products/STL242363.jpg?v=1659332339'
 
     const list = '[data-cy="section-list"]'
     const addThumb = '[data-cy="add-thumb"]'
-    const thumbDefault = '[data-cy="thumb-default"]'
+    const thumb = '[data-cy="thumb-default"]'
     const formAdd = '[data-cy="form-addNewItem"]'
+    const formAlter = '[data-cy="form-alterItem"]'
+    const btnUpdate = '[data-cy="btn-update"]'
+    const btnDelete = '[data-cy="btn-delete"]'
+    const btnLoad = '[data-cy="btn-load"]'
 
     beforeEach(() => {
         cy.login()
         cy.visit('/catalog/doing')
     })
 
-    it.skip('data', () => {
+    it('should have the necessary data', () => {
         cy.get(list)
             .find('span')
             .eq(0)
@@ -22,20 +28,46 @@ describe('Catalog', () => {
             .eq(1)
             .should('have.text', 'Start adding movies, books... Right now!')
         cy.get(addThumb)
-        cy.get(thumbDefault).should('not.exist')
+        cy.get(thumb).should('not.exist')
     })
 
-    it('add', () => {
+    it('should get data', () => {
+        cy.fixture('movies').then(data => {
+            cy.addItemDB(`doing/${myID}`, data)
+            cy.get(thumb).should('have.length', 15)
+            cy.get(btnLoad).click()
+            cy.get(thumb).should('have.length', 20)
+        })
+    })
+
+    it('should add item', () => {
         cy.wait(3000)
-        cy.get(thumbDefault).should('not.exist')
+        cy.get(thumb).should('not.exist')
         cy.get(addThumb).click()
         cy.get(formAdd).find('[name="thumb"]').type(coverImg)
         cy.get(formAdd).find('[type="submit"]').click()
         cy.wait(3000)
-        cy.get(thumbDefault).should('exist')
+        cy.get(thumb).should('exist')
+    })
+
+    it('should delete item', () => {
+        cy.addItemDB(`doing/${myID}`, { list: [{ thumb: coverImg }] })
+        cy.get(thumb).click()
+        cy.get(formAlter)
+        cy.get(btnDelete).click()
+        cy.get(thumb).should('not.exist')
+    })
+
+    it('should update item', () => {
+        cy.addItemDB(`doing/${myID}`, { list: [{ thumb: coverImg }] })
+        cy.get(thumb).click()
+        cy.get(formAlter)
+        cy.get('[name="thumb"]').clear().type('aaa')
+        cy.get(btnUpdate).click()
     })
 
     afterEach(() => {
-        // cy.logout()
+        cy.deleteTableDB('doing')
+        cy.logout()
     })
 })

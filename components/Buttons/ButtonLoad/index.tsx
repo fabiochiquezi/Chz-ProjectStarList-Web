@@ -1,6 +1,6 @@
 import React from 'react'
 
-type props = {
+interface props {
     onClick: () => void
 }
 
@@ -12,6 +12,7 @@ const ButtonLoad: React.FC<props> = ({ onClick }) => {
             sm:col-span-3 lg:col-span-5 xl:col-span-7
             active:scale-95 ease-in duration-50 animate-pulse hover:animate-none"
             data-testid="button-load"
+            data-cy="btn-load"
         >
             <div className="border-indigo-400 border-2 w-[120px] h-[120px] rounded-full absolute opacity-50 hover:opacity-100"></div>
             <span className="dark:text-white text-secondary text-md">More</span>

@@ -71,52 +71,60 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
     }
 
     return (
-        <ModalForm>
-            <Formik
-                initialValues={{ name: '', thumb: dataItem.thumb, type: '' }}
-                validationSchema={validation}
-                validateOnChange={false}
-                validateOnBlur={false}
-                onSubmit={(data, props) => {
-                    props.validateForm()
-                    handleUpdate(data)
-                }}
-            >
-                {formik => (
-                    <form
-                        className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700"
-                        onSubmit={formik.handleSubmit}
-                    >
-                        <h3 className="mb-5 text-xl text-white font-bold mt-1">
-                            Update Item or Delete
-                        </h3>
+        <div data-cy="form-alterItem">
+            <ModalForm>
+                <Formik
+                    initialValues={{
+                        name: '',
+                        thumb: dataItem.thumb,
+                        type: ''
+                    }}
+                    validationSchema={validation}
+                    validateOnChange={false}
+                    validateOnBlur={false}
+                    onSubmit={(data, props) => {
+                        props.validateForm()
+                        handleUpdate(data)
+                    }}
+                >
+                    {formik => (
+                        <form
+                            className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700"
+                            onSubmit={formik.handleSubmit}
+                        >
+                            <h3 className="mb-5 text-xl text-white font-bold mt-1">
+                                Update Item or Delete
+                            </h3>
 
-                        <div className="mt-3 md:grid grid-cols-2 gap-x-8">
-                            <Fields formik={formik} />
-                        </div>
+                            <div className="mt-3 md:grid grid-cols-2 gap-x-8">
+                                <Fields formik={formik} />
+                            </div>
 
-                        <div className="flex justify-between">
-                            <button
-                                className="btn-solid bg-indigo-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-0 md:top-1 text-sm"
-                                type="submit"
-                                disabled={!!loading}
-                                ref={btnRef}
-                            >
-                                <BtnSend text="Update" />
-                            </button>
-                            <button
-                                className="btn-solid bg-red-600 py-[8px] h-[39px] w-[90px]
+                            <div className="flex justify-between">
+                                <button
+                                    className="btn-solid bg-indigo-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-0 md:top-1 text-sm"
+                                    type="submit"
+                                    disabled={!!loading}
+                                    ref={btnRef}
+                                    data-cy="btn-update"
+                                >
+                                    <BtnSend text="Update" />
+                                </button>
+                                <button
+                                    className="btn-solid bg-red-600 py-[8px] h-[39px] w-[90px]
                                         self-start items-center relative left-6 md:top-1 text-sm"
-                                disabled={!!loading}
-                                onClick={handleDelete}
-                            >
-                                <BtnSend text="Delete" />
-                            </button>
-                        </div>
-                    </form>
-                )}
-            </Formik>
-        </ModalForm>
+                                    disabled={!!loading}
+                                    onClick={handleDelete}
+                                    data-cy="btn-delete"
+                                >
+                                    <BtnSend text="Delete" />
+                                </button>
+                            </div>
+                        </form>
+                    )}
+                </Formik>
+            </ModalForm>
+        </div>
     )
 }
 

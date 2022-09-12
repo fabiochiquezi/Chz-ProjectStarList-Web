@@ -27,6 +27,7 @@ const Header: React.FC = () => {
                 container mx-auto px-4 py-8 lg:pt-8 mb-8 lg:mb-0 h-[43px]
                 absolute sm:left-2/4 sm:-ml-[320px] md:-ml-[384px] lg:-ml-[512px] xl:-ml-[640px] 2xl:-ml-[768px]
                 bg-transparent"
+            data-cy="header-structure"
         >
             <Link href="/catalog/doing">
                 <a className="logo z-10 hover:opacity-80">
@@ -50,7 +51,10 @@ const Header: React.FC = () => {
                             <SearchBar />
                         </li> */}
 
-                        <div className="flex mt-8 lg:mt-0 items-center">
+                        <div
+                            className="flex mt-8 lg:mt-0 items-center"
+                            data-cy="rightMenu-structure"
+                        >
                             <li className="pt-1 lg:p-0 lg:m-0 lg:ml-8 mb-2 mt-4 text-sm">
                                 <span>
                                     {user?.displayName?.substring(0, 9)}...

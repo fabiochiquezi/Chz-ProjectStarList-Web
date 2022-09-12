@@ -2,12 +2,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
-type props = {
+interface props {
     setMenu: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const LiClass = 'w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none'
-const AClass = `w-full lg:w-auto py-4 inline-block md:py-10 lg:py-0 simple-button`
+const AClass =
+    'w-full lg:w-auto py-4 inline-block md:py-10 lg:py-0 simple-button'
 
 const Menu: React.FC<props> = ({ setMenu }) => {
     const { query } = useRouter()
@@ -18,7 +19,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
     const activeCategory = 'text-indigo-400'
     return (
         <>
-            <nav>
+            <nav data-cy="menu-structure">
                 <ul className="flex flex-col items-center text-center text-2xl lg:flex-row lg:mt-[2px]">
                     <li className={LiClass}>
                         <Link href="/catalog/doing">
