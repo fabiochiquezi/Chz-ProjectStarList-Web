@@ -6,10 +6,10 @@
     "emulators": "firebase emulators:start --import=./emulators-data",
     "emulators:data": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
     "development": "next dev",
-    "dev": "concurrently --kill-others \"firebase emulators:start --import=./emulators-data\" \"next dev\"",
+    "dev": "concurrently --kill-others \"yarn emulators\" \"next dev\"",
     "build": "next build",
     "start": "next start",
-    "e2e": "concurrently --kill-others \"yarn dev\" \"cypress open\"",
+    "e2e": "cypress open",
     "test": "jest --runInBand --watch",
     "test:coverage": "jest --coverage --runInBand --watch"
   },
