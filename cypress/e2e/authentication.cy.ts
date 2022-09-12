@@ -23,6 +23,6 @@ describe('Authentication', () => {
     })
 
     afterEach(() => {
-        // cy.logout()
+        cy.logout()
     })
 })

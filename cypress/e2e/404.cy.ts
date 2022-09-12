@@ -18,4 +18,8 @@ describe('404 Page', () => {
         cy.get(page404).find('h1 + a').click()
         cy.url().should('to.equal', 'http://localhost:3000/catalog/doing')
     })
+
+    afterEach(() => {
+        cy.logout()
+    })
 })
