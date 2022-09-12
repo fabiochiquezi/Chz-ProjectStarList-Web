@@ -44,6 +44,8 @@
         "cypress/support/e2e.ts": true,
         "cypress/fixtures/example.json": true,
         "cypress/tsconfig.json": true,
-        "cypress/e2e/__createTables.cy.ts": true
+        "cypress/e2e/__createTables.cy.ts": true,
+        "firebase.mysettings.ts": true,
+        "firebase.mysettings.example.ts": true
     }
 }

@@ -47,3 +47,4 @@ tests_output
 #Important
 serviceAccount.json
 cypress.config.ts
+firebase.mysettings.ts

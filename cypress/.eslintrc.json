@@ -1,0 +1,7 @@
+{
+    "rules": {
+        "cypress/no-unnecessary-waiting": "off",
+        "@typescript-eslint/triple-slash-reference": "off",
+        "@typescript-eslint/method-signature-style": "off"
+    }
+}
