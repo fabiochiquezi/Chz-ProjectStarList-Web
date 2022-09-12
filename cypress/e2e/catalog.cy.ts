@@ -14,6 +14,7 @@ describe('Catalog', () => {
     const btnLoad = '[data-cy="btn-load"]'
 
     beforeEach(() => {
+        cy.deleteCatalogDB('doing')
         cy.login()
         cy.visit('/catalog/doing')
     })
@@ -33,7 +34,7 @@ describe('Catalog', () => {
 
     it('should get data', () => {
         cy.fixture('movies').then(data => {
-            cy.addItemDB(`doing/${myID}`, data)
+            cy.setTableDB(`doing/${myID}`, data)
             cy.get(thumb).should('have.length', 15)
             cy.get(btnLoad).click()
             cy.get(thumb).should('have.length', 20)
@@ -51,7 +52,7 @@ describe('Catalog', () => {
     })
 
     it('should delete item', () => {
-        cy.addItemDB(`doing/${myID}`, { list: [{ thumb: coverImg }] })
+        cy.setTableDB(`doing/${myID}`, { list: [{ thumb: coverImg }] })
         cy.get(thumb).click()
         cy.get(formAlter)
         cy.get(btnDelete).click()
@@ -59,7 +60,7 @@ describe('Catalog', () => {
     })
 
     it('should update item', () => {
-        cy.addItemDB(`doing/${myID}`, { list: [{ thumb: coverImg }] })
+        cy.setTableDB(`doing/${myID}`, { list: [{ thumb: coverImg }] })
         cy.get(thumb).click()
         cy.get(formAlter)
         cy.get('[name="thumb"]').clear().type('aaa')
@@ -67,7 +68,7 @@ describe('Catalog', () => {
     })
 
     afterEach(() => {
-        cy.deleteTableDB('doing')
+        cy.deleteCatalogDB('doing')
         cy.logout()
     })
 })

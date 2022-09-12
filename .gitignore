@@ -48,3 +48,5 @@ tests_output
 serviceAccount.json
 cypress.config.ts
 firebase.mysettings.ts
+
+todo.log.md

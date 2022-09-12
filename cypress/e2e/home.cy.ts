@@ -5,7 +5,7 @@ describe('Home', () => {
     const hero = '[data-cy="hero-showProject"]'
     const list = '[data-cy="section-list"]'
 
-    it('data', () => {
+    it('should have all necessary data', () => {
         cy.visit('/')
         cy.get(btnSign1)
         cy.get(btnSign2)

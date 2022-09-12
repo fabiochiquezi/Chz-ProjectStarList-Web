@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "emulators": "firebase emulators:start --import=./emulators-data",
-    "emulators:datarun": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
+    "emulators:data": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
     "development": "next dev",
     "dev": "concurrently --kill-others \"firebase emulators:start --import=./emulators-data\" \"next dev\"",
     "build": "next build",

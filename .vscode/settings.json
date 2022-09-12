@@ -11,18 +11,19 @@
         ".eslintrc.json": true,
         "next-env.d.ts": true,
         "next.config.js": true,
-        //"README.md": true,
+        "README.md": true,
         "tsconfig.json": true,
         ".vscode": true,
         ".editorconfig": true,
         ".prettierrc": true,
         "postcss.config.js": true,
         "tailwind.config.js": true,
-        //"package.json": true,
+        "package.json": true,
         ".env*": true,
         "design": true,
         "jest.config.ts": true,
         "test-setup.ts": true,
+        "todo.log.example.md": true,
 
         "pages/api": true,
         "pages/_document.tsx": true,
@@ -46,6 +47,9 @@
         "cypress/tsconfig.json": true,
         "cypress/e2e/__createTables.cy.ts": true,
         "firebase.mysettings.ts": true,
-        "firebase.mysettings.example.ts": true
+        "firebase.mysettings.example.ts": true,
+        "cypress/.eslintrc.json": true,
+        "cypress/support/index.d.ts": true,
+        "serviceAccount.json": true
     }
 }

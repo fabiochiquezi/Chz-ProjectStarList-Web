@@ -3,7 +3,7 @@ describe('Authentication', () => {
         cy.logout()
     })
 
-    it('should prevent unsingned user to access page', () => {
+    it('should prevent unsigned user to access page', () => {
         cy.logout()
         cy.visit('/catalog/doing')
         cy.url().should('to.equal', 'http://localhost:3000/')
