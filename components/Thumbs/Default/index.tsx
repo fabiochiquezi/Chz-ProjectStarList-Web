@@ -1,4 +1,4 @@
-import { useSetUtils } from 'context/UtilsContext/types'
+import { useSetUtils } from '../../../context/UtilsContext/types'
 import React from 'react'
 
 interface props {
@@ -16,6 +16,7 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
             className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 cursor-pointer simple-button"
             onClick={() => openModalAlterItem({ index, thumb })}
             data-cy="thumb-default"
+            data-testid="thumb-default"
         >
             <div className="w-[170px] h-[220px] overflow-hidden">
                 <div
@@ -38,4 +39,4 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
     )
 }
 
-export default Thumb
+export { Thumb }

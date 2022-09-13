@@ -12,10 +12,11 @@ const AddThumb: React.FC<props> = ({ onClick }) => {
             xl:w-[153px] xl:h-[198px] xl:mt-2
             2xl:w-[170px] 2xl:h-[220px] 2xl:mt-0"
             data-cy="add-thumb"
+            data-testid="add-thumb"
         >
             Add +
         </div>
     )
 }
 
-export default AddThumb
+export { AddThumb }
