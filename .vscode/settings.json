@@ -22,7 +22,7 @@
         ".env*": true,
         "design": true,
         "jest.config.ts": true,
-        "test-setup.ts": true,
+        "setupTests.ts": true,
         "todo.log.example.md": true,
 
         "pages/api": true,

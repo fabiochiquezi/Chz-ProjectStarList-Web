@@ -27,9 +27,9 @@
         "public/*": ["./public/*"],
         "sections/*": ["./sections/*"],
         "store/*": ["./store/*"],
-    },
+    }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx"],
   "exclude": [
         "node_modules",
         //"cypress",

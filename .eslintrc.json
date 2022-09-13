@@ -2,7 +2,8 @@
     "root": true,
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
@@ -10,6 +11,7 @@
         "plugin:cypress/recommended"
     ],
     "overrides": [
+
     ],
     "parserOptions": {
         "ecmaVersion": "latest",
@@ -17,17 +19,26 @@
         "project": "./tsconfig.json"
     },
     "plugins": [
-        "react"
+        "react",
+        "jest"
     ],
     "rules": {
         // ----- Mine
+
         // ESLint
         "indent": "off",
+
         // TS
         "@typescript-eslint/indent": "off",
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/space-before-function-paren": "off",
         "@typescript-eslint/member-delimiter-style": "off",
+
+        // Jest
+        "jest/no-disabled-tests": "warn",
+        "jest/no-identical-title": "error",
+        "jest/prefer-to-have-length": "warn",
+        "jest/valid-expect": "error",
 
         // ----- Good Practices
         //Avoid bugs
