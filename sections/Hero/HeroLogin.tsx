@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Hero.module.css'
 import { useSetAuth } from 'context/AuthContext/types'
-import ButtonsSignIn2 from 'components/Buttons/ButtonSignIn2'
+import { SignInButton02 } from 'components/Buttons/SignIn'
 
 interface props {
     title: string
@@ -44,7 +44,7 @@ const HeroLogin: React.FC<props> = ({ title, description }) => {
                             {description}
                         </p>
 
-                        <ButtonsSignIn2
+                        <SignInButton02
                             id="btn-signIn-2"
                             onClick={useAuth.signIn}
                         />
