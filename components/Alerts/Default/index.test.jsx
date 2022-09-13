@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import Alert from './index'
+import { Alert } from './index'
 
 describe('AlertDefault', () => {
     const message = 'Test'

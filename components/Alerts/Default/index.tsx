@@ -41,4 +41,4 @@ const Alert: React.FC<props> = ({ message = '', state = 0, closeAlert }) => {
     )
 }
 
-export default Alert
+export { Alert }

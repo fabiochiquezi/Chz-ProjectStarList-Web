@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-type props = {
+interface props {
     children: React.ReactNode
     label: string
     className?: string
@@ -14,7 +14,7 @@ type props = {
 const Select: React.FC<props> = ({
     children,
     label,
-    className,
+    className = '',
     placeholder = '',
     name,
     onChange,
@@ -54,8 +54,12 @@ const Select: React.FC<props> = ({
                 }}
                 onBlur={() => {
                     inputRef.current?.classList.remove('border-green-700')
-                    if (inputRef.current && !inputRef.current.value.length)
+                    if (
+                        inputRef.current != null &&
+                        !inputRef.current.value.length
+                    ) {
                         setActive(false)
+                    }
                 }}
             >
                 <option

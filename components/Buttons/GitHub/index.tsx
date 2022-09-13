@@ -30,4 +30,4 @@ const GitHubButton: React.FC<props> = ({
     )
 }
 
-export default GitHubButton
+export { GitHubButton }

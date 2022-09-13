@@ -20,4 +20,4 @@ const LoadButton: React.FC<props> = ({ onClick }) => {
     )
 }
 
-export default LoadButton
+export { LoadButton }

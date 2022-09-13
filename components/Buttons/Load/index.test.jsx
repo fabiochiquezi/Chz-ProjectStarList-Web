@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react'
-import LoadButton from './index'
+import { LoadButton } from './index'
 
 describe('ButtonLoad', () => {
     const callBack = jest.fn()

@@ -15,4 +15,4 @@ const ButtonTheme: React.FC = () => {
     )
 }
 
-export default ButtonTheme
+export { ButtonTheme }

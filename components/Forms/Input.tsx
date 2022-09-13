@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-type props = {
+interface props {
     label: string
     className?: string
     placeholder?: string
@@ -13,7 +13,7 @@ type props = {
 
 const Input: React.FC<props> = ({
     label,
-    className,
+    className = '',
     placeholder = '',
     name,
     type,
@@ -27,7 +27,6 @@ const Input: React.FC<props> = ({
     useEffect(() => {
         if (value && value.length) {
             setActive(true)
-            return
         }
     }, [value])
 
@@ -62,8 +61,12 @@ const Input: React.FC<props> = ({
                 }}
                 onBlur={() => {
                     inputRef.current?.classList.remove('border-green-700')
-                    if (inputRef.current && !inputRef.current.value.length)
+                    if (
+                        inputRef.current != null &&
+                        !inputRef.current.value.length
+                    ) {
                         setActive(false)
+                    }
                 }}
             />
             {error ? (

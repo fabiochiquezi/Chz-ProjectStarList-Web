@@ -1,4 +1,4 @@
-import GitHubButton from './index'
+import { GitHubButton } from './index'
 import { render, screen } from '@testing-library/react'
 
 describe('ButtonGitHub', () => {

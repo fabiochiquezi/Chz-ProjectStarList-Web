@@ -18,21 +18,21 @@ const SearchBar: React.FC = () => {
         window.addEventListener('resize', () => hiddenInput())
     }, [])
 
-    function handleClick() {
+    async function handleClick(): Promise<void> {
         if (isDesktop(window)) return toggleInput()
-        return doSearch()
+        return await doSearch()
     }
 
-    function hiddenInput() {
+    function hiddenInput(): void {
         if (!isDesktop(window)) setInputHidden(false)
     }
 
-    function toggleInput() {
+    function toggleInput(): void {
         setInputHidden(prev => !prev)
     }
 
-    function doSearch() {
-        router.push(`/search?=${searchInput}`)
+    async function doSearch(): Promise<void> {
+        await router.push(`/search?=${searchInput}`)
     }
 
     return (
@@ -44,7 +44,7 @@ const SearchBar: React.FC = () => {
                     inputHidden ? 'hidden' : ''
                 } `}
                 ref={inputRef}
-                onKeyDown={e => {
+                onKeyDown={async e => {
                     if (e.key === 'Enter') doSearch()
                 }}
                 value={searchInput}

@@ -48,4 +48,4 @@ const BannerJob: React.FC = () => {
     )
 }
 
-export default BannerJob
+export { BannerJob }

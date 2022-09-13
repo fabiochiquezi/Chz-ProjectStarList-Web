@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
-import BannerJob from './index'
+import { BannerJob } from './index'
 
 
 describe('BannerJob', () => {

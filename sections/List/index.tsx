@@ -4,7 +4,7 @@ import StateButtons from './StateButtons'
 import Title, { TitleEmpty } from './Title'
 import { catalogI } from 'general/types/catalog'
 import AddThumb from 'components/Thumbs/AddThumb'
-import LoadButton from 'components/Buttons/Load'
+import { LoadButton } from 'components/Buttons/Load'
 import { useSetUtils } from 'context/UtilsContext/types'
 
 interface props {
