@@ -7,11 +7,11 @@ import { useRouter } from 'next/router'
 import ErrorSection from 'sections/Error'
 import Header from 'sections/Header/Header'
 import React, { useEffect, useState } from 'react'
-import Loading from 'components/Structure/Loading'
 import { getFireDoc } from 'firebase/firestore/get'
 import { useCatalogStore } from 'store/catalogStore'
 import { DocumentData } from 'firebase/firestore'
 import { getTitle } from 'general/functions/getTitle'
+import { LoadingStruct } from 'components/Structure/Loadings/Default'
 
 const HeadData = (): React.ReactElement => (
     <Head>
@@ -57,7 +57,7 @@ const Catalog: NextPage = () => {
 
     if (is404) router.push('/404')
     if (error) return <ErrorSection />
-    if (loadingPage) return <Loading />
+    if (loadingPage) return <LoadingStruct />
 
     return (
         <>
@@ -72,7 +72,7 @@ const Catalog: NextPage = () => {
                 /> */}
 
                 {loadContent ? (
-                    <Loading />
+                    <LoadingStruct />
                 ) : (
                     <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
                         <List

@@ -2,11 +2,11 @@ import 'styles/globals.css'
 import '@fontsource/roboto'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
-import React, { useEffect, useState } from 'react'
 import AuthProvider from 'context/AuthContext'
 import UtilsProvider from 'context/UtilsContext'
+import React, { useEffect, useState } from 'react'
 import { noAuthRequired } from 'general/data/routes'
-import ProtectedRouter from 'components/Structure/ProtectedRouter'
+import { PrivateRoute } from 'components/Structure/PrivateRoute'
 
 const MyApp = ({
     Component,
@@ -14,19 +14,13 @@ const MyApp = ({
 }: AppProps): React.ReactElement | null => {
     const { pathname } = useRouter()
     const [isSSR, setIsSSR] = useState(true)
-    const isPublic = noAuthRequired.includes(pathname)
-
-    const publicRoute = <Component {...pageProps} />
-    const privateRoute = (
-        <ProtectedRouter>
-            <Component {...pageProps} />
-        </ProtectedRouter>
-    )
-    const Page = isPublic ? publicRoute : privateRoute
-
     useEffect(() => setIsSSR(false), [])
     if (isSSR) return null
 
+    const isPublic = noAuthRequired.includes(pathname)
+    const ReactComp = <Component {...pageProps} />
+    const privateRoute = <PrivateRoute>{ReactComp}</PrivateRoute>
+    const Page = isPublic ? ReactComp : privateRoute
     return (
         <AuthProvider>
             <UtilsProvider>
