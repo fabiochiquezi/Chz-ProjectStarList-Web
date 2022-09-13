@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useState } from 'react'
+import React from 'react'
 
 interface props {
     setMenu: React.Dispatch<React.SetStateAction<boolean>>
@@ -15,11 +15,11 @@ const Menu: React.FC<props> = ({ setMenu }) => {
     const type = query.type
     const activeMenuItem = 'text-orange-400'
 
-    const [category, setCategory] = useState(0)
-    const activeCategory = 'text-indigo-400'
+    // const [category, setCategory] = useState(0)
+    // const activeCategory = 'text-indigo-400'
     return (
         <>
-            <nav data-cy="menu-structure">
+            <nav data-cy="menu-structure" data-testid="menu-structure">
                 <ul className="flex flex-col items-center text-center text-2xl lg:flex-row lg:mt-[2px]">
                     <li className={LiClass}>
                         <Link href="/catalog/doing">
@@ -41,7 +41,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
-                                I'll DO
+                                I&lsquo;ll DO
                             </a>
                         </Link>
                     </li>
@@ -57,6 +57,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                             </a>
                         </Link>
                     </li>
+
                     {/*
                     <div className="hidden lg:flex mt-[-4px]">
                         <li className="mr-4 xl:mr-6 text-[16px] mt-[4px]">/</li>
@@ -101,4 +102,4 @@ const Menu: React.FC<props> = ({ setMenu }) => {
     )
 }
 
-export default Menu
+export { Menu }

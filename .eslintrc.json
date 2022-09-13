@@ -33,6 +33,7 @@
         "react/react-in-jsx-scope": "off",
         "@typescript-eslint/space-before-function-paren": "off",
         "@typescript-eslint/member-delimiter-style": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
 
         // Jest
         "jest/no-disabled-tests": "warn",
