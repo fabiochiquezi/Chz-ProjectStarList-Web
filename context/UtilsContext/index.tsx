@@ -1,7 +1,7 @@
 import { props, SetUtilsContext, UtilsContext } from './types'
 import React, { useEffect, useState } from 'react'
 import AddItem from 'sections/Forms/AddItem'
-import Modal from 'components/Modals/Modal'
+import { Modal } from 'components/Modals/Default'
 import Alert from 'components/Alerts/Default'
 import AlterItem from 'sections/Forms/AlterItem'
 
