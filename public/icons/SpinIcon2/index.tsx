@@ -10,7 +10,7 @@ interface props {
 }
 
 const SpinIcon2: React.FC<props> = ({
-    className,
+    className = '',
     width = 16,
     height = 16,
     color = '#fff',

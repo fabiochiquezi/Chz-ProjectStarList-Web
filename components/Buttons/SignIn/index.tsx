@@ -1,15 +1,15 @@
 import React from 'react'
-import SpinIcon2 from 'public/icons/SpinIcon2'
-import GoogleIcon from 'public/icons/GoogleIcon'
-import { useAuth } from 'context/AuthContext/types'
+import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import GoogleIcon from '../../../public/icons/GoogleIcon'
+import { useAuth } from '../../../context/AuthContext/types'
 
 interface props {
     className?: string
-    onClick: () => Promise<any>
+    onClick: () => Promise<void>
     id?: string
 }
 
-const ButtonnSignIn1: React.FC<props> = ({ className, onClick, id = '' }) => {
+const SignIn01: React.FC<props> = ({ className = '', onClick, id = '' }) => {
     const { loading } = useAuth()
 
     return (
@@ -18,6 +18,7 @@ const ButtonnSignIn1: React.FC<props> = ({ className, onClick, id = '' }) => {
             onClick={onClick}
             id={id}
             data-cy="btn-signIn1"
+            data-testid="btn-signIn01"
         >
             {loading ? (
                 <div className="mt-[7px]">
@@ -37,4 +38,4 @@ const ButtonnSignIn1: React.FC<props> = ({ className, onClick, id = '' }) => {
     )
 }
 
-export default ButtonnSignIn1
+export { SignIn01 }

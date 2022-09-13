@@ -1,22 +1,20 @@
+import { SignIn01 } from './index'
 const { render, fireEvent, screen } = require('@testing-library/react')
-import ButtonLoad from './index'
 
-describe('ButtonLoad', () => {
-    // props
+describe.only('ButtonLoad', () => {
     const callBack = jest.fn()
 
-    // elem
-    const Elem = <ButtonLoad onClick={callBack} />
-    let el: HTMLElement | null = null
+
+    const Elem = <SignIn01 onClick={callBack} />
+    let el
 
     beforeEach(() => {
         const { getByTestId } = render(Elem)
-        el = getByTestId('button-load')
+        el = getByTestId('btn-signIn01')
     })
 
     it('exist', () => {
         expect(el).toBeInTheDocument()
-        expect(screen.getByText('More')).toBeInTheDocument()
     })
 
     it('click event', () => {

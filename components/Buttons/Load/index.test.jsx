@@ -1,25 +1,22 @@
-const { render, fireEvent, screen } = require('@testing-library/react')
-import ButtonLoad from './index'
+import { render, fireEvent, screen } from '@testing-library/react'
+import LoadButton from './index'
 
-describe.skip('ButtonLoad', () => {
-    // props
+describe('ButtonLoad', () => {
     const callBack = jest.fn()
-
-    // elem
-    const Elem = <ButtonLoad onClick={callBack} />
-    let el: HTMLElement | null = null
+    const Elem = <LoadButton onClick={callBack} />
+    let el
 
     beforeEach(() => {
         const { getByTestId } = render(Elem)
         el = getByTestId('button-load')
     })
 
-    it('exist', () => {
+    it('should exist', () => {
         expect(el).toBeInTheDocument()
         expect(screen.getByText('More')).toBeInTheDocument()
     })
 
-    it('click event', () => {
+    it('should call click event', () => {
         fireEvent.click(el)
         fireEvent.click(el)
         expect(callBack).toHaveBeenCalledTimes(2)

@@ -4,7 +4,7 @@ interface props {
     onClick: () => void
 }
 
-const ButtonLoad: React.FC<props> = ({ onClick }) => {
+const LoadButton: React.FC<props> = ({ onClick }) => {
     return (
         <button
             onClick={onClick}
@@ -20,4 +20,4 @@ const ButtonLoad: React.FC<props> = ({ onClick }) => {
     )
 }
 
-export default ButtonLoad
+export default LoadButton

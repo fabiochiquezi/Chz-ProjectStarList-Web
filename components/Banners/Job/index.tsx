@@ -7,6 +7,7 @@ const BannerJob: React.FC = () => {
                     sm:mt-[-250px] sm:mb-24 sm:p-0
                     lg:mt-[-195px] lg:p-0
                     2xl:px-32"
+            data-testid="banner-job"
         >
             <div className="bg-indigo-800 p-6 py-10 justify-between rounded-sm lg:px-12 xl:px-14 lg:flex">
                 <div
@@ -15,7 +16,7 @@ const BannerJob: React.FC = () => {
                             lg:ml-0 lg:w-[400px] xl:w-[440px]"
                 >
                     <h2 className="text-4xl font-bold mb-3 leading-[150%] xl:text-4xl">
-                        I'm looking for a job!
+                        I&apos;m looking for a job!
                     </h2>
                     <p className="text-xl">
                         If you liked this project, help me recommending me for
@@ -37,6 +38,7 @@ const BannerJob: React.FC = () => {
                         href="https://github.com/fabiochiquezi"
                         className="text-xl bg-indigo-600 inline-block w-48 text-center p-4 simple-button rounded-sm"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         GitHub
                     </a>

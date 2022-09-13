@@ -8,10 +8,10 @@ interface props {
     id?: string
 }
 
-const ButtonGitHub: React.FC<props> = ({
+const GitHubButton: React.FC<props> = ({
     href = '',
     target = true,
-    className,
+    className = '',
     id = ''
 }) => {
     return (
@@ -30,4 +30,4 @@ const ButtonGitHub: React.FC<props> = ({
     )
 }
 
-export default ButtonGitHub
+export default GitHubButton
