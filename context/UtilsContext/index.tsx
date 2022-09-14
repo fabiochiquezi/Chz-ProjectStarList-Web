@@ -1,93 +1,49 @@
-import { props, SetUtilsContext, UtilsContext } from './types'
+import { getAlertFns } from './Alert/class'
+import { getModalFns } from './Modal/class'
+import { modalInitialState } from './Modal/state'
+import { alertInitialState } from './Alert/state'
 import React, { useEffect, useState } from 'react'
-import AddItem from 'sections/Forms/AddItem'
-import { Modal } from 'components/Modals/Default'
-import { Alert } from 'components/Alerts/Default'
-import AlterItem from 'sections/Forms/AlterItem'
+import { Modal } from '../../components/Modals/Default'
+import { Alert } from '../../components/Alerts/Default'
+import { SetUtilsContext, UtilsContext } from './types'
 
-export function UtilsProvider({ children }: props) {
-    // Modal
-    const [modal, setModal] = useState({
-        name: '',
-        sateModal: false,
-        data: {}
-    })
+interface props {
+    children: React.ReactNode
+}
 
-    function closeModal() {
-        setModal({
-            name: '',
-            sateModal: false,
-            data: {}
-        })
-    }
-    function openModalAlterItem(data: Record<string, any>) {
-        setModal({
-            name: 'AlterItem',
-            sateModal: true,
-            data: data
-        })
-    }
-    function openModalAddItem() {
-        setModal({
-            name: 'AddItem',
-            sateModal: true,
-            data: {}
-        })
-    }
+const UtilsProvider: React.FC<props> = ({ children }) => {
+    const [modal, setModal] = useState(modalInitialState)
+    const modalFn = getModalFns(setModal)
 
-    // Allert
-    const [alert, setAlert] = useState({
-        message: '',
-        state: 0,
-        hide: true
-    })
+    const [alert, setAlert] = useState(alertInitialState)
+    const alertFn = getAlertFns(setAlert)
 
     useEffect(() => {
-        if (alert.hide) setInterval(() => closeAlert(), 7000)
+        alertFn.autoClose(alert.hide, 7000)
     }, [alert.hide])
-
-    function openAlert(message: string, state: number) {
-        setAlert({
-            message,
-            state,
-            hide: false
-        })
-    }
-    function closeAlert() {
-        setAlert({
-            message: '',
-            state: 0,
-            hide: true
-        })
-    }
 
     return (
         <UtilsContext.Provider value={{ modal }}>
             <SetUtilsContext.Provider
                 value={{
-                    closeModal,
-                    openModalAlterItem,
-                    openModalAddItem,
-                    openAlert
+                    modal: modalFn,
+                    alert: alertFn
                 }}
             >
                 {!alert.hide && (
                     <Alert
                         message={alert.message}
                         state={alert.state}
-                        closeAlert={closeAlert}
+                        closeAlert={alertFn.close}
                     />
                 )}
+
                 <Modal isOpen={modal.sateModal}>
-                    {modal.name === 'AlterItem' && (
-                        <AlterItem
-                            dataItem={
-                                modal.data as { index: number; thumb: string }
-                            }
-                        />
-                    )}
-                    {modal.name === 'AddItem' && <AddItem />}
+                    {modalFn.getModal !== undefined
+                        ? modalFn.getModal(modal.name, modal.data)
+                        : null}
                 </Modal>
+
                 {children}
             </SetUtilsContext.Provider>
         </UtilsContext.Provider>

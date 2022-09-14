@@ -20,7 +20,7 @@ const List: React.FC<props> = ({
     description,
     menu = true
 }) => {
-    const { openModalAddItem } = useSetUtils()
+    const { modal } = useSetUtils()
     const [limit, setLimit] = useState(15)
     const max = catalog ? catalog.length : 0
 
@@ -40,7 +40,7 @@ const List: React.FC<props> = ({
         >
             {menu && <StateButtons />}
             <TitlePage />
-            {menu && <AddThumb onClick={() => openModalAddItem()} />}
+            {menu && <AddThumb onClick={() => modal.openAddItem()} />}
 
             {catalog &&
                 catalog.map(({ thumb, name }, index) => {

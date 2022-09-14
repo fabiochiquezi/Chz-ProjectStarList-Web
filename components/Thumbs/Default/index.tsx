@@ -8,13 +8,13 @@ interface props {
 }
 
 const Thumb: React.FC<props> = ({ index, thumb, name }) => {
-    const { openModalAlterItem } = useSetUtils()
+    const { modal } = useSetUtils()
 
     return (
         <div
             key={index}
             className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 cursor-pointer simple-button"
-            onClick={() => openModalAlterItem({ index, thumb })}
+            onClick={() => modal.openAlterItem({ index, thumb })}
             data-cy="thumb-default"
             data-testid="thumb-default"
         >

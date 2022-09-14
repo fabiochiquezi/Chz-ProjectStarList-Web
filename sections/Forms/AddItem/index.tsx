@@ -4,8 +4,8 @@ import { dataForm } from './types'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
 import { validation } from './validation'
-import SpinIcon2 from 'public/icons/SpinIcon2'
-import { db } from 'firebase/firebaseSettings'
+import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import { db } from '../../../firebase/firebaseSettings'
 import { doc, setDoc } from 'firebase/firestore'
 import { useAuth } from 'context/AuthContext/types'
 import { useCatalogStore } from 'store/catalogStore'
@@ -13,7 +13,7 @@ import { useSetUtils } from 'context/UtilsContext/types'
 import React, { useEffect, useRef, useState } from 'react'
 
 const AddItem: React.FC = () => {
-    const { closeModal, openAlert } = useSetUtils()
+    const { modal, alert } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
     const store = useCatalogStore()
@@ -47,11 +47,11 @@ const AddItem: React.FC = () => {
             )
 
             store.addItem(data, state)
-            openAlert('Item added successfully', 1)
-            closeModal()
+            alert.open('Item added successfully', 1)
+            modal.close()
         } catch (e) {
             console.log(e, 'error')
-            openAlert('Sorry, but something went wrong. Try again', 2)
+            alert.open('Sorry, but something went wrong. Try again', 2)
         } finally {
             setLoading(false)
         }

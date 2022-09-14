@@ -1,9 +1,9 @@
 import React from 'react'
-import Logo from 'public/Logo'
-import GithubIcon from 'public/icons/GithubIcon'
-import DiscordIcon from 'public/icons/DiscordIcon'
-import { BannerJob } from 'components/Banners/Job'
-import WhatsAppIcon from 'public/icons/WhatsAppIcon'
+import Logo from '../../public/Logo'
+import GithubIcon from '../../public/icons/GithubIcon'
+import DiscordIcon from '../../public/icons/DiscordIcon'
+import { BannerJob } from '../../components/Banners/Job'
+import WhatsAppIcon from '../../public/icons/WhatsAppIcon'
 
 const Footer: React.FC = () => {
     const today = new Date()

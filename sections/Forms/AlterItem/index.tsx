@@ -16,7 +16,7 @@ interface props {
     dataItem: { index: number; thumb: string }
 }
 const AlterItem: React.FC<props> = ({ dataItem }) => {
-    const { closeModal, openAlert } = useSetUtils()
+    const { modal, alert } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
     const store = useCatalogStore()
@@ -40,11 +40,11 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
             const ref = doc(db, state, user.uid)
             await setDoc(ref, { list: [...store.data[state]] })
 
-            openAlert('Item Updated successfully', 1)
-            closeModal()
+            alert.open('Item Updated successfully', 1)
+            modal.close()
         } catch (e) {
             console.log(e, 'error')
-            openAlert('Sorry, but something went wrong. Try again', 2)
+            alert.open('Sorry, but something went wrong. Try again', 2)
         } finally {
             setLoading(false)
         }
@@ -60,11 +60,11 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
             const ref = doc(db, state, user.uid)
             await setDoc(ref, { list: [...store.data[state]] })
 
-            openAlert('Item deleted successfully', 1)
-            closeModal()
+            alert.open('Item deleted successfully', 1)
+            modal.close()
         } catch (e) {
             console.log(e, 'error')
-            openAlert('Sorry, but something went wrong. Try again', 2)
+            alert.open('Sorry, but something went wrong. Try again', 2)
         } finally {
             setLoading(false)
         }

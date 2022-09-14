@@ -7,7 +7,7 @@ interface props {
 }
 
 const Modal: React.FC<props> = ({ children, isOpen }) => {
-    const { closeModal } = useSetUtils()
+    const { modal } = useSetUtils()
 
     useEffect(() => {
         const el = document.querySelector('html')
@@ -17,7 +17,7 @@ const Modal: React.FC<props> = ({ children, isOpen }) => {
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape' && isOpen) {
                 event.preventDefault()
-                closeModal()
+                modal.close()
             }
         })
     }, [isOpen])
@@ -30,7 +30,7 @@ const Modal: React.FC<props> = ({ children, isOpen }) => {
         >
             <div
                 className="absolute w-full h-full left-0 top-0 bg-black opacity-75"
-                onClick={() => closeModal()}
+                onClick={() => modal.close()}
             ></div>
             {children}
         </div>

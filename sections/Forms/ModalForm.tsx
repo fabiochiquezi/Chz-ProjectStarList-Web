@@ -1,5 +1,5 @@
-import { useSetUtils } from 'context/UtilsContext/types'
-import CloseIcon from 'public/icons/CloseIcon'
+import { useSetUtils } from '../../context/UtilsContext/types'
+import CloseIcon from '../../public/icons/CloseIcon'
 import React from 'react'
 
 interface props {
@@ -7,7 +7,7 @@ interface props {
 }
 
 const ModalForm: React.FC<props> = ({ children }) => {
-    const { closeModal } = useSetUtils()
+    const { modal } = useSetUtils()
     return (
         <div
             className="absolute w-[90%] w-[316px] mx-auto z-50 left-[50%] ml-[-158px] top-[10%]
@@ -16,7 +16,7 @@ const ModalForm: React.FC<props> = ({ children }) => {
                 lg:top-[25%] form-add-anim"
         >
             <div
-                onClick={() => closeModal()}
+                onClick={() => modal.close()}
                 className="absolute right-4 top-0 p-8 -mr-8 -mt-8 simple-button z-10"
             >
                 <CloseIcon width={22} height={16} />

@@ -1,27 +1,27 @@
+import { modalInitialState, modalState } from './Modal/state'
 import { createContext, useContext } from 'react'
+import { alertClass } from './Alert/class'
+import { modalClass } from './Modal/class'
 
-// SetUp hooks
-type UtilsT = {
-    modal: { name: string; sateModal: boolean; data: Record<string, any> }
-}
-export const UtilsContext = createContext<UtilsT>({
-    modal: { name: '', sateModal: false, data: {} }
+// prettier-ignore
+interface UtilsT { modal: modalState }
+const UtilsContext = createContext<UtilsT>({ modal: modalInitialState })
+const useUtils = (): UtilsT => useContext(UtilsContext)
+
+// prettier-ignore
+interface SetUtilsT { modal: modalClass, alert: alertClass }
+const SetUtilsContext = createContext<SetUtilsT>({
+    modal: {
+        close: () => {},
+        openAlterItem: (data: Record<string, any>) => {},
+        openAddItem: () => {}
+    },
+    alert: {
+        open: () => {},
+        close: () => {},
+        autoClose: () => {}
+    }
 })
-export const useUtils = () => useContext(UtilsContext)
+const useSetUtils = (): SetUtilsT => useContext(SetUtilsContext)
 
-type SetUtilsT = {
-    closeModal: () => void
-    openModalAlterItem: (data: Record<string, any>) => void
-    openModalAddItem: () => void
-    openAlert: (message: string, state: number) => void
-}
-export const SetUtilsContext = createContext<SetUtilsT>({
-    closeModal: () => {},
-    openModalAlterItem: (data: Record<string, any>) => {},
-    openModalAddItem: () => {},
-    openAlert: () => {}
-})
-export const useSetUtils = () => useContext(SetUtilsContext)
-
-// Provider
-export type props = { children: React.ReactNode }
+export { UtilsContext, useUtils, SetUtilsContext, useSetUtils }

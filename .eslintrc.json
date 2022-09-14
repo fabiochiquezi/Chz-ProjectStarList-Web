@@ -27,6 +27,7 @@
 
         // ESLint
         "indent": "off",
+        "multiline-ternary": "off",
 
         // TS
         "@typescript-eslint/indent": "off",
@@ -65,7 +66,6 @@
         "max-len": ["error", { "code": 200 }],
         "max-lines": ["error", { "max": 500 }],
         "keyword-spacing": "error",
-        "multiline-ternary": ["error", "never"],
         "no-mixed-operators": "error",
         "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
         "no-whitespace-before-property": "error",
