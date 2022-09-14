@@ -1,61 +1,50 @@
 import { User } from 'firebase/auth'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { db } from 'firebase/firebaseSettings'
-import { doc, setDoc } from 'firebase/firestore'
-import { authGoogle } from 'firebase/auth/google'
-import { getFireDoc } from 'firebase/firestore/get'
-import { authState } from 'firebase/auth/authState'
-import { useCatalogStore } from 'store/catalogStore'
-import { signOut as goOut } from 'firebase/auth/signOut'
+import { signInFire } from '../../firebase/auth/signIn'
+import { signOutFire } from '../../firebase/auth/signOut'
+import { useCatalogStore } from '../../store/catalogStore'
+import { noAuthRequired } from '../../general/data/routes'
 import { AuthContext, AuthUpdateContext, props } from './types'
-import { noAuthRequired } from 'data/routes'
+import { authStateFirebase } from '../../firebase/auth/authState'
 
-export function AuthProvider({ children }: props) {
+const AuthProvider: React.FC<props> = ({ children }) => {
     const store = useCatalogStore(state => state)
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     const isPublic = noAuthRequired.includes(router.pathname)
 
-    authState((userFirebase: User) => {
-        if (user == null && userFirebase) {
-            setUser(userFirebase)
+    function rules(): void {
+        authStateFirebase(async (userFirebase: User) => {
+            if (user == null && userFirebase) {
+                setUser(userFirebase)
+                return
+            }
+            if (!isPublic && user == null && !userFirebase) {
+                await router.push('/')
+            }
+        })
+    }
+    rules()
+
+    async function signIn(): Promise<void> {
+        if (loading) return
+        setLoading(true)
+        const { user, ok, errors } = await signInFire()
+        if (ok) {
+            setUser(user)
+            await router.push('/catalog/doing')
             return
         }
-        if (!isPublic && user == null && !userFirebase) {
-            router.push('/')
-        }
-    })
-
-    async function signIn() {
-        try {
-            if (loading) return
-            setLoading(true)
-
-            const auth = await authGoogle()
-            const { displayName, email, uid } = auth.user
-
-            const getUser = await getFireDoc('users', uid)
-            if (getUser == null) {
-                await setDoc(doc(db, 'users', uid), { displayName, email })
-                await setDoc(doc(db, 'doing', uid), { list: [] })
-                await setDoc(doc(db, 'illdo', uid), { list: [] })
-                await setDoc(doc(db, 'did', uid), { list: [] })
-            }
-            setUser(auth.user)
-            router.push('/catalog/doing')
-        } catch (e) {
-            console.log(e)
-        } finally {
-            setLoading(false)
-        }
+        console.log(errors)
+        setLoading(false)
     }
 
-    async function signOut() {
+    async function signOut(): Promise<void> {
         try {
             setUser(null)
-            await goOut()
+            await signOutFire()
             store.resetData()
         } finally {
             setLoading(false)
@@ -63,7 +52,10 @@ export function AuthProvider({ children }: props) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, loading }}>
+        <AuthContext.Provider
+            value={{ user, loading }}
+            data-testid="auth-provider"
+        >
             <AuthUpdateContext.Provider
                 value={{ signIn, signOut, setUser, setLoading }}
             >
@@ -73,4 +65,4 @@ export function AuthProvider({ children }: props) {
     )
 }
 
-export default AuthProvider
+export { AuthProvider }

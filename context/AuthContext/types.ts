@@ -1,11 +1,14 @@
 import { User } from 'firebase/auth'
-import { createContext, useContext } from 'react'
+import React, { createContext, useContext } from 'react'
 
-type AuthT = { user: null | User; loading: boolean }
+interface AuthT {
+    user: null | User
+    loading: boolean
+}
 export const AuthContext = createContext<AuthT>({ user: null, loading: false })
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = (): AuthT => useContext(AuthContext)
 
-type AuthUpdT = {
+interface AuthUpdT {
     signIn: () => Promise<void>
     signOut: () => Promise<void>
     setUser: React.Dispatch<React.SetStateAction<User | null>>
@@ -17,7 +20,9 @@ export const AuthUpdateContext = createContext<AuthUpdT>({
     setUser: () => null,
     setLoading: () => false
 })
-export const useSetAuth = () => useContext(AuthUpdateContext)
+export const useSetAuth = (): AuthUpdT => useContext(AuthUpdateContext)
 
 // Provider
-export type props = { children: React.ReactNode }
+export interface props {
+    children: React.ReactNode
+}
