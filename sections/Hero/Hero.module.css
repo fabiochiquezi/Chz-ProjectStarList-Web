@@ -1,7 +1,7 @@
 .heroWrapper {
     background-color: red;
     height: 100vh;
-    background: url('../../public/bannersExample/banner-5.jpg') no-repeat center
+    background: url('../../public/banners/hero-mobile.jpg') no-repeat center
         center;
     background-size: cover;
     position: relative;
@@ -9,19 +9,13 @@
 }
 @media (min-width: 1024px) {
     .heroWrapper {
-        background: url('https://images4.alphacoders.com/909/thumb-1920-909185.jpg')
-            no-repeat center center;
+        background: url('../../public/banners/hero-desktop.jpg') no-repeat
+            center center;
         background-size: cover;
+        /* background-image: url('https://images4.alphacoders.com/909/thumb-1920-909185.jpg')*/
+        /* height: 70vh; */
     }
 }
-
-/* test
-    @media (min-width: 1024px){
-        .heroWrapper{
-            height: 70vh;
-        }
-    }
-  */
 
 .overlayAll {
     background-image: linear-gradient(
