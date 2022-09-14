@@ -1,4 +1,4 @@
-import Input from '../../../components/Forms/Input'
+import { Input } from '../../../components/Forms/Inputs/Default'
 import { FormikProps } from 'formik'
 import React from 'react'
 

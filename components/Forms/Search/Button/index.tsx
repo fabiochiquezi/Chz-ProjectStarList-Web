@@ -1,3 +1,6 @@
+// Not using yet
+
+/*
 import { useRouter } from 'next/router'
 import React, { useEffect, useRef, useState } from 'react'
 import { isDesktop } from 'helpers/device'
@@ -64,3 +67,4 @@ const SearchBar: React.FC = () => {
 }
 
 export default SearchBar
+*/

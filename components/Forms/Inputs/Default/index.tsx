@@ -1,35 +1,41 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 interface props {
-    children: React.ReactNode
     label: string
     className?: string
     placeholder?: string
     name: string
+    type: string
     onChange: any
     value: any
     error: any
 }
 
-const Select: React.FC<props> = ({
-    children,
+const Input: React.FC<props> = ({
     label,
     className = '',
     placeholder = '',
     name,
+    type,
     onChange,
-    value,
+    value = '',
     error
 }) => {
-    const inputRef = useRef<HTMLSelectElement | null>(null)
+    const inputRef = useRef<HTMLInputElement | null>(null)
     const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        if (value.length) {
+            setActive(true)
+        }
+    }, [value])
 
     return (
         <div className={`relative w-full h-8 ${className}`}>
             <label
                 htmlFor={name}
                 className={`ease-in-out duration-300 absolute left-0 text-sm text-[#666] ${
-                    active ? 'text-[11px] -top-[16px] text-gray-300' : 'top-1'
+                    active ? 'text-[11px] -top-[16px]' : 'top-1'
                 }`}
             >
                 {label}{' '}
@@ -40,10 +46,11 @@ const Select: React.FC<props> = ({
                 )}
             </label>
 
-            <select
+            <input
                 name={name}
+                type={type}
                 onChange={onChange}
-                defaultValue=""
+                value={value}
                 className={`ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8 bg-transparent border-b-[1px] border-gray-400 text-sm ${
                     active && 'border-green-700'
                 }`}
@@ -61,16 +68,10 @@ const Select: React.FC<props> = ({
                         setActive(false)
                     }
                 }}
-            >
-                <option
-                    className="bg-primary text-white"
-                    value=""
-                    disabled
-                ></option>
-                {children}
-            </select>
+                data-testid="input"
+            />
             {error ? (
-                <p className="absolute -bottom-[22px] left-0 text-[11px] text-red-500 text-right w-full">
+                <p className="absolute -bottom-[22px] left-0 text-[11px] text-red-500 text-right w-full error">
                     * {error}
                 </p>
             ) : null}
@@ -78,4 +79,4 @@ const Select: React.FC<props> = ({
     )
 }
 
-export default Select
+export { Input }
