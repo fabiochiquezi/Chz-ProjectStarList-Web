@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
-import List from 'sections/List'
 import type { NextPage } from 'next'
-import Footer from 'sections/Footer'
-import HeroLogin from 'sections/Hero/HeroLogin'
+import { Footer } from 'sections/Footer'
+import { SimpleList } from 'sections/List'
+import { Hero } from 'sections/Hero/Default'
 import catalog from 'general/data/catalog.json'
 import HeaderLogin from 'sections/Header/HeaderLogin'
 
@@ -22,17 +22,16 @@ const Home: NextPage = () => (
         <HeadData />
         <HeaderLogin />
         <div className="mb-48 sm:mb-36 lg:mb-24">
-            <HeroLogin
+            <Hero
                 title="Your list of great works souvenirs"
                 description="Mount your own list of movies, cartoons, series, books and games."
             />
 
             <div className="pt-20 pb-16">
-                <List
+                <SimpleList
                     catalog={catalog}
                     title="YOUR VIRTUAL MEMORY LIST"
                     description="From watching, reading or playing..."
-                    menu={false}
                 />
             </div>
         </div>

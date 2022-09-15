@@ -50,6 +50,13 @@
         "firebase.mysettings.example.ts": true,
         "cypress/.eslintrc.json": true,
         "cypress/support/index.d.ts": true,
-        "serviceAccount.json": true
+        "serviceAccount.json": true,
+
+        // Style 01
+        "todo.log.md": true,
+        "public": true,
+        "cypress": true,
+        //"general": true,
+        //"components": true
     }
 }
