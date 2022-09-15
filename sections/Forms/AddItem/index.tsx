@@ -1,20 +1,28 @@
+import * as Yup from 'yup'
 import { Formik } from 'formik'
-import { Fields } from './Fields'
-import { dataForm } from './types'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
-import { validation } from './validation'
-import { doc, setDoc } from 'firebase/firestore'
-import { useAuth } from 'context/AuthContext/types'
-import { useCatalogStore } from 'store/catalogStore'
 import SpinIcon2 from '../../../public/icons/SpinIcon2'
-import { db } from '../../../firebase/firebaseSettings'
-import { useSetUtils } from 'context/UtilsContext/types'
+import { catalogI } from '../../../general/types/catalog'
+import { useAuth } from '../../../context/AuthContext/types'
+import { useCatalogStore } from '../../../store/catalogStore'
+import { Input } from '../../../components/Forms/Inputs/Default'
+import { useSetUtils } from '../../../context/UtilsContext/types'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 
-const Spin = <SpinIcon2 className="positive -top-1" />
+const validationYup = Yup.object({
+    thumb: Yup.string().required('Required')
+})
 
-const AddItem: React.FC = () => {
+interface props {
+    setCatalogList: (
+        table: string,
+        id: string,
+        data: catalogI[]
+    ) => Promise<void>
+}
+
+const AddItem: React.FC<props> = ({ setCatalogList }) => {
     const { modal, alert } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
@@ -22,6 +30,8 @@ const AddItem: React.FC = () => {
     const { query } = useRouter()
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
+
+    const Spin = <SpinIcon2 className="positive -top-1" />
     const BtnSend = (): ReactElement => (!loading ? <span>Send</span> : Spin)
 
     useEffect(() => {
@@ -33,20 +43,13 @@ const AddItem: React.FC = () => {
         })
     }, [])
 
-    async function handleSubmit(data: dataForm): Promise<void> {
+    async function handleSubmit(data: catalogI): Promise<void> {
         try {
             if (user == null) throw new Error('User not identified')
             if (loading) return
             setLoading(true)
-
-            // await postFireDoc(state, user.uid, data)
-            const ref = doc(db, state, user.uid)
-            setDoc(
-                ref,
-                { list: [...store.data[state], { ...data }] },
-                { merge: true }
-            )
-
+            const newList = [...store.data[state], { ...data }]
+            await setCatalogList(state, user.uid, newList)
             store.addItem(data, state)
             alert.open('Item added successfully', 1)
             modal.close()
@@ -62,13 +65,13 @@ const AddItem: React.FC = () => {
         <div data-cy="form-addNewItem">
             <ModalForm>
                 <Formik
-                    initialValues={{ name: '', thumb: '', type: '' }}
-                    validationSchema={validation}
+                    initialValues={{ thumb: '' }}
+                    validationSchema={validationYup}
                     validateOnChange={false}
                     validateOnBlur={false}
-                    onSubmit={(data, props) => {
-                        props.validateForm()
-                        handleSubmit(data)
+                    onSubmit={async (data, { validateForm }) => {
+                        await validateForm()
+                        await handleSubmit(data)
                     }}
                 >
                     {formik => (
@@ -81,7 +84,16 @@ const AddItem: React.FC = () => {
                             </h3>
 
                             <div className="mt-3 md:grid grid-cols-2 gap-x-8">
-                                <Fields formik={formik} />
+                                <Input
+                                    label="Cover"
+                                    className="mb-9"
+                                    placeholder="http://example.com"
+                                    name="thumb"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.thumb}
+                                    error={formik.errors.thumb}
+                                />
                             </div>
 
                             <button
@@ -99,5 +111,4 @@ const AddItem: React.FC = () => {
         </div>
     )
 }
-
 export default AddItem
