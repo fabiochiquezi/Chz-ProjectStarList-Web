@@ -7,12 +7,10 @@ import { useRouter } from 'next/router'
 import { ErrorSection } from 'sections/Error'
 import { Header } from 'sections/Header/System'
 import React, { useEffect, useState } from 'react'
-import { getFireDoc } from 'firebase/firestore/get'
 import { useCatalogStore } from 'store/catalogStore'
-import { DocumentData } from 'firebase/firestore'
 import { getTitle } from 'general/functions/getTitle'
-import { LoadingStruct } from 'components/Structure/Loadings/Default'
 import { getCatalogList } from 'firebase/catalog/getList'
+import { LoadingStruct } from 'components/Structure/Loadings/Default'
 
 const HeadData = (): React.ReactElement => (
     <Head>
@@ -40,23 +38,35 @@ const Catalog: NextPage = () => {
     useEffect(() => {
         seLoadContent(true)
         if (list && !list.length) getData()
+
         setTimeout(() => {
             seLoadContent(false)
         }, 600)
     }, [query])
 
-    async function getData(): Promise<void> {
-        try {
-            const data = (await getCatalogList(query, id)) as DocumentData
-            store.setData(data.list, query)
-        } catch (e) {
-            setError(true)
-        } finally {
-            setLoadingPage(false)
-        }
+    function getData(): void {
+        getCatalogList(query, id)
+            .then(data => {
+                if (data) store.setData(data.list, query)
+            })
+            .catch(() => {
+                setError(true)
+            })
+            .finally(() => {
+                setLoadingPage(false)
+            })
     }
 
-    if (is404) router.push('/404')
+    if (is404) {
+        router
+            .push('/404')
+            .then(() => {
+                console.log('get 404')
+            })
+            .catch(() => {
+                return <ErrorSection />
+            })
+    }
     if (error) return <ErrorSection />
     if (loadingPage) return <LoadingStruct />
 
@@ -65,13 +75,6 @@ const Catalog: NextPage = () => {
             <HeadData />
             <Header />
             <div className="mb-48 sm:mb-36 lg:mb-24">
-                {/* <Hero
-                    title="Lionsgate Movies"
-                    description="Lionsgate’s feature film production and distribution
-                        operation encompasses a diverse slate of tentpoles,
-                        star-driven event films and branded properties"
-                /> */}
-
                 {loadContent ? (
                     <LoadingStruct />
                 ) : (

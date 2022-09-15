@@ -1,6 +1,6 @@
 import React from 'react'
 import { AddItem } from '../../../sections/Forms/AddItem'
-import { setCatalogList } from 'firebase/catalog/setList'
+import { setCatalogList } from '../../../firebase/catalog/setList'
 import { AlterItem } from '../../../sections/Forms/AlterItem'
 import { modalInitialState, setModalState } from './state'
 
