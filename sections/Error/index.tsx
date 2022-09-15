@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../../sections/Footer'
+import { Footer } from '../../sections/Footer'
 import Header from '../../sections/Header/Header'
 
 const ErrorSection: React.FC = () => (
