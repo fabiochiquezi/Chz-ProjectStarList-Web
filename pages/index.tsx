@@ -5,7 +5,7 @@ import { Footer } from 'sections/Footer'
 import { SimpleList } from 'sections/List'
 import { Hero } from 'sections/Hero/Default'
 import catalog from 'general/data/catalog.json'
-import HeaderLogin from 'sections/Header/HeaderLogin'
+import { Header } from 'sections/Header/Login'
 
 const HeadData = (): React.ReactElement => (
     <Head>
@@ -20,7 +20,7 @@ const HeadData = (): React.ReactElement => (
 const Home: NextPage = () => (
     <div>
         <HeadData />
-        <HeaderLogin />
+        <Header />
         <div className="mb-48 sm:mb-36 lg:mb-24">
             <Hero
                 title="Your list of great works souvenirs"

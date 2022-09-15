@@ -1,9 +1,9 @@
 import Link from 'next/link'
-import Logo from '../../public/Logo'
+import Logo from '../../../public/Logo'
 import React, { useEffect, useState } from 'react'
-import { MobileButton } from '../../components/Buttons/Mobile'
-import { Menu } from '../../components/Structure/Menu/Default'
-import { useAuth, useSetAuth } from '../../context/AuthContext/types'
+import { MobileButton } from '../../../components/Buttons/Mobile'
+import { Menu } from '../../../components/Structure/Menu/Default'
+import { useAuth, useSetAuth } from '../../../context/AuthContext/types'
 
 const Header: React.FC = () => {
     const { user } = useAuth()
@@ -46,7 +46,10 @@ const Header: React.FC = () => {
                 <div className="fixed lg:static w-full left-0 top-[50%] -mt-[225px] md:-mt-[325px] lg:-mt-0 lg:top-0 lg:flex lg:justify-between lg:items-center">
                     <Menu setMenu={setMenu} />
 
-                    <ul className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-[0px] lg:w-auto lg:mx-0 lg:flex-row text-center">
+                    <ul
+                        className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-[0px] lg:w-auto lg:mx-0 lg:flex-row text-center"
+                        id="menu-right"
+                    >
                         {/* <li className="flex items-center mb-7 justify-center lg:mb-0 w-full max-w-xs lg:w-auto">
                             <SearchBar />
                         </li> */}
@@ -65,7 +68,7 @@ const Header: React.FC = () => {
                             </li>
                             <li className="text-sm ml-4 lg:m-0">
                                 <button
-                                    onClick={signOut}
+                                    onClick={() => signOut}
                                     className="border-white lg:border-none  border-2 rounded px-4 py-2 mt-2 lg:p-0 lg:mt-0 simple-button cursor-pointer"
                                 >
                                     Sign Out
@@ -79,4 +82,4 @@ const Header: React.FC = () => {
     )
 }
 
-export default Header
+export { Header }

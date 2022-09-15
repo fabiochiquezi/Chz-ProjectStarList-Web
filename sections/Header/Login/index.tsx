@@ -1,10 +1,10 @@
 import React from 'react'
-import Logo from 'public/Logo'
-import { useSetAuth } from 'context/AuthContext/types'
-import { GitHubButton } from 'components/Buttons/GitHub'
-import { SignInButton01 } from 'components/Buttons/SignIn'
+import Logo from '../../../public/Logo'
+import { useSetAuth } from '../../../context/AuthContext/types'
+import { GitHubButton } from '../../../components/Buttons/GitHub'
+import { SignInButton01 } from '../../../components/Buttons/SignIn'
 
-const HeaderLogin: React.FC = () => {
+const Header: React.FC = () => {
     const signIn = useSetAuth()
 
     return (
@@ -27,4 +27,4 @@ const HeaderLogin: React.FC = () => {
     )
 }
 
-export default HeaderLogin
+export { Header }

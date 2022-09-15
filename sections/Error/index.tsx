@@ -1,6 +1,6 @@
 import React from 'react'
 import { Footer } from '../../sections/Footer'
-import Header from '../../sections/Header/Header'
+import { Header } from '../../sections/Header/System'
 
 const ErrorSection: React.FC = () => (
     <div data-testid="error-section">

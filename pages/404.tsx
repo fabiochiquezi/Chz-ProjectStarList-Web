@@ -1,10 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import Footer from 'sections/Footer'
-import Header from 'sections/Header/Header'
+import { Footer } from 'sections/Footer'
+import { Header, Header as HeaderLogin } from 'sections/Header/System'
 import { useAuth } from 'context/AuthContext/types'
-import HeaderLogin from 'sections/Header/HeaderLogin'
 
 const HeadData = (): React.ReactElement => (
     <Head>
