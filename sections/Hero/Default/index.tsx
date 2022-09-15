@@ -1,14 +1,14 @@
 import React from 'react'
 import styles from './Hero.module.css'
-import { useSetAuth } from 'context/AuthContext/types'
-import { SignInButton02 } from 'components/Buttons/SignIn'
+import { useSetAuth } from '../../../context/AuthContext/types'
+import { SignInButton02 } from '../../../components/Buttons/SignIn'
 
 interface props {
     title: string
     description: string
 }
 
-const HeroLogin: React.FC<props> = ({ title, description }) => {
+const Hero: React.FC<props> = ({ title, description }) => {
     const useAuth = useSetAuth()
 
     return (
@@ -55,4 +55,4 @@ const HeroLogin: React.FC<props> = ({ title, description }) => {
     )
 }
 
-export default HeroLogin
+export { Hero }
