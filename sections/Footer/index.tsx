@@ -17,15 +17,15 @@ const Footer: React.FC = () => {
             <BannerJob />
             <div className="container mx-auto">
                 <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between lg:flex-row lg:items-start 2xl:w-5/6">
-                    <div className="text-sm lg:mt-1 lg:mb-0 order-4 lg:order-1">
+                    <div className="text-sm lg:mt-1 lg:mb-0 order-4 lg:order-1 box">
                         <Logo />
                         <p className="mt-3 text-gray-400">
-                            © All rights reserved -{' '}
+                            © All rights reserved -
                             <span className="italic">{date}</span>
                         </p>
                     </div>
 
-                    <div className="w-52 xl:w-64 w-52 mb-16 lg:mb-0 order-2">
+                    <div className="w-52 xl:w-64 w-52 mb-16 lg:mb-0 order-2 box">
                         <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
                             Links
                         </h3>
@@ -43,7 +43,7 @@ const Footer: React.FC = () => {
                         </ul>
                     </div>
 
-                    <div className="w-52 xl:w-64 mb-16 lg:mb-0 order-0 lg:order-2">
+                    <div className="w-52 xl:w-64 mb-16 lg:mb-0 order-0 lg:order-2 box">
                         <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
                             GitHub
                         </h3>
@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
                         </a>
                     </div>
 
-                    <div className="w-52 mb-16 xl:w-64 order-1 lg:order-4">
+                    <div className="w-52 mb-16 xl:w-64 order-1 lg:order-4 box">
                         <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
                             Follow-me
                         </h3>
@@ -103,4 +103,4 @@ const Footer: React.FC = () => {
     )
 }
 
-export default Footer
+export { Footer }
