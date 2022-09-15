@@ -1,16 +1,18 @@
-import Fields from './Fields'
 import { Formik } from 'formik'
+import { Fields } from './Fields'
 import { dataForm } from './types'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
 import { validation } from './validation'
-import SpinIcon2 from '../../../public/icons/SpinIcon2'
-import { db } from '../../../firebase/firebaseSettings'
 import { doc, setDoc } from 'firebase/firestore'
 import { useAuth } from 'context/AuthContext/types'
 import { useCatalogStore } from 'store/catalogStore'
+import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import { db } from '../../../firebase/firebaseSettings'
 import { useSetUtils } from 'context/UtilsContext/types'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
+
+const Spin = <SpinIcon2 className="positive -top-1" />
 
 const AddItem: React.FC = () => {
     const { modal, alert } = useSetUtils()
@@ -20,8 +22,7 @@ const AddItem: React.FC = () => {
     const { query } = useRouter()
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
-    const BtnSend = () =>
-        !loading ? <span>Send</span> : <SpinIcon2 className="positive -top-1" />
+    const BtnSend = (): ReactElement => (!loading ? <span>Send</span> : Spin)
 
     useEffect(() => {
         document.addEventListener('keydown', function (event) {

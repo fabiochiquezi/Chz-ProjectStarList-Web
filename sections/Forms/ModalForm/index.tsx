@@ -1,5 +1,5 @@
-import { useSetUtils } from '../../context/UtilsContext/types'
-import CloseIcon from '../../public/icons/CloseIcon'
+import { useSetUtils } from '../../../context/UtilsContext/types'
+import CloseIcon from '../../../public/icons/CloseIcon'
 import React from 'react'
 
 interface props {
@@ -14,6 +14,7 @@ const ModalForm: React.FC<props> = ({ children }) => {
                 sm:max-w-[440px] sm:ml-[-220px] sm:top-[10%] sm:w-full
                 md:max-w-[600px] md:ml-[-300px] md:top-[20%]
                 lg:top-[25%] form-add-anim"
+            data-testid="modal-form"
         >
             <div
                 onClick={() => modal.close()}

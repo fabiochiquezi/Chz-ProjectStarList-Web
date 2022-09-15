@@ -1,9 +1,9 @@
-import Fields from './Fields'
 import { Formik } from 'formik'
+import { Fields } from './Fields'
 import { dataForm } from './types'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
-import React, { useRef, useState } from 'react'
+import React, { FC, useRef, useState } from 'react'
 import { validation } from './validation'
 import SpinIcon2 from 'public/icons/SpinIcon2'
 import { useAuth } from 'context/AuthContext/types'
@@ -12,10 +12,15 @@ import { useSetUtils } from 'context/UtilsContext/types'
 import { db } from 'firebase/firebaseSettings'
 import { doc, setDoc } from 'firebase/firestore'
 
+interface Btn {
+    text: string
+}
 interface props {
     dataItem: { index: number; thumb: string }
 }
-const AlterItem: React.FC<props> = ({ dataItem }) => {
+const Spin = <SpinIcon2 className="positive -top-1" />
+
+const AlterItem: FC<props> = ({ dataItem }) => {
     const { modal, alert } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
@@ -23,12 +28,9 @@ const AlterItem: React.FC<props> = ({ dataItem }) => {
     const { query } = useRouter()
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
-    const BtnSend = ({ text }: { text: string }) =>
-        !loading ? (
-            <span>{text}</span>
-        ) : (
-            <SpinIcon2 className="positive -top-1" />
-        )
+
+    // prettier-ignore
+    const BtnSend: FC<Btn> = ({ text }) => (!loading ? <span>{text}</span> : Spin)
 
     async function handleUpdate(data: dataForm): Promise<void> {
         try {

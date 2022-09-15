@@ -56,4 +56,4 @@ const Fields: React.FC<props> = ({ formik }) => (
     </>
 )
 
-export default Fields
+export { Fields }
