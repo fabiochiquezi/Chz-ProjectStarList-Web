@@ -1,6 +1,8 @@
-import React from 'react'
+// Not using yet
 
 /*
+import React from 'react'
+
 <ul
 className="order-2 flex justify-center flex-wrap sm:col-span-3 lg:order-1 lg:col-span-2
    lg:col-start-4 xl:col-start-4 xl:col-span-4 xl:mr-2 2xl:col-start-5
@@ -16,7 +18,6 @@ className="order-2 flex justify-center flex-wrap sm:col-span-3 lg:order-1 lg:col
     <Button01 text="Watched" path="/" />
 </li>
 </ul>
-*/
 
 const StateButtons: React.FC = () => {
     return (
@@ -33,3 +34,5 @@ const StateButtons: React.FC = () => {
 }
 
 export default StateButtons
+
+*/

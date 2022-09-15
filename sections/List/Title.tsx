@@ -26,11 +26,11 @@ const Title: React.FC<props> = ({ titleH1, description }) => (
     </h1>
 )
 
-export default Title
-
-export const TitleEmpty = (
+const TitleEmpty = (
     <Title
         titleH1="YOUR LIST IS EMPTY"
         description="Start adding movies, books... Right now!"
     />
 )
+
+export { Title, TitleEmpty }
