@@ -12,6 +12,7 @@ import { useCatalogStore } from 'store/catalogStore'
 import { DocumentData } from 'firebase/firestore'
 import { getTitle } from 'general/functions/getTitle'
 import { LoadingStruct } from 'components/Structure/Loadings/Default'
+import { getCatalogList } from 'firebase/catalog/getList'
 
 const HeadData = (): React.ReactElement => (
     <Head>
@@ -46,7 +47,7 @@ const Catalog: NextPage = () => {
 
     async function getData(): Promise<void> {
         try {
-            const data = (await getFireDoc(query, id)) as DocumentData
+            const data = (await getCatalogList(query, id)) as DocumentData
             store.setData(data.list, query)
         } catch (e) {
             setError(true)

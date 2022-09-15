@@ -1,7 +1,7 @@
-import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
-import { getFireDoc } from 'firebase/firestore/get'
-import { auth, db } from '../../firebaseSettings'
 import { doc, setDoc } from 'firebase/firestore'
+import { auth, db } from '../../firebaseSettings'
+import { getCatalogList } from 'firebase/catalog/getList'
+import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
 
 interface resp {
     ok: boolean
@@ -15,7 +15,7 @@ const signInFire = async (): Promise<resp> => {
         const authUser = await signInWithPopup(auth, provider)
         const { displayName, email, uid } = authUser.user
 
-        const getUser = await getFireDoc('users', uid)
+        const getUser = await getCatalogList('users', uid)
         if (getUser == null) {
             await setDoc(doc(db, 'users', uid), { displayName, email })
             await setDoc(doc(db, 'doing', uid), { list: [] })

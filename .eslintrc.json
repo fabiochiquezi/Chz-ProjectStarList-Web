@@ -24,11 +24,9 @@
     ],
     "rules": {
         // ----- Mine
-
         // ESLint
         "indent": "off",
         "multiline-ternary": "off",
-
         // TS
         "@typescript-eslint/indent": "off",
         "react/react-in-jsx-scope": "off",

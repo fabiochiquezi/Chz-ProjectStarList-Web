@@ -1,26 +1,32 @@
+import * as Yup from 'yup'
 import { Formik } from 'formik'
-import { Fields } from './Fields'
-import { dataForm } from './types'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
 import React, { FC, useRef, useState } from 'react'
-import { validation } from './validation'
-import SpinIcon2 from 'public/icons/SpinIcon2'
-import { useAuth } from 'context/AuthContext/types'
-import { useCatalogStore } from 'store/catalogStore'
-import { useSetUtils } from 'context/UtilsContext/types'
-import { db } from 'firebase/firebaseSettings'
-import { doc, setDoc } from 'firebase/firestore'
+import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import { catalogI } from '../../../general/types/catalog'
+import { useAuth } from '../../../context/AuthContext/types'
+import { useCatalogStore } from '../../../store/catalogStore'
+import { Input } from '../../../components/Forms/Inputs/Default'
+import { useSetUtils } from '../../../context/UtilsContext/types'
 
 interface Btn {
     text: string
 }
 interface props {
     dataItem: { index: number; thumb: string }
+    setCatalogList: (
+        table: string,
+        id: string,
+        data: catalogI[]
+    ) => Promise<void>
 }
-const Spin = <SpinIcon2 className="positive -top-1" />
 
-const AlterItem: FC<props> = ({ dataItem }) => {
+const validation = Yup.object({
+    thumb: Yup.string().required('Required')
+})
+
+const AlterItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const { modal, alert } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
@@ -29,18 +35,19 @@ const AlterItem: FC<props> = ({ dataItem }) => {
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
 
+    const Spin = <SpinIcon2 className="positive -top-1" />
     // prettier-ignore
     const BtnSend: FC<Btn> = ({ text }) => (!loading ? <span>{text}</span> : Spin)
 
-    async function handleUpdate(data: dataForm): Promise<void> {
+    async function handleUpdate(data: catalogI): Promise<void> {
         try {
             if (user == null) throw new Error('User not identified')
             if (loading) return
             setLoading(true)
 
             store.updateItem(dataItem.index, data, state)
-            const ref = doc(db, state, user.uid)
-            await setDoc(ref, { list: [...store.data[state]] })
+            const newData = [...store.data[state]]
+            await setCatalogList(state, user.uid, newData)
 
             alert.open('Item Updated successfully', 1)
             modal.close()
@@ -52,24 +59,25 @@ const AlterItem: FC<props> = ({ dataItem }) => {
         }
     }
 
-    async function handleDelete(): Promise<void> {
-        try {
-            if (user == null) throw new Error('User not identified')
-            if (loading) return
-            setLoading(true)
+    function handleDelete(): void {
+        if (user == null) throw new Error('User not identified')
+        if (loading) return
+        setLoading(true)
 
-            store.deleteItem(dataItem.index, state)
-            const ref = doc(db, state, user.uid)
-            await setDoc(ref, { list: [...store.data[state]] })
-
-            alert.open('Item deleted successfully', 1)
-            modal.close()
-        } catch (e) {
-            console.log(e, 'error')
-            alert.open('Sorry, but something went wrong. Try again', 2)
-        } finally {
-            setLoading(false)
-        }
+        store.deleteItem(dataItem.index, state)
+        const newData = [...store.data[state]] as catalogI[]
+        setCatalogList(state, user.uid, newData)
+            .then(() => {
+                alert.open('Item deleted successfully', 1)
+                modal.close()
+            })
+            .catch(e => {
+                console.log(e, 'error')
+                alert.open('Sorry, but something went wrong. Try again', 2)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }
 
     return (
@@ -84,9 +92,9 @@ const AlterItem: FC<props> = ({ dataItem }) => {
                     validationSchema={validation}
                     validateOnChange={false}
                     validateOnBlur={false}
-                    onSubmit={(data, props) => {
-                        props.validateForm()
-                        handleUpdate(data)
+                    onSubmit={async (data, { validateForm }) => {
+                        await validateForm()
+                        await handleUpdate(data)
                     }}
                 >
                     {formik => (
@@ -99,7 +107,16 @@ const AlterItem: FC<props> = ({ dataItem }) => {
                             </h3>
 
                             <div className="mt-3 md:grid grid-cols-2 gap-x-8">
-                                <Fields formik={formik} />
+                                <Input
+                                    label="Cover"
+                                    className="mb-9"
+                                    placeholder="http://example.com"
+                                    name="thumb"
+                                    type="text"
+                                    onChange={formik.handleChange}
+                                    value={formik.values.thumb}
+                                    error={formik.errors.thumb}
+                                />
                             </div>
 
                             <div className="flex justify-between">
@@ -130,4 +147,4 @@ const AlterItem: FC<props> = ({ dataItem }) => {
     )
 }
 
-export default AlterItem
+export { AlterItem }

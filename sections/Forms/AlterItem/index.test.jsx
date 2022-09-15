@@ -1,5 +1,5 @@
 import { fireEvent, render } from '@testing-library/react'
-import { AddItem } from '.'
+import { AlterItem } from '.'
 
 jest.mock('next/router', () => ({
     useRouter() {
@@ -14,20 +14,27 @@ jest.mock('next/router', () => ({
     }
 }))
 
-describe('', () => {
+describe('AlterItem', () => {
     const callback = jest.fn(() => 'test')
-    const Elem = <AddItem setCatalogList={(callback)} />
-    const { getByTestId, getByText } = render(Elem)
+    const dataItem = { index: 1, thumb: 'test' }
+    const Elem = <AlterItem setCatalogList={(callback)} dataItem={dataItem} />
+    render(Elem)
+
     const title = document.querySelector('h3')
     const form = document.querySelector('form')
     const thumbI = document.querySelector('[name="thumb"]')
-    const btnSend = document.querySelector('[type="submit"] span')
+    const btnUpdate = document.querySelector('button:first-child')
+    const btnDelete = document.querySelector('button:last-child')
 
     it('should have all elements', () => {
         expect(title).toBeInTheDocument()
+        expect(title.textContent).toBe('Update Item or Delete')
         expect(form).toBeInTheDocument()
         expect(thumbI).toBeInTheDocument()
-        expect(btnSend).toBeInTheDocument()
+        expect(btnUpdate).toBeInTheDocument()
+        expect(btnUpdate.textContent).toBe('Update')
+        expect(btnDelete).toBeInTheDocument()
+        expect(btnDelete.textContent).toBe('Delete')
     })
 
     it('input should work', () => {

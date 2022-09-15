@@ -1,7 +1,7 @@
 import React from 'react'
-import AddItem from '../../../sections/Forms/AddItem'
+import { AddItem } from '../../../sections/Forms/AddItem'
 import { setCatalogList } from 'firebase/catalog/setList'
-import AlterItem from '../../../sections/Forms/AlterItem'
+import { AlterItem } from '../../../sections/Forms/AlterItem'
 import { modalInitialState, setModalState } from './state'
 
 export const closeModal = (setModal: setModalState) => () => {
@@ -34,6 +34,7 @@ export const getModal = (
             {name === 'AlterItem' && (
                 <AlterItem
                     dataItem={data as { index: number; thumb: string }}
+                    setCatalogList={setCatalogList}
                 />
             )}
             {name === 'AddItem' && <AddItem setCatalogList={setCatalogList} />}

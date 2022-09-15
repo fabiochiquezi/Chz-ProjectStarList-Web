@@ -111,4 +111,4 @@ const AddItem: React.FC<props> = ({ setCatalogList }) => {
         </div>
     )
 }
-export default AddItem
+export { AddItem }
