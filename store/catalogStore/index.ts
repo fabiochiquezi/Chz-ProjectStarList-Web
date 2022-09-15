@@ -45,7 +45,7 @@ const useCatalogStore = create<CatalogState>(set => ({
         set(state => {
             const newArr = state.data[type].filter(
                 (_: any, indexArr: number) => {
-                    return indexArr != index
+                    return indexArr !== index
                 }
             )
             state.data[type] = newArr
