@@ -2,10 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import type { NextPage } from 'next'
 import { Footer } from 'sections/Footer'
-import { SimpleList } from 'sections/List'
 import { Hero } from 'sections/Hero/Default'
-import catalog from 'general/data/catalog.json'
 import { Header } from 'sections/Header/Login'
+import catalog from 'general/data/catalog.json'
+import { SimpleList } from 'sections/List/Simple'
 
 const HeadData = (): React.ReactElement => (
     <Head>

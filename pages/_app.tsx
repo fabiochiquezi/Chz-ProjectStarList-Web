@@ -3,10 +3,17 @@ import '@fontsource/roboto'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
 import UtilsProvider from 'context/UtilsContext'
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { AuthProvider } from 'context/AuthContext'
 import { noAuthRequired } from 'general/data/routes'
 import { PrivateRoute } from 'components/Structure/PrivateRoute'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+// Drag And Drop context plugin
+const DnDProvide = ({ children }: { children: ReactElement }): ReactElement => (
+    <DndProvider backend={HTML5Backend}>{children}</DndProvider>
+)
 
 const MyApp = ({
     Component,
@@ -18,9 +25,12 @@ const MyApp = ({
     if (isSSR) return null
 
     const isPublic = noAuthRequired.includes(pathname)
-    const ReactComp = <Component {...pageProps} />
-    const privateRoute = <PrivateRoute>{ReactComp}</PrivateRoute>
-    const Page = isPublic ? ReactComp : privateRoute
+    const Core = <Component {...pageProps} />
+
+    const DnDPlugin = <DnDProvide>{Core}</DnDProvide>
+    const privateRoute = <PrivateRoute>{DnDPlugin}</PrivateRoute>
+    const Page = isPublic ? Core : privateRoute
+
     return (
         <AuthProvider>
             <UtilsProvider>

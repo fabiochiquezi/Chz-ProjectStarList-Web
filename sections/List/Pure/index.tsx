@@ -1,3 +1,6 @@
+// Not using
+
+/*
 import { Title, TitleEmpty } from './Title'
 import { catalogI } from '../../general/types/catalog'
 import { AddThumb } from '../../components/Thumbs/Add'
@@ -32,14 +35,14 @@ const List: React.FC<props> = ({ catalog, title, description }) => {
         <main className={containerClass} data-cy="section-list">
             <TitlePage />
             <AddThumb onClick={() => modal.openAddItem()} />
-            {catalog?.map(({ thumb, name }, index) => {
+            {catalog?.map(({ thumb }, index) => {
                 if (index >= limit) return null
                 return (
                     <Thumb
                         key={index}
                         index={index}
                         thumb={thumb}
-                        name={name}
+                        // name={name}
                     />
                 )
             })}
@@ -57,14 +60,14 @@ const SimpleList: FC<props> = ({ catalog, title, description }) => {
         <main className={containerClass} data-cy="section-list">
             <Title titleH1={title} description={description} />
 
-            {catalog?.map(({ thumb, name }, index) => {
+            {catalog?.map(({ thumb }, index) => {
                 if (index >= limit) return null
                 return (
                     <Thumb
                         key={index}
                         index={index}
                         thumb={thumb}
-                        name={name}
+                        // name={name}
                     />
                 )
             })}
@@ -73,3 +76,4 @@ const SimpleList: FC<props> = ({ catalog, title, description }) => {
 }
 
 export { List, SimpleList }
+*/

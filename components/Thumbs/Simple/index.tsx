@@ -1,13 +1,13 @@
 import { useSetUtils } from '../../../context/UtilsContext/types'
 import React from 'react'
 
-interface props {
-    index: number
+interface ThumbProps {
+    id: any
     thumb: string
-    name: string
+    index: number
 }
 
-const Thumb: React.FC<props> = ({ index, thumb, name }) => {
+const SimpleThumb: React.FC<ThumbProps> = ({ id, thumb, index }) => {
     const { modal } = useSetUtils()
 
     return (
@@ -26,8 +26,8 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
                 >
                     <img
                         src={thumb}
-                        alt={name ?? name}
-                        title={name ?? name}
+                        // alt={name ?? name}
+                        // title={name ?? name}
                         onError={e => {
                             const item = e.target as HTMLElement
                             item.style.display = 'none'
@@ -39,4 +39,4 @@ const Thumb: React.FC<props> = ({ index, thumb, name }) => {
     )
 }
 
-export { Thumb }
+export { SimpleThumb }

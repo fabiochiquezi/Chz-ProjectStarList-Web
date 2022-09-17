@@ -1,4 +1,4 @@
 export interface catalogI {
-    id?: string
+    id: number
     thumb: string
 }

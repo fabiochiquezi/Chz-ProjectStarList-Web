@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { List } from 'sections/List'
 import type { NextPage } from 'next'
 import { Footer } from 'sections/Footer'
 import { getAuth } from 'firebase/auth'
@@ -11,6 +10,7 @@ import { useCatalogStore } from 'store/catalogStore'
 import { getTitle } from 'general/functions/getTitle'
 import { getCatalogList } from 'firebase/catalog/getList'
 import { LoadingStruct } from 'components/Structure/Loadings/Default'
+import { DragAndDropList } from 'sections/List/Drag'
 
 const HeadData = (): React.ReactElement => (
     <Head>
@@ -79,10 +79,10 @@ const Catalog: NextPage = () => {
                     <LoadingStruct />
                 ) : (
                     <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
-                        <List
+                        <DragAndDropList
                             title={title}
                             description={subtitle}
-                            catalog={list}
+                            catalog={store.data[query]}
                         />
                     </div>
                 )}
