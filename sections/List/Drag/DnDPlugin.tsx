@@ -1,4 +1,3 @@
-import update from 'immutability-helper'
 import { catalogI } from 'types/catalog'
 import { DraggableThumb } from 'components/Thumbs/Draggable'
 import React, { ReactElement, useCallback, useState } from 'react'

@@ -3,7 +3,7 @@ import { Title, TitleEmpty } from '../Title'
 import { DragAndDropPlugin } from './DnDPlugin'
 import { AddThumb } from 'components/Thumbs/Add'
 import { LoadButton } from 'components/Buttons/Load'
-import React, { ReactElement, useCallback, useState } from 'react'
+import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import { useSetUtils } from 'context/UtilsContext/types'
 import { DraggableThumb } from 'components/Thumbs/Draggable'
 import { useCatalogStore } from 'store/catalogStore'
@@ -23,9 +23,11 @@ const containerClass = `
     2xl:justify-items-center
 `
 const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
-    const { cards, renderCard } = DragAndDropPlugin(catalog)
+    // const { cards, renderCard } = DragAndDropPlugin(catalog)
     const store = useCatalogStore(state => state)
     const { query } = useRouter()
+    const type = query.type as string
+    const works = store.data[type] as catalogI[]
     const { modal } = useSetUtils()
     const [limit, setLimit] = useState(15)
     const max = catalog ? catalog.length : 0
@@ -36,18 +38,20 @@ const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
     function turnUpLimit(): void {
         setLimit(limit => limit + 15)
     }
+    useEffect(() => {
+        console.log(works)
+    }, [works])
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
-        const newData = catalog.map((item, index) => {
-            if (index === dragIndex) return catalog[hoverIndex]
-            if (index === hoverIndex) return catalog[dragIndex]
+        console.log(works[hoverIndex])
+        const newData = works.map((item, index) => {
+            if (index === dragIndex) return works[hoverIndex]
+            if (index === hoverIndex) return works[dragIndex]
             return item
         })
-        const type = query.type as string
         store.setData(newData, type)
     }, [])
 
-    /*
     const renderCard = useCallback(
         (card: { id: number; thumb: string }, index: number) => {
             return (
@@ -62,14 +66,15 @@ const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
         },
         []
     )
-    */
+    /*
+     */
 
     return (
         <main className={containerClass} data-cy="section-list">
             <TitlePage />
             <AddThumb onClick={() => modal.openAddItem()} />
 
-            {cards.map((card, i) => {
+            {works.map((card, i) => {
                 if (i >= limit) return null
                 return renderCard(card, i)
             })}

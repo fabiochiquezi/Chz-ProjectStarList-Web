@@ -6,7 +6,6 @@ import SpinIcon2 from '../../../public/icons/SpinIcon2'
 import { catalogI } from '../../../general/types/catalog'
 import { useAuth } from '../../../context/AuthContext/types'
 import { useCatalogStore } from '../../../store/catalogStore'
-import { Input } from '../../../components/Forms/Inputs/Default'
 import { useSetUtils } from '../../../context/UtilsContext/types'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 
@@ -24,7 +23,7 @@ interface props {
 }
 
 const DeleteItem: React.FC<props> = ({ dataItem, setCatalogList }) => {
-    const { modal, alert } = useSetUtils()
+    const { modal, alert, popSave } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
     const store = useCatalogStore()
@@ -48,6 +47,7 @@ const DeleteItem: React.FC<props> = ({ dataItem, setCatalogList }) => {
         if (loading) return
         setLoading(true)
 
+        popSave.open()
         store.deleteItem(dataItem.index, state)
         const newData = [...store.data[state]] as catalogI[]
         setCatalogList(state, user.uid, newData)
@@ -60,6 +60,7 @@ const DeleteItem: React.FC<props> = ({ dataItem, setCatalogList }) => {
                 alert.open('Sorry, but something went wrong. Try again', 2)
             })
             .finally(() => {
+                popSave.close()
                 setLoading(false)
             })
     }

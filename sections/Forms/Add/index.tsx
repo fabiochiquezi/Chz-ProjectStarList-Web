@@ -1,18 +1,14 @@
-import * as Yup from 'yup'
+import Fields from './Fields'
 import { Formik } from 'formik'
 import ModalForm from '../ModalForm'
 import { useRouter } from 'next/router'
-import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import { validation } from './validation'
 import { catalogI } from '../../../general/types/catalog'
+import React, { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../../../context/AuthContext/types'
 import { useCatalogStore } from '../../../store/catalogStore'
-import { Input } from '../../../components/Forms/Inputs/Default'
 import { useSetUtils } from '../../../context/UtilsContext/types'
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
-
-const validationYup = Yup.object({
-    thumb: Yup.string().required('Required')
-})
+import { keyDownBtnTrigger } from 'helpers/keyDownBtnTrigger'
 
 interface props {
     setCatalogList: (
@@ -23,7 +19,7 @@ interface props {
 }
 
 const AddItem: React.FC<props> = ({ setCatalogList }) => {
-    const { modal, alert } = useSetUtils()
+    const { modal, alert, popSave } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
     const store = useCatalogStore()
@@ -31,16 +27,8 @@ const AddItem: React.FC<props> = ({ setCatalogList }) => {
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
 
-    const Spin = <SpinIcon2 className="positive -top-1" />
-    const BtnSend = (): ReactElement => (!loading ? <span>Send</span> : Spin)
-
     useEffect(() => {
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Enter' && btnRef.current != null) {
-                event.preventDefault()
-                btnRef.current.click()
-            }
-        })
+        keyDownBtnTrigger(btnRef)
     }, [])
 
     async function handleSubmit(data: catalogI): Promise<void> {
@@ -48,9 +36,12 @@ const AddItem: React.FC<props> = ({ setCatalogList }) => {
             if (user == null) throw new Error('User not identified')
             if (loading) return
             setLoading(true)
+            popSave.open()
+
             const newList = [...store.data[state], { ...data }]
-            await setCatalogList(state, user.uid, newList)
+            setCatalogList(state, user.uid, newList)
             store.addItem(data, state)
+
             alert.open('Item added successfully', 1)
             modal.close()
         } catch (e) {
@@ -58,6 +49,7 @@ const AddItem: React.FC<props> = ({ setCatalogList }) => {
             alert.open('Sorry, but something went wrong. Try again', 2)
         } finally {
             setLoading(false)
+            popSave.close()
         }
     }
 
@@ -66,7 +58,7 @@ const AddItem: React.FC<props> = ({ setCatalogList }) => {
             <ModalForm>
                 <Formik
                     initialValues={{ thumb: '' }}
-                    validationSchema={validationYup}
+                    validationSchema={validation}
                     validateOnChange={false}
                     validateOnBlur={false}
                     onSubmit={async (data, { validateForm }) => {
@@ -79,31 +71,11 @@ const AddItem: React.FC<props> = ({ setCatalogList }) => {
                             className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700"
                             onSubmit={formik.handleSubmit}
                         >
-                            <h3 className="mb-5 text-xl text-white font-bold mt-1">
-                                Add new item
-                            </h3>
-
-                            <div className="mt-3 md:grid grid-cols-2 gap-x-8">
-                                <Input
-                                    label="Cover"
-                                    className="mb-9"
-                                    placeholder="http://example.com"
-                                    name="thumb"
-                                    type="text"
-                                    onChange={formik.handleChange}
-                                    value={formik.values.thumb}
-                                    error={formik.errors.thumb}
-                                />
-                            </div>
-
-                            <button
-                                className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
-                                type="submit"
-                                disabled={!!loading}
-                                ref={btnRef}
-                            >
-                                <BtnSend />
-                            </button>
+                            <Fields
+                                formik={formik}
+                                loading={loading}
+                                btnRef={btnRef}
+                            />
                         </form>
                     )}
                 </Formik>

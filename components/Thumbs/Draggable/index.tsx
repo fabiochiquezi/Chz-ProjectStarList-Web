@@ -20,7 +20,6 @@ const DraggableThumb: React.FC<ThumbProps> = ({
     moveCard
 }) => {
     const { modal } = useSetUtils()
-    console.log(styles)
 
     const ref = useRef<HTMLDivElement>(null)
     const [{ handlerId, isOver }, drop] = useDrop<
@@ -60,7 +59,6 @@ const DraggableThumb: React.FC<ThumbProps> = ({
 
     const opacity = isOver ? 0 : 1
     drag(drop(ref))
-    console.log(isDragging)
 
     return (
         <div

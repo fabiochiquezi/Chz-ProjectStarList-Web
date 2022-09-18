@@ -34,6 +34,7 @@
         "@typescript-eslint/member-delimiter-style": "off",
         "@typescript-eslint/restrict-template-expressions": "off",
         "@typescript-eslint/strict-boolean-expressions": "off",
+        "@typescript-eslint/no-floating-promises": "off",
 
         // Jest
         "jest/no-disabled-tests": "warn",
