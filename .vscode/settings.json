@@ -54,7 +54,7 @@
 
         // Style 01
         "todo.log.md": true,
-        "public": true,
+        //"public": true,
         "cypress": true,
         //"general": true,
         //"components": true

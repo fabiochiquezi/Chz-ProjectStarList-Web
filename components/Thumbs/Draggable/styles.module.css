@@ -1,0 +1,35 @@
+/*
+*/
+.TrashIcon {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    padding: 12px;
+    margin-top: -12px;
+    animation: trashIconHoverAnim 300ms forwards;
+    position: absolute;
+    bottom: -50px;
+}
+.TrashIcon:hover {
+    transform: scale(0.9);
+}
+.TrashIcon:active {
+    transform: scale(1);
+}
+
+.Box:hover .TrashIcon {
+    animation: trashIconShowsAnim 600ms forwards;
+}
+
+@keyframes trashIconShowsAnim {
+    from {
+        visibility: hidden;
+        opacity: 0;
+        bottom: -40px;
+    }
+    to {
+        visibility: visible;
+        opacity: 1;
+        bottom: -50px;
+    }
+}

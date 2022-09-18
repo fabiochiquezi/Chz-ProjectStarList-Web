@@ -1,4 +1,5 @@
 import React from 'react'
+import { DeleteItem } from '../../../sections/Forms/DeleteItem'
 import { AddItem } from '../../../sections/Forms/AddItem'
 import { setCatalogList } from '../../../firebase/catalog/setList'
 import { AlterItem } from '../../../sections/Forms/AlterItem'
@@ -12,6 +13,15 @@ export const openModalAlterItem =
     (setModal: setModalState) => (data: Record<string, any>) => {
         setModal({
             name: 'AlterItem',
+            sateModal: true,
+            data: data
+        })
+    }
+
+export const openModalDeleteItem =
+    (setModal: setModalState) => (data: Record<string, any>) => {
+        setModal({
+            name: 'DeleteItem',
             sateModal: true,
             data: data
         })
@@ -38,6 +48,12 @@ export const getModal = (
                 />
             )}
             {name === 'AddItem' && <AddItem setCatalogList={setCatalogList} />}
+            {name === 'DeleteItem' && (
+                <DeleteItem
+                    dataItem={data as { index: number; thumb: string }}
+                    setCatalogList={setCatalogList}
+                />
+            )}
         </div>
     )
 }
