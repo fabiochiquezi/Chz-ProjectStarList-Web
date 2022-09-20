@@ -1,9 +1,10 @@
 import React, { FC, ReactElement, RefObject } from 'react'
 import { FormikProps } from 'formik'
 import { Input } from 'components/Forms/Inputs/Default'
+import { Select } from 'components/Forms/Select/Default'
 
 interface Props {
-    formik: FormikProps<{ thumb: string }>
+    formik: FormikProps<{ thumb: string; state: string }>
     loading: boolean
     btnRef: RefObject<HTMLButtonElement>
     BtnSend: ReactElement
@@ -27,6 +28,25 @@ const Fields: FC<Props> = ({ formik, loading, btnRef, BtnSend }) => {
                     value={formik.values.thumb}
                     error={formik.errors.thumb}
                 />
+                <Select
+                    label="Type"
+                    className="mb-9"
+                    name="type"
+                    onChange={formik.handleChange}
+                    value={formik.values.state}
+                    error={formik.errors.state}
+                    defaultValue={formik.values.state}
+                >
+                    <option className="bg-primary text-white" value={'doing'}>
+                        Doing
+                    </option>
+                    <option className="bg-primary text-white" value={'illdo'}>
+                        I&apos;ll do
+                    </option>
+                    <option className="bg-primary text-white" value={'did'}>
+                        Did
+                    </option>
+                </Select>
             </div>
 
             <button

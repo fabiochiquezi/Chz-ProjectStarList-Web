@@ -11,7 +11,6 @@ import { DraggableThumb } from 'components/Thumbs/Draggable'
 import React, { ReactElement, useCallback, useState } from 'react'
 
 interface props {
-    catalog: catalogI[]
     title: string
     description: string
 }
@@ -24,14 +23,14 @@ const containerClass = `
     2xl:justify-items-center
 `
 
-const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
+const DragAndDropList: React.FC<props> = ({ title, description }) => {
     const store = useCatalogStore(state => state)
     const { query } = useRouter()
     const { user } = useAuth()
     const type = query.type as string
     const { modal, popSave, alert } = useSetUtils()
     const [limit, setLimit] = useState(15)
-    const max = catalog ? catalog.length : 0
+    const max = store.data[type] ? store.data[type].length : 0
 
     const TitleDefault = <Title titleH1={title} description={description} />
     const TitlePage = (): ReactElement => (!max ? TitleEmpty : TitleDefault)
@@ -85,7 +84,7 @@ const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
                 return renderCard(card, i)
             })}
 
-            {limit < max && catalog.length && (
+            {limit < max && store.data[type].length && (
                 <LoadButton onClick={turnUpLimit} />
             )}
         </main>

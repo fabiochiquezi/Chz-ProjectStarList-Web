@@ -1,15 +1,17 @@
 import React from 'react'
 
-type props = {
+interface props {
     width?: number
     height?: number
     stroke?: number
+    strokeColor?: string
 }
 
 const CloseIcon: React.FC<props> = ({
     width = 22,
     height = 24,
-    stroke = 2
+    stroke = 2,
+    strokeColor = 'white'
 }) => {
     return (
         <svg
@@ -24,12 +26,12 @@ const CloseIcon: React.FC<props> = ({
                 y1={width}
                 x2={width}
                 y2="1.68632"
-                stroke="white"
+                stroke={strokeColor}
                 strokeWidth={stroke}
             />
             <path
                 d="M1.99341 1.59338C10.2777 9.87765 14.9223 14.5223 23.2066 22.8066"
-                stroke="white"
+                stroke={strokeColor}
                 strokeWidth={stroke}
             />
         </svg>

@@ -1,7 +1,6 @@
 // Not using yet
 
-/*
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 interface props {
     children: React.ReactNode
@@ -12,6 +11,7 @@ interface props {
     onChange: any
     value: any
     error: any
+    defaultValue: string
 }
 
 const Select: React.FC<props> = ({
@@ -22,10 +22,17 @@ const Select: React.FC<props> = ({
     name,
     onChange,
     value,
-    error
+    error,
+    defaultValue = ''
 }) => {
     const inputRef = useRef<HTMLSelectElement | null>(null)
     const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        if (defaultValue.length) {
+            setActive(true)
+        }
+    }, [defaultValue])
 
     return (
         <div className={`relative w-full h-8 ${className}`}>
@@ -46,7 +53,7 @@ const Select: React.FC<props> = ({
             <select
                 name={name}
                 onChange={onChange}
-                defaultValue=""
+                defaultValue={defaultValue}
                 className={`ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8 bg-transparent border-b-[1px] border-gray-400 text-sm ${
                     active && 'border-green-700'
                 }`}
@@ -81,5 +88,4 @@ const Select: React.FC<props> = ({
     )
 }
 
-export default Select
-*/
+export { Select }

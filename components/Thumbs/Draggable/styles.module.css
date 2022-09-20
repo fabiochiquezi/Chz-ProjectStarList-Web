@@ -1,3 +1,21 @@
+.DragP {
+    top: 0px;
+    opacity: 0;
+}
+.Box:hover .DragP {
+    animation: DragPAnim 350ms forwards;
+}
+@keyframes DragPAnim {
+    from {
+        top: -18px;
+        opacity: 0;
+    }
+    to {
+        top: -28px;
+        opacity: 1;
+    }
+}
+
 /*
 */
 .TrashIcon {
@@ -25,11 +43,11 @@
     from {
         visibility: hidden;
         opacity: 0;
-        bottom: -40px;
+        bottom: -45px;
     }
     to {
         visibility: visible;
         opacity: 1;
-        bottom: -50px;
+        bottom: -55px;
     }
 }

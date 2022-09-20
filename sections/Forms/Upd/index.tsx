@@ -47,7 +47,7 @@ const AlterItem: FC<props> = ({ dataItem, setCatalogList }) => {
         <div data-cy="form-alterItem">
             <ModalForm>
                 <Formik
-                    initialValues={{ thumb: dataItem.thumb }}
+                    initialValues={{ thumb: dataItem.thumb, state: state }}
                     validationSchema={validation}
                     validateOnChange={false}
                     validateOnBlur={false}

@@ -5,6 +5,7 @@ import { useDrag, useDrop } from 'react-dnd'
 import TrashIcon from 'public/icons/TrashIcon'
 import { DragItem, ItemTypes } from './dndTypes'
 import { useSetUtils } from '../../../context/UtilsContext/types'
+import CloseIcon from 'public/icons/CloseIcon'
 
 interface ThumbProps {
     id: any
@@ -75,10 +76,18 @@ const DraggableThumb: React.FC<ThumbProps> = ({
             data-cy="thumb-default"
             data-testid="thumb-default"
         >
+            {/*
+                <p
+                    className={`absolute text-xs text-center w-full text-[#555] ${styles.DragP}`}
+                >
+                    Drag And drop
+                </p>
+                // Class
+                hover:shadow-[0_0px_10px_7px_rgba(22,163,74,0.1)]
+             */}
             <div
                 className="
                     w-[170px] h-[220px] overflow-hidden
-                    hover:shadow-[0_0px_10px_7px_rgba(22,163,74,0.2)]
                     simple-button
                 "
                 onClick={() => modal.openAlterItem({ index, thumb })}
@@ -106,7 +115,10 @@ const DraggableThumb: React.FC<ThumbProps> = ({
                 className={`text-center w-full ${styles.TrashIcon}`}
                 onClick={() => modal.openDeleteItem({ index, thumb })}
             >
-                <TrashIcon className="mx-auto mt-3" />
+                <div className="mx-auto mt-3 inline-block">
+                    <CloseIcon strokeColor="#ef4444" width={22} height={24} />
+                </div>
+                {/* <TrashIcon className="mx-auto mt-3" /> */}
             </div>
         </div>
     )
