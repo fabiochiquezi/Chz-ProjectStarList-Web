@@ -27,4 +27,4 @@ const ModalForm: React.FC<props> = ({ children }) => {
     )
 }
 
-export default ModalForm
+export { ModalForm }

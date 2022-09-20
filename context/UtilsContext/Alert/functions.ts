@@ -1,7 +1,8 @@
 import { alertInitialState, setAlertState } from './state'
 
 export const openAlert =
-    (setAlert: setAlertState) => (message: string, state: number) => {
+    (setAlert: setAlertState) =>
+    (message: string, state: number, seconds: number = 5000) => {
         setAlert({
             message,
             state,
@@ -12,9 +13,3 @@ export const openAlert =
 export const closeAlert = (setAlert: setAlertState) => () => {
     setAlert(alertInitialState)
 }
-
-export const autoCloseAlert =
-    (setAlert: setAlertState) =>
-    (hide: boolean, seconds: number = 7000) => {
-        if (hide) setInterval(() => closeAlert(setAlert), seconds)
-    }

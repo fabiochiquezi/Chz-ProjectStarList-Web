@@ -6,6 +6,13 @@ export const openPopSave =
     }
 
 export const closePopSave =
-    (setPop: React.Dispatch<React.SetStateAction<boolean>>) => () => {
+    (setPop: React.Dispatch<React.SetStateAction<boolean>>) =>
+    (delay?: number) => {
+        if (delay) {
+            setTimeout(() => {
+                setPop(false)
+            }, delay)
+            return
+        }
         setPop(false)
     }

@@ -1,13 +1,13 @@
+import React, { useState } from 'react'
+import PopSave from 'components/Pop/Save'
 import { getAlertFns } from './Alert/class'
 import { getModalFns } from './Modal/class'
+import { getPopSaveFns } from './PopSave/class'
 import { modalInitialState } from './Modal/state'
 import { alertInitialState } from './Alert/state'
-import React, { useEffect, useState } from 'react'
 import { Modal } from '../../components/Modals/Default'
 import { Alert } from '../../components/Alerts/Default'
 import { SetUtilsContext, UtilsContext } from './types'
-import PopSave from 'components/Pop/Save'
-import { getPopSaveFns } from './PopSave/class'
 
 interface props {
     children: React.ReactNode
@@ -22,10 +22,6 @@ const UtilsProvider: React.FC<props> = ({ children }) => {
 
     const [popSave, setPopSave] = useState(false)
     const popSaveFn = getPopSaveFns(setPopSave)
-
-    useEffect(() => {
-        alertFn.autoClose(alert.hide, 7000)
-    }, [alert.hide])
 
     return (
         <UtilsContext.Provider value={{ modal, popSave }}>

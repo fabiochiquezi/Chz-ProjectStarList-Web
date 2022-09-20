@@ -1,22 +1,19 @@
+import React, { FC, ReactElement, RefObject } from 'react'
 import { FormikProps } from 'formik'
-import React, { ReactElement, RefObject } from 'react'
-import SpinIcon2 from '../../../public/icons/SpinIcon2'
-import { Input } from '../../../components/Forms/Inputs/Default'
+import { Input } from 'components/Forms/Inputs/Default'
 
 interface Props {
     formik: FormikProps<{ thumb: string }>
     loading: boolean
     btnRef: RefObject<HTMLButtonElement>
+    BtnSend: ReactElement
 }
 
-const Fields: React.FC<Props> = ({ formik, loading, btnRef }) => {
-    const Spin = <SpinIcon2 className="positive -top-1" />
-    const BtnSend = (): ReactElement => (!loading ? <span>Send</span> : Spin)
-
+const Fields: FC<Props> = ({ formik, loading, btnRef, BtnSend }) => {
     return (
         <>
             <h3 className="mb-5 text-xl text-white font-bold mt-1">
-                Add new item
+                Update Item or Delete
             </h3>
 
             <div className="mt-3 md:grid grid-cols-2 gap-x-8">
@@ -33,12 +30,13 @@ const Fields: React.FC<Props> = ({ formik, loading, btnRef }) => {
             </div>
 
             <button
-                className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
+                className="btn-solid bg-indigo-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
                 type="submit"
                 disabled={!!loading}
                 ref={btnRef}
+                data-cy="btn-update"
             >
-                <BtnSend />
+                {BtnSend}
             </button>
         </>
     )

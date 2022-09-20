@@ -1,9 +1,9 @@
 import React from 'react'
-import { DeleteItem } from '../../../sections/Forms/DeleteItem'
 import { AddItem } from '../../../sections/Forms/Add'
-import { setCatalogList } from '../../../firebase/catalog/setList'
-import { AlterItem } from '../../../sections/Forms/AlterItem'
+import { DeleteItem } from '../../../sections/Forms/Del'
 import { modalInitialState, setModalState } from './state'
+import { AlterItem } from '../../../sections/Forms/Upd'
+import { setCatalogList } from '../../../firebase/catalog/setList'
 
 export const closeModal = (setModal: setModalState) => () => {
     setModal(modalInitialState)

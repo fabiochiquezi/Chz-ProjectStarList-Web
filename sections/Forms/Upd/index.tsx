@@ -1,16 +1,17 @@
 import Fields from './Fields'
 import { Formik } from 'formik'
+import { props } from './types'
 import { useRouter } from 'next/router'
 import { validation } from './validation'
-import { AddProps, dataSubmit } from './types'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { FC, useRef, useState } from 'react'
+import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import { catalogI } from '../../../general/types/catalog'
 import { ModalForm } from 'components/Modals/Form/ModalWrap'
 import { useAuth } from '../../../context/AuthContext/types'
 import { useCatalogStore } from '../../../store/catalogStore'
 import { useSetUtils } from '../../../context/UtilsContext/types'
-import { keyDownBtnTrigger } from '../../../helpers/keyDownBtnTrigger'
 
-const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
+const AlterItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
@@ -19,19 +20,18 @@ const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
 
-    useEffect(() => {
-        keyDownBtnTrigger(btnRef)
-    }, [])
+    const Spin = <SpinIcon2 className="positive -top-1" />
+    const BtnSend = !loading ? <span>Update</span> : Spin
 
-    function handleSubmit(data: dataSubmit): void {
+    function handleUpdate(data: catalogI): void {
         try {
             if (user == null) throw new Error('User not identified')
             if (loading) return
 
             setLoading(true)
-            const newList = [...store.data[state], { ...data }]
-            setCatalogList(state, user.uid, newList)
-            store.addItem(data, state)
+            store.updateItem(dataItem.index, data, state)
+            const newData = [...store.data[state]]
+            setCatalogList(state, user.uid, newData)
             modal.close()
             popSave.open()
         } catch (e) {
@@ -44,16 +44,16 @@ const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
     }
 
     return (
-        <div data-cy="form-addNewItem">
+        <div data-cy="form-alterItem">
             <ModalForm>
                 <Formik
-                    initialValues={{ thumb: '' }}
+                    initialValues={{ thumb: dataItem.thumb }}
                     validationSchema={validation}
                     validateOnChange={false}
                     validateOnBlur={false}
                     onSubmit={async (data, { validateForm }) => {
                         await validateForm()
-                        handleSubmit(data)
+                        handleUpdate(data)
                     }}
                 >
                     {formik => (
@@ -65,6 +65,7 @@ const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
                                 formik={formik}
                                 loading={loading}
                                 btnRef={btnRef}
+                                BtnSend={BtnSend}
                             />
                         </form>
                     )}
@@ -73,4 +74,5 @@ const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
         </div>
     )
 }
-export { AddItem }
+
+export { AlterItem }

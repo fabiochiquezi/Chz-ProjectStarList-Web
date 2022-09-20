@@ -23,8 +23,7 @@ const SetUtilsContext = createContext<SetUtilsT>({
     },
     alert: {
         open: () => {},
-        close: () => {},
-        autoClose: () => {}
+        close: () => {}
     },
     popSave: {
         open: () => {},
