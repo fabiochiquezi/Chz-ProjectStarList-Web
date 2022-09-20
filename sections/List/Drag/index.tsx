@@ -2,9 +2,11 @@ import { useRouter } from 'next/router'
 import { catalogI } from 'store/catalog/types'
 import { useCatalogStore } from 'store/catalog'
 import { AddThumb } from 'components/Thumbs/Add'
+import { useAuth } from 'context/AuthContext/types'
 import { LoadButton } from 'components/Buttons/Load'
 import { Title, TitleEmpty } from '../components/Title'
 import { useSetUtils } from 'context/UtilsContext/types'
+import { setCatalogList } from 'firebase/catalog/setList'
 import { DraggableThumb } from 'components/Thumbs/Draggable'
 import React, { ReactElement, useCallback, useState } from 'react'
 
@@ -23,12 +25,11 @@ const containerClass = `
 `
 
 const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
-    // const { cards, renderCard } = DragAndDropPlugin(catalog)
     const store = useCatalogStore(state => state)
     const { query } = useRouter()
+    const { user } = useAuth()
     const type = query.type as string
-    const works = store.data[type] as catalogI[]
-    const { modal } = useSetUtils()
+    const { modal, popSave, alert } = useSetUtils()
     const [limit, setLimit] = useState(15)
     const max = catalog ? catalog.length : 0
 
@@ -40,13 +41,25 @@ const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
     }
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
-        console.log(works[hoverIndex])
-        const newData = works.map((item, index) => {
-            if (index === dragIndex) return works[hoverIndex]
-            if (index === hoverIndex) return works[dragIndex]
-            return item
-        })
-        store.setData(newData, type)
+        if (!user) return
+
+        try {
+            popSave.open()
+            const newData = store.data[type].map(
+                (item: catalogI, index: number) => {
+                    if (index === dragIndex) return store.data[type][hoverIndex]
+                    if (index === hoverIndex) return store.data[type][dragIndex]
+                    return item
+                }
+            )
+            store.setData(newData, type)
+            setCatalogList(type, user.uid, newData)
+        } catch (e) {
+            console.log(e, 'error')
+            alert.open('Sorry, but something went wrong. Try again', 2)
+        } finally {
+            popSave.close(600)
+        }
     }, [])
 
     const renderCard = useCallback(
@@ -67,7 +80,7 @@ const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
             <TitlePage />
             <AddThumb onClick={() => modal.openAddItem()} />
 
-            {works.map((card, i) => {
+            {store.data[type].map((card: catalogI, i: number) => {
                 if (i >= limit) return null
                 return renderCard(card, i)
             })}

@@ -90,6 +90,10 @@ const DraggableThumb: React.FC<ThumbProps> = ({
                 >
                     <img
                         src={thumb}
+                        onLoad={e => {
+                            const item = e.target as HTMLElement
+                            item.style.display = 'inline-block'
+                        }}
                         onError={e => {
                             const item = e.target as HTMLElement
                             item.style.display = 'none'
