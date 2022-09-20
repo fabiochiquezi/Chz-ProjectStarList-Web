@@ -1,5 +1,5 @@
 import create from 'zustand'
-import { catalogI } from 'types/catalog'
+import { catalogI } from './types'
 
 interface CatalogState {
     data: any

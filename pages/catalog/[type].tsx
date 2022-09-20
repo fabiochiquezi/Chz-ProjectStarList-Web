@@ -6,11 +6,11 @@ import { useRouter } from 'next/router'
 import { ErrorSection } from 'sections/Error'
 import { Header } from 'sections/Header/System'
 import React, { useEffect, useState } from 'react'
-import { useCatalogStore } from 'store/catalogStore'
-import { getTitle } from 'general/functions/getTitle'
-import { getCatalogList } from 'firebase/catalog/getList'
-import { LoadingStruct } from 'components/Structure/Loadings/Default'
 import { DragAndDropList } from 'sections/List/Drag'
+import { useCatalogStore } from 'store/catalog'
+import { getCatalogList } from 'firebase/catalog/getList'
+import { getTitle } from 'sections/List/components/getTitle'
+import { LoadingStruct } from 'components/Structure/Loadings/Default'
 
 const HeadData = (): React.ReactElement => (
     <Head>
@@ -87,7 +87,6 @@ const Catalog: NextPage = () => {
                     </div>
                 )}
             </div>
-
             <Footer />
         </>
     )

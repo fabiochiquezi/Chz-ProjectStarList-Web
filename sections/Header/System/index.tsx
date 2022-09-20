@@ -20,6 +20,10 @@ const Header: React.FC = () => {
         body.style.overflow = menu ? 'hidden' : 'auto'
     }, [menu])
 
+    function handleSignOut(): void {
+        signOut()
+    }
+
     return (
         <header
             className="
@@ -68,7 +72,7 @@ const Header: React.FC = () => {
                             </li>
                             <li className="text-sm ml-4 lg:m-0">
                                 <button
-                                    onClick={() => signOut}
+                                    onClick={handleSignOut}
                                     className="border-white lg:border-none  border-2 rounded px-4 py-2 mt-2 lg:p-0 lg:mt-0 simple-button cursor-pointer"
                                 >
                                     Sign Out

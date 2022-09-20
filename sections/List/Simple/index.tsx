@@ -1,7 +1,7 @@
-import { Title } from '../Title'
 import React, { FC } from 'react'
-import { catalogI } from '../../../general/types/catalog'
 import { SimpleThumb } from '../../../components/Thumbs/Simple'
+import { catalogI } from 'store/catalog/types'
+import { Title } from '../components/Title'
 
 interface props {
     catalog: catalogI[]

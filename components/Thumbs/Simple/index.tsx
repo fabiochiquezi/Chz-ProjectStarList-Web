@@ -2,12 +2,11 @@ import { useSetUtils } from '../../../context/UtilsContext/types'
 import React from 'react'
 
 interface ThumbProps {
-    id: any
     thumb: string
     index: number
 }
 
-const SimpleThumb: React.FC<ThumbProps> = ({ id, thumb, index }) => {
+const SimpleThumb: React.FC<ThumbProps> = ({ thumb, index }) => {
     const { modal } = useSetUtils()
 
     return (

@@ -1,4 +1,4 @@
-import { catalogI } from 'types/catalog'
+import { catalogI } from 'store/catalog/types'
 
 export interface DelProps {
     dataItem: { index: number; thumb: string }

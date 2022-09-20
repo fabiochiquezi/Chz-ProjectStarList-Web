@@ -1,10 +1,10 @@
 import { User } from 'firebase/auth'
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
+import { noAuthRequired } from 'pages/_app'
 import { signInFire } from '../../firebase/auth/signIn'
 import { signOutFire } from '../../firebase/auth/signOut'
-import { useCatalogStore } from '../../store/catalogStore'
-import { noAuthRequired } from '../../general/data/routes'
+import { useCatalogStore } from '../../store/catalog'
 import { AuthContext, AuthUpdateContext, props } from './types'
 import { authStateFirebase } from '../../firebase/auth/authState'
 

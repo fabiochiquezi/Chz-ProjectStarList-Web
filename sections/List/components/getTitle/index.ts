@@ -2,7 +2,7 @@ export function getTitle(query: string): Record<string, any> {
     switch (query) {
         case 'doing':
             return {
-                title: 'ALL WORKS YOU ARE SEEING',
+                title: 'ALL WORKS YOU ARE DOING',
                 subtitle: 'Dude, you got to finish this, keep going'
             }
         case 'illdo':

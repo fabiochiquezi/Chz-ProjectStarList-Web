@@ -1,13 +1,12 @@
-import { catalogI } from 'types/catalog'
-import { Title, TitleEmpty } from '../Title'
-import { DragAndDropPlugin } from './DnDPlugin'
+import { useRouter } from 'next/router'
+import { catalogI } from 'store/catalog/types'
+import { useCatalogStore } from 'store/catalog'
 import { AddThumb } from 'components/Thumbs/Add'
 import { LoadButton } from 'components/Buttons/Load'
-import React, { ReactElement, useCallback, useEffect, useState } from 'react'
+import { Title, TitleEmpty } from '../components/Title'
 import { useSetUtils } from 'context/UtilsContext/types'
 import { DraggableThumb } from 'components/Thumbs/Draggable'
-import { useCatalogStore } from 'store/catalogStore'
-import { useRouter } from 'next/router'
+import React, { ReactElement, useCallback, useState } from 'react'
 
 interface props {
     catalog: catalogI[]
@@ -22,6 +21,7 @@ const containerClass = `
     xl:grid-cols-6 xl:grid-cols-7
     2xl:justify-items-center
 `
+
 const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
     // const { cards, renderCard } = DragAndDropPlugin(catalog)
     const store = useCatalogStore(state => state)
@@ -38,9 +38,6 @@ const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
     function turnUpLimit(): void {
         setLimit(limit => limit + 15)
     }
-    useEffect(() => {
-        console.log(works)
-    }, [works])
 
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
         console.log(works[hoverIndex])
@@ -53,21 +50,17 @@ const DragAndDropList: React.FC<props> = ({ catalog, title, description }) => {
     }, [])
 
     const renderCard = useCallback(
-        (card: { id: number; thumb: string }, index: number) => {
-            return (
-                <DraggableThumb
-                    key={card.id}
-                    index={index}
-                    id={card.id}
-                    thumb={card.thumb}
-                    moveCard={moveCard}
-                />
-            )
-        },
+        (card: { thumb: string }, index: number) => (
+            <DraggableThumb
+                key={index}
+                index={index}
+                id={index}
+                thumb={card.thumb}
+                moveCard={moveCard}
+            />
+        ),
         []
     )
-    /*
-     */
 
     return (
         <main className={containerClass} data-cy="section-list">

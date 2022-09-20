@@ -5,10 +5,11 @@ import type { AppProps } from 'next/app'
 import UtilsProvider from 'context/UtilsContext'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { AuthProvider } from 'context/AuthContext'
-import { noAuthRequired } from 'general/data/routes'
 import { PrivateRoute } from 'components/Structure/PrivateRoute'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+
+export const noAuthRequired = ['/']
 
 // Drag And Drop context plugin
 const DnDProvide = ({ children }: { children: ReactElement }): ReactElement => (

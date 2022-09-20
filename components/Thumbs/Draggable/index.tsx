@@ -1,10 +1,10 @@
 import React, { useRef } from 'react'
+import styles from './styles.module.css'
 import type { Identifier } from 'dnd-core'
 import { useDrag, useDrop } from 'react-dnd'
-import { useSetUtils } from '../../../context/UtilsContext/types'
-import { DragItem, ItemTypes } from './dndTypes'
 import TrashIcon from 'public/icons/TrashIcon'
-import styles from './styles.module.css'
+import { DragItem, ItemTypes } from './dndTypes'
+import { useSetUtils } from '../../../context/UtilsContext/types'
 
 interface ThumbProps {
     id: any
@@ -20,8 +20,8 @@ const DraggableThumb: React.FC<ThumbProps> = ({
     moveCard
 }) => {
     const { modal } = useSetUtils()
-
     const ref = useRef<HTMLDivElement>(null)
+
     const [{ handlerId, isOver }, drop] = useDrop<
         DragItem,
         any,
@@ -34,13 +34,12 @@ const DraggableThumb: React.FC<ThumbProps> = ({
                 isOver: monitor.isOver()
             }
         },
-        drop: (item: DragItem, monitor) => {
+        drop: (item: DragItem, _monitor) => {
             if (!ref.current) return
             const dragIndex = item.index
             const hoverIndex = index
             // Don't replace items with themselves
             if (dragIndex === hoverIndex) return
-
             moveCard(dragIndex, hoverIndex)
             item.index = hoverIndex
         }

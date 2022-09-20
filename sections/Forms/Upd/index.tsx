@@ -8,7 +8,7 @@ import SpinIcon2 from '../../../public/icons/SpinIcon2'
 import { catalogI } from '../../../general/types/catalog'
 import { ModalForm } from 'components/Modals/Form/ModalWrap'
 import { useAuth } from '../../../context/AuthContext/types'
-import { useCatalogStore } from '../../../store/catalogStore'
+import { useCatalogStore } from '../../../store/catalog'
 import { useSetUtils } from '../../../context/UtilsContext/types'
 
 const AlterItem: FC<props> = ({ dataItem, setCatalogList }) => {

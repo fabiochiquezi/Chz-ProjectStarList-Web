@@ -1,4 +1,4 @@
-import { catalogI } from 'types/catalog'
+import { catalogI } from 'store/catalog/types'
 
 export interface props {
     dataItem: { index: number; thumb: string }

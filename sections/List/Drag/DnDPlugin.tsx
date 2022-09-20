@@ -1,6 +1,6 @@
-import { catalogI } from 'types/catalog'
 import { DraggableThumb } from 'components/Thumbs/Draggable'
 import React, { ReactElement, useCallback, useState } from 'react'
+import { catalogI } from 'store/catalog/types'
 
 interface ReturnDnD {
     cards: catalogI[]

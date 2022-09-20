@@ -6,7 +6,7 @@ import { AddProps, dataSubmit } from './types'
 import React, { useEffect, useRef, useState } from 'react'
 import { ModalForm } from 'components/Modals/Form/ModalWrap'
 import { useAuth } from '../../../context/AuthContext/types'
-import { useCatalogStore } from '../../../store/catalogStore'
+import { useCatalogStore } from '../../../store/catalog'
 import { useSetUtils } from '../../../context/UtilsContext/types'
 import { keyDownBtnTrigger } from '../../../helpers/keyDownBtnTrigger'
 
