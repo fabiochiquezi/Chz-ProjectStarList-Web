@@ -1,32 +1,18 @@
-.DragP {
-    top: 0px;
-    opacity: 0;
-}
-.Box:hover .DragP {
-    animation: DragPAnim 350ms forwards;
-}
-@keyframes DragPAnim {
-    from {
-        top: -18px;
-        opacity: 0;
-    }
-    to {
-        top: -28px;
-        opacity: 1;
-    }
-}
-
 /*
 */
 .TrashIcon {
-    visibility: hidden;
-    opacity: 0;
     transition: all 0.3s ease;
+    position: absolute;
     padding: 12px;
     margin-top: -12px;
-    animation: trashIconHoverAnim 300ms forwards;
-    position: absolute;
-    bottom: -50px;
+    bottom: -55px;
+}
+@media (min-width: 1024px) {
+    .TrashIcon {
+        visibility: hidden;
+        opacity: 0;
+        animation: trashIconHoverAnim 300ms forwards;
+    }
 }
 .TrashIcon:hover {
     transform: scale(0.9);
@@ -51,3 +37,25 @@
         bottom: -55px;
     }
 }
+
+/* Test
+------
+
+.DragP {
+    top: 0px;
+    opacity: 0;
+}
+.Box:hover .DragP {
+    animation: DragPAnim 350ms forwards;
+}
+@keyframes DragPAnim {
+    from {
+        top: -18px;
+        opacity: 0;
+    }
+    to {
+        top: -28px;
+        opacity: 1;
+    }
+}
+*/

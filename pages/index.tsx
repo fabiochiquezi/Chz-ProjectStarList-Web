@@ -27,7 +27,7 @@ const Home: NextPage = () => (
                 description="Mount your own list of movies, cartoons, series, books and games."
             />
 
-            <div className="pt-20 pb-16">
+            <div className="pt-12 lg:pt-16 pb-16">
                 <SimpleList
                     catalog={catalog}
                     title="YOUR VIRTUAL MEMORY LIST"

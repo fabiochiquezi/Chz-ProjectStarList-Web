@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import styles from './styles.module.css'
 import type { Identifier } from 'dnd-core'
 import { useDrag, useDrop } from 'react-dnd'
-import TrashIcon from 'public/icons/TrashIcon'
 import { DragItem, ItemTypes } from './dndTypes'
 import { useSetUtils } from '../../../context/UtilsContext/types'
 import CloseIcon from 'public/icons/CloseIcon'
@@ -67,36 +66,21 @@ const DraggableThumb: React.FC<ThumbProps> = ({
             style={{ opacity }}
             key={index}
             className={`
-                thumb mb-14 w-[170px] order-3 cursor-pointer
+                thumb mb-20 w-[170px] order-3 cursor-pointer
                 lg:mb-16 lg:col-span-1
                 xl:scale-90
                 2xl:scale-100
+                relative
                 ${styles.Box}
             `}
             data-cy="thumb-default"
             data-testid="thumb-default"
         >
-            {/*
-                <p
-                    className={`absolute text-xs text-center w-full text-[#555] ${styles.DragP}`}
-                >
-                    Drag And drop
-                </p>
-                // Class
-                hover:shadow-[0_0px_10px_7px_rgba(22,163,74,0.1)]
-             */}
             <div
-                className="
-                    w-[170px] h-[220px] overflow-hidden
-                    simple-button
-                "
+                className="w-[170px] h-[220px] overflow-hidden simple-button"
                 onClick={() => modal.openAlterItem({ index, thumb })}
             >
-                <div
-                    className={
-                        'w-[170px] h-[220px] overflow-hidden rounded skeleton'
-                    }
-                >
+                <div className="w-[170px] h-[220px] overflow-hidden rounded skeleton">
                     <img
                         src={thumb}
                         onLoad={e => {
@@ -112,13 +96,12 @@ const DraggableThumb: React.FC<ThumbProps> = ({
             </div>
 
             <div
-                className={`text-center w-full ${styles.TrashIcon}`}
+                className={`text-center w-[170px] ${styles.TrashIcon}`}
                 onClick={() => modal.openDeleteItem({ index, thumb })}
             >
                 <div className="mx-auto mt-3 inline-block">
-                    <CloseIcon strokeColor="#ef4444" width={22} height={24} />
+                    <CloseIcon strokeColor="#ef4444" width={22} height={18} />
                 </div>
-                {/* <TrashIcon className="mx-auto mt-3" /> */}
             </div>
         </div>
     )
@@ -132,4 +115,13 @@ export { DraggableThumb }
             <div className="border-2 border-gray-600 border-dotted  w-[170px] order-3 lg:mb-16 lg:col-span-1 xl:scale-90 2xl:scale-100"></div>
         )
     }
-    */
+*/
+
+/*
+    <p className={`absolute text-xs text-center w-full text-[#555] ${styles.DragP}`}>
+        Drag And drop
+    </p>
+
+    // Class
+    hover:shadow-[0_0px_10px_7px_rgba(22,163,74,0.1)]
+*/

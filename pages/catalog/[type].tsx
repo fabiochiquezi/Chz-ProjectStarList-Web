@@ -79,11 +79,7 @@ const Catalog: NextPage = () => {
                     <LoadingStruct />
                 ) : (
                     <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
-                        <DragAndDropList
-                            title={title}
-                            description={subtitle}
-                            catalog={store.data[query]}
-                        />
+                        <DragAndDropList title={title} description={subtitle} />
                     </div>
                 )}
             </div>
