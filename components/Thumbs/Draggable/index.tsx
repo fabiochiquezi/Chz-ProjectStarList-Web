@@ -3,21 +3,24 @@ import styles from './styles.module.css'
 import type { Identifier } from 'dnd-core'
 import { useDrag, useDrop } from 'react-dnd'
 import { DragItem, ItemTypes } from './dndTypes'
-import { useSetUtils } from '../../../context/UtilsContext/types'
 import CloseIcon from 'public/icons/CloseIcon'
+import ArrowRight1 from 'public/icons/ArrowRight1'
+import { useSetUtils } from '../../../context/UtilsContext/types'
 
 interface ThumbProps {
     id: any
     thumb: string
     index: number
     moveCard: (dragIndex: number, hoverIndex: number) => void
+    max: number
 }
 
 const DraggableThumb: React.FC<ThumbProps> = ({
     id,
     thumb,
     index,
-    moveCard
+    moveCard,
+    max
 }) => {
     const { modal } = useSetUtils()
     const ref = useRef<HTMLDivElement>(null)
@@ -55,9 +58,17 @@ const DraggableThumb: React.FC<ThumbProps> = ({
             isDragging: monitor.isDragging()
         })
     })
-
+    console.log(max)
     const opacity = isOver ? 0 : 1
     drag(drop(ref))
+
+    function handleLeft(): void {
+        if (index !== 0) moveCard(index, index - 1)
+    }
+
+    function handleRight(): void {
+        if (index !== max) moveCard(index, index + 1)
+    }
 
     return (
         <div
@@ -96,11 +107,21 @@ const DraggableThumb: React.FC<ThumbProps> = ({
             </div>
 
             <div
-                className={`text-center w-[170px] ${styles.TrashIcon}`}
-                onClick={() => modal.openDeleteItem({ index, thumb })}
+                className={`text-center w-[170px] mx-auto mt-3 inline-block flex items-center justify-between ${styles.BarIcons}`}
             >
-                <div className="mx-auto mt-3 inline-block">
+                <div className={styles.ArrowLeftUp} onClick={handleLeft}>
+                    <ArrowRight1 color="#333" />
+                </div>
+
+                <div
+                    className={styles.CloseIcon}
+                    onClick={() => modal.openDeleteItem({ index, thumb })}
+                >
                     <CloseIcon strokeColor="#ef4444" width={22} height={18} />
+                </div>
+
+                <div className={styles.ArrowRightDown} onClick={handleRight}>
+                    <ArrowRight1 color="#333" />
                 </div>
             </div>
         </div>

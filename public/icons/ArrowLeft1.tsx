@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ArrowRight1: React.FC<{ color?: string }> = ({ color = 'white' }) => {
+const ArrowLeft1: React.FC = () => {
     return (
         <svg
             width="12"
@@ -14,7 +14,7 @@ const ArrowRight1: React.FC<{ color?: string }> = ({ color = 'white' }) => {
                 y1="41.5122"
                 x2="1.99391"
                 y2="1.91423"
-                stroke={color}
+                stroke="white"
                 strokeWidth="14"
                 strokeLinecap="round"
             />
@@ -23,7 +23,7 @@ const ArrowRight1: React.FC<{ color?: string }> = ({ color = 'white' }) => {
                 y1="81.5919"
                 x2="41.098"
                 y2="41.9939"
-                stroke={color}
+                stroke="white"
                 strokeWidth="14"
                 strokeLinecap="round"
             />
@@ -31,4 +31,4 @@ const ArrowRight1: React.FC<{ color?: string }> = ({ color = 'white' }) => {
     )
 }
 
-export default ArrowRight1
+export default ArrowLeft1

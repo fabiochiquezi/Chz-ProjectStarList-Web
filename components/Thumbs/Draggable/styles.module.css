@@ -1,40 +1,81 @@
 /*
 */
-.TrashIcon {
+.BarIcons {
     transition: all 0.3s ease;
     position: absolute;
     padding: 12px;
     margin-top: -12px;
-    bottom: -55px;
+    bottom: -70px;
 }
 @media (min-width: 1024px) {
-    .TrashIcon {
+    .BarIcons {
         visibility: hidden;
         opacity: 0;
-        animation: trashIconHoverAnim 300ms forwards;
+        animation: BarIconsHoverAnim 300ms forwards;
     }
 }
-.TrashIcon:hover {
+.BarIcons:hover {
     transform: scale(0.9);
 }
-.TrashIcon:active {
+.BarIcons:active {
     transform: scale(1);
 }
 
-.Box:hover .TrashIcon {
-    animation: trashIconShowsAnim 600ms forwards;
+@media (min-width: 1024px) {
+    .Box:hover .BarIcons {
+        animation: BarIconsShowsAnim 600ms forwards;
+    }
 }
 
-@keyframes trashIconShowsAnim {
+@keyframes BarIconsShowsAnim {
     from {
         visibility: hidden;
         opacity: 0;
-        bottom: -45px;
+        bottom: -60px;
     }
     to {
         visibility: visible;
         opacity: 1;
-        bottom: -55px;
+        bottom: -70px;
+    }
+}
+
+.CloseIcon,
+.ArrowLeftUp,
+.ArrowRightDown {
+    padding: 24px;
+}
+.ArrowLeftUp {
+    position: relative;
+    top: -1px;
+    margin-left: -24px;
+    margin-top: -24px;
+}
+.ArrowRightDown {
+    position: relative;
+    top: -1px;
+    margin-right: -24px;
+    margin-top: -24px;
+}
+.CloseIcon {
+    margin-top: -24px;
+}
+
+/* Rotate */
+.ArrowLeftUp {
+    transform: rotate(270deg);
+}
+@media (min-width: 640px) {
+    .ArrowLeftUp {
+        transform: rotate(180deg);
+    }
+}
+.ArrowRightDown {
+    transform: rotate(90deg);
+}
+@media (min-width: 640px) {
+    .ArrowRightDown {
+        transform: rotate(0deg);
     }
 }
 

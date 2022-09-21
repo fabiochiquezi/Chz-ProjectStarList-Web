@@ -69,6 +69,7 @@ const DragAndDropList: React.FC<props> = ({ title, description }) => {
                 id={index}
                 thumb={card.thumb}
                 moveCard={moveCard}
+                max={max - 1}
             />
         ),
         []
