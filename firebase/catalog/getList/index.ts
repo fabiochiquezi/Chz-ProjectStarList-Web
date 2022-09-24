@@ -1,5 +1,5 @@
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from 'firebase/firebaseSettings'
+import { db } from 'firebase/settings'
 import { catalogI } from 'store/catalog/types'
 
 interface returnData {

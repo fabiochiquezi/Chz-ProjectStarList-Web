@@ -22,7 +22,7 @@ const Hero: React.FC<props> = ({ title, description }) => {
 
             <div className="lg:container lg:mx-auto lg:relative lg:h-full w-full">
                 <div
-                    className="w-full absolute z-10 bottom-[32px] px-3 md:px-6
+                    className="w-full absolute z-10 bottom-[90px] px-3 md:px-6
                     md:bottom-[48px] lg:bottom-[50%] lg:mb-[-300px] lg:w-[720px]"
                 >
                     <main

@@ -31,7 +31,7 @@ const Fields: FC<Props> = ({ formik, loading, btnRef, BtnSend }) => {
                 <Select
                     label="Type"
                     className="mb-9"
-                    name="type"
+                    name="state"
                     onChange={formik.handleChange}
                     value={formik.values.state}
                     error={formik.errors.state}

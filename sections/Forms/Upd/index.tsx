@@ -10,6 +10,7 @@ import { ModalForm } from 'components/Modals/Form/ModalWrap'
 import { useAuth } from '../../../context/AuthContext/types'
 import { useCatalogStore } from '../../../store/catalog'
 import { useSetUtils } from '../../../context/UtilsContext/types'
+import { updateCatalogList } from 'firebase/catalog/updateList'
 
 const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()
@@ -23,17 +24,36 @@ const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const Spin = <SpinIcon2 className="positive -top-1" />
     const BtnSend = !loading ? <span>Update</span> : Spin
 
-    function handleUpdate(data: catalogI): void {
+    function handleUpdate(data: { thumb: string; state: string }): void {
         try {
             if (user == null) throw new Error('User not identified')
             if (loading) return
 
+            const newTable = data.state
+            const oldTable = state
+            const isTheSameTable = oldTable === newTable
+
+            if (!isTheSameTable) {
+                const oldTableData = store.data[state]
+                const newTableData = store.data[data.state]
+                const ifHasTheSameIndex = (_: any, index: number): boolean =>
+                    index !== dataItem.index
+                const changeOldTable = oldTableData.filter(ifHasTheSameIndex)
+                const changeNewTable = [...newTableData, data]
+
+                store.setData(changeOldTable, state)
+                store.setData(changeNewTable, data.state)
+                setCatalogList(state, user.uid, changeOldTable)
+                setCatalogList(data.state, user.uid, changeNewTable)
+            } else {
+                store.updateItem(dataItem.index, data, state)
+                const newData = [...store.data[state]]
+                setCatalogList(state, user.uid, newData)
+            }
+
             setLoading(true)
-            store.updateItem(dataItem.index, data, state)
-            const newData = [...store.data[state]]
-            setCatalogList(state, user.uid, newData)
-            modal.close()
             popSave.open()
+            modal.close()
         } catch (e) {
             console.log(e, 'error')
             alert.open('Sorry, but something went wrong. Try again', 2)

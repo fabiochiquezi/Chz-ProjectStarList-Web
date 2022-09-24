@@ -1,5 +1,5 @@
 import { doc, setDoc } from 'firebase/firestore'
-import { db } from 'firebase/firebaseSettings'
+import { db } from 'firebase/settings'
 import { catalogI } from 'store/catalog/types'
 
 const updateCatalogList = async (
@@ -9,7 +9,10 @@ const updateCatalogList = async (
     data: catalogI[]
 ): Promise<void> => {
     const refOld = doc(db, oldTable, id)
-    await setDoc(refOld, { list: data }, { merge: true })
+    const isTheSameTable = oldTable === newTable
+    if (isTheSameTable) {
+        await setDoc(refOld, { list: data }, { merge: true })
+    }
 }
 
 export { updateCatalogList }

@@ -1,5 +1,5 @@
 import { doc, setDoc } from 'firebase/firestore'
-import { auth, db } from '../../firebaseSettings'
+import { auth, db } from '../../settings'
 import { getCatalogList } from 'firebase/catalog/getList'
 import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
 
