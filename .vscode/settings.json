@@ -30,7 +30,7 @@
 
         "deploy": true,
         "coverage": true,
-        "firebase.json":true,
+        //"firebase.json":true,
         ".firebase": true,
         ".firebaserc": true,
         "firestore.indexes.json": true,
