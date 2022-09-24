@@ -28,6 +28,7 @@ const signInFire = async (): Promise<resp> => {
             errors: []
         }
     } catch (e) {
+        console.log(e, 'firebase login error')
         return {
             ok: false,
             user: null,

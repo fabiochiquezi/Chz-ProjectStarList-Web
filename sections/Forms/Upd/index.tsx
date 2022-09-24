@@ -11,7 +11,7 @@ import { useAuth } from '../../../context/AuthContext/types'
 import { useCatalogStore } from '../../../store/catalog'
 import { useSetUtils } from '../../../context/UtilsContext/types'
 
-const AlterItem: FC<props> = ({ dataItem, setCatalogList }) => {
+const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
@@ -75,4 +75,4 @@ const AlterItem: FC<props> = ({ dataItem, setCatalogList }) => {
     )
 }
 
-export { AlterItem }
+export { UpdateItem }

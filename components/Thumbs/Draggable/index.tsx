@@ -58,7 +58,7 @@ const DraggableThumb: React.FC<ThumbProps> = ({
             isDragging: monitor.isDragging()
         })
     })
-    console.log(max)
+
     const opacity = isOver ? 0 : 1
     drag(drop(ref))
 

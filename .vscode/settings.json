@@ -30,11 +30,11 @@
 
         "deploy": true,
         "coverage": true,
-        //"firebase.json":true,
+        "firebase.json":true,
         ".firebase": true,
         ".firebaserc": true,
         "firestore.indexes.json": true,
-        "firestore.rules": true,
+        //"firestore.rules": true,
         "firebase-debug.log": true,
         "firestore-debug.log": true,
         "ui-debug.log": true,

@@ -2,7 +2,7 @@ import React from 'react'
 import { AddItem } from '../../../sections/Forms/Add'
 import { DeleteItem } from '../../../sections/Forms/Del'
 import { modalInitialState, setModalState } from './state'
-import { AlterItem } from '../../../sections/Forms/Upd'
+import { UpdateItem } from '../../../sections/Forms/Upd'
 import { setCatalogList } from '../../../firebase/catalog/setList'
 
 export const closeModal = (setModal: setModalState) => () => {
@@ -42,7 +42,7 @@ export const getModal = (
     return (
         <div>
             {name === 'AlterItem' && (
-                <AlterItem
+                <UpdateItem
                     dataItem={data as { index: number; thumb: string }}
                     setCatalogList={setCatalogList}
                 />
