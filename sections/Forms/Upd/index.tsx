@@ -3,14 +3,12 @@ import { Formik } from 'formik'
 import { props } from './types'
 import { useRouter } from 'next/router'
 import { validation } from './validation'
-import { catalogI } from 'store/catalog/types'
 import React, { FC, useRef, useState } from 'react'
 import SpinIcon2 from '../../../public/icons/SpinIcon2'
-import { ModalForm } from 'components/Modals/Form/ModalWrap'
+import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
 import { useAuth } from '../../../context/AuthContext/types'
 import { useCatalogStore } from '../../../store/catalog'
 import { useSetUtils } from '../../../context/UtilsContext/types'
-import { updateCatalogList } from 'firebase/catalog/updateList'
 
 const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()

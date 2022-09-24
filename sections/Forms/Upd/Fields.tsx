@@ -1,7 +1,7 @@
 import React, { FC, ReactElement, RefObject } from 'react'
 import { FormikProps } from 'formik'
-import { Input } from 'components/Forms/Inputs/Default'
-import { Select } from 'components/Forms/Select/Default'
+import { Input } from '../../../components/Forms/Inputs/Default'
+import { Select } from '../../../components/Forms/Select/Default'
 
 interface Props {
     formik: FormikProps<{ thumb: string; state: string }>

@@ -4,10 +4,10 @@ import { useRouter } from 'next/router'
 import { validation } from './validation'
 import { AddProps, dataSubmit } from './types'
 import React, { useEffect, useRef, useState } from 'react'
-import { ModalForm } from 'components/Modals/Form/ModalWrap'
-import { useAuth } from '../../../context/AuthContext/types'
 import { useCatalogStore } from '../../../store/catalog'
+import { useAuth } from '../../../context/AuthContext/types'
 import { useSetUtils } from '../../../context/UtilsContext/types'
+import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
 import { keyDownBtnTrigger } from '../../../helpers/keyDownBtnTrigger'
 
 const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {

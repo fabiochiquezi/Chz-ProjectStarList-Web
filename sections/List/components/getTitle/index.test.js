@@ -3,7 +3,7 @@ import { getTitle } from './index'
 describe('general/fucntions/getTitle', () => {
     it('should return doing state', () => {
         const obj = getTitle('doing')
-        expect(obj.title).toBe('ALL WORKS YOU ARE SEEING')
+        expect(obj.title).toBe('ALL WORKS YOU ARE DOING')
         expect(obj.subtitle).toBe('Dude, you got to finish this, keep going')
     })
 
