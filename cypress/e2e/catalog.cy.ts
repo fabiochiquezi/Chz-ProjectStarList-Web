@@ -9,9 +9,11 @@ describe('Catalog', () => {
     const thumb = '[data-cy="thumb-default"]'
     const formAdd = '[data-cy="form-addNewItem"]'
     const formAlter = '[data-cy="form-alterItem"]'
+    const formDel = '[data-cy="form-delItem"]'
     const btnUpdate = '[data-cy="btn-update"]'
-    const btnDelete = '[data-cy="btn-delete"]'
+    const btnOpenDelForm = '[data-cy="btnOpen-delForm"]'
     const btnLoad = '[data-cy="btn-load"]'
+    const btnDel = '[data-cy="btn-delete"]'
 
     beforeEach(() => {
         cy.deleteCatalogDB('doing')
@@ -53,9 +55,9 @@ describe('Catalog', () => {
 
     it('should delete item', () => {
         cy.setTableDB(`doing/${myID}`, { list: [{ thumb: coverImg }] })
-        cy.get(thumb).click()
-        cy.get(formAlter)
-        cy.get(btnDelete).click()
+        cy.get(thumb).trigger('mouseover')
+        cy.get(btnOpenDelForm).click({ force: true })
+        cy.get(formDel).find(btnDel).click()
         cy.get(thumb).should('not.exist')
     })
 

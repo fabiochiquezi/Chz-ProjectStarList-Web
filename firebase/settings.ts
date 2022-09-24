@@ -21,10 +21,11 @@ const isDevMode =
     typeof window !== 'undefined' && process.env.NODE_ENV === 'development'
 
 /*
- */
 if (isDevMode) {
     if (window.Cypress === undefined) {
         connectFirestoreEmulator(db, 'localhost', 8080)
         connectAuthEmulator(auth, 'http://localhost:9099')
     }
 }
+
+*/

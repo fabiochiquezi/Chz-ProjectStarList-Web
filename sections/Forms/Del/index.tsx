@@ -45,7 +45,7 @@ const DeleteItem: FC<DelProps> = ({ dataItem, setCatalogList }) => {
     }
 
     return (
-        <div data-cy="form-addNewItem">
+        <div data-cy="form-delItem">
             <ModalForm>
                 <div className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700">
                     <h3 className="mb-5 text-xl text-white font-bold mt-1">

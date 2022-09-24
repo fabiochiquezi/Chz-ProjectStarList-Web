@@ -116,6 +116,7 @@ const DraggableThumb: React.FC<ThumbProps> = ({
                 <div
                     className={styles.CloseIcon}
                     onClick={() => modal.openDeleteItem({ index, thumb })}
+                    data-cy="btnOpen-delForm"
                 >
                     <CloseIcon strokeColor="#ef4444" width={22} height={18} />
                 </div>

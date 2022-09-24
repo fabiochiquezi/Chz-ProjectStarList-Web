@@ -34,7 +34,6 @@
         ".firebase": true,
         ".firebaserc": true,
         "firestore.indexes.json": true,
-        //"firestore.rules": true,
         "firebase-debug.log": true,
         "firestore-debug.log": true,
         "ui-debug.log": true,
@@ -53,9 +52,9 @@
         "serviceAccount.json": true,
 
         // Style 01
-        "todo.log.md": true,
+        //"todo.log.md": true,
         //"public": true,
-        "cypress": true,
+        //"cypress": true,
         //"general": true,
         //"components": true
     }
