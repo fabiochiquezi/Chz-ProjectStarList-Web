@@ -37,6 +37,7 @@
         "deploy",
         "design",
         "emulators-data",
+        "cypress.config.ts",
         "cypress",
         "**/*.cy.ts",
         "**/*.cy.js",
