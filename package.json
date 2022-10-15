@@ -7,7 +7,7 @@
     "emulators:data": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
     "development": "next dev",
     "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\"",
-    "build": "next build",
+    "build": "rm -rf out && next build",
     "start": "next start",
     "e2e": "concurrently --kill-others \"yarn development\" \"yarn cypress\"",
     "cypress": "cypress open",

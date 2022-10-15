@@ -37,6 +37,11 @@
         "coverage",
         "deploy",
         "design",
-        "emulators-data"
+        "emulators-data",
+        "cypress",
+        "**/*.test.ts",
+        "**/*.test.tsx",
+        "**/*.test.js",
+        "**/*.test.jsx",
     ]
 }

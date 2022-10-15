@@ -1,5 +1,3 @@
-// Not using yet
-
 import React, { useEffect, useRef, useState } from 'react'
 
 interface props {

@@ -19,7 +19,7 @@ describe('BannerJob', () => {
     const description = 'Sorry, but something went wrong'
 
     const Elem = <ErrorSection />
-    const { getByTestId, getByText } = render(Elem)
+    const { getByTestId } = render(Elem)
 
     it('should have all data', () => {
         const el = getByTestId('error-section')

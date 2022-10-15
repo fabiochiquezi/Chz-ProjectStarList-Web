@@ -1,4 +1,4 @@
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { BannerJob } from './index'
 
 
@@ -7,7 +7,7 @@ describe('BannerJob', () => {
     const description = 'If you liked this project, help me recommending me for some company'
 
     const Elem = <BannerJob />
-    const { getByTestId, getByText } = render(Elem)
+    const { getByTestId } = render(Elem)
 
     it('should have all data', () => {
         const el = getByTestId('banner-job')

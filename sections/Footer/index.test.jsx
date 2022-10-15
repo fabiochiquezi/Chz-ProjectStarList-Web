@@ -3,7 +3,7 @@ import { Footer } from '.'
 
 describe('Footer', () => {
     const Elem = <Footer />
-    const { getByTestId, getByText } = render(Elem)
+    render(Elem)
 
     it('should have all data', () => {
         const boxes = document.querySelectorAll('.box')
