@@ -25,15 +25,15 @@ const BannerJob: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col items-center sm:flex-row justify-center">
-                    {/*
                     <a
-                        href="http://google.com"
+                        href="https://www.chiquezi.com/home"
                         className="text-xl bg-indigo-600 inline-block w-48 text-center p-4 mb-5 sm:mb-0 sm:mr-6 simple-button rounded-sm"
                         target="_blank"
+                        rel="noreferrer"
                     >
                         Portfolio
                     </a>
-                    */}
+
                     <a
                         href="https://github.com/fabiochiquezi"
                         className="text-xl bg-indigo-600 inline-block w-48 text-center p-4 simple-button rounded-sm"
