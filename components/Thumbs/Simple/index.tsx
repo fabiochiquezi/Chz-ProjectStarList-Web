@@ -12,8 +12,7 @@ const SimpleThumb: React.FC<ThumbProps> = ({ thumb, index }) => {
     return (
         <div
             key={index}
-            className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 cursor-pointer simple-button"
-            onClick={() => modal.openAlterItem({ index, thumb })}
+            className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100"
             data-cy="thumb-default"
             data-testid="thumb-default"
         >
