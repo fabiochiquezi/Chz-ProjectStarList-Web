@@ -13,7 +13,7 @@ const Header: React.FC = () => {
                 <Logo className="z-10" />
                 <div className="z-10 flex items-center">
                     <GitHubButton
-                        href="https://github.com/fabiochiquezi"
+                        href="https://github.com/fabiochiquezi/Chz-ProjectStarList-Web"
                         className="md:mr-3"
                     />
                     <SignInButton01
