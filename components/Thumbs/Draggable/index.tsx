@@ -94,6 +94,11 @@ const DraggableThumb: React.FC<ThumbProps> = ({
                 <div className="w-[170px] h-[220px] overflow-hidden rounded skeleton">
                     <img
                         src={thumb}
+                        style={{
+                            objectFit: 'cover',
+                            width: '100%',
+                            height: '100%'
+                        }}
                         onLoad={e => {
                             const item = e.target as HTMLElement
                             item.style.display = 'inline-block'
