@@ -29,16 +29,16 @@ Also, it will help a lot to organize everything I'm doing.
     height="322"
 />
 <img
-    src="design/md/screen-03.jpg?raw=true"
-    alt="screenshot"
-    title="screenshot"
-    height="322"
-/>
-<img
     src="design/md/screen-04.jpg?raw=true"
     alt="screenshot"
     title="screenshot"
-    height="322"
+    height="200"
+/>
+<img
+    src="design/md/screen-03.jpg?raw=true"
+    alt="screenshot"
+    title="screenshot"
+    height="200"
 />
 </p>
 
