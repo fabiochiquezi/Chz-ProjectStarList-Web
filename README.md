@@ -90,3 +90,7 @@ Also, it will help a lot to organize everything I'm doing.
 ## 🚀 How to run
 
 Under construction
+
+## ✋ How to use it
+
+Under construction
