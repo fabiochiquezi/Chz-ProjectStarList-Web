@@ -7,7 +7,7 @@
 
 [![Website](https://img.shields.io/website?style=flat-square&url=https%3A%2F%2Ffabiochiquezi.github.io%2F)](https://starlist.chiquezi.com/)
 
-A WebApp to build your own list of works (games, books, movies, cartoons...) you are doing, have done or will do.
+It's a WebApp to build your own list of movies, games and books you are doing, have done or will do.
 
 My motivation to build this App comes from the experience of being on the Discord platform talking to people to practice English and then, always talking about what kind of books, movies, series or games they like.
 
