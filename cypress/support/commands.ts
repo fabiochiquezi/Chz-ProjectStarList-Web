@@ -19,14 +19,11 @@ const fbConfig = {
 firebase.initializeApp(fbConfig)
 attachCustomCommands({ Cypress, cy, firebase })
 
-Cypress.Commands.add('deleteCatalogDB', (table: string) => {
+Cypress.Commands.add('', (table: string) => {
     cy.callFirestore('delete', `${table}/${myID}`)
     cy.callFirestore('set', `${table}/${myID}`, { list: [] })
 })
 
-Cypress.Commands.add(
-    'setTableDB',
-    (path: string, data: Record<string, any>) => {
-        cy.callFirestore('set', `${path}`, data)
-    }
-)
+Cypress.Commands.add('', (path: string, data: Record<string, any>) => {
+    cy.callFirestore('set', `${path}`, data)
+})
