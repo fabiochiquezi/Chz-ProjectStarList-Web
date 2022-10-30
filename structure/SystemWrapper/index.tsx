@@ -18,7 +18,7 @@ const SystemWrapper: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
                 <meta name="description" content={descriptionSEO} />
             </Head>
             <Header />
-            <div className="mb-48 sm:mb-36 lg:mb-24">
+            <div className="mb-48 sm:mb-36 lg:mb-24 pt-24">
                 <ContentWrapper>{children}</ContentWrapper>
             </div>
             <Footer />
