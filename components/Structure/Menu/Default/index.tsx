@@ -40,7 +40,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
-                                MINE
+                                MY LIST
                             </a>
                         </Link>
                     </li>
