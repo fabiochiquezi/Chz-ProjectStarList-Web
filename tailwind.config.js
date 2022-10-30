@@ -6,7 +6,8 @@ module.exports = {
       './pages/**/*.{js,ts,jsx,tsx}',
       './components/**/*.{js,ts,jsx,tsx}',
       './sections/**/*.{js,ts,jsx,tsx}',
-      './helpers/**/*.{js,ts,jsx,tsx}'
+      './helpers/**/*.{js,ts,jsx,tsx}',
+      './structure/**/*.{js,ts,jsx,tsx}'
     ],
     theme: {
       extend: {
@@ -18,16 +19,16 @@ module.exports = {
           '2xl': '1536px'
         },
         backgroundColor: {
-          primary: '#171717',
+          primary: '#171717'
         },
         colors: {
           primary: '#FA7723',
           secondary: '#39577F'
         },
         animation: {
-            'spin-slow': 'spin 10s linear infinite',
+            'spin-slow': 'spin 10s linear infinite'
         }
-      },
+      }
     },
-    plugins: [],
-  };
+    plugins: []
+  }
