@@ -1,3 +1,4 @@
+import { useSetUtils } from 'context/UtilsContext/types'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -12,6 +13,7 @@ const AClass =
 
 const Menu: React.FC<props> = ({ setMenu }) => {
     const router = useRouter()
+    const { setContentLoadState } = useSetUtils()
     const pathname = router.pathname
     const activeMenuItem = 'text-orange-400'
 
@@ -25,7 +27,10 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 className={`md:text-3xl lg:text-[14px] lg:mr-6 ${AClass} ${
                                     pathname === '/new/[type]' && activeMenuItem
                                 }`}
-                                onClick={() => setMenu(false)}
+                                onClick={() => {
+                                    setContentLoadState(true)
+                                    setMenu(false)
+                                }}
                             >
                                 NEW
                             </a>
@@ -38,7 +43,10 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                     pathname === '/catalog/[type]' &&
                                     activeMenuItem
                                 }`}
-                                onClick={() => setMenu(false)}
+                                onClick={() => {
+                                    setContentLoadState(true)
+                                    setMenu(false)
+                                }}
                             >
                                 MY LIST
                             </a>

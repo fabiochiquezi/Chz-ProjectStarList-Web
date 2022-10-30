@@ -16,12 +16,12 @@ const signInFire = async (): Promise<resp> => {
         const { displayName, email, uid } = authUser.user
 
         const getUser = await getCatalogList('users', uid)
-        if (getUser == null) {
-            await setDoc(doc(db, 'users', uid), { displayName, email })
-            await setDoc(doc(db, 'doing', uid), { list: [] })
-            await setDoc(doc(db, 'illdo', uid), { list: [] })
-            await setDoc(doc(db, 'did', uid), { list: [] })
-        }
+        // if (getUser == null) {
+        //     await setDoc(doc(db, 'users', uid), { displayName, email })
+        //     await setDoc(doc(db, 'doing', uid), { list: [] })
+        //     await setDoc(doc(db, 'illdo', uid), { list: [] })
+        //     await setDoc(doc(db, 'did', uid), { list: [] })
+        // }
         return {
             ok: true,
             user: authUser.user,

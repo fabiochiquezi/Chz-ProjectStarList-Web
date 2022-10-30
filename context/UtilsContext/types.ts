@@ -1,19 +1,20 @@
 import { modalInitialState, modalState } from './Modal/state'
-import { createContext, useContext } from 'react'
+import { createContext, Dispatch, SetStateAction, useContext } from 'react'
 import { alertClass } from './Alert/class'
 import { modalClass } from './Modal/class'
 import { popSaveClass } from './PopSave/class'
 
 // prettier-ignore
-interface UtilsT { modal: modalState, popSave: boolean }
+interface UtilsT { modal: modalState, popSave: boolean, contentLoadState: boolean }
 const UtilsContext = createContext<UtilsT>({
     modal: modalInitialState,
-    popSave: false
+    popSave: false,
+    contentLoadState: false
 })
 const useUtils = (): UtilsT => useContext(UtilsContext)
 
 // prettier-ignore
-interface SetUtilsT { modal: modalClass, alert: alertClass, popSave: popSaveClass }
+interface SetUtilsT { modal: modalClass, alert: alertClass, popSave: popSaveClass, setContentLoadState: Dispatch<SetStateAction<boolean>> }
 const SetUtilsContext = createContext<SetUtilsT>({
     modal: {
         close: () => {},
@@ -28,7 +29,8 @@ const SetUtilsContext = createContext<SetUtilsT>({
     popSave: {
         open: () => {},
         close: () => {}
-    }
+    },
+    setContentLoadState: () => false
 })
 const useSetUtils = (): SetUtilsT => useContext(SetUtilsContext)
 

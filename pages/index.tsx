@@ -4,7 +4,7 @@ import type { NextPage } from 'next'
 import { Footer } from 'sections/Footer'
 import { Hero } from 'sections/Hero/Default'
 import { Header } from 'sections/Header/Login'
-import catalog from 'general/data/catalog.json'
+import catalog from '../data/catalog.json'
 import { SimpleList } from 'sections/List/Simple'
 
 const HeadData = (): React.ReactElement => (

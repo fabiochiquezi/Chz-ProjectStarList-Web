@@ -1,16 +1,15 @@
-import Head from 'next/head'
 import Page404 from 'pages/404'
 import { useRouter } from 'next/router'
-import { Footer } from 'sections/Footer'
 import { GetServerSideProps } from 'next'
 import { catalogI } from 'store/catalog/types'
-import { Header } from 'sections/Header/System'
 import { ListAPI } from 'sections/List/ListAPI'
 import { MenuListAPI } from 'sections/Menu/ListAPI'
 import { Pagination } from 'sections/Pagination/Default'
 import React, { FC, ReactElement, useEffect, useState } from 'react'
-import { getBooks, getMovies, getSeries } from 'general/api/thirdReq'
+import { getBooks, getMovies, getSeries } from 'api/thirdReq'
 import { LoadingStruct } from 'components/Structure/Loadings/Default'
+import SystemWrapper from 'structure/SystemWrapper'
+import { useSetUtils, useUtils } from 'context/UtilsContext/types'
 
 interface Data {
     data: {
@@ -24,43 +23,29 @@ const New: FC<Data> = ({ data }) => {
     const { ok, data: list } = data
     if (!ok) return <Page404 />
 
-    const [loadContent, setLoadContent] = useState(true)
+    const { setContentLoadState } = useSetUtils()
     const router = useRouter()
-    const page = router.query.page ? parseInt(router.query.page as string) : 1
+    const queryPage = router.query.page
+    const page = queryPage ? parseInt(queryPage as string) : 1
 
     useEffect(() => {
-        setTimeout(() => setLoadContent(false), 1000)
-        // setLoadContent(false)
-        // window.scrollTo({ top: 100, behavior: 'smooth' })
+        setTimeout(() => setContentLoadState(false), 1000)
     }, [router.asPath])
 
     function onLoad(): void {
         window.scrollTo({ top: 0, behavior: 'smooth' })
-        setLoadContent(true)
+        setContentLoadState(true)
     }
 
-    const LoadComp = <LoadingStruct />
-    const ListComp = <ListAPI catalog={list ?? []} />
-    const List = (): ReactElement => (loadContent ? LoadComp : ListComp)
     return (
-        <div>
-            <Head>
-                <title>Star List | New Works</title>
-                <meta
-                    name="description"
-                    content="Search for new works to add to your list"
-                />
-            </Head>
-            <Header />
-            <div className="mb-48 sm:mb-36 lg:mb-24">
-                <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
-                    <MenuListAPI onLoad={onLoad} />
-                    <List />
-                    <Pagination page={page} onLoad={onLoad} />
-                </div>
-            </div>
-            <Footer />
-        </div>
+        <SystemWrapper
+            titleSEO="Star List | New Works"
+            descriptionSEO="Search for new works to add to your list"
+        >
+            <MenuListAPI onLoad={onLoad} />
+            <ListAPI catalog={list ?? []} />
+            <Pagination page={page} onLoad={onLoad} />
+        </SystemWrapper>
     )
 }
 

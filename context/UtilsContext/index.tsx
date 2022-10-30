@@ -14,6 +14,7 @@ interface props {
 }
 
 const UtilsProvider: React.FC<props> = ({ children }) => {
+    const [contentLoadState, setContentLoadState] = useState(true)
     const [modal, setModal] = useState(modalInitialState)
     const modalFn = getModalFns(setModal)
 
@@ -24,12 +25,13 @@ const UtilsProvider: React.FC<props> = ({ children }) => {
     const popSaveFn = getPopSaveFns(setPopSave)
 
     return (
-        <UtilsContext.Provider value={{ modal, popSave }}>
+        <UtilsContext.Provider value={{ modal, popSave, contentLoadState }}>
             <SetUtilsContext.Provider
                 value={{
                     modal: modalFn,
                     alert: alertFn,
-                    popSave: popSaveFn
+                    popSave: popSaveFn,
+                    setContentLoadState
                 }}
             >
                 {!alert.hide && (

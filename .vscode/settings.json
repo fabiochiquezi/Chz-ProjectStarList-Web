@@ -38,6 +38,7 @@
         "firestore-debug.log": true,
         "ui-debug.log": true,
         "emulators-data": true,
+        "api/keys.example.ts": true,
 
         "cypress.config.ts": true,
         "cypress/downloads": true,
