@@ -4,10 +4,10 @@ import { Footer } from 'sections/Footer'
 import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
 import { ErrorSection } from 'sections/Error'
+import { useCatalogStore } from 'store/catalog'
 import { Header } from 'sections/Header/System'
 import React, { useEffect, useState } from 'react'
 import { DragAndDropList } from 'sections/List/Drag'
-import { useCatalogStore } from 'store/catalog'
 import { getCatalogList } from 'firebase/catalog/getList'
 import { getTitle } from 'sections/List/components/getTitle'
 import { LoadingStruct } from 'components/Structure/Loadings/Default'
@@ -54,9 +54,7 @@ const Catalog: NextPage = () => {
     if (is404) {
         router
             .push('/404')
-            .then(() => {
-                console.log('get 404')
-            })
+            .then(() => console.log('get 404'))
             .catch(() => <ErrorSection />)
     }
     if (error) return <ErrorSection />

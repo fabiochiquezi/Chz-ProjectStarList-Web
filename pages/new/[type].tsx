@@ -24,12 +24,13 @@ const New: FC<Data> = ({ data }) => {
     const { ok, data: list } = data
     if (!ok) return <Page404 />
 
-    const [loadContent, setLoadContent] = useState(false)
+    const [loadContent, setLoadContent] = useState(true)
     const router = useRouter()
     const page = router.query.page ? parseInt(router.query.page as string) : 1
 
     useEffect(() => {
-        setLoadContent(false)
+        setTimeout(() => setLoadContent(false), 1000)
+        // setLoadContent(false)
         // window.scrollTo({ top: 100, behavior: 'smooth' })
     }, [router.asPath])
 
