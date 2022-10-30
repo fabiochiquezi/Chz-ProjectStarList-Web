@@ -20,10 +20,10 @@ const Menu: React.FC<props> = ({ setMenu }) => {
             <nav data-cy="menu-structure" data-testid="menu-structure">
                 <ul className="flex flex-col items-center text-center text-2xl lg:flex-row lg:mt-[2px]">
                     <li className={LiClass}>
-                        <Link href="/new">
+                        <Link href="/new/movies">
                             <a
                                 className={`md:text-3xl lg:text-[14px] lg:mr-6 ${AClass} ${
-                                    pathname === '/new' && activeMenuItem
+                                    pathname === '/new/[type]' && activeMenuItem
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
@@ -40,7 +40,7 @@ const Menu: React.FC<props> = ({ setMenu }) => {
                                 }`}
                                 onClick={() => setMenu(false)}
                             >
-                                MY LIST
+                                MINE
                             </a>
                         </Link>
                     </li>

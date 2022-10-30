@@ -31,8 +31,7 @@ const Catalog: NextPage = () => {
     const store = useCatalogStore(state => state)
     const list = store.data[query]
     const is404 = list === undefined || list === null
-    const [loadingPage, setLoadingPage] = useState(true)
-    const [loadContent, seLoadContent] = useState(false)
+    const [loadContent, seLoadContent] = useState(true)
     const [error, setError] = useState(false)
 
     useEffect(() => {
@@ -49,12 +48,7 @@ const Catalog: NextPage = () => {
             .then(data => {
                 if (data) store.setData(data.list, query)
             })
-            .catch(() => {
-                setError(true)
-            })
-            .finally(() => {
-                setLoadingPage(false)
-            })
+            .catch(() => setError(true))
     }
 
     if (is404) {
@@ -63,12 +57,9 @@ const Catalog: NextPage = () => {
             .then(() => {
                 console.log('get 404')
             })
-            .catch(() => {
-                return <ErrorSection />
-            })
+            .catch(() => <ErrorSection />)
     }
     if (error) return <ErrorSection />
-    if (loadingPage) return <LoadingStruct />
 
     return (
         <>

@@ -24,6 +24,11 @@ const SimpleThumb: React.FC<ThumbProps> = ({ thumb, index }) => {
                 >
                     <img
                         src={thumb}
+                        style={{
+                            objectFit: 'cover',
+                            width: '100%',
+                            height: '100%'
+                        }}
                         // alt={name ?? name}
                         // title={name ?? name}
                         onError={e => {

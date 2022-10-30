@@ -1,26 +1,26 @@
 import React, { FC } from 'react'
-import { SimpleThumb } from '../../../components/Thumbs/Simple'
 import { catalogI } from 'store/catalog/types'
-import { Title } from '../components/Title'
+import { AddThumb } from 'components/Thumbs/Add'
+import { SimpleThumb } from '../../../components/Thumbs/Simple'
+import { useSetUtils } from 'context/UtilsContext/types'
 
 interface props {
     catalog: catalogI[]
-    title: string
-    description: string
 }
 
 const containerClass = `container mx-auto px-4 grid
 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
 justify-items-center lg:justify-items-end 2xl:justify-items-center`
 
-const ListAPI: FC<props> = ({ catalog, title, description }) => {
-    const limit = 20
+const ListAPI: FC<props> = ({ catalog }) => {
+    const { modal } = useSetUtils()
+    // const limit = 20
 
     return (
         <main className={containerClass} data-cy="section-list">
-            <Title titleH1={title} description={description} />
+            <AddThumb onClick={() => modal.openAddItem()} />
             {catalog?.map(({ thumb }, index) => {
-                if (index >= limit) return null
+                // if (index >= limit) return null
                 return (
                     <SimpleThumb
                         key={index}

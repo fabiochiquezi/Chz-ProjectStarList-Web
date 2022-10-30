@@ -9,3 +9,8 @@ export const moviesTopRatedTMDB = `${TMDB}/${versionTMDB}/movie/top_rated${keyTM
 export const seriesTopRatedTMDB = `${TMDB}/${versionTMDB}/tv/top_rated${keyTMDB}`
 export const getTMDBCoverURI = (path: string): string =>
     `${imagesTMDB}/${fileConfigTMDB}/${path}`
+
+export const googleKey = 'AIzaSyBgdAJTfv2pfCj6pqge06xijmROp9AW-Dw'
+// export const twitchIgdbClientID = 'cbq50ck61tf3e0iosgkaezz9sdh2xa'
+// export const twitchIgdbKey = 'acyvnjana0d5tiu9u4q0d8ycwsd281'
+// export const igdbAuthentication = `https://id.twitch.tv/oauth2/token?client_id=${twitchIgdbClientID}&client_secret=${twitchIgdbKey}&grant_type=client_credentials`
