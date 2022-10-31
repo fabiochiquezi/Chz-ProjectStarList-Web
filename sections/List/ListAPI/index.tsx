@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { catalogI } from 'store/catalog/types'
 import { AddThumb } from 'components/Thumbs/Add'
 import { SimpleThumb } from '../../../components/Thumbs/Simple'
-import { useSetUtils } from 'context/UtilsContext/types'
+import { useSetUtils } from 'structure/Utils/types'
 
 interface props {
     catalog: catalogI[]

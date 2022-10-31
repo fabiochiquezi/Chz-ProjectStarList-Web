@@ -2,13 +2,14 @@ import 'styles/globals.css'
 import '@fontsource/roboto'
 import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
-import UtilsProvider from 'context/UtilsContext'
+
 import React, { ReactElement, useEffect, useState } from 'react'
-import { AuthProvider } from 'context/AuthContext'
+import { AuthProvider } from 'structure/Auth'
 
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { PrivateRoute } from 'structure/Private'
+import UtilsProvider from 'structure/Utils'
 
 export const noAuthRequired = ['/']
 

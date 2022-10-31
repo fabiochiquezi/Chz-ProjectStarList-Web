@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from '../../../public/Logo'
-import { useSetAuth } from '../../../context/AuthContext/types'
+import { useSetAuth } from '../../Auth/types'
 import { GitHubButton } from '../../../components/Buttons/GitHub'
 import { SignInButton01 } from '../../../components/Buttons/SignIn'
 

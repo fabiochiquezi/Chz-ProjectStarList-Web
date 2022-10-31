@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Footer } from '../structure/Footer'
-import { useAuth } from 'context/AuthContext/types'
+import { useAuth } from 'structure/Auth/types'
 import { Header, Header as HeaderLogin } from '../structure/Header/System'
 
 const HeadData = (): React.ReactElement => (

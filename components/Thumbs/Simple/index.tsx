@@ -1,5 +1,5 @@
-import { useSetUtils } from '../../../context/UtilsContext/types'
 import React from 'react'
+import { useSetUtils } from 'structure/Utils/types'
 
 interface ThumbProps {
     thumb: string

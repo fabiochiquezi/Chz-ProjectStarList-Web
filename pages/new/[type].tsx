@@ -8,8 +8,8 @@ import { MenuListAPI } from 'sections/Menu/ListAPI'
 import { Pagination } from 'sections/Pagination/Default'
 import { getBooks, getMovies, getSeries } from 'api/thirdReq'
 import { LoadingStruct } from '../../structure/Loadings/Default'
-import { useSetUtils, useUtils } from 'context/UtilsContext/types'
 import React, { FC, ReactElement, useEffect, useState } from 'react'
+import { useSetUtils } from 'structure/Utils/types'
 
 interface Data {
     data: {

@@ -2,8 +2,8 @@ import Head from 'next/head'
 import { Footer } from '../Footer'
 import { Header } from '../Header/System'
 import { FC, ReactElement, ReactNode } from 'react'
-import { useUtils } from 'context/UtilsContext/types'
 import { LoadingStruct } from 'structure/Loadings/Default'
+import { useUtils } from 'structure/Utils/types'
 
 interface props {
     children: ReactNode

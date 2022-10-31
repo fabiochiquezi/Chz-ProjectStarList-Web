@@ -5,10 +5,11 @@ import { validation } from './validation'
 import { AddProps, dataSubmit } from './types'
 import React, { useEffect, useRef, useState } from 'react'
 import { useCatalogStore } from '../../../store/catalog'
-import { useAuth } from '../../../context/AuthContext/types'
-import { useSetUtils } from '../../../context/UtilsContext/types'
+import { useAuth } from '../../../structure/Auth/types'
+
 import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
 import { keyDownBtnTrigger } from '../../../helpers/keyDownBtnTrigger'
+import { useSetUtils } from 'structure/Utils/types'
 
 const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()

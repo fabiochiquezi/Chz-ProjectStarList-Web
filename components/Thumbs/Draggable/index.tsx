@@ -5,7 +5,7 @@ import { useDrag, useDrop } from 'react-dnd'
 import { DragItem, ItemTypes } from './dndTypes'
 import CloseIcon from 'public/icons/CloseIcon'
 import ArrowRight1 from 'public/icons/ArrowRight1'
-import { useSetUtils } from '../../../context/UtilsContext/types'
+import { useSetUtils } from 'structure/Utils/types'
 
 interface ThumbProps {
     id: any

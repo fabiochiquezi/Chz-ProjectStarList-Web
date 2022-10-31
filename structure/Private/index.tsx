@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAuth } from 'context/AuthContext/types'
+import { useAuth } from 'structure/Auth/types'
 import { LoadingStruct } from '../Loadings/Default'
 
 interface props {

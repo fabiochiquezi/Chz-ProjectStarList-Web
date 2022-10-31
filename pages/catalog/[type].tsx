@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 import { DragAndDropList } from 'sections/List/Drag'
 import { getCatalogList } from 'firebase/catalog/getList'
 import { getTitle } from 'sections/List/components/getTitle'
-import { useSetUtils } from 'context/UtilsContext/types'
+import { useSetUtils } from 'structure/Utils/types'
 
 const Catalog: NextPage = () => {
     const router = useRouter()

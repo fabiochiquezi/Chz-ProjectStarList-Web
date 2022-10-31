@@ -2,13 +2,13 @@ import { useRouter } from 'next/router'
 import { catalogI } from 'store/catalog/types'
 import { useCatalogStore } from 'store/catalog'
 import { AddThumb } from 'components/Thumbs/Add'
-import { useAuth } from 'context/AuthContext/types'
+import { useAuth } from 'structure/Auth/types'
 import { LoadButton } from 'components/Buttons/Load'
 import { Title, TitleEmpty } from '../components/Title'
-import { useSetUtils } from 'context/UtilsContext/types'
 import { setCatalogList } from 'firebase/catalog/setList'
 import { DraggableThumb } from 'components/Thumbs/Draggable'
 import React, { ReactElement, useCallback, useState } from 'react'
+import { useSetUtils } from 'structure/Utils/types'
 
 interface props {
     title: string

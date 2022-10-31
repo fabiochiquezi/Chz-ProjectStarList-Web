@@ -1,6 +1,6 @@
-import { useSetUtils } from '../../../context/UtilsContext/types'
 import CloseIcon from '../../../public/icons/CloseIcon'
 import React from 'react'
+import { useSetUtils } from 'structure/Utils/types'
 
 interface props {
     children: React.ReactNode

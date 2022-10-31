@@ -3,7 +3,7 @@ import Logo from '../../../public/Logo'
 import React, { useEffect, useState } from 'react'
 import { Menu } from '../../../structure/Menu/Default'
 import { MobileButton } from '../../../components/Buttons/Mobile'
-import { useAuth, useSetAuth } from '../../../context/AuthContext/types'
+import { useAuth, useSetAuth } from '../../Auth/types'
 
 const Header: React.FC = () => {
     const { user } = useAuth()

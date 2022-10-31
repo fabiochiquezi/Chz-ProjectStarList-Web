@@ -6,9 +6,9 @@ import { validation } from './validation'
 import React, { FC, useRef, useState } from 'react'
 import SpinIcon2 from '../../../public/icons/SpinIcon2'
 import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
-import { useAuth } from '../../../context/AuthContext/types'
+import { useAuth } from '../../../structure/Auth/types'
 import { useCatalogStore } from '../../../store/catalog'
-import { useSetUtils } from '../../../context/UtilsContext/types'
+import { useSetUtils } from 'structure/Utils/types'
 
 const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()

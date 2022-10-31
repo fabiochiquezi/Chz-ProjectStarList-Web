@@ -3,11 +3,11 @@ import { useRouter } from 'next/router'
 import { catalogI } from 'store/catalog/types'
 import SpinIcon2 from '../../../public/icons/SpinIcon2'
 import { useCatalogStore } from '../../../store/catalog'
-import { useAuth } from '../../../context/AuthContext/types'
+import { useAuth } from '../../../structure/Auth/types'
 import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
-import { useSetUtils } from '../../../context/UtilsContext/types'
 import { keyDownBtnTrigger } from '../../../helpers/keyDownBtnTrigger'
 import React, { FC, ReactElement, useEffect, useRef, useState } from 'react'
+import { useSetUtils } from 'structure/Utils/types'
 
 const DeleteItem: FC<DelProps> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()
