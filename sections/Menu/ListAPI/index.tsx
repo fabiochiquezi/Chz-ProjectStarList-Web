@@ -6,12 +6,13 @@ import { useRouter } from 'next/router'
 interface props {
     changeSelect: (e: MouseEvent) => void
     searchFn: (search: string) => Promise<void>
+    reqSearch: string
 }
 
-const MenuListAPI: FC<props> = ({ changeSelect, searchFn }) => {
+const MenuListAPI: FC<props> = ({ changeSelect, searchFn, reqSearch = '' }) => {
     const router = useRouter()
     const routerType = router.query.type
-    const [search, setSearch] = useState('')
+    const [search, setSearch] = useState(reqSearch)
 
     return (
         <div className="container mx-auto px-4 lg:px-4 xl:px-6 2xl:px-10 flex justify-center mb-4 md:mb-10 lg:mb-11 lg:justify-end">

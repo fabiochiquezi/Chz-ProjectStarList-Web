@@ -8,9 +8,13 @@ async function getSeries(page: string): Promise<catalogI[]> {
     const uri = `${topRapted}&page=${page}`
     const get = await axios.get(uri)
     const results = get.data.results
-    const cover = (el: any): catalogI => ({ thumb: getCover(el.poster_path) })
+    const addCover = (item: any): catalogI => ({
+        ...item,
+        thumb: getCover(item.poster_path)
+    })
 
-    return results.map(cover)
+    get.data.results = results.map(addCover)
+    return get.data
 }
 
 async function getMovies(page: string): Promise<catalogI[]> {
@@ -19,24 +23,26 @@ async function getMovies(page: string): Promise<catalogI[]> {
     const uri = `${topRapted}&page=${page}`
     const get = await axios.get(uri)
     const results = get.data.results
-    const cover = (el: any): catalogI => ({ thumb: getCover(el.poster_path) })
-
-    return results.map(cover)
+    const addCover = (item: any): catalogI => ({
+        ...item,
+        thumb: getCover(item.poster_path)
+    })
+    get.data.results = results.map(addCover)
+    return get.data
 }
 
 async function getMovie(movie: string, page: string): Promise<any> {
-    console.log(movie, 'search')
-    console.log(page, 'page')
     try {
         const { getCover, movies } = uriTMDB
         const uri = `${movies.movie}&query=${movie}&page=${page}`
         const get = await axios.get(uri)
-        console.log(get)
         const results = get.data.results
-        const cover = (el: any): catalogI => ({
-            thumb: getCover(el.poster_path)
+        const addCover = (item: any): catalogI => ({
+            ...item,
+            thumb: getCover(item.poster_path)
         })
-        return results.map(cover)
+        get.data.results = results.map(addCover)
+        return get.data
     } catch (e) {
         return e
     }
@@ -45,7 +51,7 @@ async function getMovie(movie: string, page: string): Promise<any> {
 async function getBooks(page: string): Promise<catalogI[]> {
     const get = await axios.get(`${drafbit}?_page=${page}&_limit=20`)
     const results = get.data
-    const cover = (item: any): catalogI => ({ thumb: item.image_url })
+    const cover = (item: any): catalogI => ({ ...item, thumb: item.image_url })
     return results.map(cover)
 }
 

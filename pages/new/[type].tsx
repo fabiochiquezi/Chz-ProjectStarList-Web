@@ -19,21 +19,24 @@ interface Data {
 }
 
 const New: FC<Data> = ({ data }) => {
-    const { ok, data: list } = data
+    const { ok, data: req } = data
     if (!ok) return <Page404 />
     const title = 'Star List | New Works'
     const description = 'Search for new works to add to your list'
+    const reqList = req?.results
+    const maxPages = req?.total_pages
+    const reqSearch = req?.search
 
     const router = useRouter()
     const routerPage = router.query.type
     const routerSearch = router.query.search
     const queryPage = router.query.page
     const page = queryPage ? parseInt(queryPage as string) : 1
-    const [reactList, setReactList] = useState<catalogI[]>()
+    const [list, setList] = useState<catalogI[]>()
     const [load, setLoad] = useState(false)
 
     useEffect(() => {
-        if (list) setReactList(list)
+        if (reqList) setList(reqList)
         setLoad(false)
     }, [router.asPath])
 
@@ -60,9 +63,17 @@ const New: FC<Data> = ({ data }) => {
 
     return (
         <Struct titleSEO={title} descriptionSEO={description}>
-            <MenuListAPI searchFn={searchMovie} changeSelect={changeSelect} />
-            {load ? <LoadingStruct /> : <ListAPI catalog={reactList ?? []} />}
-            <Pagination page={page} changePage={changePage} />
+            <MenuListAPI
+                searchFn={searchMovie}
+                changeSelect={changeSelect}
+                reqSearch={reqSearch}
+            />
+            {load ? <LoadingStruct /> : <ListAPI catalog={list ?? []} />}
+            <Pagination
+                maxPages={maxPages}
+                page={page}
+                changePage={changePage}
+            />
         </Struct>
     )
 }
@@ -74,7 +85,7 @@ export const getServerSideProps: ServerProps = async context => {
         const page = (context.query?.page ?? '1') as string
         const search = context.query?.search
         const isSearch = search?.length
-        let list = []
+        let list
 
         switch (type) {
             case 'movies':
@@ -94,6 +105,7 @@ export const getServerSideProps: ServerProps = async context => {
                 list = await getMovies(page)
                 break
         }
+        if (isSearch) list.search = search
 
         const res = { ok: true, data: list, error: '' }
         return { props: { data: res } }
