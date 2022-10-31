@@ -14,21 +14,14 @@ justify-items-center lg:justify-items-end 2xl:justify-items-center`
 
 const ListAPI: FC<props> = ({ catalog }) => {
     const { modal } = useSetUtils()
-    // const limit = 20
+    const limit = 20
 
     return (
         <main className={containerClass} data-cy="section-list">
             <AddThumb onClick={() => modal.openAddItem()} />
             {catalog?.map(({ thumb }, index) => {
-                // if (index >= limit) return null
-                return (
-                    <SimpleThumb
-                        key={index}
-                        index={index}
-                        thumb={thumb}
-                        // name={name}
-                    />
-                )
+                if (index >= limit) return null
+                return <SimpleThumb key={index} index={index} thumb={thumb} />
             })}
         </main>
     )

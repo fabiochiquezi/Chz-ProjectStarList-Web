@@ -1,9 +1,13 @@
 import SpinIcon2 from 'public/icons/SpinIcon2'
-import React from 'react'
+import React, { FC } from 'react'
 
-const LoadingStruct: React.FC = () => (
+interface props {
+    height?: string
+}
+
+const LoadingStruct: FC<props> = ({ height = 'h-screen' }) => (
     <div
-        className="flex flex-col items-center justify-center h-screen"
+        className={`flex flex-col items-center justify-center ${height}`}
         data-cy="load-page"
         data-testid="load-structure"
     >

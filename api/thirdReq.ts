@@ -24,6 +24,21 @@ async function getMovies(page: string): Promise<catalogI[]> {
     return results.map(cover)
 }
 
+async function getMovie(movie: string): Promise<any> {
+    try {
+        const { getCover } = uriTMDB
+        const uri = uriTMDB.getMovie(movie)
+        const get = await axios.get(uri)
+        const results = get.data.results
+        const cover = (el: any): catalogI => ({
+            thumb: getCover(el.poster_path)
+        })
+        return results.map(cover)
+    } catch (e) {
+        return e
+    }
+}
+
 async function getBooks(page: string): Promise<catalogI[]> {
     const get = await axios.get(`${drafbit}?_page=${page}&_limit=20`)
     const results = get.data
@@ -31,4 +46,4 @@ async function getBooks(page: string): Promise<catalogI[]> {
     return results.map(cover)
 }
 
-export { getMovies, getSeries, getBooks }
+export { getMovies, getSeries, getBooks, getMovie }

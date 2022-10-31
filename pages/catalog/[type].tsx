@@ -21,9 +21,7 @@ const Catalog: NextPage = () => {
     const list = store.data[query]
 
     useEffect(() => {
-        setContentLoadState(true)
         if (list && !list.length) getData()
-        setTimeout(() => setContentLoadState(false), 600)
     }, [query])
 
     async function getData(): Promise<void> {

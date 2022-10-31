@@ -1,13 +1,14 @@
 import { SelectButton } from 'components/Forms/Select/Button'
 import { Search } from 'components/Forms/Search/Default'
-import React, { FC, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { useRouter } from 'next/router'
 
 interface props {
     onLoad: () => void
+    searchFn: (search: string) => Promise<void>
 }
 
-const MenuListAPI: FC<props> = ({ onLoad }) => {
+const MenuListAPI: FC<props> = ({ onLoad, searchFn }) => {
     const router = useRouter()
     const routerType = router.query.type
     const [search, setSearch] = useState('')
@@ -23,6 +24,7 @@ const MenuListAPI: FC<props> = ({ onLoad }) => {
                 <Search
                     value={search}
                     onChange={e => setSearch(e.target.value)}
+                    callSearch={searchFn}
                 />
             </div>
 
@@ -47,13 +49,13 @@ const MenuListAPI: FC<props> = ({ onLoad }) => {
                     >
                         Series
                     </option>
-                    <option className="bg-primary text-white" value={'books'}>
+                    {/* <option className="bg-primary text-white" value={'books'}>
                         Books
-                    </option>
+                    </option> */}
                 </SelectButton>
             </div>
         </div>
     )
 }
 
-export { MenuListAPI }
+export default memo(MenuListAPI)

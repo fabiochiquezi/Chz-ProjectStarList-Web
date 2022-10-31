@@ -1,16 +1,38 @@
-import { Input } from 'components/Forms/Inputs/Default'
 import SearchIcon from 'public/icons/SearchIcon'
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 interface props {
     value: string
     onChange: (e: any) => void
     className?: string
+    callSearch: (search: string) => Promise<void>
 }
 
-const Search: React.FC<props> = ({ value, onChange, className = '' }) => {
+const Search: React.FC<props> = ({
+    value,
+    onChange,
+    className = '',
+    callSearch
+}) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [active, setActive] = useState(false)
+
+    function searchKeyPress(event: KeyboardEvent): void {
+        const isEnterPressed = event.key === 'Enter'
+        const isFocus = inputRef.current === document.activeElement
+        if (value.length > 0 && isEnterPressed && isFocus) callSearch(value)
+    }
+
+    useEffect(() => {
+        const el = inputRef.current
+        if (el) {
+            el.addEventListener('keydown', searchKeyPress)
+
+            return () => {
+                el.removeEventListener('keydown', searchKeyPress)
+            }
+        }
+    }, [value])
 
     return (
         <div className={`flex relative w-full h-8 ${className}`}>
@@ -30,12 +52,11 @@ const Search: React.FC<props> = ({ value, onChange, className = '' }) => {
                 }}
                 onBlur={() => {
                     inputRef.current?.classList.remove('border-green-700')
-                    if (
+                    const isCurrent =
                         inputRef.current != null &&
                         !inputRef.current.value.length
-                    ) {
-                        setActive(false)
-                    }
+                    if (isCurrent) setActive(false)
+                    if (value.length > 0) callSearch(value)
                 }}
                 data-testid="input"
             />
