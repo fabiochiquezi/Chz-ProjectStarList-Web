@@ -1,11 +1,11 @@
 import { DelProps } from './types'
 import { useRouter } from 'next/router'
-import { catalogI } from 'store/catalog/types'
+import { catalogI } from '../../../types/catalog'
 import SpinIcon2 from '../../../public/icons/SpinIcon2'
 import { useCatalogStore } from '../../../store/catalog'
 import { useAuth } from '../../../structure/Auth/types'
 import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
-import { keyDownBtnTrigger } from '../../../helpers/keyDownBtnTrigger'
+import { keyDownBtnTrigger } from '../../../general/helpers/keyDownBtnTrigger'
 import React, { FC, ReactElement, useEffect, useRef, useState } from 'react'
 import { useSetUtils } from 'structure/Utils/types'
 

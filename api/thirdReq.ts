@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { catalogI } from 'store/catalog/types'
+import { catalogI } from '../types/catalog'
 import { drafbit, uriTMDB } from './uri'
 
 async function getSeries(page: string): Promise<catalogI[]> {

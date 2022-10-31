@@ -1,7 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import type { NextPage } from 'next'
-import catalog from '../data/catalog.json'
+import catalog from '../general/data/catalog.json'
 import { Hero } from 'sections/Hero/Default'
 import { Footer } from '../structure/Footer'
 import { SimpleList } from 'sections/List/Simple'

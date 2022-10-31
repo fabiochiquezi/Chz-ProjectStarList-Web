@@ -1,4 +1,4 @@
-import { catalogI } from 'store/catalog/types'
+import { catalogI } from '../../../types/catalog'
 
 export interface dataSubmit {
     thumb: string

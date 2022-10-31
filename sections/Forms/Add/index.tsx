@@ -8,7 +8,7 @@ import { useCatalogStore } from '../../../store/catalog'
 import { useAuth } from '../../../structure/Auth/types'
 
 import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
-import { keyDownBtnTrigger } from '../../../helpers/keyDownBtnTrigger'
+import { keyDownBtnTrigger } from '../../../general/helpers/keyDownBtnTrigger'
 import { useSetUtils } from 'structure/Utils/types'
 
 const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {

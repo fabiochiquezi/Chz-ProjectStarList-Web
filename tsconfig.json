@@ -22,7 +22,7 @@
         "data/*": ["./general/data/*"],
         "styles/*": ["./general/styles/*"],
         "types/*": ["./general/types/*"],
-        "helpers/*": ["./helpers/*"],
+        "helpers/*": ["general/helpers/*"],
         "pages/*": ["./pages/*"],
         "public/*": ["./public/*"],
         "sections/*": ["./sections/*"],

@@ -1,6 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore'
 import { db } from 'firebase/settings'
-import { catalogI } from 'store/catalog/types'
+import { catalogI } from '../../../types/catalog'
 
 const setCatalogList = async (
     table: string,

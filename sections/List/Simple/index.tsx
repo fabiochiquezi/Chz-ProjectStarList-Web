@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { SimpleThumb } from '../../../components/Thumbs/Simple'
-import { catalogI } from 'store/catalog/types'
+import { catalogI } from '../../../types/catalog'
 import { Title } from '../components/Title'
 
 interface props {
