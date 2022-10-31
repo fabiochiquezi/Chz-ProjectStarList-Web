@@ -1,6 +1,6 @@
 import { useSetUtils } from 'context/UtilsContext/types'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import React from 'react'
 
 interface props {

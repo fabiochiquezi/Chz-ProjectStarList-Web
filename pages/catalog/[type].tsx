@@ -1,13 +1,13 @@
 import type { NextPage } from 'next'
 import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
+import { Struct } from 'structure/Struct'
 import { ErrorSection } from 'sections/Error'
 import { useCatalogStore } from 'store/catalog'
 import React, { useEffect, useState } from 'react'
 import { DragAndDropList } from 'sections/List/Drag'
 import { getCatalogList } from 'firebase/catalog/getList'
 import { getTitle } from 'sections/List/components/getTitle'
-import SystemWrapper from 'structure/SystemWrapper'
 import { useSetUtils } from 'context/UtilsContext/types'
 
 const Catalog: NextPage = () => {
@@ -33,12 +33,12 @@ const Catalog: NextPage = () => {
 
     if (!list) return <ErrorSection />
     return (
-        <SystemWrapper
+        <Struct
             titleSEO="Star List | My List"
             descriptionSEO="See all of your memories about movies, series, animations, books and games"
         >
             <DragAndDropList title={title} description={subtitle} />
-        </SystemWrapper>
+        </Struct>
     )
 }
 

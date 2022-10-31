@@ -5,9 +5,10 @@ import type { AppProps } from 'next/app'
 import UtilsProvider from 'context/UtilsContext'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { AuthProvider } from 'context/AuthContext'
-import { PrivateRoute } from 'components/Structure/PrivateRoute'
+
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { PrivateRoute } from 'structure/Private'
 
 export const noAuthRequired = ['/']
 

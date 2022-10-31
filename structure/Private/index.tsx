@@ -1,6 +1,6 @@
 import React from 'react'
+import { useAuth } from 'context/AuthContext/types'
 import { LoadingStruct } from '../Loadings/Default'
-import { useAuth } from '../../../context/AuthContext/types'
 
 interface props {
     children: React.ReactNode

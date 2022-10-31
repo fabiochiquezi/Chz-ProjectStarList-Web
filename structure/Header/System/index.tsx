@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Logo from '../../../public/Logo'
 import React, { useEffect, useState } from 'react'
+import { Menu } from '../../../structure/Menu/Default'
 import { MobileButton } from '../../../components/Buttons/Mobile'
-import { Menu } from '../../../components/Structure/Menu/Default'
 import { useAuth, useSetAuth } from '../../../context/AuthContext/types'
 
 const Header: React.FC = () => {

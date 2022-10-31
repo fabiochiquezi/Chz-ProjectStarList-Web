@@ -15,6 +15,7 @@ interface props {
 
 const UtilsProvider: React.FC<props> = ({ children }) => {
     const [contentLoadState, setContentLoadState] = useState(true)
+
     const [modal, setModal] = useState(modalInitialState)
     const modalFn = getModalFns(setModal)
 

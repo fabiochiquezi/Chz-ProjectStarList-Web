@@ -1,5 +1,5 @@
+import SpinIcon2 from 'public/icons/SpinIcon2'
 import React from 'react'
-import SpinIcon2 from '../../../../public/icons/SpinIcon2'
 
 const LoadingStruct: React.FC = () => (
     <div

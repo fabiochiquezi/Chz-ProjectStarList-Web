@@ -3,13 +3,13 @@ import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import { catalogI } from 'store/catalog/types'
 import { ListAPI } from 'sections/List/ListAPI'
+import { Struct } from 'structure/Struct'
 import { MenuListAPI } from 'sections/Menu/ListAPI'
 import { Pagination } from 'sections/Pagination/Default'
-import React, { FC, ReactElement, useEffect, useState } from 'react'
 import { getBooks, getMovies, getSeries } from 'api/thirdReq'
-import { LoadingStruct } from 'components/Structure/Loadings/Default'
-import SystemWrapper from 'structure/SystemWrapper'
+import { LoadingStruct } from '../../structure/Loadings/Default'
 import { useSetUtils, useUtils } from 'context/UtilsContext/types'
+import React, { FC, ReactElement, useEffect, useState } from 'react'
 
 interface Data {
     data: {
@@ -38,14 +38,14 @@ const New: FC<Data> = ({ data }) => {
     }
 
     return (
-        <SystemWrapper
+        <Struct
             titleSEO="Star List | New Works"
             descriptionSEO="Search for new works to add to your list"
         >
             <MenuListAPI onLoad={onLoad} />
             <ListAPI catalog={list ?? []} />
             <Pagination page={page} onLoad={onLoad} />
-        </SystemWrapper>
+        </Struct>
     )
 }
 
