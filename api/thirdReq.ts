@@ -24,11 +24,14 @@ async function getMovies(page: string): Promise<catalogI[]> {
     return results.map(cover)
 }
 
-async function getMovie(movie: string): Promise<any> {
+async function getMovie(movie: string, page: string): Promise<any> {
+    console.log(movie, 'search')
+    console.log(page, 'page')
     try {
-        const { getCover } = uriTMDB
-        const uri = uriTMDB.getMovie(movie)
+        const { getCover, movies } = uriTMDB
+        const uri = `${movies.movie}&query=${movie}&page=${page}`
         const get = await axios.get(uri)
+        console.log(get)
         const results = get.data.results
         const cover = (el: any): catalogI => ({
             thumb: getCover(el.poster_path)

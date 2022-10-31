@@ -4,19 +4,14 @@ import React, { FC, memo, useState } from 'react'
 import { useRouter } from 'next/router'
 
 interface props {
-    onLoad: () => void
+    changeSelect: (e: MouseEvent) => void
     searchFn: (search: string) => Promise<void>
 }
 
-const MenuListAPI: FC<props> = ({ onLoad, searchFn }) => {
+const MenuListAPI: FC<props> = ({ changeSelect, searchFn }) => {
     const router = useRouter()
     const routerType = router.query.type
     const [search, setSearch] = useState('')
-
-    function onSelectMenuChange(e: any): void {
-        onLoad()
-        router.push(e.target.value)
-    }
 
     return (
         <div className="container mx-auto px-4 lg:px-4 xl:px-6 2xl:px-10 flex justify-center mb-4 md:mb-10 lg:mb-11 lg:justify-end">
@@ -32,7 +27,7 @@ const MenuListAPI: FC<props> = ({ onLoad, searchFn }) => {
                 <SelectButton
                     label=""
                     name="typeSearch"
-                    onChange={onSelectMenuChange}
+                    onChange={changeSelect}
                     value={routerType}
                     error=""
                     defaultValue={routerType as string}

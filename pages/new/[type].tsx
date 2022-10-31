@@ -25,6 +25,8 @@ const New: FC<Data> = ({ data }) => {
     const description = 'Search for new works to add to your list'
 
     const router = useRouter()
+    const routerPage = router.query.type
+    const routerSearch = router.query.search
     const queryPage = router.query.page
     const page = queryPage ? parseInt(queryPage as string) : 1
     const [reactList, setReactList] = useState<catalogI[]>()
@@ -37,21 +39,30 @@ const New: FC<Data> = ({ data }) => {
 
     async function searchMovie(search: string): Promise<void> {
         setLoad(true)
-        const movie = await getMovie(search)
-        setReactList(movie)
-        setTimeout(() => setLoad(false), 300)
+        router.push(`${routerPage}?search=${search}`)
     }
 
-    function onLoad(): void {
+    function changeSelect(e: any): void {
         window.scrollTo({ top: 0, behavior: 'smooth' })
         setLoad(true)
+        router.push(e.target.value)
+    }
+
+    function changePage(newPage: number): void {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setLoad(true)
+        if (routerSearch) {
+            router.push(`${routerPage}?search=${routerSearch}&page=${newPage}`)
+            return
+        }
+        router.push(`${routerPage}?page=${newPage}`)
     }
 
     return (
         <Struct titleSEO={title} descriptionSEO={description}>
-            <MenuListAPI searchFn={searchMovie} onLoad={onLoad} />
+            <MenuListAPI searchFn={searchMovie} changeSelect={changeSelect} />
             {load ? <LoadingStruct /> : <ListAPI catalog={reactList ?? []} />}
-            <Pagination page={page} onLoad={onLoad} />
+            <Pagination page={page} changePage={changePage} />
         </Struct>
     )
 }
@@ -61,9 +72,16 @@ export const getServerSideProps: ServerProps = async context => {
     try {
         const type = context.query?.type
         const page = (context.query?.page ?? '1') as string
+        const search = context.query?.search
+        const isSearch = search?.length
         let list = []
+
         switch (type) {
             case 'movies':
+                if (isSearch) {
+                    list = await getMovie(search as string, page)
+                    break
+                }
                 list = await getMovies(page)
                 break
             case 'series':

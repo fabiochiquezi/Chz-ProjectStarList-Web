@@ -9,20 +9,19 @@ const fileTMBDB = 't/p/w500'
 const moviesUpCommingTMDB = `${TMDB}/${versionTMDB}/movie/upcoming${keyTMDB}`
 const moviesTopRatedTMDB = `${TMDB}/${versionTMDB}/movie/top_rated${keyTMDB}`
 const seriesTopRatedTMDB = `${TMDB}/${versionTMDB}/tv/top_rated${keyTMDB}`
-const getMovieTMDB = (movie: string): string =>
-    `${TMDB}/${versionTMDB}/search/movie${keyTMDB}&query=${movie}`
+const movieTMDB = `${TMDB}/${versionTMDB}/search/movie${keyTMDB}`
 const getCoverTMDB = (path: string): string =>
     `${imagesTMDB}/${fileTMBDB}/${path}`
 
 export const uriTMDB = {
     movies: {
         upcoming: moviesUpCommingTMDB,
-        topRated: moviesTopRatedTMDB
+        topRated: moviesTopRatedTMDB,
+        movie: movieTMDB
     },
     series: {
         topRated: seriesTopRatedTMDB
     },
-    getMovie: getMovieTMDB,
     getCover: getCoverTMDB
 }
 

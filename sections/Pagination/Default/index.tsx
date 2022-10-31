@@ -1,25 +1,17 @@
-import { useRouter } from 'next/router'
-import React, { Dispatch, FC } from 'react'
+import React, { FC } from 'react'
 
 interface props {
     page: number
-    onLoad: () => void
+    changePage: (page: number) => void
 }
 
-const Pagination: FC<props> = ({ page, onLoad }) => {
-    const router = useRouter()
-    const routerPage = router.query.type
-
+const Pagination: FC<props> = ({ page, changePage }) => {
     return (
         <ul className="flex justify-center items-center">
             {page > 2 && (
                 <li
                     className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md simple-button mr-[24px] opacity-10"
-                    onClick={() => {
-                        onLoad()
-                        const newPage = 1
-                        router.push(`${routerPage}?page=${newPage}`)
-                    }}
+                    onClick={() => changePage(1)}
                 >
                     1
                 </li>
@@ -27,11 +19,7 @@ const Pagination: FC<props> = ({ page, onLoad }) => {
             {page > 1 && (
                 <li
                     className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl simple-button"
-                    onClick={() => {
-                        onLoad()
-                        const newPage = page - 1
-                        router.push(`${routerPage}?page=${newPage}`)
-                    }}
+                    onClick={() => changePage(page - 1)}
                 >
                     {page - 1}
                 </li>
@@ -45,24 +33,14 @@ const Pagination: FC<props> = ({ page, onLoad }) => {
             </li>
             <li
                 className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl ml-[16px] simple-button"
-                onClick={() => {
-                    onLoad()
-                    const newPage = page + 1
-                    router.push(`${routerPage}?page=${newPage}`)
-                    // setPage(newPage)
-                }}
+                onClick={() => changePage(page + 1)}
             >
                 {page + 1}
             </li>
             {page === 1 && (
                 <li
                     className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl ml-[20px] simple-button"
-                    onClick={() => {
-                        onLoad()
-                        const newPage = page + 2
-                        router.push(`${routerPage}?page=${newPage}`)
-                        // setPage(newPage)
-                    }}
+                    onClick={() => changePage(page + 2)}
                 >
                     {page + 2}
                 </li>
@@ -70,11 +48,7 @@ const Pagination: FC<props> = ({ page, onLoad }) => {
             {/* {page > 2 && ( */}
             <li
                 className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md simple-button ml-[24px] opacity-10"
-                onClick={() => {
-                    onLoad()
-                    const newPage = page + 10
-                    router.push(`${routerPage}?page=${newPage}`)
-                }}
+                onClick={() => changePage(page + 10)}
             >
                 {page + 10}
             </li>
