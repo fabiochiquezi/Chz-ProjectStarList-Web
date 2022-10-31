@@ -1,6 +1,6 @@
 import { DelProps } from './types'
 import { useRouter } from 'next/router'
-import { catalogI } from '../../../types/catalog'
+import { catalogI } from '../../../general/types/catalog'
 import SpinIcon2 from '../../../public/icons/SpinIcon2'
 import { useCatalogStore } from '../../../store/catalog'
 import { useAuth } from '../../../structure/Auth/types'

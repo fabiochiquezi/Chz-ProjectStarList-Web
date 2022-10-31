@@ -1,6 +1,6 @@
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'firebase/settings'
-import { catalogI } from '../../../types/catalog'
+import { catalogI } from '../../../general/types/catalog'
 
 interface returnData {
     list: catalogI[]

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { catalogI } from '../../../types/catalog'
+import { catalogI } from '../../../general/types/catalog'
 import { AddThumb } from 'components/Thumbs/Add'
 import { SimpleThumb } from '../../../components/Thumbs/Simple'
 import { useSetUtils } from 'structure/Utils/types'

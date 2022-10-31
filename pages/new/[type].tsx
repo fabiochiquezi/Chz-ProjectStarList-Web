@@ -1,7 +1,7 @@
 import Page404 from 'pages/404'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
-import { catalogI } from '../../types/catalog'
+import { catalogI } from '../../general/types/catalog'
 import { ListAPI } from 'sections/List/ListAPI'
 import { Struct } from 'structure/Struct'
 import { MenuListAPI } from 'sections/Menu/ListAPI'

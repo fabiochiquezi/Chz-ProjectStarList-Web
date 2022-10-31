@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { catalogI } from '../../../types/catalog'
+import { catalogI } from '../../../general/types/catalog'
 import { useCatalogStore } from 'store/catalog'
 import { AddThumb } from 'components/Thumbs/Add'
 import { useAuth } from 'structure/Auth/types'
