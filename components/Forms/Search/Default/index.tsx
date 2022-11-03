@@ -6,13 +6,15 @@ interface props {
     onChange: (e: any) => void
     className?: string
     callSearch: (search: string) => Promise<void>
+    callReset: () => void
 }
 
 const Search: React.FC<props> = ({
     value,
     onChange,
     className = '',
-    callSearch
+    callSearch,
+    callReset
 }) => {
     const inputRef = useRef<HTMLInputElement | null>(null)
     const [active, setActive] = useState(false)
@@ -21,6 +23,7 @@ const Search: React.FC<props> = ({
         const isEnterPressed = event.key === 'Enter'
         const isFocus = inputRef.current === document.activeElement
         if (value.length > 0 && isEnterPressed && isFocus) callSearch(value)
+        if (value.length === 0 && isEnterPressed && isFocus) callReset()
     }
 
     useEffect(() => {
@@ -57,6 +60,7 @@ const Search: React.FC<props> = ({
                         !inputRef.current.value.length
                     if (isCurrent) setActive(false)
                     if (value.length > 0) callSearch(value)
+                    // if (value.length === 0) callReset()
                 }}
                 data-testid="input"
             />

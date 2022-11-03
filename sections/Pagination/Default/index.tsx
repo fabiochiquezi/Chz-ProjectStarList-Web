@@ -49,14 +49,14 @@ const Pagination: FC<props> = ({ page, changePage, maxPages }) => {
                     {page + 2}
                 </li>
             )}
-            {page + 5 < maxPages && (
+            {/* {page + 5 < maxPages && (
                 <li
                     className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md simple-button ml-[24px] opacity-10"
                     onClick={() => changePage(page + 10)}
                 >
                     ..{page + 5}
                 </li>
-            )}
+            )} */}
         </ul>
     )
 }
