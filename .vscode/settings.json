@@ -24,10 +24,8 @@
         "jest.config.ts": true,
         "setupTests.ts": true,
         "todo.log.example.md": true,
-
         "pages/api": true,
         "pages/_document.tsx": true,
-
         "deploy": true,
         "coverage": true,
         "firebase.json":true,
@@ -56,7 +54,6 @@
         "todo.log.md": true,
         "public": true,
         "cypress": true,
-        //"general": true,
-        //"components": true
+        "api/keys.ts": true
     }
 }

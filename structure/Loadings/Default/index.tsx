@@ -1,4 +1,4 @@
-import SpinIcon2 from 'public/icons/SpinIcon2'
+import SpinIcon2 from '../../../public/icons/SpinIcon2'
 import React, { FC } from 'react'
 
 interface props {

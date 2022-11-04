@@ -16,6 +16,6 @@ describe('Header Login', () => {
         expect(logo).toBeInTheDocument()
         expect(signInBtn).toBeInTheDocument()
         expect(gitHubBtn).toBeInTheDocument()
-        expect(gitHubBtn.href).toBe('https://github.com/fabiochiquezi')
+        expect(gitHubBtn.href).toBe('https://github.com/fabiochiquezi/Chz-ProjectStarList-Web')
     })
 })

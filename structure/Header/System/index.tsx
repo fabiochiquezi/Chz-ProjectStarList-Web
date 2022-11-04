@@ -54,10 +54,6 @@ const Header: React.FC = () => {
                         className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-[0px] lg:w-auto lg:mx-0 lg:flex-row text-center"
                         id="menu-right"
                     >
-                        {/* <li className="flex items-center mb-7 justify-center lg:mb-0 w-full max-w-xs lg:w-auto">
-                            <SearchBar />
-                        </li> */}
-
                         <div
                             className="flex mt-8 lg:mt-0 items-center"
                             data-cy="rightMenu-structure"
