@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import { Footer } from '../Footer'
-import { Header } from '../Header/System'
+import { Footer } from '../../Footer'
+import { Header } from '../../Header/System'
 import { FC, ReactElement, ReactNode, useEffect } from 'react'
 import { LoadingStruct } from 'structure/Loadings/Default'
 import { useSetUtils, useUtils } from 'structure/Utils/types'

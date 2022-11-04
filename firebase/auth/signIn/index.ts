@@ -3,38 +3,19 @@ import { auth, db } from '../../settings'
 import { getCatalogList } from 'firebase/catalog/getList'
 import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
 
-interface resp {
-    ok: boolean
-    user: null | User
-    errors: string[]
-}
+const signIn = async (): Promise<User> => {
+    const provider = new GoogleAuthProvider()
+    const authUser = await signInWithPopup(auth, provider)
+    const { displayName, email, uid } = authUser.user
 
-const signInFire = async (): Promise<resp> => {
-    try {
-        const provider = new GoogleAuthProvider()
-        const authUser = await signInWithPopup(auth, provider)
-        const { displayName, email, uid } = authUser.user
-
-        const getUser = await getCatalogList('users', uid)
-        // if (getUser == null) {
-        //     await setDoc(doc(db, 'users', uid), { displayName, email })
-        //     await setDoc(doc(db, 'doing', uid), { list: [] })
-        //     await setDoc(doc(db, 'illdo', uid), { list: [] })
-        //     await setDoc(doc(db, 'did', uid), { list: [] })
-        // }
-        return {
-            ok: true,
-            user: authUser.user,
-            errors: []
-        }
-    } catch (e) {
-        console.log(e, 'firebase login error')
-        return {
-            ok: false,
-            user: null,
-            errors: ['Something went wrong']
-        }
+    const getUser = await getCatalogList('users', uid)
+    if (getUser == null) {
+        await setDoc(doc(db, 'users', uid), { displayName, email })
+        await setDoc(doc(db, 'doing', uid), { list: [] })
+        await setDoc(doc(db, 'illdo', uid), { list: [] })
+        await setDoc(doc(db, 'did', uid), { list: [] })
     }
+    return authUser.user
 }
 
-export { signInFire }
+export { signIn }

@@ -1,7 +1,7 @@
 import Page404 from 'pages/404'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
-import { Struct } from 'structure/Struct'
+import { Struct } from 'structure/Struct/System'
 import { DataTMDBT, MovieT } from 'types/TMDB'
 import { ListAPI } from 'sections/List/ListAPI'
 import MenuListAPI from 'sections/Menu/ListAPI'

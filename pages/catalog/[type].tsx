@@ -1,14 +1,20 @@
 import type { NextPage } from 'next'
 import { getAuth } from 'firebase/auth'
 import { useRouter } from 'next/router'
-import { Struct } from 'structure/Struct'
+import { Struct } from 'structure/Struct/System'
 import { ErrorSection } from 'sections/Error'
 import { useCatalogStore } from 'store/catalog'
-import React, { useEffect, useState } from 'react'
+import React, { ReactElement, ReactNode, useEffect, useState } from 'react'
 import { DragAndDropList } from 'sections/List/Drag'
 import { getCatalogList } from 'firebase/catalog/getList'
 import { getTitle } from 'sections/List/components/getTitle'
 import { useSetUtils } from 'structure/Utils/types'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
+const DnDProvide = ({ children }: { children: ReactNode }): ReactElement => (
+    <DndProvider backend={HTML5Backend}>{children}</DndProvider>
+)
 
 const Catalog: NextPage = () => {
     const router = useRouter()
@@ -31,12 +37,14 @@ const Catalog: NextPage = () => {
 
     if (!list) return <ErrorSection />
     return (
-        <Struct
-            titleSEO="Star List | My List"
-            descriptionSEO="See all of your memories about movies, series, animations, books and games"
-        >
-            <DragAndDropList title={title} description={subtitle} />
-        </Struct>
+        <DnDProvide>
+            <Struct
+                titleSEO="Star List | My List"
+                descriptionSEO="See all of your memories about movies, series, animations, books and games"
+            >
+                <DragAndDropList title={title} description={subtitle} />
+            </Struct>
+        </DnDProvide>
     )
 }
 

@@ -1,12 +1,12 @@
 {
     "files.exclude": {
+        // Config
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
         "**/Thumbs.db": true,
-
         ".next": true,
         ".eslintrc.json": true,
         "next-env.d.ts": true,
@@ -25,7 +25,6 @@
         "setupTests.ts": true,
         "todo.log.example.md": true,
         "pages/api": true,
-        "pages/_document.tsx": true,
         "deploy": true,
         "coverage": true,
         "firebase.json":true,
@@ -37,7 +36,8 @@
         "ui-debug.log": true,
         "emulators-data": true,
         "api/keys.example.ts": true,
-
+        "todo.log.md": true,
+        // Cypress
         "cypress.config.ts": true,
         "cypress/downloads": true,
         "cypress/support/e2e.ts": true,
@@ -49,9 +49,9 @@
         "cypress/.eslintrc.json": true,
         "cypress/support/index.d.ts": true,
         "serviceAccount.json": true,
-
-        // Style 01
-        "todo.log.md": true,
+        // Project
+        "pages/_document.tsx": true,
+        "pages/_app.tsx": true,
         "public": true,
         "cypress": true,
         "api/keys.ts": true

@@ -9,6 +9,7 @@ interface props {
 
 const Alert: React.FC<props> = ({ message = '', state = 0, closeAlert }) => {
     let stateClass = ''
+
     switch (state) {
         case 1:
             stateClass = 'bg-green-700'

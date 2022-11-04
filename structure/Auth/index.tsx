@@ -1,51 +1,51 @@
 import { User } from 'firebase/auth'
-import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { noAuthRequired } from 'pages/_app'
-import { signInFire } from '../../firebase/auth/signIn'
-import { signOutFire } from '../../firebase/auth/signOut'
+import { publicRoutes } from 'general/routes'
+import { FC, useEffect, useState } from 'react'
 import { useCatalogStore } from '../../store/catalog'
+import { authState } from '../../firebase/auth/authState'
 import { AuthContext, AuthUpdateContext, props } from './types'
-import { authStateFirebase } from '../../firebase/auth/authState'
+import { signIn as signInFirebase } from '../../firebase/auth/signIn'
+import { signOut as signOutFirebase } from '../../firebase/auth/signOut'
 
-const AuthProvider: React.FC<props> = ({ children }) => {
+const AuthProvider: FC<props> = ({ children }) => {
     const store = useCatalogStore(state => state)
     const [user, setUser] = useState<User | null>(null)
     const [loading, setLoading] = useState(false)
     const router = useRouter()
-    const isPublic = noAuthRequired.includes(router.pathname)
+    const isPublic = publicRoutes.includes(router.pathname)
 
-    function rules(): void {
-        authStateFirebase(async (userFirebase: User) => {
-            if (user == null && userFirebase) {
-                setUser(userFirebase)
-                return
-            }
-            if (!isPublic && user == null && !userFirebase) {
-                await router.push('/')
-            }
+    useEffect(() => {
+        authState(async (userFirebase: User) => {
+            const nullUserButHas = user === null && userFirebase
+            if (nullUserButHas) setUser(userFirebase)
+
+            const noUserAndPrivate = !isPublic && user === null && !userFirebase
+            if (noUserAndPrivate) await router.push('/')
         })
-    }
-    rules()
+    }, [])
 
     async function signIn(): Promise<void> {
-        if (loading) return
-        setLoading(true)
-        const { user, ok, errors } = await signInFire()
-        if (ok) {
+        try {
+            if (loading) return
+            setLoading(true)
+            const user = await signInFirebase()
             setUser(user)
             await router.push('/catalog/doing')
-            return
+        } catch (e) {
+            alert('Something went wrong')
+        } finally {
+            setLoading(false)
         }
-        if (!ok) alert('Something went wrong')
-        setLoading(false)
     }
 
     async function signOut(): Promise<void> {
         try {
             setUser(null)
-            await signOutFire()
+            await signOutFirebase()
             store.resetData()
+        } catch (e) {
+            alert('Something went wrong')
         } finally {
             setLoading(false)
         }
