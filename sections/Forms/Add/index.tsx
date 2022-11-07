@@ -26,7 +26,7 @@ const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
 
     function handleSubmit(data: dataSubmit): void {
         try {
-            if (user == null) throw new Error('User not identified')
+            if (user === null) throw new Error('User not identified')
             if (loading) return
 
             setLoading(true)

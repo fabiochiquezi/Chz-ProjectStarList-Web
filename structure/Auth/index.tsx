@@ -34,6 +34,7 @@ const AuthProvider: FC<props> = ({ children }) => {
             await router.push('/catalog/doing')
         } catch (e) {
             alert('Something went wrong')
+            console.log(e, 'error')
         } finally {
             setLoading(false)
         }

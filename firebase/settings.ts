@@ -16,13 +16,16 @@ export const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
 export const db = getFirestore(app)
 
-// Doesn't work with cypress well
-const isDevMode =
-    typeof window !== 'undefined' && process.env.NODE_ENV === 'development'
-
-if (isDevMode) {
-    // if (window.Cypress === undefined) {
-    // connectFirestoreEmulator(db, 'localhost', 8080)
-    // connectAuthEmulator(auth, 'http://localhost:9099')
-    // }
+// Emulator doesn't work with cypress well
+declare global {
+    interface Window {
+        Cypress: any
+    }
+}
+const isDevMode = process.env.NODE_ENV === 'development'
+const isWindowDefinned = typeof window !== 'undefined'
+const isntCypress = isWindowDefinned && window.Cypress === undefined
+if (isDevMode && isntCypress) {
+    connectFirestoreEmulator(db, 'localhost', 8080)
+    connectAuthEmulator(auth, 'http://localhost:9099')
 }
