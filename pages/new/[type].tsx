@@ -2,7 +2,7 @@ import Page404 from 'pages/404'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
 import { Struct } from 'structure/Struct/System'
-import { DataTMDBT, MovieT } from 'types/TMDB'
+import { Data as DataTMDB, Movie, Serie } from 'types/TMDB'
 import { ListAPI } from 'sections/List/ListAPI'
 import MenuListAPI from 'sections/Menu/ListAPI'
 import { Pagination } from 'sections/Pagination/Default'
@@ -18,7 +18,7 @@ import {
 import { Response } from 'types/general'
 
 interface Data {
-    data: Response<DataTMDBT>
+    data: Response<DataTMDB<Movie | Serie>>
 }
 
 const New: FC<Data> = ({ data }) => {
@@ -35,7 +35,7 @@ const New: FC<Data> = ({ data }) => {
     const routerSearch = router.query.search
     const queryPage = router.query.page
     const page = queryPage ? parseInt(queryPage as string) : 1
-    const [list, setList] = useState<MovieT[]>()
+    const [list, setList] = useState<Movie[]>()
     const [load, setLoad] = useState(false)
 
     useEffect(() => {
@@ -126,14 +126,13 @@ async function reqDefault(type: string, page: string): Promise<any> {
     return list
 }
 
-type ServerProps = GetServerSideProps<{ data: Response<DataTMDBT> }>
+type ServerProps = GetServerSideProps
 export const getServerSideProps: ServerProps = async context => {
     const type = context.query?.type as string
     const page = (context.query?.page ?? '1') as string
     const search = context.query?.search as string
     const isSearch = search?.length
-
-    const data: DataTMDBT = { genres: [], list: null }
+    const data = { genres: [], list: null }
     // data.genres = await getGenreMovies()
 
     try {

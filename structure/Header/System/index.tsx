@@ -2,8 +2,8 @@ import Link from 'next/link'
 import Logo from '../../../public/Logo'
 import React, { useEffect, useState } from 'react'
 import { Menu } from '../../../structure/Menu/Default'
-import { MobileButton } from '../../../components/Buttons/Mobile'
 import { useAuth, useSetAuth } from '../../Auth/types'
+import { MobileButton } from '../../../components/Buttons/Mobile'
 
 const Header: React.FC = () => {
     const { user } = useAuth()

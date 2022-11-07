@@ -1,7 +1,7 @@
 import create from 'zustand'
 import { catalogI } from '../../general/types/catalog'
 
-interface CatalogState {
+export interface CatalogState {
     data: any
     setData: (newData: catalogI[], type: string) => void
     addItem: (item: catalogI, type: string) => void

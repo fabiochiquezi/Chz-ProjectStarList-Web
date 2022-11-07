@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router'
 import { catalogI } from '../../../general/types/catalog'
 import { useCatalogStore } from 'store/catalog'
-import { AddThumb } from 'components/Thumbs/Add'
 import { useAuth } from 'structure/Auth/types'
 import { LoadButton } from 'components/Buttons/Load'
 import { Title, TitleEmpty } from '../components/Title'
@@ -31,6 +30,7 @@ const DragAndDropList: React.FC<props> = ({ title, description }) => {
     const { modal, popSave, alert } = useSetUtils()
     const [limit, setLimit] = useState(15)
     const max = store.data[type] ? store.data[type].length : 0
+    const router = useRouter()
 
     const TitleDefault = <Title titleH1={title} description={description} />
     const TitlePage = (): ReactElement => (!max ? TitleEmpty : TitleDefault)
@@ -76,19 +76,20 @@ const DragAndDropList: React.FC<props> = ({ title, description }) => {
     )
 
     return (
-        <main className={containerClass} data-cy="section-list">
-            <TitlePage />
-            <AddThumb onClick={() => modal.openAddItem()} />
+        <div>
+            <main className={containerClass} data-cy="section-list">
+                <TitlePage />
 
-            {store.data[type].map((card: catalogI, i: number) => {
-                if (i >= limit) return null
-                return renderCard(card, i)
-            })}
+                {store.data.doing.map((card: catalogI, i: number) => {
+                    if (i >= limit) return null
+                    return renderCard(card, i)
+                })}
 
-            {limit < max && store.data[type].length && (
-                <LoadButton onClick={turnUpLimit} />
-            )}
-        </main>
+                {limit < max && store.data[type].length && (
+                    <LoadButton onClick={turnUpLimit} />
+                )}
+            </main>
+        </div>
     )
 }
 

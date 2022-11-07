@@ -7,6 +7,7 @@ import { authState } from '../../firebase/auth/authState'
 import { AuthContext, AuthUpdateContext, props } from './types'
 import { signIn as signInFirebase } from '../../firebase/auth/signIn'
 import { signOut as signOutFirebase } from '../../firebase/auth/signOut'
+import { getUserName } from 'helpers/userName'
 
 const AuthProvider: FC<props> = ({ children }) => {
     const store = useCatalogStore(state => state)
@@ -31,7 +32,7 @@ const AuthProvider: FC<props> = ({ children }) => {
             setLoading(true)
             const user = await signInFirebase()
             setUser(user)
-            await router.push('/catalog/doing')
+            await router.push(`/${getUserName(user.email as string)}`)
         } catch (e) {
             alert('Something went wrong')
             console.log(e, 'error')

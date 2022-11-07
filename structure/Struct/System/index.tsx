@@ -4,6 +4,7 @@ import { Header } from '../../Header/System'
 import { FC, ReactElement, ReactNode, useEffect } from 'react'
 import { LoadingStruct } from 'structure/Loadings/Default'
 import { useSetUtils, useUtils } from 'structure/Utils/types'
+import { useRouter } from 'next/router'
 
 interface props {
     children: ReactNode
@@ -19,10 +20,11 @@ const Struct: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
     const cssMargin = 'pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36'
     const Content = <div className={cssMargin}>{children}</div>
     const Core = (): ReactElement => (contentLoadState ? Load : Content)
+    const router = useRouter()
 
     useEffect(() => {
         setContentLoadState(false)
-    }, [])
+    }, [router])
 
     return (
         <div>

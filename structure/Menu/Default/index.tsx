@@ -2,6 +2,8 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { Dispatch, FC, SetStateAction } from 'react'
 import { useSetUtils } from '../../../structure/Utils/types'
+import { useAuth } from 'structure/Auth/types'
+import { getUserName } from 'helpers/userName'
 
 interface props {
     setMenu: Dispatch<SetStateAction<boolean>>
@@ -12,6 +14,7 @@ const AClass =
     'w-full lg:w-auto py-4 inline-block md:py-10 lg:py-0 simple-button'
 
 const Menu: FC<props> = ({ setMenu }) => {
+    const { user } = useAuth()
     const router = useRouter()
     const { setContentLoadState } = useSetUtils()
     const pathname = router.pathname
@@ -36,10 +39,10 @@ const Menu: FC<props> = ({ setMenu }) => {
                     </Link>
                 </li>
                 <li className={LiClass}>
-                    <Link href="/catalog/doing">
+                    <Link href={`/${getUserName(user?.email as string)}`}>
                         <a
                             className={`md:text-3xl lg:text-[14px] lg:mr-6 ${AClass} ${
-                                pathname === '/catalog/[type]' && activeMenuItem
+                                router.route === '/[user]' && activeMenuItem
                             }`}
                             onClick={() => {
                                 setContentLoadState(true)
