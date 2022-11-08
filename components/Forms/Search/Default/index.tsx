@@ -1,4 +1,4 @@
-import SearchIcon from 'public/icons/SearchIcon'
+import SearchIcon from '../../../../general/assets/icons/SearchIcon'
 import React, { useEffect, useRef, useState } from 'react'
 
 interface props {
@@ -64,7 +64,8 @@ const Search: React.FC<props> = ({
                 }}
                 data-testid="input"
             />
-            <div className="absolute right-0 top-1">
+
+            <div className="absolute right-0 top-1" data-testid="icon">
                 <SearchIcon />
             </div>
         </div>

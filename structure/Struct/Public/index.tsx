@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { Footer } from 'structure/Footer'
 import React, { FC, ReactNode } from 'react'
-import { Header } from '../../../structure/Header/Login'
+import { Header } from '../../../structure/Header/Public'
 
 interface props {
     children: ReactNode

@@ -4,18 +4,18 @@ import { useRouter } from 'next/router'
 import { validation } from './validation'
 import { AddProps, dataSubmit } from './types'
 import React, { useEffect, useRef, useState } from 'react'
-import { useCatalogStore } from '../../../store/catalog'
+
 import { useAuth } from '../../../structure/Auth/types'
 
-import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
 import { keyDownBtnTrigger } from '../../../general/helpers/keyDownBtnTrigger'
 import { useSetUtils } from 'structure/Utils/types'
+import { ModalForm } from 'structure/Utils/Modal/Form/ModalWrap'
 
 const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
-    const store = useCatalogStore()
+    // const store = useCatalogStore()
     const { query } = useRouter()
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
@@ -30,9 +30,9 @@ const AddItem: React.FC<AddProps> = ({ setCatalogList }) => {
             if (loading) return
 
             setLoading(true)
-            const newList = [...store.data[state], { ...data }]
-            setCatalogList(state, user.uid, newList)
-            store.addItem(data, state)
+            // const newList = [...store.data[state], { ...data }]
+            // setCatalogList(state, user.uid, newList)
+            // store.addItem(data, state)
             modal.close()
             popSave.open()
         } catch (e) {

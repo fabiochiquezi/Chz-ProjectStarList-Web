@@ -7,8 +7,8 @@ import catalog from '../general/data/catalog.json'
 
 const Home: NextPage = () => (
     <Struct
-        title="Star List | Home"
-        description="Create your album of memories about movies, series, animations, books and games"
+        titleSEO="Star List | Home"
+        descriptionSEO="Create your album of memories about movies, series, animations, books and games"
     >
         <Hero
             title="Your list of great works souvenirs"

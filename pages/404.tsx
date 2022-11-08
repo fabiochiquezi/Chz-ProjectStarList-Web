@@ -3,7 +3,10 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { Footer } from '../structure/Footer'
 import { useAuth } from 'structure/Auth/types'
-import { Header, Header as HeaderLogin } from '../structure/Header/System'
+import {
+    Header as HeaderPrivate,
+    Header as HeaderPublic
+} from '../structure/Header/Private'
 
 const HeadData = (): React.ReactElement => (
     <Head>
@@ -15,7 +18,7 @@ const Page404: React.FC = () => {
     const { user } = useAuth()
     const homeLink = user != null ? '/catalog/doing' : '/'
     const HeaderPage = (): React.ReactElement => {
-        return user != null ? <Header /> : <HeaderLogin />
+        return user != null ? <HeaderPrivate /> : <HeaderPublic />
     }
 
     return (

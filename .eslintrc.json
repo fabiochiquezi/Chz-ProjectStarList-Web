@@ -22,9 +22,9 @@
         "react",
         "jest"
     ],
+
     "rules": {
-        // ----- Mine
-        // ESLint
+        // Mine
         "indent": "off",
         "multiline-ternary": "off",
         // TS
@@ -36,13 +36,11 @@
         "@typescript-eslint/strict-boolean-expressions": "off",
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-unused-vars": ["off"],
-
         // Jest
-        "jest/no-disabled-tests": "warn",
+        "jest/no-disabled-tests": "off",
         "jest/no-identical-title": "error",
         "jest/prefer-to-have-length": "warn",
         "jest/valid-expect": "error",
-
         // ----- Good Practices
         //Avoid bugs
         "no-undef": "error",

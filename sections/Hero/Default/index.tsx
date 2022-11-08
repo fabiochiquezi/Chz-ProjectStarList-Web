@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Hero.module.css'
 import { useSetAuth } from '../../../structure/Auth/types'
-import { SignInButton02 } from '../../../components/Buttons/SignIn'
+import { SignInButton02 } from './SignInButton02'
 
 interface props {
     title: string

@@ -1,4 +1,4 @@
-import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import SpinIcon from '../../../general/assets/icons/SpinIcon'
 import React, { FC } from 'react'
 
 interface props {
@@ -11,7 +11,7 @@ const LoadingStruct: FC<props> = ({ height = 'h-screen' }) => (
         data-cy="load-page"
         data-testid="load-structure"
     >
-        <SpinIcon2 width={32} height={32} color="#FB923C" />
+        <SpinIcon width={32} height={32} color="#FB923C" />
     </div>
 )
 

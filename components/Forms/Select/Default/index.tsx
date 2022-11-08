@@ -7,7 +7,6 @@ interface props {
     placeholder?: string
     name: string
     onChange: any
-    value: any
     error: any
     defaultValue: string
 }
@@ -19,7 +18,6 @@ const Select: React.FC<props> = ({
     placeholder = '',
     name,
     onChange,
-    value,
     error,
     defaultValue = ''
 }) => {

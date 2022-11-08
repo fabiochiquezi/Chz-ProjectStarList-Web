@@ -2,10 +2,10 @@ import { useRouter } from 'next/router'
 import { catalogI } from '../../../general/types/catalog'
 import { useCatalogStore } from 'store/catalog'
 import { useAuth } from 'structure/Auth/types'
-import { LoadButton } from 'components/Buttons/Load'
+import { LoadButton } from 'sections/List/components/Load'
 import { Title, TitleEmpty } from '../components/Title'
 // import { setCatalogList } from 'firebase/catalog/setList'
-import { DraggableThumb } from 'components/Thumbs/Draggable'
+import { DraggableThumb } from 'sections/List/Drag/Draggable'
 import React, {
     Dispatch,
     ReactElement,

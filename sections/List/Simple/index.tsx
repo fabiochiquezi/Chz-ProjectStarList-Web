@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { SimpleThumb } from '../../../components/Thumbs/Simple'
+import { SimpleThumb } from '../components/Simple'
 import { catalogI } from '../../../general/types/catalog'
 import { Title } from '../components/Title'
 

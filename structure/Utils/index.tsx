@@ -1,12 +1,12 @@
+import PopSave from './PopSave'
+import { Alert } from './Alert'
+import { Modal } from './Modal/Default'
 import React, { useState } from 'react'
-import PopSave from 'components/Pop/Save'
 import { getAlertFns } from './Alert/class'
 import { getModalFns } from './Modal/class'
 import { getPopSaveFns } from './PopSave/class'
 import { modalInitialState } from './Modal/state'
 import { alertInitialState } from './Alert/state'
-import { Modal } from '../../components/Modals/Default'
-import { Alert } from '../../components/Alerts/Default'
 import { SetUtilsContext, UtilsContext } from './types'
 
 interface props {

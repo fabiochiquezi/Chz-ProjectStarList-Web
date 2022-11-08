@@ -4,22 +4,23 @@ import { props } from './types'
 import { useRouter } from 'next/router'
 import { validation } from './validation'
 import React, { FC, useRef, useState } from 'react'
-import SpinIcon2 from '../../../public/icons/SpinIcon2'
-import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
+import SpinIcon from '../../../general/assets/icons/SpinIcon'
+
 import { useAuth } from '../../../structure/Auth/types'
-import { useCatalogStore } from '../../../store/catalog'
+// import { useCatalogStore } from '../../../store/catalog'
 import { useSetUtils } from 'structure/Utils/types'
+import { ModalForm } from 'structure/Utils/Modal/Form/ModalWrap'
 
 const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
-    const store = useCatalogStore()
+    // const store = useCatalogStore()
     const { query } = useRouter()
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
 
-    const Spin = <SpinIcon2 className="positive -top-1" />
+    const Spin = <SpinIcon className="positive -top-1" />
     const BtnSend = !loading ? <span>Update</span> : Spin
 
     function handleUpdate(data: { thumb: string; state: string }): void {
@@ -32,21 +33,21 @@ const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
             const isTheSameTable = oldTable === newTable
 
             if (!isTheSameTable) {
-                const oldTableData = store.data[state]
-                const newTableData = store.data[data.state]
+                // const oldTableData = store.data[state]
+                // const newTableData = store.data[data.state]
                 const ifHasTheSameIndex = (_: any, index: number): boolean =>
                     index !== dataItem.index
-                const changeOldTable = oldTableData.filter(ifHasTheSameIndex)
-                const changeNewTable = [...newTableData, data]
+                // const changeOldTable = oldTableData.filter(ifHasTheSameIndex)
+                // const changeNewTable = [...newTableData, data]
 
-                store.setData(changeOldTable, state)
-                store.setData(changeNewTable, data.state)
-                setCatalogList(state, user.uid, changeOldTable)
-                setCatalogList(data.state, user.uid, changeNewTable)
+                // store.setData(changeOldTable, state)
+                // store.setData(changeNewTable, data.state)
+                // setCatalogList(state, user.uid, changeOldTable)
+                // setCatalogList(data.state, user.uid, changeNewTable)
             } else {
-                store.updateItem(dataItem.index, data, state)
-                const newData = [...store.data[state]]
-                setCatalogList(state, user.uid, newData)
+                // store.updateItem(dataItem.index, data, state)
+                // const newData = [...store.data[state]]
+                // setCatalogList(state, user.uid, newData)
             }
 
             setLoading(true)

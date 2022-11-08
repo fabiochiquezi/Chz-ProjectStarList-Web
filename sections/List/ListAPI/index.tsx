@@ -1,30 +1,27 @@
 import React, { FC } from 'react'
-import { Thumb } from 'components/Thumbs/Api'
-import { MovieT } from 'types/TMDB'
+import { Movie } from 'types/TMDB'
+import { Title } from './components/Title'
+import { Thumb } from 'sections/List/ListAPI/components/Thumb'
 
 interface props {
-    catalog: MovieT[]
+    catalog: Movie[]
     title: string
 }
 
-const containerClass = `container mx-auto px-4 grid
-sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
-justify-items-center lg:justify-items-end 2xl:justify-items-center`
-
 const ListAPI: FC<props> = ({ catalog, title }) => {
-    // const { modal } = useSetUtils()
     const limit = 20
 
     return (
-        <main className={containerClass} data-cy="section-list">
-            {/* <AddThumb onClick={() => modal.openAddItem()} /> */}
-            <h1 className="lg:col-span-1 self-center mb-[64px] text-center">
-                <span className="text-[44px] lg:text-[42px] xl:text-[46px] 2xl:text-[44px] leading-tight lg:leading-normal dark:text-orange-600 font-bold uppercase">
-                    {title}
-                </span>
-                <br />
-                <span>+ to your list</span>
-            </h1>
+        <main
+            data-cy="section-list"
+            className="
+                container mx-auto px-4 grid
+                sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
+                justify-items-center lg:justify-items-end 2xl:justify-items-center
+            "
+        >
+            <Title title={title} subtitle="add + to your list" />
+
             {catalog?.map(({ thumb, title }, index) => {
                 if (index >= limit) return null
                 return (

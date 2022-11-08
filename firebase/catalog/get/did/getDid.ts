@@ -1,6 +1,6 @@
-import { db } from 'firebase/settings'
-import { collection, getDocs } from 'firebase/firestore'
+import { db } from '../../../settings'
 import { Movie, Serie } from 'types/TMDB'
+import { collection, getDocs } from 'firebase/firestore'
 
 export async function getDid(userName: string): Promise<Array<Movie | Serie>> {
     const list: any[] = []

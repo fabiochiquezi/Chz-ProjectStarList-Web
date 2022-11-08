@@ -1,23 +1,24 @@
 import { DelProps } from './types'
 import { useRouter } from 'next/router'
 import { catalogI } from '../../../general/types/catalog'
-import SpinIcon2 from '../../../public/icons/SpinIcon2'
-import { useCatalogStore } from '../../../store/catalog'
+import SpinIcon from '../../../general/assets/icons/SpinIcon'
+// import { useCatalogStore } from '../../../store/catalog'
 import { useAuth } from '../../../structure/Auth/types'
-import { ModalForm } from '../../../components/Modals/Form/ModalWrap'
+
 import { keyDownBtnTrigger } from '../../../general/helpers/keyDownBtnTrigger'
 import React, { FC, ReactElement, useEffect, useRef, useState } from 'react'
 import { useSetUtils } from 'structure/Utils/types'
+import { ModalForm } from 'structure/Utils/Modal/Form/ModalWrap'
 
 const DeleteItem: FC<DelProps> = ({ dataItem, setCatalogList }) => {
     const { modal, alert, popSave } = useSetUtils()
     const [loading, setLoading] = useState(false)
     const { user } = useAuth()
-    const store = useCatalogStore()
+    // const store = useCatalogStore()
     const { query } = useRouter()
     const state = query.type as string
     const btnRef = useRef<HTMLButtonElement>(null)
-    const Spin = <SpinIcon2 className="positive -top-1" />
+    const Spin = <SpinIcon className="positive -top-1" />
     const BtnSend = (): ReactElement => (!loading ? <span>Delete</span> : Spin)
 
     useEffect(() => {
@@ -31,9 +32,9 @@ const DeleteItem: FC<DelProps> = ({ dataItem, setCatalogList }) => {
 
             setLoading(true)
             popSave.open()
-            store.deleteItem(dataItem.index, state)
-            const newData = [...store.data[state]] as catalogI[]
-            setCatalogList(state, user.uid, newData)
+            // store.deleteItem(dataItem.index, state)
+            // const newData = [...store.data[state]] as catalogI[]
+            // setCatalogList(state, user.uid, newData)
             modal.close()
         } catch (e) {
             console.log(e, 'error')

@@ -1,6 +1,6 @@
 import { FormikProps } from 'formik'
 import React, { ReactElement, RefObject } from 'react'
-import SpinIcon2 from '../../../public/icons/SpinIcon2'
+import SpinIcon from '../../../general/assets/icons/SpinIcon'
 import { Input } from '../../../components/Forms/Inputs/Default'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Fields: React.FC<Props> = ({ formik, loading, btnRef }) => {
-    const Spin = <SpinIcon2 className="positive -top-1" />
+    const Spin = <SpinIcon className="positive -top-1" />
     const BtnSend = (): ReactElement => (!loading ? <span>Send</span> : Spin)
 
     return (
