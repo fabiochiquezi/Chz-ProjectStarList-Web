@@ -5,16 +5,16 @@ import { Header } from '../../../structure/Header/Login'
 
 interface props {
     children: ReactNode
-    title: string
-    description: string
+    titleSEO: string
+    descriptionSEO: string
 }
 
-const Struct: FC<props> = ({ children, title, description }) => {
+const Struct: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
     return (
         <div>
             <Head>
-                <title>{title}</title>
-                <meta name="description" content={description} />
+                <title>{titleSEO}</title>
+                <meta name="description" content={descriptionSEO} />
             </Head>
             <Header />
             <div className="mb-48 sm:mb-36 lg:mb-24">{children}</div>

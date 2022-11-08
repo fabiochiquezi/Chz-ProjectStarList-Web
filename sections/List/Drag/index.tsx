@@ -4,14 +4,23 @@ import { useCatalogStore } from 'store/catalog'
 import { useAuth } from 'structure/Auth/types'
 import { LoadButton } from 'components/Buttons/Load'
 import { Title, TitleEmpty } from '../components/Title'
-import { setCatalogList } from 'firebase/catalog/setList'
+// import { setCatalogList } from 'firebase/catalog/setList'
 import { DraggableThumb } from 'components/Thumbs/Draggable'
-import React, { ReactElement, useCallback, useState } from 'react'
+import React, {
+    Dispatch,
+    ReactElement,
+    SetStateAction,
+    useCallback,
+    useState
+} from 'react'
 import { useSetUtils } from 'structure/Utils/types'
+import { Movie, Serie } from 'types/TMDB'
 
 interface props {
     title: string
     description: string
+    list: Array<Movie | Serie>
+    setList: Dispatch<SetStateAction<Array<Movie | Serie>>>
 }
 
 const containerClass = `
@@ -22,14 +31,18 @@ const containerClass = `
     2xl:justify-items-center
 `
 
-const DragAndDropList: React.FC<props> = ({ title, description }) => {
-    const store = useCatalogStore(state => state)
+const DragAndDropList: React.FC<props> = ({
+    title,
+    description,
+    list,
+    setList
+}) => {
     const { query } = useRouter()
     const { user } = useAuth()
     const type = query.type as string
     const { modal, popSave, alert } = useSetUtils()
     const [limit, setLimit] = useState(15)
-    const max = store.data[type] ? store.data[type].length : 0
+    const max = list.length ?? 0
     const router = useRouter()
 
     const TitleDefault = <Title titleH1={title} description={description} />
@@ -44,15 +57,13 @@ const DragAndDropList: React.FC<props> = ({ title, description }) => {
 
         try {
             popSave.open()
-            const newData = store.data[type].map(
-                (item: catalogI, index: number) => {
-                    if (index === dragIndex) return store.data[type][hoverIndex]
-                    if (index === hoverIndex) return store.data[type][dragIndex]
-                    return item
-                }
-            )
-            store.setData(newData, type)
-            setCatalogList(type, user.uid, newData)
+            const newData = list.map((item, index) => {
+                if (index === dragIndex) return list[hoverIndex]
+                if (index === hoverIndex) return list[dragIndex]
+                return item
+            })
+            setList(newData)
+            // setCatalogList(type, user.uid, newData)
         } catch (e) {
             console.log(e, 'error')
             alert.open('Sorry, but something went wrong. Try again', 2)
@@ -80,12 +91,12 @@ const DragAndDropList: React.FC<props> = ({ title, description }) => {
             <main className={containerClass} data-cy="section-list">
                 <TitlePage />
 
-                {store.data.doing.map((card: catalogI, i: number) => {
+                {list.map((card: catalogI, i: number) => {
                     if (i >= limit) return null
                     return renderCard(card, i)
                 })}
 
-                {limit < max && store.data[type].length && (
+                {limit < max && list.length && (
                     <LoadButton onClick={turnUpLimit} />
                 )}
             </main>

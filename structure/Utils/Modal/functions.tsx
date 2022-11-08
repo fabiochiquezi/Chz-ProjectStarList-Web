@@ -3,7 +3,7 @@ import { AddItem } from '../../../sections/Forms/Add'
 import { DeleteItem } from '../../../sections/Forms/Del'
 import { modalInitialState, setModalState } from './state'
 import { UpdateItem } from '../../../sections/Forms/Upd'
-import { setCatalogList } from '../../../firebase/catalog/setList'
+// import { setCatalogList } from '../../../firebase/catalog/setList'
 
 export const closeModal = (setModal: setModalState) => () => {
     setModal(modalInitialState)
@@ -44,14 +44,14 @@ export const getModal = (
             {name === 'AlterItem' && (
                 <UpdateItem
                     dataItem={data as { index: number; thumb: string }}
-                    setCatalogList={setCatalogList}
+                    setCatalogList={() => {}}
                 />
             )}
-            {name === 'AddItem' && <AddItem setCatalogList={setCatalogList} />}
+            {name === 'AddItem' && <AddItem setCatalogList={() => {}} />}
             {name === 'DeleteItem' && (
                 <DeleteItem
                     dataItem={data as { index: number; thumb: string }}
-                    setCatalogList={setCatalogList}
+                    setCatalogList={() => {}}
                 />
             )}
         </div>

@@ -29,7 +29,7 @@ const Title: React.FC<props> = ({ titleH1, description }) => (
 const TitleEmpty = (
     <Title
         titleH1="YOUR LIST IS EMPTY"
-        description="Start adding movies, books... Right now!"
+        description='Start adding movies, books... Go at the menu to "New" right now!'
     />
 )
 

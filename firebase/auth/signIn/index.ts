@@ -1,9 +1,9 @@
 import { auth } from '../../settings'
-import { addUser } from 'firebase/users/addUser'
-import { newCatalog } from 'firebase/catalog/post/newCatalog'
-import { getUser as getUserFirebase } from 'firebase/users/getUser'
-import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
+import { addUser } from 'firebase/users/add'
 import { getUserName } from 'helpers/userName'
+import { newCatalog } from 'firebase/catalog/new'
+import { getUser as getUserFirebase } from 'firebase/users/get'
+import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
 
 async function createNewUser(
     email: string,

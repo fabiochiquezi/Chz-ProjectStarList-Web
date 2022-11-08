@@ -8,10 +8,10 @@ const Menu: React.FC = () => {
     return (
         <ul className="container mx-auto px-4 lg:px-4 xl:px-6 2xl:px-10 flex justify-center mb-4 md:mb-10 lg:mb-11 lg:justify-end items-center">
             <li>
-                <Link href={`/${router.query.user}?catalog=do`}>
+                <Link href={`/${router.query.user}?catalog=doing`}>
                     <a
                         className={`w-[70px] h-[32px] border-2 border-white rounded-lg inline-block flex justify-center items-center mr-4 simple-button text-sm ${
-                            router.query.catalog === 'do' ||
+                            router.query.catalog === 'doing' ||
                             !router.query.catalog
                                 ? 'bg-orange-500 border-orange-500'
                                 : 'bg-transparent border-white'

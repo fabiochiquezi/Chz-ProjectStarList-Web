@@ -10,8 +10,9 @@ interface props {
 
 const PrivateRoute: React.FC<props> = ({ children }) => {
     const { user } = useAuth()
-    const { pathname } = useRouter()
-    const isPublic = publicRoutes.includes(pathname)
+    const { route } = useRouter()
+    console.log(route)
+    const isPublic = publicRoutes.includes(route)
     const publicRoute = children
     const privateRoute = user === null ? <LoadingStruct /> : children
 
