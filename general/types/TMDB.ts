@@ -47,7 +47,7 @@ export interface List<T> {
     page: number
     total_pages: number
     total_results: number
-    results: T[] | T[]
+    results: T[]
 }
 
 export interface Data<T> {

@@ -137,7 +137,6 @@ export default {
         '<rootDir>/general',
         '<rootDir>/pages',
         '<rootDir>/sections',
-        '<rootDir>/store',
         '<rootDir>/structure'
     ],
 
