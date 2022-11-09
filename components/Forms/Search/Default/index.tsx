@@ -1,36 +1,36 @@
 import SearchIcon from '../../../../general/assets/icons/SearchIcon'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 
 interface props {
     value: string
-    onChange: (e: any) => void
     className?: string
-    callSearch: (search: string) => Promise<void>
     callReset: () => void
+    callSearch: (search: string) => Promise<void>
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Search: React.FC<props> = ({
     value,
     onChange,
-    className = '',
+    callReset,
     callSearch,
-    callReset
+    className = ''
 }) => {
-    const inputRef = useRef<HTMLInputElement | null>(null)
+    const ref = useRef<HTMLInputElement | null>(null)
     const [active, setActive] = useState(false)
+    const inputCSS = active && 'border-green-700'
 
     function searchKeyPress(event: KeyboardEvent): void {
         const isEnterPressed = event.key === 'Enter'
-        const isFocus = inputRef.current === document.activeElement
+        const isFocus = ref.current === document.activeElement
         if (value.length > 0 && isEnterPressed && isFocus) callSearch(value)
         if (value.length === 0 && isEnterPressed && isFocus) callReset()
     }
 
     useEffect(() => {
-        const el = inputRef.current
+        const el = ref.current
         if (el) {
             el.addEventListener('keydown', searchKeyPress)
-
             return () => {
                 el.removeEventListener('keydown', searchKeyPress)
             }
@@ -40,27 +40,25 @@ const Search: React.FC<props> = ({
     return (
         <div className={`flex relative w-full h-8 ${className}`}>
             <input
-                placeholder="Search ..."
-                name="search"
+                ref={ref}
                 type="text"
-                onChange={onChange}
+                name="search"
                 value={value}
-                className={`ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8 bg-transparent border-b-[1px] border-gray-600 text-sm pb-1 ${
-                    active && 'border-green-700'
-                }`}
-                ref={inputRef}
+                onChange={onChange}
+                placeholder="Search ..."
+                className={`
+                    ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8
+                    bg-transparent border-b-[1px] border-gray-600 text-sm pb-1 ${inputCSS}`}
                 onFocus={() => {
                     setActive(true)
-                    inputRef.current?.classList.add('border-green-700')
+                    ref.current?.classList.add('border-green-700')
                 }}
                 onBlur={() => {
-                    inputRef.current?.classList.remove('border-green-700')
-                    const isCurrent =
-                        inputRef.current != null &&
-                        !inputRef.current.value.length
-                    if (isCurrent) setActive(false)
-                    if (value.length > 0) callSearch(value)
-                    // if (value.length === 0) callReset()
+                    ref.current?.classList.remove('border-green-700')
+                    const noValue = ref.current && !ref.current.value.length
+                    const hasValue = value.length > 0
+                    if (noValue) setActive(false)
+                    if (hasValue) callSearch(value)
                 }}
                 data-testid="input"
             />

@@ -1,7 +1,8 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, waitFor } from '@testing-library/react'
 import { Search } from './index'
 
-describe('Search', () => {
+
+describe('components/Form/Search/Default', () => {
     const props = {
         value: 'Search',
         className: 'className',
@@ -11,20 +12,24 @@ describe('Search', () => {
     }
     const Elem = (<Search {...props} />)
 
-
     it('elements and props', () => {
         render(Elem)
 
         const div = document.querySelector('.className')
+        const input = document.querySelector('.className input')
+        const icon = document.querySelector('.className [data-testid="icon"]')
         expect(div).toBeInTheDocument()
         expect(div.classList.contains(props.className)).toBeTruthy()
-
-        const input = document.querySelector('.className input')
         expect(input).toBeInTheDocument()
         expect(input.value).toBe(props.value)
-
-        const icon = document.querySelector('.className [data-testid="icon"]')
         expect(icon).toBeInTheDocument()
+    })
+
+    it('miss propperties', () => {
+        const Elem = (<Search {...props} className="" />)
+        render(Elem)
+        const div = document.querySelector('input').parentElement
+        expect(div.className).toBe('flex relative w-full h-8 ')
     })
 
     it('onChange', () => {
@@ -50,7 +55,20 @@ describe('Search', () => {
         expect(props.callSearch).toHaveBeenLastCalledWith(props.value)
     })
 
-    it.skip('onSearch with KeyBoard', () => {
-        // Implement
+    it('onCallSearch w/ KeyBoard', async() => {
+        render(Elem)
+        const el = document.querySelector('.className input')
+        await waitFor(async () => el.focus())
+        fireEvent.keyDown(el, { key: 'Enter', code: 'Enter', charCode: 13 })
+        expect(props.callSearch).toHaveBeenCalledTimes(1)
+    })
+
+    it('callReset', async() => {
+        const Elem = (<Search {...props} value="" />)
+        render(Elem)
+        const el = document.querySelector('.className input')
+        await waitFor(async () => el.focus())
+        fireEvent.keyDown(el, { key: 'Enter', code: 'Enter', charCode: 13 })
+        expect(props.callReset).toHaveBeenCalledTimes(1)
     })
 })

@@ -1,44 +1,44 @@
+import { FormikHandlers } from 'formik'
 import React, { useEffect, useRef, useState } from 'react'
 
 interface props {
     label: string
+    name: string
+    type?: string
+    value?: string
     className?: string
     placeholder?: string
-    name: string
-    type: string
-    onChange: any
-    value: any
-    error: any
+    error: string | undefined
+    onChange: FormikHandlers['handleChange']
 }
 
 const Input: React.FC<props> = ({
-    label,
-    className = '',
-    placeholder = '',
     name,
-    type,
+    label,
+    error,
     onChange,
     value = '',
-    error
+    type = 'text',
+    className = '',
+    placeholder = ''
 }) => {
-    const inputRef = useRef<HTMLInputElement | null>(null)
+    const ref = useRef<HTMLInputElement | null>(null)
     const [active, setActive] = useState(false)
+    const labelCSS = active ? 'text-[11px] -top-[16px]' : 'top-1'
+    const inputCSS = active && 'border-green-700'
 
     useEffect(() => {
-        if (value.length) {
-            setActive(true)
-        }
+        if (value.length) setActive(true)
     }, [value])
 
     return (
         <div className={`relative w-full h-8 ${className}`}>
             <label
                 htmlFor={name}
-                className={`ease-in-out duration-300 absolute left-0 text-sm text-[#666] ${
-                    active ? 'text-[11px] -top-[16px]' : 'top-1'
-                }`}
+                className={`ease-in-out duration-300 absolute left-0 text-sm text-[#666] ${labelCSS}`}
             >
-                {label}{' '}
+                {`${label} `}
+
                 {placeholder && (
                     <span className="ml-1 text-yellow-400 text-[11px]">
                         ({placeholder})
@@ -47,29 +47,25 @@ const Input: React.FC<props> = ({
             </label>
 
             <input
+                ref={ref}
                 name={name}
                 type={type}
-                onChange={onChange}
                 value={value}
-                className={`ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8 bg-transparent border-b-[1px] border-gray-400 text-sm ${
-                    active && 'border-green-700'
-                }`}
-                ref={inputRef}
+                onChange={onChange}
+                className={`
+                    ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8
+                    bg-transparent border-b-[1px] border-gray-400 text-sm ${inputCSS}`}
                 onFocus={() => {
                     setActive(true)
-                    inputRef.current?.classList.add('border-green-700')
+                    ref.current?.classList.add('border-green-700')
                 }}
                 onBlur={() => {
-                    inputRef.current?.classList.remove('border-green-700')
-                    if (
-                        inputRef.current != null &&
-                        !inputRef.current.value.length
-                    ) {
-                        setActive(false)
-                    }
+                    ref.current?.classList.remove('border-green-700')
+                    const noLength = ref.current && !ref.current.value.length
+                    if (noLength) setActive(false)
                 }}
-                data-testid="input"
             />
+
             {error ? (
                 <p className="absolute -bottom-[22px] left-0 text-[11px] text-red-500 text-right w-full error">
                     * {error}

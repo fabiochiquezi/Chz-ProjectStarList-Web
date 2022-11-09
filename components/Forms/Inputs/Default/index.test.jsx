@@ -1,7 +1,8 @@
 import { fireEvent, render } from '@testing-library/react'
 import { Input } from './index'
 
-describe('Input', () => {
+
+describe('components/Form/Inputs/Default', () => {
     const props = {
         label: 'label',
         className: 'className',
@@ -12,20 +13,17 @@ describe('Input', () => {
         value: 'value',
         error: 'error'
     }
+    const Elem = (<Input {...props} />)
 
-    it('should have all props', () => {
-        const Elem = (
-            <Input {...props} />
-        )
-        const { getByTestId } = render(Elem)
-        const el = getByTestId('input')
+    it('elements and propperties', () => {
+        render(Elem)
+
         const div = document.querySelector('.className')
         const label = document.querySelector('label')
         const placeholder = document.querySelector('label span')
         const input = document.querySelector('input')
         const error = document.querySelector('.error')
 
-        expect(el).toBeInTheDocument()
         expect(div.classList[div.classList.length - 1]).toBe('className')
         expect(label.textContent.indexOf('label') >= 0).toBeTruthy()
         expect(label.htmlFor).toEqual('name')
@@ -36,39 +34,46 @@ describe('Input', () => {
         expect(error.textContent).toBe('* error')
     })
 
-    it('should not have all elements', () => {
-        const Elem = (
-            <Input {...props} placeholder="" error="" />
-        )
+    it('miss elements and propperties', () => {
+        const Elem = (<Input
+            {...props}
+            placeholder=""
+            error=""
+            value=""
+            className=''
+            type=''
+        />)
         render(Elem)
         const placeholder = document.querySelector('label span')
         const error = document.querySelector('.error')
-
+        const input = document.querySelector('input')
+        const div = document.querySelector('label').parentElement
         expect(placeholder).toBe(null)
         expect(error).toBe(null)
+        expect(input.value).toBe('')
+        expect(input.type).toBe('text')
+        expect(div.className).toBe('relative w-full h-8 ')
     })
 
-    it('should active event works', () => {
-        const Elem = (
-            <Input {...props} value="" />
-        )
-        const { getByTestId } = render(Elem)
-        const el = getByTestId('input')
+    it('OnFocus/OnBlur', () => {
+        const Elem = (<Input {...props} value="" />)
+        render(Elem)
+        const el = document.querySelector('input')
         const label = document.querySelector('label')
 
-        // Focus test
         expect(el.className.includes('border-green-700')).toBeFalsy()
         expect(label.className.includes('text-[11px] -top-[16px]')).toBeFalsy()
-
         fireEvent.focus(el)
         expect(el.className.includes('border-green-700')).toBeTruthy()
         expect(label.className.includes('text-[11px] -top-[16px]')).toBeTruthy()
-
         fireEvent.focusOut(el)
         expect(el.className.includes('border-green-700')).toBeFalsy()
         expect(label.className.includes('text-[11px] -top-[16px]')).toBeFalsy()
+    })
 
-        // Event test
+    it('onChange', () => {
+        render(Elem)
+        const el = document.querySelector('input')
         fireEvent.change(el, { target: { value: 'test' } })
         expect(props.onChange).toHaveBeenCalledTimes(1)
     })

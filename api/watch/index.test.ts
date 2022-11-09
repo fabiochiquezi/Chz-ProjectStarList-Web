@@ -14,26 +14,7 @@ jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
 
 describe('api/watch', () => {
-    describe('formatation', () => {
-        it('format', () => {
-            const data = {
-                test: '',
-                results: [{ poster_path: 'test01' }]
-            }
-            const formated = format(data as any)
-            expect(formated).toEqual({
-                test: '',
-                results: [
-                    {
-                        poster_path: 'test01',
-                        thumb: 'https://image.tmdb.org/t/p/w500/test01'
-                    }
-                ]
-            })
-        })
-    })
-
-    describe('request lists of series/Movies', () => {
+    describe('request lists', () => {
         beforeEach(() => {
             jest.resetAllMocks()
             mockedAxios.get.mockResolvedValue({
@@ -116,6 +97,25 @@ describe('api/watch', () => {
             const list = await getGenreMovies()
             // console.log(list)
             // Implement...
+        })
+    })
+
+    describe('formatation', () => {
+        it('format', () => {
+            const data = {
+                test: '',
+                results: [{ poster_path: 'test01' }]
+            }
+            const formated = format(data as any)
+            expect(formated).toEqual({
+                test: '',
+                results: [
+                    {
+                        poster_path: 'test01',
+                        thumb: 'https://image.tmdb.org/t/p/w500/test01'
+                    }
+                ]
+            })
         })
     })
 })

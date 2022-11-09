@@ -1,17 +1,18 @@
 import { fireEvent, render } from '@testing-library/react'
 import { Select } from './index'
 
+const props = {
+    label: 'label',
+    className: 'className',
+    placeholder: 'placeholder',
+    name: 'name',
+    onChange: jest.fn(() => 'onChange'),
+    error: 'error',
+    defaultValue: '1'
+}
+
 describe('Search', () => {
     const children = <><option value='1'>1</option> <option value='2'>2</option></>
-    const props = {
-        label: 'label',
-        className: 'className',
-        placeholder: 'placeholder',
-        name: 'name',
-        onChange: jest.fn(() => 'onChange'),
-        error: 'error',
-        defaultValue: '1'
-    }
     const Elem = (<Select {...props} >{children}</Select>)
 
 
@@ -19,22 +20,26 @@ describe('Search', () => {
         render(Elem)
 
         const div = document.querySelector('.className')
+        const label = document.querySelector('.className label')
+        const select = document.querySelector('.className select')
+        const options = document.querySelectorAll('.className option')
+        const error = document.querySelector('.className p')
+
         expect(div).toBeInTheDocument()
         expect(div.classList.contains(props.className)).toBeTruthy()
-
-        const label = document.querySelector('.className label')
         expect(label.textContent).toBe('label (placeholder)')
-
-        const select = document.querySelector('.className select')
         expect(select).toBeInTheDocument()
         expect(select.value).toBe(props.defaultValue)
-
-        const options = document.querySelectorAll('.className option')
         expect(options).toHaveLength(3)
-
-        const error = document.querySelector('.className p')
         expect(error).toBeInTheDocument()
         expect(error.textContent).toBe(`* ${props.error}`)
+    })
+
+    it('miss propperties', () => {
+        const Elem = (<Select {...props} className="">{children}</Select>)
+        render(Elem)
+        const div = document.querySelector('label').parentElement
+        expect(div.className).toBe('relative w-full h-8 ')
     })
 
     it('onFocus', () => {
