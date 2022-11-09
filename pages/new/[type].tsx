@@ -1,6 +1,7 @@
 import Page404 from 'pages/404'
 import { useRouter } from 'next/router'
 import { GetServerSideProps } from 'next'
+import { Resp } from 'types/Response'
 import { Struct } from 'structure/Struct/Private'
 import { Data as DataTMDB, Movie, Serie } from 'types/TMDB'
 import { ListAPI } from 'sections/List/ListAPI'
@@ -15,10 +16,9 @@ import {
     getSerie,
     getSeries
 } from 'api/watch'
-import { Response } from 'types/general'
 
 interface Data {
-    data: Response<DataTMDB<Movie | Serie>>
+    data: Resp<DataTMDB<Movie | Serie>>
 }
 
 const New: FC<Data> = ({ data }) => {
@@ -27,15 +27,15 @@ const New: FC<Data> = ({ data }) => {
     if (!ok) return <Page404 />
     const title = 'Star List | New Works'
     const description = 'Search for new works to add to your list'
-    const reqList = req?.list?.results
-    const maxPages = req?.list?.total_pages
+    const reqList = req.list.results
+    const maxPages = req.list.total_pages
 
     const router = useRouter()
     const routerPage = router.query.type
     const routerSearch = router.query.search
     const queryPage = router.query.page
     const page = queryPage ? parseInt(queryPage as string) : 1
-    const [list, setList] = useState<Movie[]>()
+    const [list, setList] = useState<Movie[] | Serie[]>([])
     const [load, setLoad] = useState(false)
 
     useEffect(() => {

@@ -1,8 +1,3 @@
-export interface TopLevel {
-    movie: Movie
-    serie: Serie
-}
-
 export interface Movie {
     adult: boolean
     backdrop_path: string
@@ -43,14 +38,14 @@ export interface Genre {
     name: string
 }
 
-export interface List<T> {
+export interface List<T extends Movie | Serie> {
     page: number
     total_pages: number
     total_results: number
     results: T[]
 }
 
-export interface Data<T> {
-    list: List<T> | null
+export interface Data<T extends Movie | Serie> {
+    list: List<T>
     genres: Genre[]
 }
