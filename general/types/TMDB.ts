@@ -1,3 +1,5 @@
+import { DBDocument } from './_helpers/Database'
+
 export interface Movie {
     adult: boolean
     backdrop_path: string
@@ -15,6 +17,7 @@ export interface Movie {
     vote_count: number
     thumb: string
 }
+export type MovieDB = DBDocument<Movie>
 
 export interface Serie {
     backdrop_path: string
@@ -32,6 +35,7 @@ export interface Serie {
     vote_count: number
     thumb: string
 }
+export type SerieDB = DBDocument<Serie>
 
 export interface Genre {
     id: number

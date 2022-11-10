@@ -1,7 +1,7 @@
 import { FormikHandlers } from 'formik'
-import React, { useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
-interface props {
+export interface InputType {
     label: string
     name: string
     type?: string
@@ -12,7 +12,7 @@ interface props {
     onChange: FormikHandlers['handleChange']
 }
 
-const Input: React.FC<props> = ({
+const Input: FC<InputType> = ({
     name,
     label,
     error,

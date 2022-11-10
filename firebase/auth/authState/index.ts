@@ -1,9 +1,12 @@
 import { auth } from './../../settings'
-import { onAuthStateChanged } from 'firebase/auth'
+import { onAuthStateChanged, User } from 'firebase/auth'
 
-const authState = (callBack: any): void => {
+type CallBack = (userGoogle: User) => void
+export type AuthState = (callBack: CallBack) => void
+
+const authState: AuthState = callBack => {
     onAuthStateChanged(auth, userGoogle => {
-        callBack(userGoogle)
+        if (userGoogle) callBack(userGoogle)
     })
 }
 

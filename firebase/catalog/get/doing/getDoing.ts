@@ -1,15 +1,17 @@
 import { db } from 'firebase/settings'
+import { MovieDB, SerieDB } from 'types/TMDB'
+import { generalFormat } from 'firebase/_helpers/format'
 import { collection, getDocs } from 'firebase/firestore'
-import { Movie, Serie } from 'types/TMDB'
 
-export async function getDoing(
+export type GetListDoing = (
     userName: string
-): Promise<Array<Movie | Serie>> {
-    const list: any[] = []
+) => Promise<Array<MovieDB | SerieDB>>
+
+const getListDoing: GetListDoing = async userName => {
     const collect = collection(db, 'catalog', userName, 'doing')
     const querySnapshot = await getDocs(collect)
-    querySnapshot.forEach(doc => {
-        list.push({ uid: doc.id, ...doc.data() })
-    })
+    const list = querySnapshot.docs.map<MovieDB | SerieDB>(generalFormat)
     return list
 }
+
+export { getListDoing }

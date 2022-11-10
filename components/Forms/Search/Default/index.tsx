@@ -1,7 +1,7 @@
 import SearchIcon from '../../../../general/assets/icons/SearchIcon'
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 
-interface props {
+export interface SearchType {
     value: string
     className?: string
     callReset: () => void
@@ -9,7 +9,7 @@ interface props {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Search: React.FC<props> = ({
+const Search: FC<SearchType> = ({
     value,
     onChange,
     callReset,

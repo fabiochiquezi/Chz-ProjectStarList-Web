@@ -1,12 +1,6 @@
-import React, {
-    ChangeEvent,
-    ReactNode,
-    useEffect,
-    useState,
-    useRef
-} from 'react'
+import { ChangeEvent, ReactNode, useEffect, useState, useRef, FC } from 'react'
 
-interface props {
+export interface SelectType {
     name: string
     label: string
     className?: string
@@ -17,7 +11,7 @@ interface props {
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void
 }
 
-const Select: React.FC<props> = ({
+const Select: FC<SelectType> = ({
     label,
     name,
     error,

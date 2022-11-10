@@ -1,5 +1,9 @@
 import { auth } from '../../settings'
 
-export async function signOut(): Promise<void> {
+export type SignOut = () => Promise<void>
+
+const signOut: SignOut = async () => {
     return await auth.signOut()
 }
+
+export { signOut }

@@ -1,24 +1,7 @@
-import React, {
-    ChangeEvent,
-    ReactNode,
-    useEffect,
-    useState,
-    useRef
-} from 'react'
+import { useEffect, useState, useRef, FC } from 'react'
+import { SelectType } from '../Default'
 
-interface props {
-    name: string
-    label: string
-    value: string
-    className?: string
-    children: ReactNode
-    placeholder?: string
-    defaultValue: string
-    error: string | undefined
-    onChange: (e: ChangeEvent<HTMLSelectElement>) => void
-}
-
-const SelectButton: React.FC<props> = ({
+const SelectButton: FC<SelectType> = ({
     name,
     label,
     error,

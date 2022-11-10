@@ -1,14 +1,13 @@
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from 'firebase/settings'
-import { User } from 'types/users'
+import { User } from 'types/Users'
 
-type Fn = (id: string) => Promise<null | User>
+export type GetUser = (id: string) => Promise<User | undefined>
 
-const getUser: Fn = async id => {
+const getUser: GetUser = async id => {
     const docRef = doc(db, 'users', id)
     const docSnap = await getDoc(docRef)
     if (docSnap.exists()) return docSnap.data() as User
-    return null
 }
 
 export { getUser }
