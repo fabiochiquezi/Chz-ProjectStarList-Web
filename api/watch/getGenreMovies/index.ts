@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { Genre } from 'types/TMDB'
 import { keyTMDB } from '../../keys'
 import { apiKey, base } from '../config'
+import { WatchGenre } from '../../../types/apis/watch'
 
-export type GetGenreMovies = () => Promise<Genre[]>
+export type GetGenreMovies = () => Promise<WatchGenre[]>
 
 const getGenreMovies: GetGenreMovies = async () => {
     const genresMovies = `${base}/genre/movie/list${apiKey + keyTMDB}`

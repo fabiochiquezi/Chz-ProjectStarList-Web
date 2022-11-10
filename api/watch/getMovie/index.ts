@@ -1,15 +1,19 @@
 import axios from 'axios'
 import { keyTMDB } from '../../keys'
-import { List, Movie } from 'types/TMDB'
 import { apiKey, base } from '../config'
 import { format } from '../_helpers/format'
+import { WatchList } from '../../../types/apis/watch'
+import { Movie } from '../../../types/models/Catalog/Movie'
 
-export type GetMovie = (movie: string, page: string) => Promise<List<Movie>>
+export type GetMovie = (
+    movie: string,
+    page: string
+) => Promise<WatchList<Movie>>
 
 const getMovie: GetMovie = async (movie, page) => {
     const searchMovie = `${base}/search/movie${apiKey + keyTMDB}`
     const uri = `${searchMovie}&query=${movie}&page=${page}`
-    const get: { data: List<Movie> } = await axios.get(uri)
+    const get: { data: WatchList<Movie> } = await axios.get(uri)
     const formatedData = format(get.data)
     return formatedData
 }

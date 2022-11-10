@@ -1,7 +1,8 @@
 import { db } from 'firebase/settings'
-import { MovieDB, SerieDB } from 'types/TMDB'
 import { generalFormat } from 'firebase/_helpers/format'
 import { collection, getDocs } from 'firebase/firestore'
+import { MovieDB } from '../../../../types/models/Catalog/Movie'
+import { SerieDB } from '../../../../types/models/Catalog/Serie'
 
 export type GetListDoing = (
     userName: string

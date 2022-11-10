@@ -1,6 +1,6 @@
+import { getUserName } from '../../../_helpers/userName'
 import { postCatalog } from 'firebase/catalog/post'
 import { postUser } from 'firebase/users/post'
-import { getUserName } from 'helpers/userName'
 
 export type SignUp = (
     email: string,

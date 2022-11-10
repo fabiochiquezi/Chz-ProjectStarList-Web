@@ -14,20 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": ".",
-    "paths": {
-        "components/*": ["./components/*"],
-        "context/*": ["./context/*"],
-        "firebase/*": ["./firebase/*"],
-        "data/*": ["./general/data/*"],
-        "styles/*": ["./general/styles/*"],
-        "types/*": ["./general/types/*"],
-        "helpers/*": ["general/helpers/*"],
-        "pages/*": ["./pages/*"],
-        "public/*": ["./public/*"],
-        "sections/*": ["./sections/*"],
-        "store/*": ["./store/*"],
-    }
+    "baseUrl": "."
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", "**/*.js"],
   "exclude": [
@@ -40,10 +27,6 @@
         "cypress.config.ts",
         "cypress",
         "**/*.cy.ts",
-        "**/*.cy.js",
-        // "**/*.test.ts",
-        // "**/*.test.tsx",
-        // "**/*.test.js",
-        // "**/*.test.jsx",
+        "**/*.cy.js"
     ]
 }

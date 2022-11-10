@@ -137,7 +137,8 @@ export default {
         '<rootDir>/general',
         '<rootDir>/pages',
         '<rootDir>/sections',
-        '<rootDir>/structure'
+        '<rootDir>/structure',
+        '<rootDir>/_helpers'
     ],
 
     // Allows you to use a custom runner instead of Jest's default test runner
