@@ -130,16 +130,7 @@ export default {
     // rootDir: undefined,
 
     // A list of paths to directories that Jest should use to search for files in
-    roots: [
-        '<rootDir>/api',
-        '<rootDir>/components',
-        '<rootDir>/firebase',
-        '<rootDir>/general',
-        '<rootDir>/pages',
-        '<rootDir>/sections',
-        '<rootDir>/structure',
-        '<rootDir>/_helpers'
-    ],
+    roots: ['<rootDir>/pages'],
 
     // Allows you to use a custom runner instead of Jest's default test runner
     // runner: "jest-runner",
