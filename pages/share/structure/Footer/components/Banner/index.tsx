@@ -3,9 +3,10 @@ import { FC } from 'react'
 const Banner: FC = () => (
     <div
         className="container mx-auto mt-[-340px] mb-20 p-6
-                    sm:mt-[-250px] sm:mb-24 sm:p-0
-                    lg:mt-[-195px] lg:p-0
-                    2xl:px-32"
+        sm:mt-[-250px] sm:mb-24 sm:p-0
+        lg:mt-[-195px] lg:p-0
+        2xl:px-32"
+        data-testid="Banner"
     >
         <div
             className="bg-indigo-800 p-6 py-10 justify-between

@@ -10,7 +10,10 @@ const Footer: FC = () => {
     const date = `${mm}/${dd}/${yyyy}`
 
     return (
-        <div className="bg-[#111] py-24 lg:pb-16 relative z-10">
+        <div
+            className="bg-[#111] py-24 lg:pb-16 relative z-10"
+            data-testid="Footer"
+        >
             <Banner />
             <div className="container mx-auto lg:px-4">
                 <div

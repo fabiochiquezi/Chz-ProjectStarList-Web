@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import { Footer } from '../../Footer'
 import { useRouter } from 'next/router'
-import { Header } from '../../Header/Private'
 import { Loading } from '../../../index'
-import { useSetUtils, useUtils } from '../../index'
+import { Header } from '../../Header/Private'
 import { FC, ReactElement, ReactNode, useEffect } from 'react'
+import { useSetUtils, useUtils } from '../../../context/Utils/types'
 
 interface props {
     children: ReactNode

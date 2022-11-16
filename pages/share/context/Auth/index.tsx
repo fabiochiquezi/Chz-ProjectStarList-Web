@@ -1,73 +1,81 @@
 import { User } from 'firebase/auth'
+import { SignIn } from './api/signIn'
+import { SignOut } from './api/signOut'
 import { useRouter } from 'next/router'
-import { authState } from './api/authState'
+import { AuthState } from './api/authState'
 import { AuthContext } from './types/usetypes'
-import { AuthUpdateContext } from './types/setTypes'
 import { publicRoutes } from '../../settings/routes'
 import { getUserName } from '../../helpers/userName'
-import { signIn as signInFirebase } from './api/signIn'
-import { signOut as signOutFirebase } from './api/signOut'
+import { AuthUpdateContext } from './types/setTypes'
 import { FC, ReactNode, useEffect, useState } from 'react'
 
-interface AuthType {
+interface Children {
     children: ReactNode
 }
+function Auth(
+    signInFn: SignIn,
+    authStateFn: AuthState,
+    signOutFn: SignOut
+): FC<Children> {
+    const Provider: FC<Children> = ({ children }) => {
+        const router = useRouter()
+        const [loading, setLoading] = useState(false)
+        const [user, setUser] = useState<User | null>(null)
+        const isPublic = publicRoutes.includes(router.pathname)
 
-const AuthProvider: FC<AuthType> = ({ children }) => {
-    const router = useRouter()
-    const [loading, setLoading] = useState(false)
-    const [user, setUser] = useState<User | null>(null)
-    const isPublic = publicRoutes.includes(router.pathname)
+        useEffect(() => {
+            authStateFn((userFirebase: User) => {
+                const nullUserButHas = user === null && userFirebase
+                if (nullUserButHas) setUser(userFirebase)
 
-    useEffect(() => {
-        authState((userFirebase: User) => {
-            const nullUserButHas = user === null && userFirebase
-            if (nullUserButHas) setUser(userFirebase)
+                const noUserAndPrivate =
+                    !isPublic && user === null && !userFirebase
+                if (noUserAndPrivate) router.push('/')
+            })
+        }, [])
 
-            const noUserAndPrivate = !isPublic && user === null && !userFirebase
-            if (noUserAndPrivate) router.push('/')
-        })
-    }, [])
-
-    async function signIn(): Promise<void> {
-        try {
-            if (loading) return
-            setLoading(true)
-            const user = await signInFirebase()
-            setUser(user)
-            await router.push(`/${getUserName(user.email as string)}`)
-        } catch (e) {
-            alert('Something went wrong')
-            console.log(e, 'error')
-        } finally {
-            setLoading(false)
+        async function signIn(): Promise<void> {
+            try {
+                if (loading) return
+                setLoading(true)
+                const user = await signInFn()
+                setUser(user)
+                await router.push(`/${getUserName(user.email as string)}`)
+            } catch (e) {
+                window.alert('Something went wrong')
+                console.log(e, 'error')
+            } finally {
+                setLoading(false)
+            }
         }
-    }
 
-    async function signOut(): Promise<void> {
-        try {
-            setUser(null)
-            await signOutFirebase()
-        } catch (e) {
-            alert('Something went wrong')
-            console.log(e, 'error')
-        } finally {
-            setLoading(false)
+        async function signOut(): Promise<void> {
+            try {
+                setUser(null)
+                await signOutFn()
+            } catch (e) {
+                window.alert('Something went wrong')
+                console.log(e, 'error')
+            } finally {
+                setLoading(false)
+            }
         }
-    }
 
-    return (
-        <AuthContext.Provider
-            value={{ user, loading }}
-            data-testid="auth-provider"
-        >
-            <AuthUpdateContext.Provider
-                value={{ signIn, signOut, setUser, setLoading }}
+        return (
+            <AuthContext.Provider
+                value={{ user, loading }}
+                data-testid="auth-provider"
             >
-                {children}
-            </AuthUpdateContext.Provider>
-        </AuthContext.Provider>
-    )
+                <AuthUpdateContext.Provider
+                    value={{ signIn, signOut, setUser, setLoading }}
+                >
+                    {children}
+                </AuthUpdateContext.Provider>
+            </AuthContext.Provider>
+        )
+    }
+
+    return Provider
 }
 
-export { AuthProvider }
+export { Auth }

@@ -1,7 +1,6 @@
+import { UtilsProvider, AuthProvider } from '../../../context'
 import { PrivateRoute } from '../../Route/Private'
 import React, { FC, ReactNode } from 'react'
-import { UtilsProvider } from '../../Utils'
-import { AuthProvider } from '../../Auth'
 
 interface StructType {
     children: ReactNode

@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import styles from './index.module.css'
 import { BtnSignIn } from './BtnSignIn'
-import { SignInFn } from 'pages/share/structure/Auth/setTypes'
+import { SignInFn } from '../../../share/context/Auth/types/setTypes'
 
 interface props {
     title: string

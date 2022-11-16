@@ -1,4 +1,4 @@
-import SearchIcon from '../../../../pages/share/assets/icons/SearchIcon'
+import { SearchIcon } from '../../../../assets'
 import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
 
 export interface SearchType {

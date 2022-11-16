@@ -1,4 +1,4 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { BtnHamburger } from '.'
 
 describe('BtnHamburger', () => {
@@ -24,8 +24,8 @@ describe('BtnHamburger', () => {
     })
 
     it('onClick', () => {
-        render(<BtnHamburger {...props} />)
-        const el = document.querySelector('[data-testid="btn-hamburger"]')
+        render(<BtnHamburger {...props} opened={true} />)
+        const el = screen.getByTestId('BtnHamburger')
         if (el) fireEvent.click(el)
         expect(props.onClick).toHaveBeenCalledTimes(1)
     })

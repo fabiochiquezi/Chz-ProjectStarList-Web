@@ -16,6 +16,7 @@ const BtnGitHub: FC<BtnGitHubType> = ({
         href={href}
         rel="noreferrer"
         data-cy="btn-github"
+        data-testid="BtnGitHub"
         target={target ? '_blank' : ''}
         className={`${className} btn-transparent boder-gray-900 px-4 py-1 flex items-center`}
     >

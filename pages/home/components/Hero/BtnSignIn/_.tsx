@@ -15,7 +15,3 @@
 //     //     expect(el).toBeInTheDocument()
 //     // })
 // })
-
-it.skip('aaa', () => {
-    expect(1 + 1).toBe(2)
-})

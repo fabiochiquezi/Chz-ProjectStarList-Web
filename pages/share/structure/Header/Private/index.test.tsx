@@ -1,19 +1,20 @@
 import { render } from '@testing-library/react'
-import { Header } from '.'
+import { Header } from './index'
 
 jest.mock('next/router', () => ({
     useRouter: jest.fn(() => ({ route: '/' }))
 }))
-
-jest.mock('../../index', () => ({
+jest.mock('../../../context/Auth/types/usetypes', () => ({
     useAuth: jest.fn(() => ({
         user: { displayName: 'test', email: 'test@example.com' }
-    })),
+    }))
+}))
+jest.mock('../../../context/Auth/types/setTypes', () => ({
     useSetAuth: jest.fn(() => ({ signOut: jest.fn() }))
 }))
 
-describe.skip('HeaderPrivate', () => {
-    it('should have all data', () => {
+describe('Header', () => {
+    it('data', () => {
         render(<Header />)
         const logo = document.querySelector('.logo svg')
         const menuRight = document.querySelector('#menu-right')

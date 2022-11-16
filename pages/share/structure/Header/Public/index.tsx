@@ -1,17 +1,17 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import { useAuth } from '../..'
 import { Logo } from '../../../assets'
 import { BtnGitHub } from './components/BtnGitHub'
 import { BtnSignIn } from './components/BtnSignIn'
-import { useSetAuth } from '../../Auth/types/setTypes'
+import { useAuth } from '../../../context/Auth/types/usetypes'
+import { useSetAuth } from '../../../context/Auth/types/setTypes'
 
 const Header: FC = () => {
     const { signIn } = useSetAuth()
     const { loading } = useAuth()
 
     return (
-        <header className="absolute w-full">
+        <header className="absolute w-full" data-testid="HeaderPublic">
             <div
                 className="flex justify-between items-center container
                 mx-auto px-4 py-6 bg-transparent"

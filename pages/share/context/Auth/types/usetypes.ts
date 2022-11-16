@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react'
 import { User } from 'firebase/auth'
 
 interface useAuthType {
-    user: null | User
+    user: undefined | null | User
     loading: boolean
 }
 

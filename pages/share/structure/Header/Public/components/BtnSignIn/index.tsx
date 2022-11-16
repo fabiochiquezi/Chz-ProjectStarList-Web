@@ -7,18 +7,17 @@ export interface BtnSignInType {
     loading: boolean
 }
 
-const BtnSignIn: FC<BtnSignInType> = ({ className = '', loading, onClick }) => {
-    return (
-        <a
-            onClick={onClick}
-            data-cy="btn-signIn1"
-            className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md
+const BtnSignIn: FC<BtnSignInType> = ({ className = '', loading, onClick }) => (
+    <a
+        onClick={onClick}
+        data-cy="btn-signIn1"
+        data-testid="BtnSignIn"
+        className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md
                 flex justify-center items-center ${className} h-[44px] w-[112px]`}
-        >
-            {loading ? BtnLoad : BtnIcon}
-        </a>
-    )
-}
+    >
+        {loading ? BtnLoad : BtnIcon}
+    </a>
+)
 
 const BtnLoad = (
     <div className="mt-[7px]" data-testid="btn-load">

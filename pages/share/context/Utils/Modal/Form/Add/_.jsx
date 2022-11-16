@@ -14,7 +14,7 @@ jest.mock('next/router', () => ({
     }
 }))
 
-describe('sections/Form/Add', () => {
+describe.skip('sections/Form/Add', () => {
     const callback = jest.fn(() => 'test')
     let Elem
 

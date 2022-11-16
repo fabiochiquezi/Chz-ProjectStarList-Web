@@ -3,11 +3,12 @@ import { Logo } from '../../../assets'
 import { useRouter } from 'next/router'
 import { getUserName } from '../../../helpers'
 import { FC, useEffect, useState } from 'react'
-import { useSetUtils } from '../../Utils/types'
 import { MainMenu } from './components/MainMenu'
-import { useAuth, useSetAuth } from '../../index'
 import { BtnHamburger } from './components/BtnHamburger'
 import { SecondaryMenu } from './components/SecondaryMenu'
+import { useSetUtils } from '../../../context/Utils/types'
+import { useAuth } from '../../../context/Auth/types/usetypes'
+import { useSetAuth } from '../../../context/Auth/types/setTypes'
 
 const Header: FC = () => {
     const router = useRouter()
@@ -17,7 +18,7 @@ const Header: FC = () => {
     const [menu, setMenu] = useState(false)
     const menuOpenClass = menu ? 'fixed' : 'hidden'
     const { setContentLoadState } = useSetUtils()
-    const userName = user?.displayName.substring(0, 9)
+    const userName = user?.displayName ? user.displayName.substring(0, 9) : ''
 
     useEffect(() => {
         window.addEventListener('resize', () => setMenu(false))
@@ -35,6 +36,7 @@ const Header: FC = () => {
 
     return (
         <header
+            data-testid="HeaderPrivate"
             data-cy="header-structure"
             className="
                 flex justify-center lg:justify-between items-center
@@ -66,12 +68,12 @@ const Header: FC = () => {
                     lg:justify-between lg:items-center"
                 >
                     <MainMenu
-                        userName={getUserName(user?.email)}
+                        userName={getUserName(user?.email ? user.email : '')}
                         onChangeMenu={onChangeMenu}
                         route={pathname}
                     />
                     <SecondaryMenu
-                        signOut={signOut}
+                        signOut={() => signOut}
                         userName={
                             userName.length > 9 ? `${userName}...` : userName
                         }

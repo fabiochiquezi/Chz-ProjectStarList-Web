@@ -1,9 +1,9 @@
-import { signOutFn } from '../../../../Auth/types/setTypes'
+import { signOutFn } from '../../../../../context/Auth/types/setTypes'
 import React, { FC } from 'react'
 
 interface SecondaryMenuType {
     userName: string
-    signOut: signOutFn
+    signOut: () => signOutFn
 }
 
 const SecondaryMenu: FC<SecondaryMenuType> = ({ userName, signOut }) => (
@@ -12,6 +12,7 @@ const SecondaryMenu: FC<SecondaryMenuType> = ({ userName, signOut }) => (
         items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-[0px]
         lg:w-auto lg:mx-0 lg:flex-row text-center"
         id="menu-right"
+        data-testid="SecondaryMenu"
     >
         <div
             className="flex mt-8 lg:mt-0 items-center"
@@ -25,7 +26,7 @@ const SecondaryMenu: FC<SecondaryMenuType> = ({ userName, signOut }) => (
             </li>
             <li className="text-sm ml-4 lg:m-0">
                 <button
-                    onClick={() => signOut}
+                    onClick={signOut}
                     className="border-white lg:border-none
                             border-2 rounded px-4 py-2 mt-2 lg:p-0
                             lg:mt-0 simple-button cursor-pointer"
