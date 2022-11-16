@@ -2,9 +2,9 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { useAuth } from '../..'
 import { Logo } from '../../../assets'
-import { useSetAuth } from '../../Auth/setTypes'
 import { BtnGitHub } from './components/BtnGitHub'
 import { BtnSignIn } from './components/BtnSignIn'
+import { useSetAuth } from '../../Auth/types/setTypes'
 
 const Header: FC = () => {
     const { signIn } = useSetAuth()

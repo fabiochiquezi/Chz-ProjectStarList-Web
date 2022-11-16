@@ -50,7 +50,7 @@
         "cypress/support/index.d.ts": true,
         "serviceAccount.json": true,
         // Project
-        // "pages/_document.tsx": true,
+        "pages/_document.page.tsx": true,
         // "pages/_app.tsx": true,
         "public": true,
         "cypress": true,

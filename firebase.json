@@ -1,7 +1,7 @@
 {
   "firestore": {
-    "rules": "./firebase/firestore.rules",
-    "indexes": "./firebase/firestore.indexes.json"
+    "rules": "./pages/share/settings/firebase/firestore.rules",
+    "indexes": "./pages/share/settings/firebase/firestore.indexes.json"
   },
   "hosting": {
     "public": "out",

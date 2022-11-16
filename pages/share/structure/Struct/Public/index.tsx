@@ -1,15 +1,15 @@
 import Head from 'next/head'
-import { Footer } from 'structure/Footer'
+import { Footer } from '../../Footer'
 import React, { FC, ReactNode } from 'react'
 import { Header } from '../../../structure/Header/Public'
 
-interface props {
+interface StructType {
     children: ReactNode
     titleSEO: string
     descriptionSEO: string
 }
 
-const Struct: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
+const Struct: FC<StructType> = ({ children, titleSEO, descriptionSEO }) => {
     return (
         <div>
             <Head>

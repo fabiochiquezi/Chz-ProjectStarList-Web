@@ -1,11 +1,11 @@
-import SpinIcon from '../../../pages/share/assets/icons/SpinIcon'
+import { SpinIcon } from '../../../assets'
 import React, { FC } from 'react'
 
 interface props {
     height?: string
 }
 
-const LoadingStruct: FC<props> = ({ height = 'h-screen' }) => (
+const Loading: FC<props> = ({ height = 'h-screen' }) => (
     <div
         className={`flex flex-col items-center justify-center ${height}`}
         data-cy="load-page"
@@ -15,4 +15,4 @@ const LoadingStruct: FC<props> = ({ height = 'h-screen' }) => (
     </div>
 )
 
-export { LoadingStruct }
+export { Loading }

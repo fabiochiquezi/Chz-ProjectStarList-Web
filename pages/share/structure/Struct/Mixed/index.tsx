@@ -1,5 +1,5 @@
-import { useAuth } from 'structure/Auth/types'
 import { Struct as PublicStruct } from '../Public'
+import { useAuth } from '../../Auth/types/usetypes'
 import { Struct as PrivateStruct } from '../Private'
 import React, { FC, ReactElement, ReactNode } from 'react'
 

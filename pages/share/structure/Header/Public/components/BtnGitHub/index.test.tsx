@@ -1,8 +1,8 @@
 import { BtnGitHub } from './index'
 import { render } from '@testing-library/react'
 
-describe('ButtonGitHub', () => {
-    it('should have all props', () => {
+describe('BtnGitHub', () => {
+    it('data', () => {
         const props = {
             href: 'https://github.com/',
             id: 'my-button',
@@ -19,7 +19,7 @@ describe('ButtonGitHub', () => {
         expect(el).toHaveClass(props.className)
     })
 
-    it('should have alternative props', () => {
+    it('alternative data', () => {
         const props = { href: 'https://github.com/' }
         render(<BtnGitHub {...props} />)
         const el = document.querySelector('a')

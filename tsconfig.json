@@ -16,7 +16,13 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx", "**/*.js"],
+  "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "**/*.jsx",
+        "**/*.js"
+  ],
   "exclude": [
         "node_modules",
         ".firebase",

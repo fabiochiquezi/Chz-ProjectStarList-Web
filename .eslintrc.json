@@ -22,7 +22,6 @@
         "react",
         "jest"
     ],
-
     "rules": {
         // Mine
         "indent": "off",

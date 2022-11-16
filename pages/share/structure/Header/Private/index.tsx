@@ -40,8 +40,7 @@ const Header: FC = () => {
                 flex justify-center lg:justify-between items-center
                 container mx-auto px-4 py-8 lg:pt-8 mb-8 lg:mb-0 h-[43px]
                 absolute sm:left-2/4 sm:-ml-[320px] md:-ml-[384px] lg:-ml-[512px]
-                xl:-ml-[640px] 2xl:-ml-[768px]
-                bg-transparent"
+                xl:-ml-[640px] 2xl:-ml-[768px] bg-transparent"
         >
             <Link href="/catalog/doing">
                 <a className="logo z-10 hover:opacity-80">
@@ -72,10 +71,10 @@ const Header: FC = () => {
                         route={pathname}
                     />
                     <SecondaryMenu
+                        signOut={signOut}
                         userName={
                             userName.length > 9 ? `${userName}...` : userName
                         }
-                        signOut={signOut}
                     />
                 </div>
             </div>
