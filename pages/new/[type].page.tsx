@@ -8,9 +8,9 @@ import { getMovie } from './api/watch/getMovie'
 import { getSerie } from './api/watch/getSerie'
 import { getMovies } from './api/watch/getMovies'
 import { getSeries } from './api/watch/getSeries'
-import { Struct } from 'structure/Struct/Private'
 import { Pagination } from './components/Pagination'
-import { LoadingStruct } from 'structure/Loadings/Default'
+import { Struct } from '../share/structure/Struct/Private'
+import { Loading } from '../share'
 import { Data as DataTMDB, Movie, Serie } from 'types/TMDB'
 import React, { FC, ReactElement, useEffect, useState } from 'react'
 
@@ -67,7 +67,7 @@ const New: FC<Data> = ({ data }) => {
         router.push(`${routerPage}?page=${newPage}`)
     }
 
-    const LoadComp = <LoadingStruct />
+    const LoadComp = <Loading />
     const ListComp = <List title={routerPage as string} catalog={list ?? []} />
     const Core = (): ReactElement => (load ? LoadComp : ListComp)
 

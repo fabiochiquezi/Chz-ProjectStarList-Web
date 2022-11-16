@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
 import { useRouter } from 'next/router'
-import { Loading } from '../../Loadings/Default'
+import { Loading } from '../../..'
 import { publicRoutes } from '../../../settings'
 import { useAuth } from '../../Auth/types/usetypes'
 

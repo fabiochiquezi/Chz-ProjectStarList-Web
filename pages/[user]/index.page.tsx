@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { Menu } from './components/Menu'
 import { List } from './components/List'
-import { MixedStruct } from 'structure/Struct/Mixed'
+import { MixedStruct, Loading } from '../share'
 import { getCatalogDid } from './api/get/catalogDid'
 import React, { FC, useEffect, useState } from 'react'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -11,7 +11,7 @@ import { getCatalogDoing } from './api/get/catalogDoing'
 import { getCatalogIlldo } from './api/get/catalogIlldo'
 import { Movie } from '../share/types/Catalog/Movie'
 import { Serie } from '../share/types/Catalog/Serie'
-import { LoadingStruct } from 'structure/Loadings/Default'
+
 import { getTitle } from 'pages/[user]/fns/getTitle'
 
 type CatalogTypes = 'doing' | 'did' | 'illdo'
@@ -74,7 +74,7 @@ const Catalog: FC = () => {
         >
             <Menu />
             {loadContent ? (
-                <LoadingStruct height="h-[550px]" />
+                <Loading height="h-[550px]" />
             ) : (
                 <DndProvider backend={HTML5Backend}>
                     <List

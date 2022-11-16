@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { Footer } from '../../Footer'
 import { useRouter } from 'next/router'
 import { Header } from '../../Header/Private'
-import { Loading } from '../../Loadings/Default'
+import { Loading } from '../../../index'
 import { useSetUtils, useUtils } from '../../index'
 import { FC, ReactElement, ReactNode, useEffect } from 'react'
 
