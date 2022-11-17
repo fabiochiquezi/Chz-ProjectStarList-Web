@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { GoogleIcon, SpinIcon } from '../../../../share'
+import { GoogleIcon, SpinIcon } from '../../../../share/assets'
 
 export interface BtnSignInType {
     className?: string
@@ -18,7 +18,7 @@ const BtnSignIn: FC<BtnSignInType> = ({
         id={id}
         onClick={onClick}
         data-cy="btn-signIn2"
-        data-testid="btn-signIn02"
+        data-testid="BtnSignIn"
         className={`btn-transparent py-[12px] px-8 border-orange-400 text-orange-400
             flex justify-center items-center text-lg h-[56px] w-[166px] ${className}`}
     >
@@ -27,14 +27,14 @@ const BtnSignIn: FC<BtnSignInType> = ({
 )
 
 const BtnLoad = (
-    <div className="mt-3">
+    <div className="mt-3" data-testid="BtnLoad">
         <SpinIcon width={20} height={20} color="#FB923C" />
     </div>
 )
 
 const BtnIcon = (
     <>
-        <span>Sign In</span>
+        <span data-testid="BtnIcon">Sign In</span>
         <GoogleIcon className="ml-2 mt-[-1px]" />
     </>
 )

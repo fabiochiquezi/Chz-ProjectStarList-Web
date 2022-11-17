@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { useSetUtils } from 'structure/Utils/types'
 
 interface props {
     children?: React.ReactNode
@@ -11,8 +10,8 @@ const Modal: React.FC<props> = ({ children, isOpen }) => {
 
     useEffect(() => {
         const el = document.querySelector('html')
-        if (isOpen && el != null) el.style.overflow = 'hidden'
-        if (!isOpen && el != null) el.style.overflow = 'auto'
+        if (isOpen && el) el.style.overflow = 'hidden'
+        if (!isOpen && el) el.style.overflow = 'auto'
 
         document.addEventListener('keydown', function (event) {
             if (event.key === 'Escape' && isOpen) {

@@ -1,6 +1,5 @@
-import { SelectButton } from 'components/Forms/Select/Button'
-import { Search } from 'components/Forms/Search/Default'
-import React, { FC, memo, useState } from 'react'
+import { SelectButton, Search } from '../../../share/components'
+import React, { FC, useState } from 'react'
 import { useRouter } from 'next/router'
 
 interface props {

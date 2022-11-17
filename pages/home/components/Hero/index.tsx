@@ -31,7 +31,6 @@ const Hero: FC<props> = ({ title, description, signIn, loading }) => (
                     <h1
                         className="text-5xl font-bold mb-4 leading-tight
                             md:text-6xl lg:text-7xl lg:leading-[120%]"
-                        id="hero-h1"
                     >
                         {title}
                     </h1>
@@ -44,11 +43,7 @@ const Hero: FC<props> = ({ title, description, signIn, loading }) => (
                         {description}
                     </p>
 
-                    <BtnSignIn
-                        id="btn-signIn-2"
-                        onClick={signIn}
-                        loading={loading}
-                    />
+                    <BtnSignIn onClick={signIn} loading={loading} />
                 </main>
             </div>
         </div>

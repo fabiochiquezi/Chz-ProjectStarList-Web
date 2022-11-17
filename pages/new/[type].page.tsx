@@ -10,7 +10,7 @@ import { getMovies } from './api/watch/getMovies'
 import { getSeries } from './api/watch/getSeries'
 import { Pagination } from './components/Pagination'
 import { Struct } from '../share/structure/Struct/Private'
-import { Loading } from '../share'
+import { Loading } from '../share/components'
 import { Data as DataTMDB, Movie, Serie } from 'types/TMDB'
 import React, { FC, ReactElement, useEffect, useState } from 'react'
 

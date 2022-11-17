@@ -1,9 +1,12 @@
-import SpinIcon from 'pages/share/assets/icons/SpinIcon'
-import React from 'react'
+import { SpinIcon } from '../../../../assets'
+import { FC } from 'react'
 
-const PopSave: React.FC = () => {
+const PopSave: FC = () => {
     return (
-        <div className="fixed right-10 bottom-[40px] z-[100] rounded-lg w-[198px] h-[52px] flex items-center justify-center bg-black">
+        <div
+            className="fixed right-10 bottom-[40px] z-[100] rounded-lg
+        w-[198px] h-[52px] flex items-center justify-center bg-black"
+        >
             <SpinIcon
                 width={16}
                 height={16}
@@ -17,4 +20,4 @@ const PopSave: React.FC = () => {
     )
 }
 
-export default PopSave
+export { PopSave }

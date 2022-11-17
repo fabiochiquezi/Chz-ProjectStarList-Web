@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { useSetUtils } from 'structure/Utils/types'
+// import { useSetUtils } from '../../../../share'
 
 interface ThumbProps {
     thumb: string
@@ -8,7 +8,7 @@ interface ThumbProps {
 }
 
 const Thumb: React.FC<ThumbProps> = ({ thumb, title, index }) => {
-    const { modal } = useSetUtils()
+    // const { modal } = useSetUtils()
     const errorDiv = useRef<HTMLDivElement>(null)
 
     // if (!title) return null
@@ -18,7 +18,7 @@ const Thumb: React.FC<ThumbProps> = ({ thumb, title, index }) => {
             className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 simple-button"
             data-cy="thumb-default"
             data-testid="thumb-default"
-            onClick={modal.openAddItem}
+            // onClick={modal.openAddItem}
         >
             <div className="w-[170px] h-[220px] overflow-hidden">
                 <div

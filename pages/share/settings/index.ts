@@ -1,6 +1,6 @@
-export * from './firebase/settings'
+export { app, auth, db } from './firebase/settings'
 
-export * from './msgs/successMsg'
-export * from './msgs/errorMsg'
+export { successMsg } from './msgs/successMsg'
+export { errorMsg } from './msgs/errorMsg'
 
-export * from './routes'
+export { routes, publicRoutes } from './routes'

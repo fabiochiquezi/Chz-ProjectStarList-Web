@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import { Footer } from '../../Footer'
 import { useRouter } from 'next/router'
-import { Loading } from '../../../index'
+import { Loading } from '../../../components'
 import { Header } from '../../Header/Private'
 import { FC, ReactElement, ReactNode, useEffect } from 'react'
-import { useSetUtils, useUtils } from '../../../context/Utils/types'
+import { useSetUtils } from '../../../context/Utils/types/setTypes'
+import { useUtils } from '../../../context/Utils/types/useTypes'
 
 interface props {
     children: ReactNode
@@ -14,7 +15,7 @@ interface props {
 
 const Struct: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
     const { contentLoadState } = useUtils()
-    const { setContentLoadState } = useSetUtils()
+    const { contentLoad } = useSetUtils()
 
     const Load = <Loading />
     const cssMargin = 'pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36'
@@ -23,7 +24,7 @@ const Struct: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
     const router = useRouter()
 
     useEffect(() => {
-        setContentLoadState(false)
+        contentLoad.close(0)
     }, [router])
 
     return (

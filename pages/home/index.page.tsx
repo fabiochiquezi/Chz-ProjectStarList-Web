@@ -1,4 +1,5 @@
-import { StructPublic, useSetAuth, useAuth } from '../share/structure'
+import { useAuth, useSetAuth } from 'pages/share/context'
+import { StructPublic } from '../share/structure'
 import catalog from './data/catalog.json'
 import { List } from './components/List'
 import { Hero } from './components/Hero'
@@ -20,7 +21,7 @@ const Home: NextPage = () => {
                 loading={loading}
                 title="Your list of great works souvenirs"
                 description="Mount your own list of movies, cartoons,
-                    series, books and games."
+                series, books and games."
             />
 
             <div className="pt-12 lg:pt-16 pb-16">

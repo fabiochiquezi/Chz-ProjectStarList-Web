@@ -1,56 +1,35 @@
-import PopSave from './PopSave'
-import { Alert } from './Alert'
-import { Modal } from './Modal/Default'
-import React, { useState } from 'react'
-import { getAlertFns } from './Alert/class'
-import { getModalFns } from './Modal/class'
-import { getPopSaveFns } from './PopSave/class'
-import { modalInitialState } from './Modal/state'
-import { alertInitialState } from './Alert/state'
-import { SetUtilsContext, UtilsContext } from './types'
+import { PopSave } from './components/PopSave/index'
+import { SetUtilsContext } from './types/setTypes'
+import { UtilsContext } from './types/useTypes'
+import { FC, ReactNode, useState } from 'react'
+import { close, open, toggle } from './fns'
 
-interface props {
-    children: React.ReactNode
+interface UtilsProviderType {
+    children: ReactNode
 }
 
-const UtilsProvider: React.FC<props> = ({ children }) => {
+const UtilsProvider: FC<UtilsProviderType> = ({ children }) => {
     const [contentLoadState, setContentLoadState] = useState(true)
-
-    const [modal, setModal] = useState(modalInitialState)
-    const modalFn = getModalFns(setModal)
-
-    const [alert, setAlert] = useState(alertInitialState)
-    const alertFn = getAlertFns(setAlert)
-
     const [popSave, setPopSave] = useState(false)
-    const popSaveFn = getPopSaveFns(setPopSave)
 
     return (
-        <UtilsContext.Provider value={{ modal, popSave, contentLoadState }}>
+        <UtilsContext.Provider value={{ popSave, contentLoadState }}>
             <SetUtilsContext.Provider
                 value={{
-                    modal: modalFn,
-                    alert: alertFn,
-                    popSave: popSaveFn,
-                    setContentLoadState
+                    popSave: {
+                        open: () => open(setPopSave),
+                        close: (time: number | null) => close(time)(setPopSave),
+                        toggle: () => toggle(setPopSave)
+                    },
+                    contentLoad: {
+                        open: () => open(setContentLoadState),
+                        close: (time: number | null) =>
+                            close(time)(setContentLoadState),
+                        toggle: () => toggle(setContentLoadState)
+                    }
                 }}
             >
-                {!alert.hide && (
-                    <Alert
-                        message={alert.message}
-                        state={alert.state}
-                        closeAlert={alertFn.close}
-                    />
-                )}
-
-                <Modal isOpen={modal.sateModal}>
-                    {modalFn.getModal !== undefined
-                        ? modalFn.getModal(modal.name, modal.data)
-                        : null}
-                </Modal>
-
                 {popSave && <PopSave />}
-
                 {children}
             </SetUtilsContext.Provider>
         </UtilsContext.Provider>

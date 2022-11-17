@@ -1,8 +1,8 @@
-export * from './Forms/Inputs/Default'
-export * from './Forms/Search/Default'
-export * from './Forms/Select/Button'
-export * from './Forms/Select/Default'
+export { Input } from './Forms/Inputs/Default'
+export { Search } from './Forms/Search/Default'
+export { SelectButton } from './Forms/Select/Button'
+export { Select } from './Forms/Select/Default'
 
-export * from './Loadings/Default'
+export { Loading } from './Loadings/Default'
 
-export * from './Thumbs/Add'
+export { AddThumb } from './Thumbs/Add'

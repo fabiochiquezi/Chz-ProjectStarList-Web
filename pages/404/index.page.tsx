@@ -1,12 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Footer } from '../../structure/Footer'
-import { useAuth } from 'structure/Auth/types'
-import {
-    Header as HeaderPrivate,
-    Header as HeaderPublic
-} from '../../structure/Header/Private'
+import { useAuth } from '../share/context'
+import { Footer, HeaderPrivate, HeaderPublic } from '../share/structure'
 
 const HeadData = (): React.ReactElement => (
     <Head>

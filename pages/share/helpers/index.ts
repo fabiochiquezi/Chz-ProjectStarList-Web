@@ -1,3 +1,3 @@
-export * from './device'
-export * from './format'
-export * from './userName'
+export { isMobile, isTablet, isDesktop } from './device'
+export { generalFormat } from './format'
+export { getUserName } from './userName'

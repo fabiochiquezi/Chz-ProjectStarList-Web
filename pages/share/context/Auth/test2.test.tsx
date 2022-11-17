@@ -16,11 +16,8 @@ const mockFn = {
     authState: jest.fn(),
     signOut: jest.fn()
 }
-
 const Provider = Auth(mockFn.signIn, mockFn.authState, mockFn.signOut)
-
 const Wrap: any = ({ children }: any) => <Provider>{children}</Provider>
-
 const Element = (): ReactElement => {
     const { user, loading } = useAuth()
     const { signIn, signOut, setUser, setLoading } = useSetAuth()
@@ -75,7 +72,6 @@ describe('AuthProvider', () => {
         const signInEl = screen.getByTestId('signIn')
         await waitFor(async () => fireEvent.click(signInEl))
         expect(mockFn.signIn).toBeCalledTimes(1)
-        // expect(screen.getByTestId('user').textContent).toBe('test')
     })
 
     it('setUser', () => {

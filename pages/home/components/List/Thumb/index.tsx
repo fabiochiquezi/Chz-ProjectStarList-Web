@@ -3,14 +3,15 @@ import { FC } from 'react'
 export interface ThumbType {
     thumb: string
     title: string
+    className?: string
 }
 
-const Thumb: FC<ThumbType> = ({ thumb, title }) => (
+const Thumb: FC<ThumbType> = ({ thumb, title, className = '' }) => (
     <div
-        className="thumb mb-14 lg:mb-16 w-[170px] order-3
-                lg:col-span-1 xl:scale-90 2xl:scale-100"
+        data-testid="Thumb"
         data-cy="thumb-default"
-        data-testid="thumb-default"
+        className={`thumb mb-14 lg:mb-16 w-[170px] order-3
+        lg:col-span-1 xl:scale-90 2xl:scale-100 ${className}`}
     >
         <div className="w-[170px] h-[220px] overflow-hidden">
             <div
@@ -29,6 +30,7 @@ const Thumb: FC<ThumbType> = ({ thumb, title }) => (
                     }}
                     onError={e => {
                         const item = e.target as HTMLElement
+                        item.classList.add('img-error')
                         item.style.display = 'none'
                     }}
                 />

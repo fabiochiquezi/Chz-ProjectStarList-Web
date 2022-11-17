@@ -1,5 +1,6 @@
-import { UtilsProvider, AuthProvider } from '../../../context'
+import { AuthFirebase } from 'pages/share/context/Auth/AuthFirebase'
 import { PrivateRoute } from '../../Route/Private'
+import { UtilsProvider } from '../../../context'
 import React, { FC, ReactNode } from 'react'
 
 interface StructType {
@@ -9,9 +10,9 @@ interface StructType {
 const Struct: FC<StructType> = ({ children }) => {
     return (
         <UtilsProvider>
-            <AuthProvider>
+            <AuthFirebase>
                 <PrivateRoute>{children}</PrivateRoute>
-            </AuthProvider>
+            </AuthFirebase>
         </UtilsProvider>
     )
 }
