@@ -2,10 +2,16 @@ import { FC, useRef } from 'react'
 import styles from './styles.module.css'
 import type { Identifier } from 'dnd-core'
 import { useDrag, useDrop } from 'react-dnd'
-import { DragItem, ItemTypes } from './dndTypes'
-import CloseIcon from 'pages/share/assets/icons/CloseIcon'
-import ArrowRight1 from 'pages/share/assets/icons/ArrowRight1'
-import { useSetUtils } from 'structure/Utils/types'
+// import { useSetUtils } from '../../../../share/context'
+import { CloseIcon, ArrowRight1 } from '../../../../share/assets'
+
+export const ItemTypes = { CARD: 'card' }
+
+export interface DragItem {
+    index: number
+    id: string
+    type: string
+}
 
 interface ThumbProps {
     id: any
@@ -16,7 +22,7 @@ interface ThumbProps {
 }
 
 const Thumb: FC<ThumbProps> = ({ id, thumb, index, moveCard, max }) => {
-    const { modal } = useSetUtils()
+    // const { modal } = useSetUtils()
     const ref = useRef<HTMLDivElement>(null)
 
     const [{ handlerId, isOver }, drop] = useDrop<
@@ -83,7 +89,7 @@ const Thumb: FC<ThumbProps> = ({ id, thumb, index, moveCard, max }) => {
         >
             <div
                 className="w-[170px] h-[220px] overflow-hidden simple-button"
-                onClick={() => modal.openAlterItem({ index, thumb })}
+                // onClick={() => modal.openAlterItem({ index, thumb })}
             >
                 <div className="w-[170px] h-[220px] overflow-hidden rounded skeleton">
                     <img
@@ -114,7 +120,7 @@ const Thumb: FC<ThumbProps> = ({ id, thumb, index, moveCard, max }) => {
 
                 <div
                     className={styles.CloseIcon}
-                    onClick={() => modal.openDeleteItem({ index, thumb })}
+                    // onClick={() => modal.openDeleteItem({ index, thumb })}
                     data-cy="btnOpen-delForm"
                 >
                     <CloseIcon strokeColor="#ef4444" width={22} height={18} />

@@ -1,5 +1,4 @@
-import { Movie } from '../models/Catalog/Movie'
-import { Serie } from '../models/Catalog/Serie'
+import { Movie, Serie } from '../../share/types'
 
 export interface WatchGenre {
     id: number

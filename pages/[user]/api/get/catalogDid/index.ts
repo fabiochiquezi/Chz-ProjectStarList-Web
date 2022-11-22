@@ -1,4 +1,4 @@
-import { db } from '../../../../../firebase/settings'
+import { db } from '../../../../share/settings'
 import { collection, getDocs } from 'firebase/firestore'
 import { SerieDB } from '../../../../share/types/Catalog/Serie'
 import { MovieDB } from '../../../../share/types/Catalog/Movie'

@@ -1,23 +1,25 @@
 import React, { FC } from 'react'
 
-interface props {
+interface PaginationType {
     page: number
     changePage: (page: number) => void
     maxPages: number
 }
 
-const Pagination: FC<props> = ({ page, changePage, maxPages }) => {
-    console.log(maxPages)
+const Pagination: FC<PaginationType> = ({ page, changePage, maxPages }) => {
     return (
-        <ul className="flex justify-center items-center">
-            {page > 2 && (
+        <ul
+            className="flex justify-center items-center"
+            data-testid="Pagination"
+        >
+            {/* {page > 2 && (
                 <li
                     className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md simple-button mr-[24px] opacity-10"
                     onClick={() => changePage(1)}
                 >
                     1
                 </li>
-            )}
+            )} */}
             {page > 1 && (
                 <li
                     className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl simple-button"

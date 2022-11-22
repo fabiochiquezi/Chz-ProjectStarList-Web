@@ -1,21 +1,26 @@
-import React from 'react'
-import { Footer } from '../../structure/Footer'
-import { Header } from '../../structure/Header/Private'
+import { MixedStruct } from '../share/structure'
+import { FC } from 'react'
 
-const ErrorSection: React.FC = () => (
-    <div data-testid="error-section">
-        <Header />
-        <div className="relative h-[600px] w-full">
-            <p className="text-red-600 text-2xl pt-[200px] max-w-[300px] mx-auto text-center">
+const ErrorPage: FC<{ error: string }> = ({
+    error = 'Sorry, but something went wrong'
+}) => (
+    <MixedStruct
+        titleSEO="Star List | My List"
+        descriptionSEO="See all of your memories about movies, series, animations, books and games"
+    >
+        <div
+            className="relative h-[50vh] lg:h-[50vh] w-full"
+            data-testid="error-section"
+        >
+            <p className="text-red-600 text-2xl absolute left-[50%] top-[50%] ml-[-150px] mt-[-125px] md:mt-[-50px] max-w-[300px] mx-auto text-center">
                 <span className="text-5xl mb-6 font-bold inline-block">
                     ERROR ;(
                 </span>
                 <br />
-                Sorry, but something went wrong
+                {error}
             </p>
         </div>
-        <Footer />
-    </div>
+    </MixedStruct>
 )
 
-export { ErrorSection }
+export default ErrorPage

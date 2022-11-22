@@ -4,21 +4,20 @@ import { SignOut } from './api/signOut'
 import { useRouter } from 'next/router'
 import { AuthState } from './api/authState'
 import { AuthContext } from './types/usetypes'
+import { useUtils } from '../Utils/useContext'
 import { publicRoutes } from '../../settings/routes'
 import { getUserName } from '../../helpers/userName'
 import { AuthUpdateContext } from './types/setTypes'
 import { FC, ReactNode, useEffect, useState } from 'react'
 
-interface Children {
-    children: ReactNode
-}
 function Auth(
     signInFn: SignIn,
     authStateFn: AuthState,
     signOutFn: SignOut
-): FC<Children> {
-    const Provider: FC<Children> = ({ children }) => {
+): FC<{ children: ReactNode }> {
+    const Provider: FC<{ children: ReactNode }> = ({ children }) => {
         const router = useRouter()
+        const { alert } = useUtils()
         const [loading, setLoading] = useState(false)
         const [user, setUser] = useState<User | null>(null)
         const isPublic = publicRoutes.includes(router.pathname)
@@ -42,8 +41,8 @@ function Auth(
                 setUser(user)
                 await router.push(`/${getUserName(user.email as string)}`)
             } catch (e) {
-                window.alert('Something went wrong')
-                console.log(e, 'error')
+                alert.open({ message: 'Somenthing went wrong', mode: 2 })
+                // console.log(e)
             } finally {
                 setLoading(false)
             }
@@ -54,8 +53,8 @@ function Auth(
                 setUser(null)
                 await signOutFn()
             } catch (e) {
-                window.alert('Something went wrong')
-                console.log(e, 'error')
+                alert.open({ message: 'Somenthing went wrong', mode: 2 })
+                // console.log(e)
             } finally {
                 setLoading(false)
             }

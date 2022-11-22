@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import { Loading } from '../../../components'
 import { Header } from '../../Header/Private'
 import { FC, ReactElement, ReactNode, useEffect } from 'react'
-import { useSetUtils } from '../../../context/Utils/types/setTypes'
-import { useUtils } from '../../../context/Utils/types/useTypes'
+import { useUtils } from '../../../context/Utils/useContext'
 
 interface props {
     children: ReactNode
@@ -14,13 +13,12 @@ interface props {
 }
 
 const Struct: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
-    const { contentLoadState } = useUtils()
-    const { contentLoad } = useSetUtils()
+    const { contentLoad } = useUtils()
 
     const Load = <Loading />
     const cssMargin = 'pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36'
     const Content = <div className={cssMargin}>{children}</div>
-    const Core = (): ReactElement => (contentLoadState ? Load : Content)
+    const Core = (): ReactElement => (contentLoad.state ? Load : Content)
     const router = useRouter()
 
     useEffect(() => {

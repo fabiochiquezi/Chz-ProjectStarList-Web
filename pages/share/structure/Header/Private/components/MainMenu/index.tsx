@@ -21,7 +21,10 @@ const MainMenu: FC<props> = ({ onChangeMenu, userName, route }) => (
                         className={`md:text-3xl lg:text-[14px] lg:mr-6 ${LinkCSS} ${
                             route === '/new/[type]' && activeCSS
                         }`}
-                        onClick={onChangeMenu}
+                        onClick={() => {
+                            console.log('aaa')
+                            // onChangeMenu()
+                        }}
                     >
                         NEW
                     </a>

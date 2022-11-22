@@ -11,14 +11,14 @@ describe('BtnSignIn', () => {
     describe('className', () => {
         it('className', () => {
             render(<BtnSignIn {...props} />)
-            const el = document.querySelector('a')
+            const el = document.querySelector('button')
             expect(el).toBeInTheDocument()
             expect(el).toHaveClass(props.className)
         })
 
         it('without className', () => {
             render(<BtnSignIn {...props} className="" />)
-            const el = document.querySelector('a')
+            const el = document.querySelector('button')
             expect(el).toBeInTheDocument()
             expect(el).not.toHaveClass(props.className)
         })
@@ -44,7 +44,7 @@ describe('BtnSignIn', () => {
 
     it('onClick', () => {
         render(<BtnSignIn {...props} />)
-        const el = document.querySelector('a')
+        const el = document.querySelector('button')
         if (el) fireEvent.click(el)
         expect(props.onClick).toHaveBeenCalledTimes(1)
     })

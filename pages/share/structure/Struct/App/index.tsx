@@ -1,6 +1,5 @@
-import { AuthFirebase } from 'pages/share/context/Auth/AuthFirebase'
+import { AuthFirebase, UtilsProvider } from '../../../context'
 import { PrivateRoute } from '../../Route/Private'
-import { UtilsProvider } from '../../../context'
 import React, { FC, ReactNode } from 'react'
 
 interface StructType {

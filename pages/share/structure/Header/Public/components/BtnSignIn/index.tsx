@@ -8,15 +8,16 @@ export interface BtnSignInType {
 }
 
 const BtnSignIn: FC<BtnSignInType> = ({ className = '', loading, onClick }) => (
-    <a
+    <button
         onClick={onClick}
         data-cy="btn-signIn1"
         data-testid="BtnSignIn"
+        disabled={!!loading}
         className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md
                 flex justify-center items-center ${className} h-[44px] w-[112px]`}
     >
         {loading ? BtnLoad : BtnIcon}
-    </a>
+    </button>
 )
 
 const BtnLoad = (

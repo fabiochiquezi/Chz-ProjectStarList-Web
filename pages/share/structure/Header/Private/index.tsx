@@ -6,9 +6,9 @@ import { FC, useEffect, useState } from 'react'
 import { MainMenu } from './components/MainMenu'
 import { BtnHamburger } from './components/BtnHamburger'
 import { SecondaryMenu } from './components/SecondaryMenu'
+import { useUtils } from '../../../context/Utils/useContext'
 import { useAuth } from '../../../context/Auth/types/usetypes'
 import { useSetAuth } from '../../../context/Auth/types/setTypes'
-import { useSetUtils } from '../../../context/Utils/types/setTypes'
 
 const Header: FC = () => {
     const router = useRouter()
@@ -17,7 +17,7 @@ const Header: FC = () => {
     const { signOut } = useSetAuth()
     const [menu, setMenu] = useState(false)
     const menuOpenClass = menu ? 'fixed' : 'hidden'
-    const { contentLoad } = useSetUtils()
+    const { contentLoad } = useUtils()
     const userName = user?.displayName ? user.displayName.substring(0, 9) : ''
 
     useEffect(() => {

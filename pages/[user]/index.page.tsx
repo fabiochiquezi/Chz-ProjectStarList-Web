@@ -1,71 +1,44 @@
+import { catalogTypes } from './types'
 import Page404 from '../404/index.page'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { Menu } from './components/Menu'
 import { List } from './components/List'
-import { MixedStruct, Loading } from '../share'
-import { getCatalogDid } from './api/get/catalogDid'
+import { Loading } from '../share/components'
+import { requestData } from './fns/requestData'
+import { MixedStruct } from '../share/structure'
+import { Movie } from '../share/types/Catalog/Movie'
+import { getTitle } from 'pages/[user]/fns/getTitle'
+import { Serie } from '../share/types/Catalog/Serie'
 import React, { FC, useEffect, useState } from 'react'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { getCatalogDoing } from './api/get/catalogDoing'
-import { getCatalogIlldo } from './api/get/catalogIlldo'
-import { Movie } from '../share/types/Catalog/Movie'
-import { Serie } from '../share/types/Catalog/Serie'
-
-import { getTitle } from 'pages/[user]/fns/getTitle'
-
-type CatalogTypes = 'doing' | 'did' | 'illdo'
-const catalogTypes = ['doing', 'did', 'illdo']
-
-async function requestData(
-    catalogURI: string,
-    userURI: string
-): Promise<Array<Movie | Serie>> {
-    let list
-    switch (catalogURI) {
-        case catalogTypes[0]:
-            list = await getCatalogDoing(userURI)
-            break
-        case catalogTypes[1]:
-            list = await getCatalogDid(userURI)
-            break
-        case catalogTypes[2]:
-            list = await getCatalogIlldo(userURI)
-            break
-        default:
-            list = await getCatalogDoing(userURI)
-            break
-    }
-    return list
-}
 
 const Catalog: FC = () => {
-    const router = useRouter()
-    const catalogURI = (router.query.catalog ?? catalogTypes[0]) as string
-    const userURI = router.query.user as string
-
-    const isCatalogInCatalogTypes = catalogTypes.includes(catalogURI)
-    if (!isCatalogInCatalogTypes) return <Page404 />
-
-    const [loadContent, setLoadContent] = useState(true)
+    console.log('xxx')
     const [list, setList] = useState<Array<Movie | Serie>>([])
-    const { title, subtitle } = getTitle(catalogURI)
+    const [loadContent, setLoadContent] = useState(true)
+    const router = useRouter()
+
+    const catalogURI = (router.query.catalog ?? 'doing') as string
+    const userURI = router.query.user as string
+    const isURIRight = catalogTypes.includes(catalogURI)
+    if (!isURIRight) return <Page404 />
+
+    useEffect(() => {
+        getData()
+    }, [router])
 
     async function getData(): Promise<void> {
         try {
             setLoadContent(true)
-            const newList = await requestData(catalogURI, userURI)
-            setList(newList)
+            // const newList = await requestData(catalogURI, userURI)
+            // setList(newList)
         } catch (e) {
             console.log(e)
         } finally {
             setLoadContent(false)
         }
     }
-
-    useEffect(() => {
-        getData()
-    }, [router])
 
     return (
         <MixedStruct
@@ -78,8 +51,8 @@ const Catalog: FC = () => {
             ) : (
                 <DndProvider backend={HTML5Backend}>
                     <List
-                        title={title}
-                        description={subtitle}
+                        title={getTitle(catalogURI).title}
+                        description={getTitle(catalogURI).subtitle}
                         list={list}
                         setList={setList}
                     />

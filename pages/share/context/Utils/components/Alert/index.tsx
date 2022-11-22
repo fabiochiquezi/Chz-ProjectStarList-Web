@@ -3,22 +3,22 @@ import { CloseIcon } from '../../../../assets'
 
 interface props {
     message: string
-    state?: number
+    mode?: number
     closeAlert: () => void
 }
 
-const Alert: React.FC<props> = ({ message = '', state = 0, closeAlert }) => {
-    let stateClass = ''
+const Alert: React.FC<props> = ({ message = '', mode = 0, closeAlert }) => {
+    let modeClass = ''
 
-    switch (state) {
+    switch (mode) {
         case 1:
-            stateClass = 'bg-green-700'
+            modeClass = 'bg-green-700'
             break
         case 2:
-            stateClass = 'bg-red-700'
+            modeClass = 'bg-red-700'
             break
         default:
-            stateClass = 'bg-gray-700'
+            modeClass = 'bg-gray-700'
             break
     }
 
@@ -26,15 +26,15 @@ const Alert: React.FC<props> = ({ message = '', state = 0, closeAlert }) => {
         <div
             className={`alert-anim fixed left-[0px] ml-[5%] top-10 w-[90%] mx-auto text-left rounded py-4 px-4 z-50 flex justify-between items-center
                 sm:max-w-[420px] sm:left-[50%] sm:ml-[-210px]
-                ${stateClass}`}
-            data-testid="alert-default"
+                ${modeClass}`}
+            data-testid="Alert"
         >
             <p className="text-lg text-white mr-2 ml-2">{message}</p>
 
             <div
                 className="relative left-1 simple-button"
                 onClick={closeAlert}
-                data-testid="close-button"
+                data-testid="CloseIcon"
             >
                 <CloseIcon width={22} height={16} />
             </div>

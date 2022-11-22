@@ -1,5 +1,3 @@
-/*
-*/
 .BarIcons {
     transition: all 0.3s ease;
     position: absolute;
@@ -20,13 +18,11 @@
 .BarIcons:active {
     transform: scale(1);
 }
-
 @media (min-width: 1024px) {
     .Box:hover .BarIcons {
         animation: BarIconsShowsAnim 600ms forwards;
     }
 }
-
 @keyframes BarIconsShowsAnim {
     from {
         visibility: hidden;
@@ -39,7 +35,6 @@
         bottom: -70px;
     }
 }
-
 .CloseIcon,
 .ArrowLeftUp,
 .ArrowRightDown {
@@ -60,7 +55,6 @@
 .CloseIcon {
     margin-top: -24px;
 }
-
 /* Rotate */
 .ArrowLeftUp {
     transform: rotate(270deg);
@@ -78,10 +72,8 @@
         transform: rotate(0deg);
     }
 }
-
 /* Test
 ------
-
 .DragP {
     top: 0px;
     opacity: 0;

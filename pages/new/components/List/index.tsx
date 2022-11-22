@@ -1,35 +1,36 @@
 import { Title } from './Title'
 import { Thumb } from './Thumb'
 import React, { FC } from 'react'
-import { Movie } from 'pages/share/types/Catalog/Movie'
+import { Serie, Movie } from '../../../share/types'
 
-interface props {
-    catalog: Movie[]
+interface ListType {
+    list: Array<Movie | Serie>
     title: string
+    description: string
+    onClick: () => unknown
 }
 
-const List: FC<props> = ({ catalog, title }) => {
+const List: FC<ListType> = ({ list, title, description, onClick }) => {
     const limit = 20
 
     return (
         <main
             data-cy="section-list"
-            className="
-                container mx-auto px-4 grid
-                sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
-                justify-items-center lg:justify-items-end 2xl:justify-items-center
-            "
+            className="container mx-auto px-4 grid
+            sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
+            justify-items-center lg:justify-items-end 2xl:justify-items-center"
         >
-            <Title title={title} subtitle="add + to your list" />
-
-            {catalog?.map(({ thumb, title }, index) => {
+            <Title title={title} description={description} />
+            {list?.map((data, index) => {
                 if (index >= limit) return null
+
+                const title = 'title' in data ? data.title : data.name
                 return (
                     <Thumb
                         key={index}
-                        index={index}
                         title={title}
-                        thumb={thumb}
+                        thumb={data.thumb}
+                        onClick={onClick}
                     />
                 )
             })}
