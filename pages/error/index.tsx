@@ -1,7 +1,7 @@
 import { MixedStruct } from '../share/structure'
 import { FC } from 'react'
 
-const ErrorPage: FC<{ error: string }> = ({
+const ErrorPage: FC<{ error?: string }> = ({
     error = 'Sorry, but something went wrong'
 }) => (
     <MixedStruct

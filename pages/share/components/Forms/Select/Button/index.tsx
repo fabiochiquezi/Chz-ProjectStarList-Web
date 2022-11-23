@@ -1,20 +1,27 @@
-import { useEffect, useState, useRef, FC } from 'react'
-import { SelectType } from '../Default'
+import { useEffect, useState, useRef, FC, ReactNode, ChangeEvent } from 'react'
+
+export interface SelectType {
+    name: string
+    className?: string
+    children: ReactNode
+    colorClass?: string
+    defaultValue: string
+    error?: string | undefined
+    onChange: (e: ChangeEvent<HTMLSelectElement>) => void
+}
 
 const SelectButton: FC<SelectType> = ({
     name,
-    label,
     error,
     children,
     onChange,
+    colorClass,
     className = '',
-    placeholder = '',
     defaultValue = ''
 }) => {
     const ref = useRef<HTMLSelectElement | null>(null)
     const [active, setActive] = useState(false)
     const selectCSS = active && 'border-green-700'
-    const labelCSS = active ? 'text-[11px] -top-[16px] text-gray-300' : 'top-1'
 
     useEffect(() => {
         if (defaultValue.length) setActive(true)
@@ -22,20 +29,11 @@ const SelectButton: FC<SelectType> = ({
 
     return (
         <div className={`relative w-full h-8 ${className}`}>
-            <label
-                htmlFor={name}
-                className={`ease-in-out duration-300 absolute left-0 text-sm text-[#666] ${labelCSS}`}
+            <div
+                className={`w-[84px] h-10  px-2 rounded-lg ${
+                    colorClass ?? 'bg-indigo-600'
+                }`}
             >
-                {`${label} `}
-
-                {placeholder && (
-                    <span className="ml-1 text-yellow-400 text-[11px]">
-                        ({placeholder})
-                    </span>
-                )}
-            </label>
-
-            <div className="w-[84px] h-10 bg-indigo-600 px-2 rounded-lg">
                 <select
                     name={name}
                     ref={ref}
@@ -43,7 +41,9 @@ const SelectButton: FC<SelectType> = ({
                     defaultValue={defaultValue}
                     className={`
                         simple-button ease-in-out duration-300 w-full max-w-full absolute left-0 top-0
-                        h-10 bg-indigo-600 w-[68px] ml-[9px] cursor-pointer text-sm ${selectCSS}`}
+                        h-10  w-[68px] ml-[9px] cursor-pointer text-sm ${selectCSS} ${
+                        colorClass ?? 'bg-indigo-600'
+                    }`}
                     onFocus={() => {
                         setActive(true)
                         ref.current?.classList.add('border-green-700')

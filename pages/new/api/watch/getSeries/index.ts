@@ -2,8 +2,8 @@ import axios from 'axios'
 import { keyTMDB } from '../../keys'
 import { apiKey, base } from '../config'
 import { format } from '../_helpers/format'
-import { WatchList } from '../../../types/apis/watch'
-import { Serie } from '../../../types/models/Catalog/Serie'
+import { Serie } from '../../../../share/types'
+import { WatchList } from '../../../types/watch'
 
 export type GetSeries = (page: string) => Promise<WatchList<Serie>>
 

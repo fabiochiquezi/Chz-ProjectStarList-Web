@@ -5,7 +5,7 @@ export interface SearchType {
     value: string
     className?: string
     callReset: () => void
-    callSearch: (search: string) => Promise<void>
+    callSearch: (search: string) => Promise<void> | void
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -38,7 +38,10 @@ const Search: FC<SearchType> = ({
     }, [value])
 
     return (
-        <div className={`flex relative w-full h-8 ${className}`}>
+        <div
+            className={`flex relative w-full h-8 ${className}`}
+            data-testid="Search"
+        >
             <input
                 ref={ref}
                 type="text"

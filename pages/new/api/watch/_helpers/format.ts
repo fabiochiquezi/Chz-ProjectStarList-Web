@@ -1,6 +1,5 @@
-import { WatchList } from '../../../types/apis/watch'
-import { Movie } from '../../../types/models/Catalog/Movie'
-import { Serie } from '../../../types/models/Catalog/Serie'
+import { Serie, Movie } from '../../../../share/types'
+import { WatchList } from '../../../types/watch'
 
 type Format = <T extends Movie | Serie>(data: WatchList<T>) => WatchList<T>
 type AddThumb = <T extends Movie | Serie>(item: T) => T

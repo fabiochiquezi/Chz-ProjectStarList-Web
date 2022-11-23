@@ -19,26 +19,17 @@ describe('Search', () => {
         render(Elem)
 
         const div = document.querySelector('.className')
-        const label = document.querySelector('.className label')
         const select = document.querySelector('.className select')
         const options = document.querySelectorAll('.className option')
         const error = document.querySelector('.className p')
 
         expect(div).toBeInTheDocument()
         expect(div.classList.contains(props.className)).toBeTruthy()
-        expect(label.textContent).toBe('label (placeholder)')
         expect(select).toBeInTheDocument()
         expect(select.value).toBe(props.defaultValue)
         expect(options).toHaveLength(2)
         expect(error).toBeInTheDocument()
         expect(error.textContent).toBe(`* ${props.error}`)
-    })
-
-    it('miss propperties', () => {
-        const Elem = (<SelectButton {...props} className="">{children}</SelectButton>)
-        render(Elem)
-        const div = document.querySelector('label').parentElement
-        expect(div.className).toBe('relative w-full h-8 ')
     })
 
     it('onFocus', () => {
