@@ -6,17 +6,20 @@ import { Menu } from './components/Menu'
 import { Loading } from '../share/components'
 import { closeModal } from './fns/closeModal'
 import { Movie, Serie } from '../share/types'
+import { changePage } from './fns/changePage'
 import { getServerSideProps } from './api/ssr'
 import { FC, useEffect, useState } from 'react'
-import { submitModal } from './fns/submitModal'
+import { resetSearch } from './fns/resetSearch'
+import { genreFilter } from './fns/genreFilter'
 import { AddModal } from './components/AddModal'
+import { search as searchFn } from './fns/search'
 import { changeCatalog } from './fns/changeCatalog'
 import { Pagination } from './components/Pagination'
 import { useAuth, useUtils } from 'pages/share/context'
 import { Resp } from 'pages/share/types/_helpers/Response'
 import { Struct } from '../share/structure/Struct/Private'
 import { Modal } from 'pages/share/components/Modals/Default'
-import { genreFilter, search as searchFn, changePage, resetSearch } from './fns'
+import { submitModalFirebase } from './fns/submitModal/firebase'
 
 interface SRRData {
     data: Resp<Data<Movie | Serie>>
@@ -56,10 +59,14 @@ const New: FC<SRRData> = ({ data }) => {
                         closeModal={() => closeModal(setAddModal)}
                         onSubmit={async data => {
                             try {
-                                popSave.open()
+                                // popSave.open()
                                 const userName = String(user?.userName)
                                 const itemId = addModal.item
-                                await submitModal(list, itemId, userName)(data)
+                                await submitModalFirebase(
+                                    list,
+                                    itemId,
+                                    userName
+                                )(data)
                             } catch (e) {
                                 // popSave.close()
                                 const message = 'Something went wrong'
