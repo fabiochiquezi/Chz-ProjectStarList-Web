@@ -1,4 +1,11 @@
-import { Dispatch, FC, ReactNode, SetStateAction, useState } from 'react'
+import {
+    Dispatch,
+    FC,
+    ReactNode,
+    SetStateAction,
+    useEffect,
+    useState
+} from 'react'
 import { PopSave } from './components/PopSave'
 import { UtilsContext } from './useContext'
 import { Alert } from './components/Alert'
@@ -33,8 +40,16 @@ const UtilsProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
 
     const open =
-        (set: SetState) => (newState?: { message?: string; mode?: number }) => {
-            if (newState) set(prev => ({ ...prev, ...newState, state: true }))
+        (set: SetState) =>
+        (
+            newState?: { message?: string; mode?: number },
+            delay: number | null = 1000
+        ) => {
+            if (delay) close(set)(delay)
+            if (newState) {
+                set(prev => ({ ...prev, ...newState, state: true }))
+                return
+            }
             set(prev => ({ ...prev, state: true }))
         }
 

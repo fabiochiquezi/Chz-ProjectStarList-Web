@@ -7,7 +7,7 @@ interface ListType {
     list: Array<Movie | Serie>
     title: string
     description: string
-    onClick: () => unknown
+    onClick: (id: string | number) => void
 }
 
 const List: FC<ListType> = ({ list, title, description, onClick }) => {
@@ -23,10 +23,10 @@ const List: FC<ListType> = ({ list, title, description, onClick }) => {
             <Title title={title} description={description} />
             {list?.map((data, index) => {
                 if (index >= limit) return null
-
                 const title = 'title' in data ? data.title : data.name
                 return (
                     <Thumb
+                        id={data.id}
                         key={index}
                         title={title}
                         thumb={data.thumb}

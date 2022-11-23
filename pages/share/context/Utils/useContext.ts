@@ -4,22 +4,31 @@ export interface UtilsT {
     contentLoad: {
         message: string
         state: boolean
-        open: (newState?: { message?: string; mode?: number }) => void
-        close: (delay: number | null) => void
+        open: (
+            newState?: { message?: string; mode?: number },
+            delay?: number | null
+        ) => void
+        close: (delay?: number | null) => void
         toggle: () => void
     }
     popSave: {
         message: string
         state: boolean
-        open: (newState?: { message?: string; mode?: number }) => void
-        close: (delay: number | null) => void
+        open: (
+            newState?: { message?: string; mode?: number },
+            delay?: number | null
+        ) => void
+        close: (delay?: number | null) => void
         toggle: () => void
     }
     alert: {
         message: string
         state: boolean
-        open: (newState?: { message?: string; mode?: number }) => void
-        close: (delay: number | null) => void
+        open: (
+            newState?: { message?: string; mode?: number },
+            delay?: number | null
+        ) => void
+        close: (delay?: number | null) => void
         toggle: () => void
     }
 }

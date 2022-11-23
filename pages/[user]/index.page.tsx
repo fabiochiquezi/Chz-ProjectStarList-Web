@@ -12,11 +12,12 @@ import { getTitle } from 'pages/[user]/fns/getTitle'
 import { Serie } from '../share/types/Catalog/Serie'
 import React, { FC, useEffect, useState } from 'react'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { useUtils } from 'pages/share/context'
 
 const Catalog: FC = () => {
-    console.log('xxx')
     const [list, setList] = useState<Array<Movie | Serie>>([])
     const [loadContent, setLoadContent] = useState(true)
+    const { contentLoad } = useUtils()
     const router = useRouter()
 
     const catalogURI = (router.query.catalog ?? 'doing') as string
@@ -25,6 +26,7 @@ const Catalog: FC = () => {
     if (!isURIRight) return <Page404 />
 
     useEffect(() => {
+        setTimeout(() => contentLoad.close(), 1000)
         getData()
     }, [router])
 

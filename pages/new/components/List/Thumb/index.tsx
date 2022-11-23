@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 
 interface ThumbProps {
+    id: string | number
     thumb: string
     title: string
-    onClick: () => unknown
+    onClick: (id: string | number) => void
 }
 
-const Thumb: React.FC<ThumbProps> = ({ thumb, title, onClick }) => {
+const Thumb: React.FC<ThumbProps> = ({ thumb, title, onClick, id }) => {
     const errorDiv = useRef<HTMLDivElement>(null)
 
     return (
@@ -14,7 +15,7 @@ const Thumb: React.FC<ThumbProps> = ({ thumb, title, onClick }) => {
             className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 simple-button relative"
             data-cy="thumb-default"
             data-testid="Thumb"
-            onClick={onClick}
+            onClick={() => onClick(id)}
         >
             <div className="absolute left-0 top-0 w-[170px] h-[220px] transition duration-150 ease-out opacity-0 hover:opacity-100">
                 <div className="bg-black opacity-75 w-full h-full"></div>

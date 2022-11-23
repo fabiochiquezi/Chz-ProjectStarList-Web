@@ -1,10 +1,11 @@
-import { User } from 'firebase/auth'
+import { User } from 'pages/share/types'
 import { SignIn } from './api/signIn'
 import { SignOut } from './api/signOut'
 import { useRouter } from 'next/router'
 import { AuthState } from './api/authState'
 import { AuthContext } from './types/usetypes'
 import { useUtils } from '../Utils/useContext'
+import { User as UserFirebase } from 'firebase/auth'
 import { publicRoutes } from '../../settings/routes'
 import { getUserName } from '../../helpers/userName'
 import { AuthUpdateContext } from './types/setTypes'
@@ -23,9 +24,9 @@ function Auth(
         const isPublic = publicRoutes.includes(router.pathname)
 
         useEffect(() => {
-            authStateFn((userFirebase: User) => {
+            authStateFn((userFirebase: UserFirebase) => {
                 const nullUserButHas = user === null && userFirebase
-                if (nullUserButHas) setUser(userFirebase)
+                if (nullUserButHas) defineUser(userFirebase)
 
                 const noUserAndPrivate =
                     !isPublic && user === null && !userFirebase
@@ -33,16 +34,22 @@ function Auth(
             })
         }, [])
 
+        function defineUser(userFirebase: UserFirebase): void {
+            const userName = getUserName(String(userFirebase.email))
+            const user = { ...userFirebase, userName }
+            setUser(user)
+        }
+
         async function signIn(): Promise<void> {
             try {
                 if (loading) return
                 setLoading(true)
-                const user = await signInFn()
-                setUser(user)
-                await router.push(`/${getUserName(user.email as string)}`)
+                const userFirebase = await signInFn()
+                defineUser(userFirebase)
+                await router.push(`/${user?.userName}`)
             } catch (e) {
                 alert.open({ message: 'Somenthing went wrong', mode: 2 })
-                // console.log(e)
+                console.log(e, 'errorr')
             } finally {
                 setLoading(false)
             }
@@ -54,7 +61,7 @@ function Auth(
                 await signOutFn()
             } catch (e) {
                 alert.open({ message: 'Somenthing went wrong', mode: 2 })
-                // console.log(e)
+                console.log(e, 'errorr')
             } finally {
                 setLoading(false)
             }

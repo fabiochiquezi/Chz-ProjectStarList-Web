@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Link from 'next/link'
+import Router from 'next/router'
 
 interface props {
     onChangeMenu: () => void
@@ -16,31 +16,30 @@ const MainMenu: FC<props> = ({ onChangeMenu, userName, route }) => (
     <nav data-cy="menu-structure" data-testid="MainMenu">
         <ul className="flex flex-col items-center text-center text-2xl lg:flex-row lg:mt-[2px]">
             <li className={LiCSS}>
-                <Link href="/new/movies">
-                    <a
-                        className={`md:text-3xl lg:text-[14px] lg:mr-6 ${LinkCSS} ${
-                            route === '/new/[type]' && activeCSS
-                        }`}
-                        onClick={() => {
-                            console.log('aaa')
-                            // onChangeMenu()
-                        }}
-                    >
-                        NEW
-                    </a>
-                </Link>
+                <a
+                    className={`md:text-3xl lg:text-[14px] lg:mr-6 ${LinkCSS} ${
+                        route === '/new/[type]' && activeCSS
+                    }`}
+                    onClick={() => {
+                        onChangeMenu()
+                        Router.push('/new/movies')
+                    }}
+                >
+                    NEW
+                </a>
             </li>
             <li className={LiCSS}>
-                <Link href={`/${userName}`}>
-                    <a
-                        className={`md:text-3xl lg:text-[14px] lg:mr-6 ${LinkCSS} ${
-                            route === '/[user]' && activeCSS
-                        }`}
-                        onClick={onChangeMenu}
-                    >
-                        MY LIST
-                    </a>
-                </Link>
+                <a
+                    className={`md:text-3xl lg:text-[14px] lg:mr-6 ${LinkCSS} ${
+                        route === '/[user]' && activeCSS
+                    }`}
+                    onClick={() => {
+                        onChangeMenu()
+                        Router.push(`/${userName}`)
+                    }}
+                >
+                    MY LIST
+                </a>
             </li>
         </ul>
     </nav>

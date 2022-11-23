@@ -1,9 +1,8 @@
 import Head from 'next/head'
 import { Footer } from '../../Footer'
-import { useRouter } from 'next/router'
 import { Loading } from '../../../components'
 import { Header } from '../../Header/Private'
-import { FC, ReactElement, ReactNode, useEffect } from 'react'
+import { FC, ReactElement, ReactNode } from 'react'
 import { useUtils } from '../../../context/Utils/useContext'
 
 interface props {
@@ -14,16 +13,10 @@ interface props {
 
 const Struct: FC<props> = ({ children, titleSEO, descriptionSEO }) => {
     const { contentLoad } = useUtils()
-
     const Load = <Loading />
     const cssMargin = 'pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36'
     const Content = <div className={cssMargin}>{children}</div>
     const Core = (): ReactElement => (contentLoad.state ? Load : Content)
-    const router = useRouter()
-
-    useEffect(() => {
-        contentLoad.close(0)
-    }, [router])
 
     return (
         <div>

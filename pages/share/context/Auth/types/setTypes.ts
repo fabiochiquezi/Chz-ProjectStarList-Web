@@ -1,5 +1,5 @@
+import { User } from 'pages/share/types'
 import { createContext, Dispatch, SetStateAction, useContext } from 'react'
-import { User } from 'firebase/auth'
 
 export type SignInFn = () => Promise<void>
 export type signOutFn = () => Promise<void>

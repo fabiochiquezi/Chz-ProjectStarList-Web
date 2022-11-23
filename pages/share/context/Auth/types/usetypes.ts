@@ -1,5 +1,5 @@
+import { User } from 'pages/share/types'
 import { createContext, useContext } from 'react'
-import { User } from 'firebase/auth'
 
 interface useAuthType {
     user: undefined | null | User
