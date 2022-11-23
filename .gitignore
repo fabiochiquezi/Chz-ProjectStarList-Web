@@ -48,6 +48,6 @@ tests_output
 serviceAccount.json
 cypress.config.ts
 firebase.mysettings.ts
-api/keys.ts
+pages/new/api/keys.ts
 
 todo.log.md
