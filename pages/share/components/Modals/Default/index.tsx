@@ -30,9 +30,8 @@ const Modal: FC<props> = ({ children, closeModal }) => {
             <div
                 className="absolute w-full h-full left-0 top-0 bg-black opacity-75"
                 onClick={closeModal}
-            >
-                {children}
-            </div>
+            ></div>
+            {children}
         </div>
     )
 }
