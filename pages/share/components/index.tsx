@@ -5,4 +5,6 @@ export { Select } from './Forms/Select/Default'
 
 export { Loading } from './Loadings/Default'
 
+export { Modal } from './Modals/Default'
+
 export { AddThumb } from './Thumbs/Add'

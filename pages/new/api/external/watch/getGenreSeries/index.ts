@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { keyTMDB } from '../../keys'
-import { Genre } from '../../../types'
+import { Genre } from '../../../../types'
 import { apiKey, base } from '../config'
 
 export type GetGenreSeries = () => Promise<Genre[]>

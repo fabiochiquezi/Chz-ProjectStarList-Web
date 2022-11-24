@@ -3,10 +3,12 @@ import { Menu } from './index'
 
 describe('Menu', () => {
     const props = {
+        routerGenre: '',
+        genreList: [{ id: '1', name: 'action' }],
         routerType: 'movies',
         searchFn: jest.fn(),
         resetSearch: jest.fn(),
-        changeSelect: jest.fn()
+        changeCatalog: jest.fn()
     }
     const El = (newProps: any): any => <Menu {...props} {...newProps} />
 
@@ -60,8 +62,8 @@ describe('Menu', () => {
         render(<El />)
         const el = document.querySelector('[data-testid="selectType"] select')
         if (!el) return
-        fireEvent.change(el, { target: { value: 'movies' } })
+        fireEvent.change(el, { target: { value: 'series' } })
         expect(el).toBeInTheDocument()
-        expect(props.changeSelect).toHaveBeenCalledTimes(1)
+        expect(props.changeCatalog).toHaveBeenCalledTimes(1)
     })
 })

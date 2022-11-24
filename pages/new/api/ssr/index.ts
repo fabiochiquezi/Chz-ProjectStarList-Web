@@ -1,12 +1,12 @@
 import { GetServerSideProps } from 'next'
-import { getMovie } from '../watch/getMovie'
-import { getSerie } from '../watch/getSerie'
-import { getMovies } from '../watch/getMovies'
-import { getSeries } from '../watch/getSeries'
-import { getGenreMovies } from '../watch/getGenreMovies'
-import { discoverMovies } from '../watch/discoverMovies'
-import { discoverSeries } from '../watch/discoverSeries'
-import { getGenreSeries } from '../watch/getGenreSeries'
+import { getMovie } from '../external/watch/getMovie'
+import { getSerie } from '../external/watch/getSerie'
+import { getMovies } from '../external/watch/getMovies'
+import { getSeries } from '../external/watch/getSeries'
+import { getGenreMovies } from '../external/watch/getGenreMovies'
+import { discoverMovies } from '../external/watch/discoverMovies'
+import { discoverSeries } from '../external/watch/discoverSeries'
+import { getGenreSeries } from '../external/watch/getGenreSeries'
 
 export const getServerSideProps: GetServerSideProps = async context => {
     try {

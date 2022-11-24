@@ -1,9 +1,8 @@
-import { postCatalogDoing } from '../../api/catalog/post/doing'
 import { Movie, Serie } from '../../../share/types'
 
 type OnSubmitAddModal = (
-    postDoing: any,
     postDid: any,
+    postDoing: any,
     postIlldo: any
 ) => (
     list: Array<Movie | Serie>,
@@ -12,7 +11,7 @@ type OnSubmitAddModal = (
 ) => (data: { catalogType: string }) => Promise<void>
 
 const submitModal: OnSubmitAddModal =
-    (postDoing, postDid, postIlldo) =>
+    (postDid, postDoing, postIlldo) =>
     (list, idSelected, userName) =>
     async data => {
         const permitedTypes = ['doing', 'illdo', 'did']

@@ -2,8 +2,8 @@ import axios from 'axios'
 import { keyTMDB } from '../../keys'
 import { apiKey, base } from '../config'
 import { format } from '../_helpers/format'
-import { Movie } from '../../../../share/types'
-import { WatchList } from '../../../types/watch'
+import { Movie } from '../../../../../share/types'
+import { WatchList } from '../../../../types/watch'
 
 export type GetMovie = (
     movie: string,

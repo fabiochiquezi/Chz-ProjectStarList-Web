@@ -51,6 +51,7 @@
         "serviceAccount.json": true,
         // Project
         "pages/_document.page.tsx": true,
+        "pages/new/api/external/keys.example.ts": true,
         // "pages/_app.tsx": true,
         "public": true,
         // "cypress": true,
