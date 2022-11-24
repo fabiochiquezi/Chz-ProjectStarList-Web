@@ -1,7 +1,5 @@
 import { submitModal } from '.'
 
-jest.mock('../../api/catalog/post/doing', () => {})
-
 describe('submitModal', () => {
     const postDoing = jest.fn()
     const postDid = jest.fn()
@@ -37,13 +35,13 @@ describe('submitModal', () => {
 
     it('calls postDoing', async () => {
         const data: any = { catalogType: 'doing' }
-        submitModal(postDoing, postDid, postIlldo)(list, '2', userName)(data)
+        submitModal(postDid, postDoing, postIlldo)(list, '2', userName)(data)
         expect(postDoing).toBeCalledTimes(1)
     })
 
     it('calls postDid', async () => {
         const data: any = { catalogType: 'did' }
-        submitModal(postDoing, postDid, postIlldo)(list, '2', userName)(data)
+        submitModal(postDid, postDoing, postIlldo)(list, '2', userName)(data)
         expect(postDid).toBeCalledTimes(1)
     })
 

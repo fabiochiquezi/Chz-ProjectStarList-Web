@@ -53,7 +53,7 @@ const Menu: FC<MenuType> = ({
                         value={''}
                         onSelect={() => console.log('ooooooooo')}
                     >
-                        Genre
+                        Genres
                     </option>
                     {genreList.map((el, index) => (
                         <option

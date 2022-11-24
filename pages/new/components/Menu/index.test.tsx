@@ -15,7 +15,7 @@ describe('Menu', () => {
     it('Menu', () => {
         render(<El />)
         const Menu = screen.getByTestId('Menu')
-        const genreOption = screen.getByText('Genre')
+        const genreOption = screen.getByText('Genres')
         const moviesOption = screen.getByText('Movies')
         const seriesOption = screen.getByText('Series')
         const booksOption = screen.getByText('Books')
