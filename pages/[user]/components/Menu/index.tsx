@@ -10,7 +10,7 @@ const Menu: React.FC = () => {
             <li>
                 <Link href={`/${router.query.user}?catalog=doing`}>
                     <a
-                        className={`w-[70px] h-[32px] border-2 border-white rounded-lg inline-block flex justify-center items-center mr-4 simple-button text-sm ${
+                        className={`w-[70px] h-[32px] border-2 border-white rounded-lg inline-block flex justify-center items-center mr-4 anim-button text-sm ${
                             router.query.catalog === 'doing' ||
                             !router.query.catalog
                                 ? 'bg-orange-500 border-orange-500'
@@ -24,7 +24,7 @@ const Menu: React.FC = () => {
             <li>
                 <Link href={`/${router.query.user}?catalog=did`}>
                     <a
-                        className={`w-[70px] h-[32px] border-2 border-white rounded-lg inline-block flex justify-center items-center mr-4 simple-button text-sm ${
+                        className={`w-[70px] h-[32px] border-2 border-white rounded-lg inline-block flex justify-center items-center mr-4 anim-button text-sm ${
                             router.query.catalog === 'did'
                                 ? 'bg-orange-500 border-orange-500'
                                 : 'bg-transparent border-white'
@@ -37,7 +37,7 @@ const Menu: React.FC = () => {
             <li>
                 <Link href={`/${router.query.user}?catalog=illdo`}>
                     <a
-                        className={`w-[70px] h-[32px] border-2 border-white rounded-lg inline-block flex justify-center items-center mr-4 simple-button text-sm ${
+                        className={`w-[70px] h-[32px] border-2 border-white rounded-lg inline-block flex justify-center items-center mr-4 anim-button text-sm ${
                             router.query.catalog === 'illdo'
                                 ? 'bg-orange-500 border-orange-500'
                                 : 'bg-transparent border-white'

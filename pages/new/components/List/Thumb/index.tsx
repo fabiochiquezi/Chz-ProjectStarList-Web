@@ -12,7 +12,7 @@ const Thumb: React.FC<ThumbProps> = ({ thumb, title, onClick, id }) => {
 
     return (
         <div
-            className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 simple-button relative"
+            className="thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 anim-button relative"
             data-cy="thumb-default"
             data-testid="Thumb"
             onClick={() => onClick(id)}

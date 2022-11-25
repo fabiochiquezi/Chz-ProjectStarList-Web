@@ -14,7 +14,7 @@ const Pagination: FC<PaginationType> = ({ page, changePage, maxPages }) => {
         >
             {/* {page > 2 && (
                 <li
-                    className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md simple-button mr-[24px] opacity-10"
+                    className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md anim-button mr-[24px] opacity-10"
                     onClick={() => changePage(1)}
                 >
                     1
@@ -22,14 +22,14 @@ const Pagination: FC<PaginationType> = ({ page, changePage, maxPages }) => {
             )} */}
             {page > 1 && (
                 <li
-                    className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl simple-button"
+                    className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl anim-button"
                     onClick={() => changePage(page - 1)}
                 >
                     {page - 1}
                 </li>
             )}
             <li
-                className={`w-[72px] h-[72px] border-orange-600 text-orange-600 font-bold border-2 rounded-full flex justify-center items-center text-xl simple-button ${
+                className={`w-[72px] h-[72px] border-orange-600 text-orange-600 font-bold border-2 rounded-full flex justify-center items-center text-xl anim-button ${
                     page === 1 ? '' : 'ml-[16px]'
                 }`}
             >
@@ -37,7 +37,7 @@ const Pagination: FC<PaginationType> = ({ page, changePage, maxPages }) => {
             </li>
             {page + 1 <= maxPages && (
                 <li
-                    className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl ml-[16px] simple-button"
+                    className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl ml-[16px] anim-button"
                     onClick={() => changePage(page + 1)}
                 >
                     {page + 1}
@@ -45,7 +45,7 @@ const Pagination: FC<PaginationType> = ({ page, changePage, maxPages }) => {
             )}
             {page === 1 && page + 2 < maxPages && (
                 <li
-                    className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl ml-[20px] simple-button"
+                    className="w-[64px] h-[64px] border-white border-2 rounded-full flex justify-center items-center text-xl ml-[20px] anim-button"
                     onClick={() => changePage(page + 2)}
                 >
                     {page + 2}
@@ -53,7 +53,7 @@ const Pagination: FC<PaginationType> = ({ page, changePage, maxPages }) => {
             )}
             {/* {page + 5 < maxPages && (
                 <li
-                    className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md simple-button ml-[24px] opacity-10"
+                    className="w-[50px] h-[50px] border-white border-2 rounded-full flex justify-center items-center text-md anim-button ml-[24px] opacity-10"
                     onClick={() => changePage(page + 10)}
                 >
                     ..{page + 5}

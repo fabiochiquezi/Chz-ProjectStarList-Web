@@ -40,7 +40,7 @@ const SelectButton: FC<SelectType> = ({
                     onChange={onChange}
                     defaultValue={defaultValue}
                     className={`
-                        simple-button ease-in-out duration-300 w-full max-w-full absolute left-0 top-0
+                        anim-button ease-in-out duration-300 w-full max-w-full absolute left-0 top-0
                         h-10  w-[68px] ml-[9px] cursor-pointer text-sm ${selectCSS} ${
                         colorClass ?? 'bg-indigo-600'
                     }`}

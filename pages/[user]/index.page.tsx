@@ -4,29 +4,33 @@ import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { Menu } from './components/Menu'
 import { List } from './components/List'
-import { Loading } from '../share/components'
+import { BtnSignIn, Loading } from '../share/components'
 import { requestData } from './fns/requestData'
-import { MixedStruct } from '../share/structure'
+import { MixedStruct } from '../share/structure/Mixed'
 import { Movie } from '../share/types/Catalog/Movie'
 import { getTitle } from 'pages/[user]/fns/getTitle'
 import { Serie } from '../share/types/Catalog/Serie'
 import React, { FC, useEffect, useState } from 'react'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { useUtils } from 'pages/share/context'
+import { useContentLoad } from 'pages/share/store'
+import { useAuth } from 'pages/share/auth/types/usetypes'
+import Head from 'next/head'
+import { useSetAuth } from 'pages/share/auth/types/setTypes'
 
 const Catalog: FC = () => {
     const [list, setList] = useState<Array<Movie | Serie>>([])
     const [loadContent, setLoadContent] = useState(true)
-    const { contentLoad } = useUtils()
+    const contentLoad = useContentLoad()
     const router = useRouter()
-
+    const { user, loading } = useAuth()
+    const { signIn, signOut } = useSetAuth()
     const catalogURI = (router.query.catalog ?? 'doing') as string
     const userURI = router.query.user as string
     const isURIRight = catalogTypes.includes(catalogURI)
     if (!isURIRight) return <Page404 />
 
     useEffect(() => {
-        setTimeout(() => contentLoad.close(), 1000)
+        setTimeout(() => contentLoad.setUnloading(), 1000)
         getData()
     }, [router])
 
@@ -42,25 +46,39 @@ const Catalog: FC = () => {
         }
     }
 
+    const BtnSignHeader = <BtnSignIn onClick={signIn} loading={loading} />
+
     return (
-        <MixedStruct
-            titleSEO="Star List | My List"
-            descriptionSEO="See all of your memories about movies, series, animations, books and games"
-        >
-            <Menu />
-            {loadContent ? (
-                <Loading height="h-[550px]" />
-            ) : (
-                <DndProvider backend={HTML5Backend}>
-                    <List
-                        title={getTitle(catalogURI).title}
-                        description={getTitle(catalogURI).subtitle}
-                        list={list}
-                        setList={setList}
-                    />
-                </DndProvider>
-            )}
-        </MixedStruct>
+        <div>
+            <Head>
+                <title>Star List | My List</title>
+                <meta
+                    name="description"
+                    content="See all of your memories about movies, series, animations, books and games"
+                />
+            </Head>
+            <MixedStruct
+                user={user}
+                router={router}
+                signOut={signOut}
+                BtnSignIn={BtnSignHeader}
+                loading={contentLoad.state}
+            >
+                <Menu />
+                {loadContent ? (
+                    <Loading height="h-[550px]" />
+                ) : (
+                    <DndProvider backend={HTML5Backend}>
+                        <List
+                            title={getTitle(catalogURI).title}
+                            description={getTitle(catalogURI).subtitle}
+                            list={list}
+                            setList={setList}
+                        />
+                    </DndProvider>
+                )}
+            </MixedStruct>
+        </div>
     )
 }
 

@@ -2,14 +2,14 @@ import { Formik } from 'formik'
 import { validation } from './validation'
 import { Select } from 'pages/share/components'
 import { CloseIcon, SpinIcon } from 'pages/share/assets'
-import React, { FC, ReactElement, useRef, useState } from 'react'
+import React, { FC, memo, ReactElement, useRef, useState } from 'react'
 
 interface AddModalType {
     closeModal: () => void
     onSubmit: (data: { catalogType: string }) => Promise<void>
 }
 
-const AddModal: FC<AddModalType> = ({ closeModal, onSubmit }) => {
+const Modal: FC<AddModalType> = ({ closeModal, onSubmit }) => {
     const [loading, setLoading] = useState(false)
     const btnRef = useRef<HTMLButtonElement>(null)
     const Spin = <SpinIcon className="positive -top-1" />
@@ -30,7 +30,7 @@ const AddModal: FC<AddModalType> = ({ closeModal, onSubmit }) => {
         >
             <div
                 onClick={closeModal}
-                className="absolute right-4 top-0 p-8 -mr-8 -mt-8 simple-button z-10"
+                className="absolute right-4 top-0 p-8 -mr-8 -mt-8 anim-button z-10"
             >
                 <CloseIcon width={22} height={16} />
             </div>
@@ -106,4 +106,5 @@ const AddModal: FC<AddModalType> = ({ closeModal, onSubmit }) => {
         </div>
     )
 }
-export { AddModal }
+
+export const AddModal = memo(Modal)

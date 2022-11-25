@@ -1,13 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer components {
     .btn-transparent {
-        @apply uppercase text-center border-2 rounded-md simple-button inline-block;
+        @apply uppercase text-center border-2 rounded-md anim-button inline-block;
     }
 
     .btn-solid {
-        @apply uppercase text-center text-white lg:text-sm rounded-md hover:opacity-50 simple-button inline-block tracking-wide;
+        @apply uppercase text-center text-white lg:text-sm rounded-md hover:opacity-50 anim-button inline-block tracking-wide;
     }
 }
 
@@ -92,14 +93,14 @@ select:-webkit-autofill:focus {
     }
 }
 /* Animations */
-.simple-button {
+.anim-button {
     transition: all 200ms ease;
     cursor: pointer;
 }
-.simple-button:hover {
+.anim-button:hover {
     opacity: 0.7;
 }
-.simple-button:active {
+.anim-button:active {
     transition: transform 50ms ease;
     transform: scale(0.95);
 }
@@ -127,7 +128,7 @@ select:-webkit-autofill:focus {
         opacity: 1;
     }
 }
-.form-add-anim {
+.modal-anim-2 {
     opacity: 0;
     animation: comeFromTopFormAdd 300ms forwards 300ms;
 }

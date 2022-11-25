@@ -3,8 +3,6 @@ import { List } from '.'
 
 describe('List', () => {
     const props = {
-        title: 'title',
-        description: 'description',
         catalog: [
             { title: 'title', thumb: 'thumb' },
             { title: 'title', thumb: 'thumb' },
@@ -15,8 +13,10 @@ describe('List', () => {
 
     it('data', () => {
         render(<List {...props} />)
-        const title = screen.getByText(props.title)
-        const description = screen.getByText(props.description)
+        const title = screen.getByText('YOUR VIRTUAL MEMORY LIST')
+        const description = screen.getByText(
+            'From watching, reading or playing...'
+        )
         const thumbs = document.querySelectorAll('img')
 
         expect(title).toBeInTheDocument()

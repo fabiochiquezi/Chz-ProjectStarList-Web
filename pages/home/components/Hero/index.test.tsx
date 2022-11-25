@@ -5,8 +5,7 @@ describe('Hero', () => {
     const props = {
         title: 'Test Title',
         description: 'Test Description',
-        loading: false,
-        signIn: jest.fn()
+        BtnSignIn: <button>BtnSignIn</button>
     }
 
     it('data', () => {

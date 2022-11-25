@@ -4,11 +4,9 @@ import { Thumb } from './Thumb'
 
 interface ListType {
     catalog: Array<{ title: string; thumb: string }>
-    title: string
-    description: string
 }
 
-const List: FC<ListType> = ({ catalog, title, description }) => (
+const List: FC<ListType> = ({ catalog }) => (
     <main
         data-cy="section-list"
         data-testid="List"
@@ -16,8 +14,10 @@ const List: FC<ListType> = ({ catalog, title, description }) => (
         xl:grid-cols-6 xl:grid-cols-7 justify-items-center
         lg:justify-items-end 2xl:justify-items-center"
     >
-        <Title title={title} description={description} />
-
+        <Title
+            title="YOUR VIRTUAL MEMORY LIST"
+            description="From watching, reading or playing..."
+        />
         {catalog.map(({ thumb, title }, index) => (
             <Thumb key={index} thumb={thumb} title={title} />
         ))}

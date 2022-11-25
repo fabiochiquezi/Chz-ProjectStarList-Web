@@ -1,7 +1,7 @@
 import './index.css'
 import '@fontsource/roboto'
 import type { AppProps } from 'next/app'
-import { Struct } from './share/structure/Struct/App'
+import { StructApp } from './share/structure'
 import { ReactElement, useEffect, useState } from 'react'
 
 const MyApp = ({ Component, pageProps }: AppProps): ReactElement | null => {
@@ -10,9 +10,9 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement | null => {
     if (isSSR) return null
 
     return (
-        <Struct>
+        <StructApp>
             <Component {...pageProps} />
-        </Struct>
+        </StructApp>
     )
 }
 

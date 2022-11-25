@@ -1,16 +1,13 @@
-import { FC } from 'react'
+import { FC, ReactElement } from 'react'
 import styles from './index.module.css'
-import { BtnSignIn } from './BtnSignIn'
-import { SignInFn } from '../../../share/context/Auth/types/setTypes'
 
 interface props {
     title: string
-    loading: boolean
-    signIn: SignInFn
     description: string
+    BtnSignIn: ReactElement
 }
 
-const Hero: FC<props> = ({ title, description, signIn, loading }) => (
+const Hero: FC<props> = ({ title, description, BtnSignIn }) => (
     <section
         className={`${styles.heroWrapper} skeleton`}
         data-cy="hero-showProject"
@@ -42,8 +39,7 @@ const Hero: FC<props> = ({ title, description, signIn, loading }) => (
                     >
                         {description}
                     </p>
-
-                    <BtnSignIn onClick={signIn} loading={loading} />
+                    {BtnSignIn}
                 </main>
             </div>
         </div>

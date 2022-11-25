@@ -3,7 +3,7 @@ import { BtnLoad } from './BtnLoad'
 import { Title, TitleEmpty } from './Title'
 import { Serie } from 'pages/share/types/Catalog/Serie'
 import { Movie } from '../../../share/types/Catalog/Movie'
-import { useAuth, useUtils } from '../../../share/context'
+import { useAuth } from '../../../share/auth/types/usetypes'
 import React, { FC, ReactElement, useCallback, useState } from 'react'
 
 interface props {
@@ -15,7 +15,7 @@ interface props {
 
 const List: FC<props> = ({ title, description, list, setList }) => {
     const { user } = useAuth()
-    const { popSave, alert } = useUtils()
+
     const [limit, setLimit] = useState(15)
     const max = list.length ?? 0
     const TitleDefault = <Title title={title} description={description} />
@@ -24,7 +24,7 @@ const List: FC<props> = ({ title, description, list, setList }) => {
     const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
         if (!user) return
         try {
-            popSave.open()
+            // popSave.open()
             const newData = list.map((item, index) => {
                 if (index === dragIndex) return list[hoverIndex]
                 if (index === hoverIndex) return list[dragIndex]
@@ -34,12 +34,12 @@ const List: FC<props> = ({ title, description, list, setList }) => {
             // setCatalogList(type, user.uid, newData)
         } catch (e) {
             console.log(e, 'error')
-            alert.open({
-                message: 'Sorry, but something went wrong. Try again',
-                mode: 2
-            })
+            // alert.open({
+            //     message: 'Sorry, but something went wrong. Try again',
+            //     mode: 2
+            // })
         } finally {
-            popSave.close(600)
+            // popSave.close(600)
         }
     }, [])
 

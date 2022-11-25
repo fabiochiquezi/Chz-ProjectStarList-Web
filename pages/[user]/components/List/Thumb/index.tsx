@@ -88,7 +88,7 @@ const Thumb: FC<ThumbProps> = ({ id, thumb, index, moveCard, max }) => {
             data-testid="thumb-default"
         >
             <div
-                className="w-[170px] h-[220px] overflow-hidden simple-button"
+                className="w-[170px] h-[220px] overflow-hidden anim-button"
                 // onClick={() => modal.openAlterItem({ index, thumb })}
             >
                 <div className="w-[170px] h-[220px] overflow-hidden rounded skeleton">
