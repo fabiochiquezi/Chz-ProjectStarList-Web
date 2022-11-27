@@ -10,18 +10,15 @@ import { resetSearch } from './fns/resetSearch'
 import { genreFilter } from './fns/genreFilter'
 import { search as searchFn } from './fns/search'
 import { Movie, Serie, Resp } from '../share/types'
-import { changeCatalog } from './fns/changeCatalog'
 import { Loading, Modal } from '../share/components'
 import { Pagination } from './components/Pagination'
 import { useAuth } from '../share/auth/types/usetypes'
-import { PrivateStruct } from '../share/structure/Private'
 import { FC, useCallback, useEffect, useState } from 'react'
-import { useAlert } from 'pages/share/store/components/Alert'
 import { submitModalFirebase } from './fns/submitModal/firebase'
-import { usePopSave } from 'pages/share/store/components/popSave'
 import { useContentLoad } from 'pages/share/store/components/contentLoad'
-import { useSetAuth } from 'pages/share/auth/types/setTypes'
 import Head from 'next/head'
+import { useLoad } from './hooks/useLoad/idex'
+import { useAlert } from 'pages/share/store'
 
 const AddModal = dynamic(
     async () => await import('./components/AddModal').then(m => m.AddModal)
@@ -36,62 +33,57 @@ interface SRRData {
 }
 
 const New: FC<SRRData> = ({ data }) => {
-    console.log('NewPage')
-    const { ok, data: req } = data
+    const { ok, data: request } = data
     if (!ok) return <ErrorPage />
 
-    const router = useRouter()
-    const { user } = useAuth()
-
-    const { genres, list: listReq } = req
-    const { results, total_pages: totalPages } = listReq
-    const { page, type, search, genre } = router.query
-    const currentPage = parseInt(String(page)) || 1
-
-    const [load, setLoad] = useState(false)
-    const [addModal, setAddModal] = useState({ state: false, item: '' })
-    const [list, setList] = useState<Array<Movie | Serie>>([])
-
-    const contentLoad = useContentLoad()
-    const popSave = usePopSave()
     const alert = useAlert()
+    const router = useRouter()
+    const { setUnloading, state } = useContentLoad()
+    // console.log(state)
+    const { setLoad, load } = useLoad()
+
+    const { user } = useAuth()
+    const { results, total_pages: totalPages } = request.list
+    const { page, type, search, genre } = router.query
+    const [addModal, setAddModal] = useState({ state: false, item: '' })
 
     useEffect(() => {
-        if (results) {
-            setLoad(false)
-            setList(results)
-            contentLoad.setUnloading()
-        }
-    }, [router])
+        setUnloading()
+    }, [])
 
-    const AddModalWork = useCallback(
-        () => (
+    const changeCatalog = (e: any): void => {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setLoad()
+        router.push(e.target.value)
+    }
+
+    const AddModalWork = useCallback(() => {
+        console.log('modal')
+        return addModal.state ? (
             <Modal closeModal={() => closeModal(setAddModal)}>
                 <AddModal
                     closeModal={() => closeModal(setAddModal)}
                     onSubmit={async data => {
                         try {
-                            popSave.open()
                             const userName = String(user?.userName)
                             const itemId = addModal.item
                             await submitModalFirebase(
-                                list,
+                                results,
                                 itemId,
                                 userName
                             )(data)
+                            alert.success('okkkk')
                         } catch (e) {
-                            popSave.close()
-                            alert.error('Something went wrong')
+                            console.log(e)
+                            alert.error('noooooo')
                         } finally {
-                            popSave.close()
-                            closeModal(setAddModal)
+                            // closeModal(setAddModal)
                         }
                     }}
                 />
             </Modal>
-        ),
-        [addModal]
-    )
+        ) : null
+    }, [addModal.state])
 
     return (
         <div>
@@ -102,40 +94,34 @@ const New: FC<SRRData> = ({ data }) => {
                     content="Search for new works to add to your list"
                 />
             </Head>
-            <PrivateStruct
-                user={user}
-                router={router}
-                loading={contentLoad.state}
-                signOut={useSetAuth().signOut}
-            >
-                {addModal.state && <AddModalWork />}
+            <div>
+                <AddModalWork />
                 <Menu
-                    genreList={genres}
+                    genreList={request.genres}
                     routerType={String(type)}
                     routerGenre={String(genre)}
                     searchFn={searchFn(setLoad, type)}
-                    changeCatalog={changeCatalog(setLoad)}
+                    changeCatalog={changeCatalog}
                     resetSearch={resetSearch(setLoad, type)}
                     genreFilter={genreFilter(setLoad, type)}
                 />
-                {load ? (
-                    <Loading />
-                ) : (
+                {load ? <Loading /> : null}
+                {!load ? (
                     <List
-                        list={list ?? []}
+                        list={results ?? []}
                         title={type as string}
                         description="add + to your list"
                         onClick={(id: string | number) => {
                             setAddModal({ state: true, item: String(id) })
                         }}
                     />
-                )}
+                ) : null}
                 <Pagination
-                    page={currentPage}
+                    page={parseInt(String(page)) || 1}
                     maxPages={totalPages ?? 1}
                     changePage={changePage(setLoad, search, genre, type)}
                 />
-            </PrivateStruct>
+            </div>
         </div>
     )
 }

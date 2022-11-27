@@ -1,7 +1,7 @@
-import { useAlert } from '../store'
 import { SignIn } from './api/signIn'
 import { SignOut } from './api/signOut'
-import { useRouter } from 'next/router'
+import { Loading } from '../components'
+import { NextRouter } from 'next/router'
 import { User } from 'pages/share/types'
 import { AuthState } from './api/authState'
 import { getUserName } from './fns/userName'
@@ -10,17 +10,28 @@ import { publicRoutes } from '../settings/routes'
 import { User as UserFirebase } from 'firebase/auth'
 import { AuthUpdateContext } from './types/setTypes'
 import { FC, ReactNode, useEffect, useState } from 'react'
+import { UseAlertType } from '../store/components/Alert'
 
-const Auth = (
-    signInFn: SignIn,
-    authStateFn: AuthState,
-    signOutFn: SignOut
-): FC<{ children: ReactNode }> => {
-    const Provider: FC<{ children: ReactNode }> = ({ children }) => {
-        const alert = useAlert()
-        const router = useRouter()
+type TAuth = (
+    signIn: SignIn,
+    authState: AuthState,
+    signOut: SignOut
+) => FC<IProvider>
+
+interface IProvider {
+    children: ReactNode
+    alert: UseAlertType
+    router: NextRouter
+}
+
+const Auth: TAuth = (signInFn, authStateFn, signOutFn) => {
+    const Provider: FC<IProvider> = ({ children, alert, router }) => {
         const [loading, setLoading] = useState(false)
         const [user, setUser] = useState<User | null>(null)
+
+        const publicRoute = children
+        const privateRoute = !user ? <Loading /> : children
+        const isPublic = publicRoutes.includes(router.route)
 
         function defineUser(userFirebase: UserFirebase): void {
             const userName = getUserName(String(userFirebase.email))
@@ -30,7 +41,6 @@ const Auth = (
         async function verifyPrivate(
             userFirebase: UserFirebase | null
         ): Promise<void> {
-            const isPublic = publicRoutes.includes(router.pathname)
             const noUserAndPrivate = !isPublic && !user && !userFirebase
             if (noUserAndPrivate) await router.push('/home')
         }
@@ -66,12 +76,10 @@ const Auth = (
             }
         }
 
-        useEffect(() => {
-            authStateFn(async (userFirebase: UserFirebase | null) => {
-                await verifyUser(userFirebase)
-                await verifyPrivate(userFirebase)
-            })
-        }, [])
+        authStateFn(async (userFirebase: UserFirebase | null) => {
+            await verifyUser(userFirebase)
+            await verifyPrivate(userFirebase)
+        })
 
         return (
             <AuthContext.Provider
@@ -81,6 +89,8 @@ const Auth = (
                 <AuthUpdateContext.Provider
                     value={{ signIn, signOut, setUser, setLoading }}
                 >
+                    {/* TODO */}
+                    {/* {isPublic ? publicRoute : privateRoute} */}
                     {children}
                 </AuthUpdateContext.Provider>
             </AuthContext.Provider>

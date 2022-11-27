@@ -1,5 +1,4 @@
 export { Alert } from './Alert/Default'
-export { BtnSignIn } from './Buttons/BtnSignIn'
 
 export { Input } from './Forms/Inputs/Default'
 export { Search } from './Forms/Search/Default'

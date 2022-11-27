@@ -46,7 +46,7 @@ const Catalog: FC = () => {
         }
     }
 
-    const BtnSignHeader = <BtnSignIn onClick={signIn} loading={loading} />
+    const BtnSignHeader = <BtnSignIn onClick={signIn} />
 
     return (
         <div>
@@ -57,13 +57,7 @@ const Catalog: FC = () => {
                     content="See all of your memories about movies, series, animations, books and games"
                 />
             </Head>
-            <MixedStruct
-                user={user}
-                router={router}
-                signOut={signOut}
-                BtnSignIn={BtnSignHeader}
-                loading={contentLoad.state}
-            >
+            <div className="pt-48 sm:pt-36 mb-52">
                 <Menu />
                 {loadContent ? (
                     <Loading height="h-[550px]" />
@@ -77,7 +71,7 @@ const Catalog: FC = () => {
                         />
                     </DndProvider>
                 )}
-            </MixedStruct>
+            </div>
         </div>
     )
 }

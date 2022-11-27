@@ -1,31 +1,35 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { GoogleIcon, SpinIcon } from '../../../share/assets'
 
 export interface BtnSignInType {
     className?: string
     onClick: () => Promise<void>
-    loading: boolean
     id?: string
 }
 
-const BtnSignIn: FC<BtnSignInType> = ({
-    className = '',
-    id = '',
-    onClick,
-    loading
-}) => (
-    <button
-        id={id}
-        onClick={onClick}
-        data-cy="btn-signIn2"
-        data-testid="BtnSignIn"
-        disabled={!!loading}
-        className={`btn-transparent py-[12px] px-8 border-orange-400 text-orange-400
+const BtnSignIn: FC<BtnSignInType> = ({ className = '', id = '', onClick }) => {
+    const [loading, setLoading] = useState(false)
+
+    async function handleOnClick(): Promise<void> {
+        setLoading(true)
+        await onClick()
+        setLoading(false)
+    }
+
+    return (
+        <button
+            id={id}
+            onClick={handleOnClick}
+            data-cy="btn-signIn2"
+            data-testid="BtnSignIn"
+            disabled={!!loading}
+            className={`btn-transparent py-[12px] px-8 border-orange-400 text-orange-400
             flex justify-center items-center text-lg h-[56px] w-[166px] ${className}`}
-    >
-        {loading ? BtnLoad : BtnIcon}
-    </button>
-)
+        >
+            {loading ? BtnLoad : BtnIcon}
+        </button>
+    )
+}
 
 const BtnLoad = (
     <div className="mt-3" data-testid="BtnLoad">

@@ -26,7 +26,7 @@ describe('BtnSignIn', () => {
     })
 
     it('icon', () => {
-        render(<BtnSignIn {...props} loading={false} />)
+        render(<BtnSignIn {...props} />)
         const btnLoad = document.querySelector('[data-testid="BtnLoad"]')
         const btnIcon = document.querySelector('[data-testid="BtnIcon"]')
         expect(btnLoad).not.toBeInTheDocument()
@@ -34,7 +34,7 @@ describe('BtnSignIn', () => {
     })
 
     it('onClick', () => {
-        render(<BtnSignIn {...props} loading={false} />)
+        render(<BtnSignIn {...props} />)
         const el = screen.getByTestId('BtnSignIn')
         if (el) fireEvent.click(el)
         expect(props.onClick).toHaveBeenCalledTimes(1)

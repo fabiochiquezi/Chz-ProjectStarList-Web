@@ -1,21 +1,9 @@
-import { MixedStruct } from '../share/structure/Mixed'
 import { FC } from 'react'
 import Head from 'next/head'
-import { BtnSignIn } from 'pages/share/components'
-import { useSetAuth } from 'pages/share/auth/types/setTypes'
-import { useAuth } from 'pages/share/auth/types/usetypes'
-import { useRouter } from 'next/router'
-import { useContentLoad } from 'pages/share/store'
 
 const ErrorPage: FC<{ error?: string }> = ({
     error = 'Sorry, but something went wrong'
 }) => {
-    const router = useRouter()
-    const contentLoad = useContentLoad()
-    const { loading, user } = useAuth()
-    const { signIn, signOut } = useSetAuth()
-    const BtnSignHeader = <BtnSignIn onClick={signIn} loading={loading} />
-
     return (
         <div>
             <Head>
@@ -26,13 +14,7 @@ const ErrorPage: FC<{ error?: string }> = ({
                 />
             </Head>
 
-            <MixedStruct
-                user={user}
-                router={router}
-                signOut={signOut}
-                BtnSignIn={BtnSignHeader}
-                loading={contentLoad.state}
-            >
+            <main>
                 <div
                     className="relative h-[50vh] lg:h-[50vh] w-full"
                     data-testid="error-section"
@@ -45,7 +27,7 @@ const ErrorPage: FC<{ error?: string }> = ({
                         {error}
                     </p>
                 </div>
-            </MixedStruct>
+            </main>
         </div>
     )
 }

@@ -1,15 +1,15 @@
 import { Header } from './Header'
 import { Footer } from './Footer'
-import React, { FC, ReactElement, ReactNode } from 'react'
+import React, { FC, ReactNode } from 'react'
 
 interface PublicStructType {
     children: ReactNode
-    BtnSignIn: ReactElement
+    signIn: () => Promise<void> | void
 }
 
-const PublicStruct: FC<PublicStructType> = ({ children, BtnSignIn }) => (
+const PublicStruct: FC<PublicStructType> = ({ children, signIn }) => (
     <div data-testid="StructPrivate">
-        <Header BtnSignIn={BtnSignIn} />
+        <Header signIn={signIn} />
         <div className="mb-48 sm:mb-36 lg:mb-24">{children}</div>
         <Footer />
     </div>

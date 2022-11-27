@@ -1,13 +1,14 @@
+import { FC } from 'react'
 import Link from 'next/link'
 import { Logo } from '../../../assets'
 import { BtnGitHub } from './BtnGitHub'
-import { FC, ReactElement } from 'react'
+import { BtnSignIn } from './BtnSignIn'
 
 interface HeaderType {
-    BtnSignIn: ReactElement
+    signIn: () => Promise<void> | void
 }
 
-const Header: FC<HeaderType> = ({ BtnSignIn }) => (
+const Header: FC<HeaderType> = ({ signIn }) => (
     <header className="absolute w-full" data-testid="HeaderPublic">
         <div
             className="flex justify-between items-center container
@@ -24,7 +25,7 @@ const Header: FC<HeaderType> = ({ BtnSignIn }) => (
                     href="https://github.com/fabiochiquezi/Chz-ProjectStarList-Web"
                     className="md:mr-3"
                 />
-                {BtnSignIn}
+                <BtnSignIn onClick={signIn} />
             </div>
         </div>
     </header>

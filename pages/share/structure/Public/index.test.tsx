@@ -5,7 +5,7 @@ describe('Struct', () => {
     const props = {
         titleSEO: 'titleSEO',
         descriptionSEO: 'descriptionSEO',
-        BtnSignIn: <button>BtnSignIn</button>
+        signIn: jest.fn()
     }
     const children = <p>test</p>
 
@@ -17,10 +17,8 @@ describe('Struct', () => {
 
     it('elements', () => {
         render(<PublicStruct {...props}>{children}</PublicStruct>)
-        const Btn = screen.getByText('BtnSignIn')
         const Header = screen.getByTestId('HeaderPublic')
         const Footer = screen.getByTestId('Footer')
-        expect(Btn).toBeInTheDocument()
         expect(Header).toBeInTheDocument()
         expect(Footer).toBeInTheDocument()
     })

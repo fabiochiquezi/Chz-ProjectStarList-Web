@@ -26,7 +26,7 @@ describe('BtnSignIn', () => {
 
     describe('loading', () => {
         it('loading true', () => {
-            render(<BtnSignIn {...props} loading={true} />)
+            render(<BtnSignIn {...props} />)
             const loading = document.querySelector('[data-testid="btn-load"]')
             const text = document.querySelector('[data-testid="btn-icon"]')
             expect(loading).toBeInTheDocument()
@@ -34,7 +34,7 @@ describe('BtnSignIn', () => {
         })
 
         it('loading false', () => {
-            render(<BtnSignIn {...props} loading={false} />)
+            render(<BtnSignIn {...props} />)
             const loading = document.querySelector('[data-testid="btn-load"]')
             const text = document.querySelector('[data-testid="btn-icon"]')
             expect(loading).not.toBeInTheDocument()

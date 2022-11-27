@@ -1,6 +1,6 @@
 import create from 'zustand'
 
-interface UseAlertType {
+export interface UseAlertType {
     message: string
     mode: 0 | 1 | 2 | 3
     success: (message: string) => void
