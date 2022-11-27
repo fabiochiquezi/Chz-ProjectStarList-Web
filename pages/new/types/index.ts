@@ -7,6 +7,6 @@ export interface Genre {
 }
 
 export interface Data<T extends Movie | Serie> {
-    list: WatchList<T>
-    genres: Genre[]
+    workList: WatchList<T>
+    genreList: Genre[]
 }

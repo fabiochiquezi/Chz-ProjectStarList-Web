@@ -1,4 +1,7 @@
+import { Genre } from 'pages/new/types'
 import { GetServerSideProps } from 'next'
+import { Movie, Serie } from 'pages/share/types'
+import { WatchList } from 'pages/new/types/watch'
 import { getMovie } from '../external/watch/getMovie'
 import { getSerie } from '../external/watch/getSerie'
 import { getMovies } from '../external/watch/getMovies'
@@ -7,6 +10,44 @@ import { getGenreMovies } from '../external/watch/getGenreMovies'
 import { discoverMovies } from '../external/watch/discoverMovies'
 import { discoverSeries } from '../external/watch/discoverSeries'
 import { getGenreSeries } from '../external/watch/getGenreSeries'
+
+type TGetData = (
+    typeQ: string,
+    genreQ: string,
+    pageQ: string,
+    searchQ: string
+) => Promise<{
+    genreList: Genre[]
+    workList: WatchList<Movie> | WatchList<Serie>
+}>
+
+const getData: TGetData = async (typeQ, genreQ, pageQ, searchQ) => {
+    let genresPromise
+    let listPromise
+
+    switch (typeQ) {
+        case 'movies':
+            genresPromise = getGenreMovies()
+            if (genreQ) listPromise = discoverMovies([genreQ], pageQ)
+            if (searchQ) listPromise = getMovie(searchQ, pageQ)
+            if (!searchQ && !genreQ) listPromise = getMovies(pageQ)
+            break
+
+        case 'series':
+            genresPromise = getGenreSeries()
+            if (genreQ) listPromise = discoverSeries([genreQ], pageQ)
+            if (searchQ) listPromise = getSerie(searchQ, pageQ)
+            if (!searchQ && !genreQ) listPromise = getSeries(pageQ)
+            break
+    }
+
+    const [genreList, workList] = await Promise.all([
+        genresPromise,
+        listPromise
+    ])
+    if (!genreList || !workList) throw new Error('500')
+    return { genreList, workList }
+}
 
 export const getServerSideProps: GetServerSideProps = async context => {
     try {
@@ -23,33 +64,14 @@ export const getServerSideProps: GetServerSideProps = async context => {
         const searchAndFiltersTogether = search && genreQ
         if (searchAndFiltersTogether) throw new Error('Bad Request')
 
-        let list = null
-        let genres = null
-        switch (type) {
-            case 'movies':
-                genres = await getGenreMovies()
-                if (genreQ) list = await discoverMovies([genreQ], pageQ)
-                if (search) list = await getMovie(searchQ, pageQ)
-                if (!search && !genreQ) list = await getMovies(pageQ)
-                if (!list) throw new Error('500')
-                break
-
-            case 'series':
-                genres = await getGenreSeries()
-                if (genreQ) list = await discoverSeries([genreQ], pageQ)
-                if (search) list = await getSerie(searchQ, pageQ)
-                if (!search && !genreQ) list = await getSeries(pageQ)
-                if (!list) throw new Error('500')
-                break
-        }
-
+        const request = await getData(typeQ, genreQ, pageQ, searchQ)
         return {
-            props: { data: { ok: true, data: { genres, list }, error: '' } }
+            props: { data: { ok: true, request, error: '' } }
         }
     } catch (e: unknown) {
         let message = ''
         if (e instanceof Error) message = e.message
-        const res = { ok: false, data: {}, error: message }
+        const res = { ok: false, request: {}, error: message }
         return { props: { data: res } }
     }
 }

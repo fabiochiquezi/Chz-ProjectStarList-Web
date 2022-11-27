@@ -1,10 +1,13 @@
+import Head from 'next/head'
 import { Data } from './types'
 import ErrorPage from '../error'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Menu } from './components/Menu'
 import { closeModal } from './fns/closeModal'
+import { useAlert } from 'pages/share/store'
 import { changePage } from './fns/changePage'
+import { useLoad } from './hooks/useLoad/idex'
 import { getServerSideProps } from './api/ssr'
 import { resetSearch } from './fns/resetSearch'
 import { genreFilter } from './fns/genreFilter'
@@ -16,9 +19,6 @@ import { useAuth } from '../share/auth/types/usetypes'
 import { FC, useCallback, useEffect, useState } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import { useContentLoad } from 'pages/share/store/components/contentLoad'
-import Head from 'next/head'
-import { useLoad } from './hooks/useLoad/idex'
-import { useAlert } from 'pages/share/store'
 
 const AddModal = dynamic(
     async () => await import('./components/AddModal').then(m => m.AddModal)
@@ -33,17 +33,16 @@ interface SRRData {
 }
 
 const New: FC<SRRData> = ({ data }) => {
-    const { ok, data: request } = data
+    const { ok, request } = data
     if (!ok) return <ErrorPage />
 
     const alert = useAlert()
     const router = useRouter()
     const { setUnloading, state } = useContentLoad()
-    // console.log(state)
     const { setLoad, load } = useLoad()
 
     const { user } = useAuth()
-    const { results, total_pages: totalPages } = request.list
+    const { results, total_pages: totalPages } = request.workList
     const { page, type, search, genre } = router.query
     const [addModal, setAddModal] = useState({ state: false, item: '' })
 
@@ -97,7 +96,7 @@ const New: FC<SRRData> = ({ data }) => {
             <div>
                 <AddModalWork />
                 <Menu
-                    genreList={request.genres}
+                    genreList={request.genreList}
                     routerType={String(type)}
                     routerGenre={String(genre)}
                     searchFn={searchFn(setLoad, type)}

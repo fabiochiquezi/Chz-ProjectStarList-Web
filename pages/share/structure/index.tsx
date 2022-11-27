@@ -7,28 +7,28 @@ import { useSetAuth } from '../auth/types/setTypes'
 import React, { FC, ReactNode } from 'react'
 
 interface IStructureProps {
-    children: ReactNode
+  children: ReactNode
 }
 
 const Structure: FC<IStructureProps> = ({ children }) => {
-    const router = useRouter()
-    const { user } = useAuth()
-    const { signOut, signIn } = useSetAuth()
-    const { state: loading } = useContentLoad()
+  const router = useRouter()
+  const { user } = useAuth()
+  const { signOut, signIn } = useSetAuth()
+  const { state: loading } = useContentLoad()
 
-    const publicStruct = <PublicStruct signIn={signIn}>{children}</PublicStruct>
-    const privateStruct = (
-        <PrivateStruct
-            loading={loading}
-            signOut={signOut}
-            router={router}
-            user={user}
-        >
-            {children}
-        </PrivateStruct>
-    )
+  const publicStruct = <PublicStruct signIn={signIn}>{children}</PublicStruct>
+  const privateStruct = (
+    <PrivateStruct
+      loading={loading}
+      signOut={signOut}
+      router={router}
+      user={user}
+    >
+      {children}
+    </PrivateStruct>
+  )
 
-    return user ? privateStruct : publicStruct
+  return user ? privateStruct : publicStruct
 }
 
 export { Structure }
