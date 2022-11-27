@@ -1,10 +1,10 @@
+import { FC, ReactNode } from 'react'
 import { PublicStruct } from './Public'
 import { useRouter } from 'next/router'
-import { PrivateStruct } from './Private'
 import { useContentLoad } from '../store'
+import { PrivateStruct } from './Private'
 import { useAuth } from '../auth/types/usetypes'
 import { useSetAuth } from '../auth/types/setTypes'
-import React, { FC, ReactNode } from 'react'
 
 interface IStructureProps {
   children: ReactNode

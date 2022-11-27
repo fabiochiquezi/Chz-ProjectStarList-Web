@@ -9,7 +9,7 @@ import { FC, ReactNode, useState } from 'react'
 import { publicRoutes } from '../settings/routes'
 import { User as UserFirebase } from 'firebase/auth'
 import { AuthUpdateContext } from './types/setTypes'
-import { IUseAlert } from '../store/components/Alert'
+import { IUseAlert } from '../context/Alert/Default'
 
 type IAuth = (
   signIn: SignIn,
