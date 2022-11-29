@@ -65,14 +65,14 @@ const PrivateStruct: FC<IPrivateStructProps> = props => {
                 <li className="w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none">
                   <BtnLink
                     isActive={route === '/new/[type]'}
-                    onClick={onChangeMenu}
+                    onClick={() => onChangeMenu('/new/movies')}
                     text="NEW"
                   />
                 </li>
                 <li className="w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none">
                   <BtnLink
                     isActive={route === '/[user]'}
-                    onClick={onChangeMenu}
+                    onClick={() => onChangeMenu(user?.userName ?? '')}
                     text="MY LIST"
                   />
                 </li>

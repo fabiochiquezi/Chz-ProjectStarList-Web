@@ -3,9 +3,20 @@ import { useSetAuth } from '../share/auth/types/setTypes'
 import catalog from './data/catalog.json'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import { useEffect } from 'react'
+import { usePortalAlert } from 'pages/share/portals/Alerts/Default'
+import { usePortalPopSave } from 'pages/share/portals/PopUp/PopSave'
 
 const Home: NextPage = () => {
   const { signIn } = useSetAuth()
+  const portalAlert = usePortalAlert()
+  const popSave = usePortalPopSave()
+
+  useEffect(() => {
+    popSave.open()
+    portalAlert.open('green', 'aaaaaaaaaaaaaaaaaaaa')
+    // popSaveTest.close()
+  }, [])
 
   return (
     <div>
@@ -16,6 +27,7 @@ const Home: NextPage = () => {
           content="Create your album of memories about movies, series, animations, books and games"
         />
       </Head>
+
       <main>
         <Hero
           title="Your' list of great works souvenirs"

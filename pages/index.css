@@ -3,67 +3,121 @@
 @tailwind utilities;
 
 @layer components {
-    .btn-transparent {
-        @apply uppercase text-center border-2 rounded-md anim-button inline-block;
-    }
+  /* Buttons */
+  .btn-transparent {
+    @apply uppercase text-center border-2 rounded-md anim-button inline-block;
+  }
 
-    .btn-solid {
-        @apply uppercase text-center text-white lg:text-sm rounded-md hover:opacity-50 anim-button inline-block tracking-wide;
+  .btn-solid {
+    @apply uppercase text-center text-white lg:text-sm rounded-md hover:opacity-50 anim-button inline-block tracking-wide;
+  }
+
+  /* PopSave */
+  .popSave {
+    @apply fixed right-10 bottom-[40px] z-[100] rounded-lg w-[198px] h-[52px] flex items-center justify-center bg-black;
+  }
+  .popSave svg {
+    @apply top-[2px] left-[-4px];
+  }
+  .popSave p {
+    @apply text-white text-sm relative left-[-4px] top-[1px];
+  }
+
+  /* Spinner */
+  .ldsRing {
+    display: inline-block;
+    position: relative;
+  }
+  .ldsRing div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    margin: 8px;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  }
+  .ldsRing div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .ldsRing div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .ldsRing div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
     }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Alert */
+  .Alert {
+    @apply alert-anim fixed left-[0px] ml-[5%] top-10 w-[90%] mx-auto text-left rounded py-4 px-4 z-50 flex justify-between items-center sm:max-w-[420px] sm:left-[50%] sm:ml-[-210px] cursor-pointer;
+  }
+  .Alert p {
+    @apply text-lg text-white mr-2 ml-2;
+  }
+  .Alert .close {
+    @apply relative left-1 anim-button;
+  }
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 html,
 body {
-    padding: 0;
-    margin: 0;
-    font-family: 'Roboto';
-    overflow-x: hidden !important;
-    color: #fff;
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto';
+  overflow-x: hidden !important;
+  color: #fff;
 }
 a {
-    text-decoration: none;
-    transition: all 250ms ease;
+  text-decoration: none;
+  transition: all 250ms ease;
 }
 a:active {
-    transition: transform 50ms ease;
-    transform: scale(0.95);
+  transition: transform 50ms ease;
+  transform: scale(0.95);
 }
 /* ScrollBar */
 ::-webkit-scrollbar {
-    width: 4px;
+  width: 4px;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(237, 237, 237);
-    border-radius: 40px;
+  background-color: rgb(237, 237, 237);
+  border-radius: 40px;
 }
 ::-webkit-scrollbar-track {
-    background-color: #39577f;
+  background-color: #39577f;
 }
 /* Placeholder */
 ::-webkit-input-placeholder {
-    color: red;
-    font-size: 15px;
+  color: red;
+  font-size: 15px;
 }
 :-ms-input-placeholder {
-    color: red;
-    font-size: 15px;
+  color: red;
+  font-size: 15px;
 }
 ::placeholder {
-    color: red;
-    font-size: 15px;
+  color: red;
+  font-size: 15px;
 }
 textarea:focus,
 input:focus,
 select:focus {
-    outline: none;
+  outline: none;
 }
 input,
 select,
 textarea {
-    color: #fff;
+  color: #fff;
 }
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -74,71 +128,71 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    color: #fff;
-    -webkit-text-fill-color: white;
-    -webkit-box-shadow: 0 0 0px 1000px rgb(23 23 23Z) inset;
-    transition: background-color 5000s ease-in-out 0s;
+  color: #fff;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(23 23 23Z) inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
 /* Skeleton */
 .skeleton {
-    animation: skeleton-loading 1s linear infinite alternate;
+  animation: skeleton-loading 1s linear infinite alternate;
 }
 
 @keyframes skeleton-loading {
-    0% {
-        background-color: hsl(200, 20%, 20%);
-    }
-    100% {
-        background-color: hsl(200, 20%, 30%);
-    }
+  0% {
+    background-color: hsl(200, 20%, 20%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 30%);
+  }
 }
 /* Animations */
 .anim-button {
-    transition: all 200ms ease;
-    cursor: pointer;
+  transition: all 200ms ease;
+  cursor: pointer;
 }
 .anim-button:hover {
-    opacity: 0.7;
+  opacity: 0.7;
 }
 .anim-button:active {
-    transition: transform 50ms ease;
-    transform: scale(0.95);
+  transition: transform 50ms ease;
+  transform: scale(0.95);
 }
 .alert-anim {
-    animation: comeFromTopAlert 300ms ease-in-out;
+  animation: comeFromTopAlert 300ms ease-in-out;
 }
 @keyframes comeFromTopAlert {
-    from {
-        left: 48%;
-        opacity: 0;
-    }
-    to {
-        left: 50%;
-        opacity: 1;
-    }
+  from {
+    left: 48%;
+    opacity: 0;
+  }
+  to {
+    left: 50%;
+    opacity: 1;
+  }
 }
 .modal-anim {
-    animation: fadeModal 300ms ease-in-out;
+  animation: fadeModal 300ms ease-in-out;
 }
 @keyframes fadeModal {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .modal-anim-2 {
-    opacity: 0;
-    animation: comeFromTopFormAdd 300ms forwards 300ms;
+  opacity: 0;
+  animation: comeFromTopFormAdd 300ms forwards 300ms;
 }
 @keyframes comeFromTopFormAdd {
-    from {
-        left: 48%;
-        opacity: 0;
-    }
-    to {
-        left: 50%;
-        opacity: 1;
-    }
+  from {
+    left: 48%;
+    opacity: 0;
+  }
+  to {
+    left: 50%;
+    opacity: 1;
+  }
 }

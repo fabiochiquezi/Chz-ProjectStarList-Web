@@ -9,16 +9,16 @@ describe('BtnHamburger', () => {
 
   it('closed', () => {
     render(<BtnHamburger {...props} />)
-    const closeBtn = document.querySelector('[data-testid="btn-close"]')
-    const iconBtn = document.querySelector('[data-testid="btn-icon"]')
+    const closeBtn = screen.getByTestId('CloseBtn')
+    const iconBtn = screen.queryByTestId('HambBtn')
     expect(closeBtn).toBeInTheDocument()
     expect(iconBtn).not.toBeInTheDocument()
   })
 
   it('opened', () => {
     render(<BtnHamburger {...props} opened={false} />)
-    const closeBtn = document.querySelector('[data-testid="btn-close"]')
-    const iconBtn = document.querySelector('[data-testid="btn-icon"]')
+    const closeBtn = screen.queryByTestId('CloseBtn')
+    const iconBtn = screen.getByTestId('HambBtn')
     expect(iconBtn).toBeInTheDocument()
     expect(closeBtn).not.toBeInTheDocument()
   })
@@ -26,7 +26,7 @@ describe('BtnHamburger', () => {
   it('onClick', () => {
     render(<BtnHamburger {...props} opened={true} />)
     const el = screen.getByTestId('BtnHamburger')
-    if (el) fireEvent.click(el)
+    fireEvent.click(el)
     expect(props.onClick).toHaveBeenCalledTimes(1)
   })
 })

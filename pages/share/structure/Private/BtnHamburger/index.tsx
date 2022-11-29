@@ -18,13 +18,13 @@ const BtnHamburger: FC<IBtnHamburgerProps> = ({ opened, onClick }) => (
 )
 
 const CloseBtn = (
-  <div className="mr-0" data-testid="btn-close">
+  <div className="mr-0" data-testid="CloseBtn">
     <CloseIcon />
   </div>
 )
 
 const HambBtn = (
-  <div data-testid="btn-icon">
+  <div data-testid="HambBtn">
     <HamburgerIcon width={24} height={18} />
   </div>
 )
