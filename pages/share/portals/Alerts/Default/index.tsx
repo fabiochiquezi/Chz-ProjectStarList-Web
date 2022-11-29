@@ -1,76 +1,87 @@
 type ICloseFn = () => void
-
 type IOpenFn = (
-  mode: 'red' | 'green',
+  mode: 'error' | 'success',
   message: string,
-  delay?: number,
-  closeIcon?: {
-    width: number
-    height: number
-  }
+  delay?: number
 ) => void
+type ISuccessFn = (message: string, delay?: number) => void
+type IErrorFn = ISuccessFn
 
-export type IUsePortalAlert = (outsideId?: string) => {
+export type IUsePortalAlert = (classID?: string) => {
   open: IOpenFn
   close: ICloseFn
+  success: ISuccessFn
+  error: IErrorFn
 }
 
-const usePortalAlert: IUsePortalAlert = outsideId => {
+const usePortalAlert: IUsePortalAlert = classID => {
+  const modeClass = { error: '#dc2626', success: '#16a34a' }
+  const ID = 'AlertPortal'
+
+  const getHTML = (message: string): string => `
+    <p class="text-lg text-white mr-2 ml-2">${message}</p>
+    <div class="close">
+        <svg
+            width="20"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <line x1="1.6862" y1="22" x2="22" y2="1.68632" stroke="white" stroke-width="2"></line>
+            <path d="M1.99341 1.59338C10.2777 9.87765 14.9223 14.5223 23.2066 22.8066" stroke="white" stroke-width="2"></path>
+        </svg>
+    </div>
+  `
+
+  const createElement = (): HTMLDivElement | undefined => {
+    const alreadyBuild = document.getElementById(ID)
+    if (alreadyBuild) return
+
+    const div = document.createElement('div')
+    div.classList.add('Alert')
+    if (classID) div.classList.add(`${classID}`)
+    div.setAttribute('id', ID)
+    div.addEventListener('click', close)
+    return div
+  }
+
   const close: ICloseFn = () => {
-    const elem = document.getElementById('AlertPortal')
+    const elem = document.getElementById(ID)
     if (!elem) return
     const parent = elem?.parentNode
     if (parent) parent.removeChild(elem)
   }
 
-  const open: IOpenFn = (mode, message, delay, closeIcon) => {
-    const alreadyBuild = document.getElementById('AlertPortal')
-    if (alreadyBuild) return
-
-    const modeClass = { red: '#dc2626', green: '#16a34a' }
+  const open: IOpenFn = (mode, message, delay) => {
+    const div = createElement()
+    if (!div) return
     const background = modeClass[mode]
-
-    const div = document.createElement('div')
-
-    div.classList.add('Alert')
-    if (outsideId) div.classList.add(`${outsideId}`)
-    div.setAttribute('id', 'AlertPortal')
-    div.addEventListener('click', close)
-
-    div.innerHTML = `
-        <div style="background-color: ${background}">
-            <p class="text-lg text-white mr-2 ml-2">${message}</p>
-            <div class="close">
-            <svg
-                width="20"
-                height=${closeIcon?.height ?? 16}
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                >
-                <line
-                    x1="1.6862"
-                    y1=${closeIcon?.width ?? 22}
-                    x2=${closeIcon?.width ?? 2}
-                    y2="1.68632"
-                    stroke={strokeColor}
-                    strokeWidth={stroke}
-                />
-                <path
-                    d="M1.99341 1.59338C10.2777 9.87765 14.9223 14.5223 23.2066 22.8066"
-                    stroke={strokeColor}
-                    strokeWidth={stroke}
-                />
-            </svg>
-            </div>
-        </div>
-    `
-
+    div.style.backgroundColor = background
+    div.innerHTML = getHTML(message)
     document.body.appendChild(div)
     if (delay) setTimeout(() => close(), delay)
   }
 
-  return { open, close }
+  const success: ISuccessFn = (message, delay) => {
+    const div = createElement()
+    if (!div) return
+    div.style.backgroundColor = modeClass.success
+    div.innerHTML = getHTML(message)
+    document.body.appendChild(div)
+    if (delay) setTimeout(() => close(), delay)
+  }
+
+  const error: ISuccessFn = (message, delay) => {
+    const div = createElement()
+    if (!div) return
+    div.style.backgroundColor = modeClass.error
+    div.innerHTML = getHTML(message)
+    document.body.appendChild(div)
+    if (delay) setTimeout(() => close(), delay)
+  }
+
+  return { open, close, success, error }
 }
 
 export { usePortalAlert }

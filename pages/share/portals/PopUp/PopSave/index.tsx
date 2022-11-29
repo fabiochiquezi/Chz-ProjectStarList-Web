@@ -1,42 +1,21 @@
+interface Spin {
+  color: string
+  width: number
+  height: number
+}
 type ICloseFn = () => void
-
-type IOpenFn = (
-  message?: string,
-  delay?: number,
-  spin?: { color: string; width: number; height: number }
-) => void
-
+type IOpenFn = (message?: string, delay?: number, spin?: Spin) => void
 type IUsePortalPopSave = (outsideId?: string) => {
-  open: (
-    message?: string,
-    delay?: number,
-    spin?: { color: string; width: number; height: number }
-  ) => void
-  close: () => void
+  open: IOpenFn
+  close: ICloseFn
 }
 
 const usePortalPopSave: IUsePortalPopSave = outsideId => {
-  const close: ICloseFn = () => {
-    const elem = document.getElementById('PopSavePortal')
-    if (!elem) return
-    const parent = elem?.parentNode
-    if (parent) parent.removeChild(elem)
-  }
+  const ID = 'PopSavePortal'
 
-  const open: IOpenFn = (message, delay, spin) => {
-    const alreadyBuild = document.getElementById('PopSavePortal')
-    if (alreadyBuild) return
-
-    const text = message ?? 'Saving...Don&lsquo;t close!'
-    const div = document.createElement('div')
-
-    div.classList.add('popSave')
-    if (outsideId) div.classList.add(outsideId)
-    div.setAttribute('id', 'PopSavePortal')
-
-    div.innerHTML = `
+  const getHTML = (message?: string, spin?: Spin): string => `
         <div
-            class="SpineIcon_ldsRing__6e1z5 "
+            class="spinnerDefault"
             style="
                 width:${spin ? String(spin.width) : '32'}px;
                 height:${spin ? String(spin.height) : '32'}px"
@@ -67,9 +46,25 @@ const usePortalPopSave: IUsePortalPopSave = outsideId => {
                 border-color:${spin ? spin.color : '#FB923C'} transparent
                 transparent transparent"></div>
         </div>
-        <p><span>${text}</span></p>
+        <p><span>${message ?? 'Saving...Don&lsquo;t close!'}</span></p>
     `
 
+  const close: ICloseFn = () => {
+    const elem = document.getElementById(ID)
+    if (!elem) return
+    const parent = elem?.parentNode
+    if (parent) parent.removeChild(elem)
+  }
+
+  const open: IOpenFn = (message, delay, spin) => {
+    const alreadyBuild = document.getElementById(ID)
+    if (alreadyBuild) return
+
+    const div = document.createElement('div')
+    div.classList.add('popSave')
+    if (outsideId) div.classList.add(outsideId)
+    div.setAttribute('id', ID)
+    div.innerHTML = getHTML(message, spin)
     document.body.appendChild(div)
     if (delay) setTimeout(() => close(), delay)
   }
