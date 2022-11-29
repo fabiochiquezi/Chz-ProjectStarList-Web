@@ -1,17 +1,17 @@
-type ICloseFn = () => void
 type IOpenFn = (
   mode: 'error' | 'success',
   message: string,
   delay?: number
 ) => void
-type ISuccessFn = (message: string, delay?: number) => void
+type ICloseFn = () => void
 type IErrorFn = ISuccessFn
+type ISuccessFn = (message: string, delay?: number) => void
 
 export type IUsePortalAlert = (classID?: string) => {
   open: IOpenFn
   close: ICloseFn
-  success: ISuccessFn
   error: IErrorFn
+  success: ISuccessFn
 }
 
 const usePortalAlert: IUsePortalAlert = classID => {
@@ -72,7 +72,7 @@ const usePortalAlert: IUsePortalAlert = classID => {
     if (delay) setTimeout(() => close(), delay)
   }
 
-  const error: ISuccessFn = (message, delay) => {
+  const error: IErrorFn = (message, delay) => {
     const div = createElement()
     if (!div) return
     div.style.backgroundColor = modeClass.error

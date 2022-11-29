@@ -5,10 +5,10 @@ import { useRouter } from 'next/router'
 import type { AppProps } from 'next/app'
 import { Structure } from './share/structure'
 import { AuthFirebase } from './share/auth/AuthFirebase'
-import { Alert, PopSave, useAlert } from './share/context'
+import { usePortalAlert } from './share/portals/Alerts/Default'
 
 const MyApp = ({ Component, pageProps }: AppProps): ReactElement | null => {
-  const alert = useAlert()
+  const alert = usePortalAlert()
   const router = useRouter()
 
   return (
@@ -18,8 +18,6 @@ const MyApp = ({ Component, pageProps }: AppProps): ReactElement | null => {
           <Component {...pageProps} />
         </Structure>
       </AuthFirebase>
-      <Alert />
-      <PopSave />
     </div>
   )
 }

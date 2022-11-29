@@ -9,7 +9,7 @@ import { FC, ReactNode, useState } from 'react'
 import { publicRoutes } from '../settings/routes'
 import { User as UserFirebase } from 'firebase/auth'
 import { AuthUpdateContext } from './types/setTypes'
-import { IUseAlert } from '../context/Alert/Default'
+import { IUsePortalAlert } from '../portals/Alerts/Default'
 
 type IAuth = (
   signIn: SignIn,
@@ -18,7 +18,7 @@ type IAuth = (
 ) => FC<IProviderProps>
 
 interface IProviderProps {
-  alert: IUseAlert
+  alert: IUsePortalAlert
   router: NextRouter
   children: ReactNode
 }
