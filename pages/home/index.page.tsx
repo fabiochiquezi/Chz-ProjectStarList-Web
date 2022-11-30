@@ -3,17 +3,9 @@ import { useSetAuth } from '../share/auth/types/setTypes'
 import catalog from './data/catalog.json'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { usePortalPopSave } from 'pages/share/portals/PopUp/PopSave'
 
 const Home: NextPage = () => {
   const { signIn } = useSetAuth()
-  const popSave = usePortalPopSave()
-  const [test, setTest] = useState(1)
-
-  useEffect(() => {
-    popSave.open()
-  }, [test])
 
   return (
     <div>
@@ -31,7 +23,6 @@ const Home: NextPage = () => {
           description="Mount your own list of movies, cartoons, series, books and games."
           BtnSignIn={<BtnSignIn onClick={signIn} />}
         />
-        <button onClick={() => setTest(prev => prev + 1)}>{test}</button>
         <div className="pt-12 lg:pt-16 pb-16">
           <main
             data-cy="section-list"
