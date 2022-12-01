@@ -1,5 +1,5 @@
-import { postCatalog } from '../postCatalog'
-import { postUser } from '../postUser'
+import { postCatalog } from '../../catalog/post'
+import { postUser } from '../../user/post'
 
 export type SignUp = (
   email: string,

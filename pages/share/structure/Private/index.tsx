@@ -7,7 +7,7 @@ import { Logo } from 'pages/share/assets'
 import { BtnSignOut } from './BtnSignOut'
 import { Loading } from '../../components'
 import { BtnHamburger } from './BtnHamburger'
-import { useContentLoad } from 'pages/share/store'
+import { useAppStore } from 'pages/share/store'
 import { FC, ReactNode, useEffect, useState } from 'react'
 
 interface IPrivateStructProps {
@@ -23,7 +23,7 @@ const PrivateStruct: FC<IPrivateStructProps> = props => {
   const { route, push } = router
   const [menu, setMenu] = useState(false)
   const menuOpenClass = menu ? 'fixed' : 'hidden'
-  const contentLoad = useContentLoad()
+  const { loadUI } = useAppStore()
   const displayName = user?.displayName
     ? `${user.displayName.substring(0, 9)}...`
     : ''
@@ -38,7 +38,7 @@ const PrivateStruct: FC<IPrivateStructProps> = props => {
   }, [menu])
 
   function onChangeMenu(newRoute: string): void {
-    contentLoad.setLoading()
+    loadUI()
     setMenu(false)
     push(newRoute)
   }
@@ -102,13 +102,13 @@ const PrivateStruct: FC<IPrivateStructProps> = props => {
         </div>
       </header>
       <div className="mb-48 sm:mb-36 lg:mb-24">
-        {loading ? (
+        {/* {loading ? (
           <Loading />
-        ) : (
-          <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
-            {children}
-          </div>
-        )}
+        ) : ( */}
+        <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
+          {children}
+        </div>
+        {/* )} */}
       </div>
       <Footer />
     </div>

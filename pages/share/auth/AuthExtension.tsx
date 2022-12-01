@@ -1,7 +1,7 @@
 import { Auth } from './Auth'
-import Router from 'next/router'
 import { useAlert } from '../portals'
-import { signIn, signOut, authState } from './api'
+import { useRouter } from 'next/router'
+import { AuthFirebaseAPI } from './api'
 
-export const AuthNext = Auth(Router)
-export const AuthFirebase = AuthNext(useAlert)(signIn, authState, signOut)
+export const AuthNext = Auth(useRouter)
+export const AuthFirebase = AuthNext(useAlert)(AuthFirebaseAPI)

@@ -1,16 +1,40 @@
 import { render, screen } from '@testing-library/react'
-import { ReactElement } from 'react'
 import { ProtectRoute } from '.'
+import React from 'react'
+
 
 describe('PrivateRoute', () => {
-  const props: any = { isPublic: false, user: { name: 'user' } }
-  const Elem = (): ReactElement => <ProtectRoute {...props}><p>test</p></ProtectRoute>
-
-  it('should have children', () => {
-    render(<Elem />)
+  it('public', () => {
+    const props: any = { isPublic: true, user: { name: 'user' } }
+    render(<ProtectRoute {...props}><p>test</p></ProtectRoute>)
     const el = screen.getByTestId('ProtectRoute')
+    const p = screen.getByText('test')
+    const loading = screen.queryByTestId('Loading')
+    expect(el).toBeInTheDocument()
+    expect(p).toBeInTheDocument()
+    expect(loading).not.toBeInTheDocument()
+  })
+
+
+  it('private w/ no user', () => {
+    const props: any = { isPublic: false, user: null }
+    render(<ProtectRoute {...props}><p>test</p></ProtectRoute>)
+    const el = screen.getByTestId('ProtectRoute')
+    const p = screen.queryByTestId('test')
     const loading = screen.getByTestId('Loading')
     expect(el).toBeInTheDocument()
+    expect(p).not.toBeInTheDocument()
     expect(loading).toBeInTheDocument()
+  })
+
+  it('private w/ user', () => {
+    const props: any = { isPublic: false, user: true }
+    render(<ProtectRoute {...props}><p>test</p></ProtectRoute>)
+    const el = screen.getByTestId('ProtectRoute')
+    const p = screen.getByText('test')
+    const loading = screen.queryByTestId('Loading')
+    expect(el).toBeInTheDocument()
+    expect(p).toBeInTheDocument()
+    expect(loading).not.toBeInTheDocument()
   })
 })

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { Menu } from './components/Menu'
 import { closeModal } from './fns/closeModal'
 import { changePage } from './fns/changePage'
-import { useAlert } from 'pages/share/context'
+import { useAlert } from '../share/portals'
 import { useLoad } from './hooks/useLoad/idex'
 import { getServerSideProps } from './api/ssr'
 import { resetSearch } from './fns/resetSearch'
@@ -15,10 +15,10 @@ import { search as searchFn } from './fns/search'
 import { Movie, Serie, Resp } from '../share/types'
 import { Loading, Modal } from '../share/components'
 import { Pagination } from './components/Pagination'
-import { useAuth } from '../share/auth/types/usetypes'
+import { useAuth } from '../share/auth'
 import { FC, useCallback, useEffect, useState } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
-import { useContentLoad } from 'pages/share/store/contentLoad'
+import { useAppStore } from 'pages/share/store/app'
 
 const AddModal = dynamic(
   async () => await import('./components/AddModal').then(m => m.AddModal)
@@ -38,7 +38,7 @@ const New: FC<SRRData> = ({ data }) => {
 
   const alert = useAlert()
   const router = useRouter()
-  const { setUnloading, state } = useContentLoad()
+  const { unloadUI, loadingUI } = useAppStore()
   const { setLoad, load } = useLoad()
 
   const { user } = useAuth()
@@ -46,8 +46,9 @@ const New: FC<SRRData> = ({ data }) => {
   const { page, type, search, genre } = router.query
   const [addModal, setAddModal] = useState({ state: false, item: '' })
 
+  console.log(loadingUI, 'state New')
   useEffect(() => {
-    setUnloading()
+    unloadUI()
   }, [])
 
   const changeCatalog = (e: any): void => {

@@ -1,1 +1,1 @@
-export { useContentLoad } from './contentLoad'
+export { useAppStore } from './app'

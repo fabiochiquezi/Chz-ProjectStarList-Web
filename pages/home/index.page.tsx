@@ -1,5 +1,5 @@
 import { Title, BtnSignIn, Hero, Thumb } from './components'
-import { useSetAuth } from '../share/auth/types/setTypes'
+import { useSetAuth } from '../share/auth'
 import catalog from './data/catalog.json'
 import type { NextPage } from 'next'
 import Head from 'next/head'

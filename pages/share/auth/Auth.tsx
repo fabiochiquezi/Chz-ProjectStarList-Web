@@ -1,69 +1,58 @@
+import { User } from '../types'
 import { IUseAlert } from '../portals'
-import { User } from 'pages/share/types'
-import { SingletonRouter } from 'next/router'
+import { IAuthFirebaseAPI } from './api'
+import { NextRouter } from 'next/router'
 import { FC, ReactNode, useState } from 'react'
-import { publicRoutes } from '../settings/routes'
-import { SignIn, SignOut, AuthState } from './api'
+import { getUserName } from './fns/getUserName'
+import { publicRoutes, routes } from '../settings'
 import { ProtectRoute } from './components/Protect'
 import { User as UserFirebase } from 'firebase/auth'
 import { AuthUseContext, AuthSetContext } from './index'
 
-interface Children { children: ReactNode }
 type IAuth =
-  (Router: SingletonRouter) =>
+  (useRouter: () => NextRouter) =>
     (useAlert: IUseAlert) =>
-      (signIn: SignIn, authState: AuthState, signOut: SignOut) => FC<Children>
+      (Auth: IAuthFirebaseAPI) => FC<{ children: ReactNode }>
 
-const Auth: IAuth = Router => useAlert => (signInAPI, authStateAPI, signOutAPI) =>
-  function Provider({ children }: Children) {
+const Auth: IAuth = useRouter => useAlert => Auth =>
+  function Provider({ children }: { children: ReactNode }) {
     const alert = useAlert()
-    const [loading, setLoading] = useState(false)
+    const router = useRouter()
     const [user, setUser] = useState<User | null>(null)
-    const isPublic = publicRoutes.includes(Router.route)
+    const isPublic = publicRoutes.includes(router.route)
 
-    function getUserName(email: string): string {
-      return email?.split('@')[0]
-    }
-
-    function defineUser(userFirebase: UserFirebase): void {
-      const userName = getUserName(String(userFirebase.email))
-      setUser({ ...userFirebase, userName })
-    }
-
-    async function verifyPrivate(userFirebase: UserFirebase | null): Promise<void> {
-      const noUserAndPrivate = !isPublic && !user && !userFirebase
-      if (noUserAndPrivate) await Router.push('/home')
-    }
-
-    async function verifyUser(userFirebase: UserFirebase | null): Promise<void> {
-      const nullUserButHas = !user && userFirebase
-      if (nullUserButHas) defineUser(userFirebase)
-    }
-
-    authStateAPI(async (userFirebase: UserFirebase | null) => {
+    Auth.state(async (userFirebase: UserFirebase | null) => {
       await verifyUser(userFirebase)
       await verifyPrivate(userFirebase)
+
+      async function verifyPrivate(userFirebase: UserFirebase | null): Promise<void> {
+        const noUserAndPrivate = !isPublic && !user && !userFirebase
+        if (noUserAndPrivate) await router.push('/home')
+      }
+
+      async function verifyUser(userFirebase: UserFirebase | null): Promise<void> {
+        const nullUserButHas = !user && userFirebase
+        if (!nullUserButHas) return
+        const userName = getUserName(String(userFirebase.email))
+        setUser({ ...userFirebase, userName })
+      }
     })
 
     async function signIn(): Promise<void> {
       try {
-        if (loading) return
-        setLoading(true)
-        const userFirebase = await signInAPI()
+        const userFirebase = await Auth.signIn()
         const userName = getUserName(String(userFirebase.email))
-        await Router.push(`/${userName}`)
+        await router.push(`/${userName}`)
       } catch (e) {
         alert.error('Somenthing went wrong')
-      } finally {
-        setLoading(false)
       }
     }
 
     async function signOut(): Promise<void> {
       try {
-        await signOutAPI()
+        await Auth.signOut()
         setUser(null)
-        await Router.push('/home')
+        await router.push(routes.login)
       } catch (e) {
         alert.error('Somenthing went wrong')
       }
