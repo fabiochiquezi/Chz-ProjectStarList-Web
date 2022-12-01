@@ -1,20 +1,16 @@
-type IOpenFn = (
-  mode: 'error' | 'success',
-  message: string,
-  delay?: number
-) => void
-type ICloseFn = () => void
-type IErrorFn = ISuccessFn
+type IOpenFn = (mode: 'error' | 'success', message: string, delay?: number) => void
 type ISuccessFn = (message: string, delay?: number) => void
+type IErrorFn = ISuccessFn
+type ICloseFn = () => void
 
-export type IUsePortalAlert = (classID?: string) => {
+export type IUseAlert = (classID?: string) => {
   open: IOpenFn
   close: ICloseFn
   error: IErrorFn
   success: ISuccessFn
 }
 
-const usePortalAlert: IUsePortalAlert = classID => {
+const useAlert: IUseAlert = classID => {
   const modeClass = { error: '#dc2626', success: '#16a34a' }
   const ID = 'AlertPortal'
 
@@ -37,11 +33,11 @@ const usePortalAlert: IUsePortalAlert = classID => {
   const createElement = (): HTMLDivElement | undefined => {
     const alreadyBuild = document.getElementById(ID)
     if (alreadyBuild) return
-
     const div = document.createElement('div')
     div.classList.add('Alert')
     if (classID) div.classList.add(`${classID}`)
     div.setAttribute('id', ID)
+    div.setAttribute('data-testid', 'Alert')
     div.addEventListener('click', close)
     return div
   }
@@ -84,4 +80,4 @@ const usePortalAlert: IUsePortalAlert = classID => {
   return { open, close, success, error }
 }
 
-export { usePortalAlert }
+export { useAlert }

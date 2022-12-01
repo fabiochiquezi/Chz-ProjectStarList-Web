@@ -3,12 +3,9 @@ import { PublicStruct } from './Public'
 import { useRouter } from 'next/router'
 import { useContentLoad } from '../store'
 import { PrivateStruct } from './Private'
-import { useAuth } from '../auth/types/usetypes'
-import { useSetAuth } from '../auth/types/setTypes'
+import { useAuth, useSetAuth } from '../auth'
 
-interface IStructureProps {
-  children: ReactNode
-}
+interface IStructureProps { children: ReactNode }
 
 const Structure: FC<IStructureProps> = ({ children }) => {
   const router = useRouter()

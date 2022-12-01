@@ -5,8 +5,8 @@ interface useAuthType {
   user: null | User
 }
 
-export const AuthContext = createContext<useAuthType>({
+export const AuthUseContext = createContext<useAuthType>({
   user: null
 })
 
-export const useAuth = (): useAuthType => useContext(AuthContext)
+export const useAuth = (): useAuthType => useContext(AuthUseContext)

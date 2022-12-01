@@ -1,6 +1,6 @@
-import { User } from '../../../types/Users'
+import { User } from '../../../../types/Users'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../../../settings'
+import { db } from '../../../../settings'
 
 export type GetUser = (id: string) => Promise<User | undefined>
 
