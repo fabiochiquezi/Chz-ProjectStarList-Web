@@ -11,7 +11,7 @@ export const routes = {
   newGames: '/new/games'
 }
 
-export const publicRoutes = [routes.login, routes.catalog, routes.notFound]
+export const publicRoutes = [routes.login, routes.notFound]
 export const privateRoutes = [routes.newMovies, routes.newSeries, routes.newBooks, routes.newGames]
 export const mixedRoutes = [routes.catalog]
 

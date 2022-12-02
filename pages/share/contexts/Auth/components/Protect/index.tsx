@@ -4,16 +4,16 @@ import React from 'react'
 
 interface IProtectRoute {
   children: React.ReactNode
-  isPublic: boolean
+  isPrivate: boolean
   user: User | null
 }
 
-const ProtectRoute: React.FC<IProtectRoute> = ({ children, isPublic, user }) => {
+const ProtectRoute: React.FC<IProtectRoute> = ({ children, user, isPrivate }) => {
   const publicRoute = children
   const privateRoute = user ? children : <Loading />
   return (
     <div data-testid="ProtectRoute">
-      {isPublic ? publicRoute : privateRoute}
+      {isPrivate ? privateRoute : publicRoute}
     </div>
   )
 }
