@@ -1,20 +1,18 @@
+import Head from 'next/head'
 import { catalogTypes } from './types'
 import Page404 from '../404/index.page'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { Menu } from './components/Menu'
 import { List } from './components/List'
-import { BtnSignIn, Loading } from '../share/components'
-// import { requestData } from './fns/requestData'
+import { useAuth } from 'pages/share/contexts'
+import { Loading } from '../share/components'
+import { useAppStore } from 'pages/share/stores'
 import { Movie } from '../share/types/Catalog/Movie'
 import { getTitle } from 'pages/[user]/fns/getTitle'
 import { Serie } from '../share/types/Catalog/Serie'
 import React, { FC, useEffect, useState } from 'react'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { useAppStore } from 'pages/share/store'
-import { useAuth, useSetAuth } from 'pages/share/auth'
-import Head from 'next/head'
-
 
 const Catalog: FC = () => {
   const [list, setList] = useState<Array<Movie | Serie>>([])
@@ -22,7 +20,6 @@ const Catalog: FC = () => {
   const { unloadUI } = useAppStore()
   const router = useRouter()
   const { user, loading } = useAuth()
-  const { signIn, signOut } = useSetAuth()
   const catalogURI = (router.query.catalog ?? 'doing') as string
   const userURI = router.query.user as string
   const isURIRight = catalogTypes.includes(catalogURI)
@@ -44,8 +41,6 @@ const Catalog: FC = () => {
       setLoadContent(false)
     }
   }
-
-  const BtnSignHeader = <BtnSignIn onClick={signIn} />
 
   return (
     <div>

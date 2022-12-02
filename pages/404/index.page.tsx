@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { FC } from 'react'
 import { routes } from 'pages/share/settings'
-import { useAuth } from '../share/auth'
+import { useAuth } from '../share/contexts'
 import Head from 'next/head'
 
 const Page404: FC = () => {

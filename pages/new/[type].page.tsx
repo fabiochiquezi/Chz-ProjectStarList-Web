@@ -15,10 +15,10 @@ import { search as searchFn } from './fns/search'
 import { Movie, Serie, Resp } from '../share/types'
 import { Loading, Modal } from '../share/components'
 import { Pagination } from './components/Pagination'
-import { useAuth } from '../share/auth'
+import { useAuth } from '../share/contexts'
 import { FC, useCallback, useEffect, useState } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
-import { useAppStore } from 'pages/share/store/app'
+import { useAppStore } from 'pages/share/stores/app'
 
 const AddModal = dynamic(
   async () => await import('./components/AddModal').then(m => m.AddModal)

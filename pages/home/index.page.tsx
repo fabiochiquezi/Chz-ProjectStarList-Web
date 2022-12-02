@@ -1,11 +1,11 @@
 import { Title, BtnSignIn, Hero, Thumb } from './components'
-import { useSetAuth } from '../share/auth'
+import { useAuth } from '../share/contexts'
 import catalog from './data/catalog.json'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
-  const { signIn } = useSetAuth()
+  const { signIn } = useAuth()
 
   return (
     <div>

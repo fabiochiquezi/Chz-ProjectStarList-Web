@@ -3,7 +3,7 @@ import { BtnLoad } from './BtnLoad'
 import { Title, TitleEmpty } from './Title'
 import { Serie } from 'pages/share/types/Catalog/Serie'
 import { Movie } from '../../../share/types/Catalog/Movie'
-import { useAuth } from '../../../share/auth'
+import { useAuth } from '../../../share/contexts'
 import React, { FC, ReactElement, useCallback, useState } from 'react'
 
 interface props {
