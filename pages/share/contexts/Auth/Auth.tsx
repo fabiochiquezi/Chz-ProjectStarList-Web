@@ -6,7 +6,7 @@ import { AuthUseContext } from './useAuth'
 import { FC, ReactNode, useState } from 'react'
 import { getUserName } from './fns/getUserName'
 import { Loading } from 'pages/share/components'
-import { isPrivate, routes } from '../../settings'
+import { isRoutePrivate, routes } from '../../settings'
 import { ProtectRoute } from './components/Protect'
 import { User as UserFirebase } from 'firebase/auth'
 
@@ -21,14 +21,14 @@ const Auth: IAuth = useRouter => useAlert => Auth =>
     const router = useRouter()
     const [user, setUser] = useState<User | null>(null)
     const [loadLogin, setLoadLogin] = useState(false)
-    const isRoutePrivate = isPrivate(router.route)
+    const isPrivate = isRoutePrivate(router.route)
 
     Auth.state(async (userFirebase: UserFirebase | null) => {
       await verifyUser(userFirebase)
       await verifyPrivate(userFirebase)
 
       async function verifyPrivate(userFirebase: UserFirebase | null): Promise<void> {
-        const noUserAndPrivate = isRoutePrivate && !user && !userFirebase
+        const noUserAndPrivate = isPrivate && !user && !userFirebase
         if (noUserAndPrivate) await router.push('/home')
       }
 
@@ -70,7 +70,7 @@ const Auth: IAuth = useRouter => useAlert => Auth =>
       <AuthUseContext.Provider value={{ user, signIn, signOut }} data-testid="auth-provider">
         {loadLogin
           ? <Loading />
-          : <ProtectRoute isPrivate={isRoutePrivate} user={user}>
+          : <ProtectRoute isPrivate={isPrivate} user={user}>
             {children}
           </ProtectRoute>
         })

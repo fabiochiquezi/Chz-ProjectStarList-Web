@@ -1,47 +1,30 @@
+import { FC } from 'react'
 import Head from 'next/head'
-import { catalogTypes } from './types'
-import Page404 from '../404/index.page'
+import { useList } from './useList'
+import { useModal } from './useModal'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
 import { Menu } from './components/Menu'
 import { List } from './components/List'
-import { useAuth } from 'pages/share/contexts'
-import { Loading } from '../share/components'
-import { useAppStore } from 'pages/share/stores'
+import { UpdateItem } from './components/Form/Upd'
+import { DeleteItem } from './components/Form/Del'
+import { Loading, Modal } from '../share/components'
 import { Movie } from '../share/types/Catalog/Movie'
-import { getTitle } from 'pages/[user]/fns/getTitle'
 import { Serie } from '../share/types/Catalog/Serie'
-import React, { FC, useEffect, useState } from 'react'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { validCatalogURI } from './fns/validCatalogURI'
+import { SimpleForm } from 'pages/share/components/Modals/Boxes/SimpleForm'
+
+export type IList = Array<Movie | Serie> | null
 
 const Catalog: FC = () => {
-  const [list, setList] = useState<Array<Movie | Serie>>([])
-  const [loadContent, setLoadContent] = useState(true)
-  const { unloadUI } = useAppStore()
-  const router = useRouter()
-  const { user, loading } = useAuth()
-  const catalogURI = (router.query.catalog ?? 'doing') as string
-  const userURI = router.query.user as string
-  const isURIRight = catalogTypes.includes(catalogURI)
-  if (!isURIRight) return <Page404 />
+  const { query, asPath } = useRouter()
+  const userName = typeof query.user !== 'string' ? '' : query.user
+  const catalogURI = typeof query.catalog !== 'string' ? 'doing' : query.catalog
+  const { list, setList } = useList(catalogURI, userName, asPath)
+  const { modal, closeModal, openUpdateModal, openDeleteModal } = useModal()
 
-  useEffect(() => {
-    setTimeout(() => unloadUI(), 1000)
-    getData()
-  }, [router])
-
-  async function getData(): Promise<void> {
-    try {
-      setLoadContent(true)
-      // const newList = await requestData(catalogURI, userURI)
-      // setList(newList)
-    } catch (e) {
-      console.log(e)
-    } finally {
-      setLoadContent(false)
-    }
-  }
-
+  validCatalogURI(catalogURI)
   return (
     <div>
       <Head>
@@ -51,22 +34,28 @@ const Catalog: FC = () => {
           content="See all of your memories about movies, series, animations, books and games"
         />
       </Head>
-      <div className="pt-48 sm:pt-36 mb-52">
-        <Menu />
-        {loadContent ? (
-          <Loading height="h-[550px]" />
-        ) : (
+      <main>
+        <Menu userName={userName} catalogType={catalogURI} />
+        {list === null && <Loading height="h-[550px]" />}
+        {list !== null && (
           <DndProvider backend={HTML5Backend}>
             <List
-              title={getTitle(catalogURI).title}
-              description={getTitle(catalogURI).subtitle}
               list={list}
               setList={setList}
+              catalogType={catalogURI}
             />
           </DndProvider>
         )}
-      </div>
-    </div>
+        {modal.state &&
+          <Modal closeModal={closeModal}>
+            <SimpleForm closeModal={closeModal}>
+              {modal.type === 'update' && <UpdateItem closeModal={closeModal} onSubmit={() => { }} />}
+              {modal.type === 'delete' && <DeleteItem />}
+            </SimpleForm>
+          </Modal>
+        }
+      </main>
+    </div >
   )
 }
 

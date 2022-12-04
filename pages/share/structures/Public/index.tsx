@@ -4,13 +4,18 @@ import React, { FC, ReactNode } from 'react'
 import { Footer } from '../components/Footer'
 import { BtnGitHub } from './components/BtnGitHub'
 import { BtnSignIn } from './components/BtnSignIn'
+import { isRouteMixed } from 'pages/share/settings'
 import { IUseAuth } from '../../contexts'
+import { useRouter } from 'next/router'
 
 type IPublic = (useAuth: () => IUseAuth) => FC<{ children: ReactNode }>
 
 const Public: IPublic = useAuth =>
   function Provider({ children }: { children: ReactNode }) {
+    const router = useRouter()
     const { signIn } = useAuth()
+    const isMixed = isRouteMixed(router.route)
+
     return (
       <div data-testid="StructPrivate">
         <header className="absolute w-full" data-testid="HeaderPublic">
@@ -30,7 +35,11 @@ const Public: IPublic = useAuth =>
             </div>
           </div>
         </header>
-        <div className="mb-48 sm:mb-36 lg:mb-24">{children}</div>
+        <div className="mb-48 sm:mb-36 lg:mb-24">
+          {isMixed
+            ? (<div className="pt-48 sm:pt-36 mb-52">{children}</div>)
+            : children}
+        </div>
         <Footer />
       </div>
     )

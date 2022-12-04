@@ -46,7 +46,6 @@ const New: FC<SRRData> = ({ data }) => {
   const { page, type, search, genre } = router.query
   const [addModal, setAddModal] = useState({ state: false, item: '' })
 
-  console.log(loadingUI, 'state New')
   useEffect(() => {
     unloadUI()
   }, [])
@@ -58,7 +57,6 @@ const New: FC<SRRData> = ({ data }) => {
   }
 
   const AddModalWork = useCallback(() => {
-    console.log('modal')
     return addModal.state ? (
       <Modal closeModal={() => closeModal(setAddModal)}>
         <AddModal

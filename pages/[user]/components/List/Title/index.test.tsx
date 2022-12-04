@@ -1,13 +1,24 @@
 import { render, screen } from '@testing-library/react'
-import { Title } from '.'
+import { Title, TitleEmpty } from '.'
 
-describe('Title', () => {
-    it('data', () => {
-        const props = { title: 'title', description: 'description' }
-        render(<Title {...props} />)
-        const title = screen.getByText(props.title)
-        const description = screen.getByText(props.description)
-        expect(title).toBeInTheDocument()
-        expect(description).toBeInTheDocument()
-    })
+describe('Titles', () => {
+  it('Title', () => {
+    const props = { title: 'title', description: 'description' }
+    render(<Title {...props} />)
+    const title = screen.getByText(props.title)
+    const description = screen.getByText(props.description)
+    expect(title).toBeInTheDocument()
+    expect(description).toBeInTheDocument()
+  })
+  it('TitleEmpty', () => {
+    const props = {
+      title: 'YOUR LIST IS EMPTY',
+      description: 'Start adding movies, books... Go at the menu to "New" right now!'
+    }
+    render(<TitleEmpty />)
+    const title = screen.getByText(props.title)
+    const description = screen.getByText(props.description)
+    expect(title).toBeInTheDocument()
+    expect(description).toBeInTheDocument()
+  })
 })

@@ -8,75 +8,75 @@ import { CloseIcon, ArrowRight1 } from '../../../../share/assets'
 export const ItemTypes = { CARD: 'card' }
 
 export interface DragItem {
-    index: number
-    id: string
-    type: string
+  index: number
+  id: string
+  type: string
 }
 
 interface ThumbProps {
-    id: any
-    thumb: string
-    index: number
-    moveCard: (dragIndex: number, hoverIndex: number) => void
-    max: number
+  id: any
+  thumb: string
+  index: number
+  moveCard: (dragIndex: number, hoverIndex: number) => void
+  max: number
 }
 
 const Thumb: FC<ThumbProps> = ({ id, thumb, index, moveCard, max }) => {
-    // const { modal } = useSetUtils()
-    const ref = useRef<HTMLDivElement>(null)
+  // const { modal } = useSetUtils()
+  const ref = useRef<HTMLDivElement>(null)
 
-    const [{ handlerId, isOver }, drop] = useDrop<
-        DragItem,
-        any,
-        { handlerId: Identifier | null; isOver: boolean }
-    >({
-        accept: ItemTypes.CARD,
-        collect(monitor) {
-            return {
-                handlerId: monitor.getHandlerId(),
-                isOver: monitor.isOver()
-            }
-        },
-        drop: (item: DragItem, _monitor) => {
-            if (!ref.current) return
-            const dragIndex = item.index
-            const hoverIndex = index
-            // Don't replace items with themselves
-            if (dragIndex === hoverIndex) return
-            moveCard(dragIndex, hoverIndex)
-            item.index = hoverIndex
-        }
-        /* hover(item: DragItem, monitor) { } */
-    })
-
-    const [{ isDragging }, drag] = useDrag({
-        type: ItemTypes.CARD,
-        item: () => {
-            return { id, index }
-        },
-        collect: (monitor: any) => ({
-            isDragging: monitor.isDragging()
-        })
-    })
-
-    const opacity = isOver ? 0 : 1
-    drag(drop(ref))
-
-    function handleLeft(): void {
-        if (index !== 0) moveCard(index, index - 1)
+  const [{ handlerId, isOver }, drop] = useDrop<
+    DragItem,
+    any,
+    { handlerId: Identifier | null; isOver: boolean }
+  >({
+    accept: ItemTypes.CARD,
+    collect(monitor) {
+      return {
+        handlerId: monitor.getHandlerId(),
+        isOver: monitor.isOver()
+      }
+    },
+    drop: (item: DragItem, _monitor) => {
+      if (!ref.current) return
+      const dragIndex = item.index
+      const hoverIndex = index
+      // Don't replace items with themselves
+      if (dragIndex === hoverIndex) return
+      moveCard(dragIndex, hoverIndex)
+      item.index = hoverIndex
     }
+    /* hover(item: DragItem, monitor) { } */
+  })
 
-    function handleRight(): void {
-        if (index !== max) moveCard(index, index + 1)
-    }
+  const [{ isDragging }, drag] = useDrag({
+    type: ItemTypes.CARD,
+    item: () => {
+      return { id, index }
+    },
+    collect: (monitor: any) => ({
+      isDragging: monitor.isDragging()
+    })
+  })
 
-    return (
-        <div
-            ref={ref}
-            data-handler-id={handlerId}
-            style={{ opacity }}
-            key={index}
-            className={`
+  const opacity = isOver ? 0 : 1
+  drag(drop(ref))
+
+  function handleLeft(): void {
+    if (index !== 0) moveCard(index, index - 1)
+  }
+
+  function handleRight(): void {
+    if (index !== max) moveCard(index, index + 1)
+  }
+
+  return (
+    <div
+      ref={ref}
+      data-handler-id={handlerId}
+      style={{ opacity }}
+      key={index}
+      className={`
                 thumb mb-20 w-[170px] order-3 cursor-pointer
                 lg:mb-16 lg:col-span-1
                 xl:scale-90
@@ -84,54 +84,54 @@ const Thumb: FC<ThumbProps> = ({ id, thumb, index, moveCard, max }) => {
                 relative
                 ${styles.Box}
             `}
-            data-cy="thumb-default"
-            data-testid="thumb-default"
-        >
-            <div
-                className="w-[170px] h-[220px] overflow-hidden anim-button"
-                // onClick={() => modal.openAlterItem({ index, thumb })}
-            >
-                <div className="w-[170px] h-[220px] overflow-hidden rounded skeleton">
-                    <img
-                        src={thumb}
-                        style={{
-                            objectFit: 'cover',
-                            width: '100%',
-                            height: '100%'
-                        }}
-                        onLoad={e => {
-                            const item = e.target as HTMLElement
-                            item.style.display = 'inline-block'
-                        }}
-                        onError={e => {
-                            const item = e.target as HTMLElement
-                            item.style.display = 'none'
-                        }}
-                    />
-                </div>
-            </div>
-
-            <div
-                className={`text-center w-[170px] mx-auto mt-3 inline-block flex items-center justify-between ${styles.BarIcons}`}
-            >
-                <div className={styles.ArrowLeftUp} onClick={handleLeft}>
-                    <ArrowRight1 color="#333" />
-                </div>
-
-                <div
-                    className={styles.CloseIcon}
-                    // onClick={() => modal.openDeleteItem({ index, thumb })}
-                    data-cy="btnOpen-delForm"
-                >
-                    <CloseIcon strokeColor="#ef4444" width={22} height={18} />
-                </div>
-
-                <div className={styles.ArrowRightDown} onClick={handleRight}>
-                    <ArrowRight1 color="#333" />
-                </div>
-            </div>
+      data-cy="thumb-default"
+      data-testid="thumb-default"
+    >
+      <div
+        className="w-[170px] h-[220px] overflow-hidden anim-button"
+      // onClick={() => modal.openAlterItem({ index, thumb })}
+      >
+        <div className="w-[170px] h-[220px] overflow-hidden rounded skeleton">
+          <img
+            src={thumb}
+            style={{
+              objectFit: 'cover',
+              width: '100%',
+              height: '100%'
+            }}
+            onLoad={e => {
+              const item = e.target as HTMLElement
+              item.style.display = 'inline-block'
+            }}
+            onError={e => {
+              const item = e.target as HTMLElement
+              item.style.display = 'none'
+            }}
+          />
         </div>
-    )
+      </div>
+
+      <div
+        className={`text-center w-[170px] mx-auto mt-3 inline-block flex items-center justify-between ${styles.BarIcons}`}
+      >
+        <div className={styles.ArrowLeftUp} onClick={handleLeft}>
+          <ArrowRight1 color="#333" />
+        </div>
+
+        <div
+          className={styles.CloseIcon}
+          // onClick={() => modal.openDeleteItem({ index, thumb })}
+          data-cy="btnOpen-delForm"
+        >
+          <CloseIcon strokeColor="#ef4444" width={22} height={18} />
+        </div>
+
+        <div className={styles.ArrowRightDown} onClick={handleRight}>
+          <ArrowRight1 color="#333" />
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export { Thumb }

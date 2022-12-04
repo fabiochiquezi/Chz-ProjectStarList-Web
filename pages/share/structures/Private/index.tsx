@@ -58,18 +58,22 @@ const GetStruct: IPrivateStruct = useRouter => useAuth =>
               <nav data-cy="menu-structure" data-testid="MainMenu">
                 <ul className="flex flex-col items-center text-center text-2xl lg:flex-row lg:mt-[2px]">
                   <li className="w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none">
-                    <BtnLink
-                      isActive={route === '/new/[type]'}
-                      onClick={() => onChangeMenu('/new/movies')}
-                      text="NEW"
-                    />
+                    <Link href="/new/movies">
+                      <BtnLink
+                        isActive={route === '/new/[type]'}
+                        onClick={() => { }}
+                        text="NEW"
+                      />
+                    </Link>
                   </li>
                   <li className="w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none">
-                    <BtnLink
-                      isActive={route === '/[user]'}
-                      onClick={() => onChangeMenu(user?.userName ?? '')}
-                      text="MY LIST"
-                    />
+                    <Link href={`/${user?.userName ?? ''}`} >
+                      <BtnLink
+                        isActive={route === '/[user]'}
+                        onClick={() => { }}
+                        text="MY LIST"
+                      />
+                    </Link>
                   </li>
                 </ul>
               </nav>
@@ -95,14 +99,14 @@ const GetStruct: IPrivateStruct = useRouter => useAuth =>
               </ul>
             </div>
           </div>
-        </header>
+        </header >
         <div className="mb-48 sm:mb-36 lg:mb-24">
           <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
             {children}
           </div>
         </div>
         <Footer />
-      </div>
+      </div >
     )
   }
 

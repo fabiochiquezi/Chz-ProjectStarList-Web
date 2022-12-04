@@ -3,4 +3,20 @@ export { app, auth, db } from './firebase/settings'
 export { successMsg } from './msgs/successMsg'
 export { errorMsg } from './msgs/errorMsg'
 
-export { routes, publicRoutes, isPrivate, isMixedRoute, isPublic } from './routes'
+export {
+  paths,
+  publicPaths,
+  privatePaths,
+  mixedPaths,
+  isPathPrivate,
+  isPathMixed,
+  isPathPublic,
+
+  routes,
+  publicRoutes,
+  privateRoutes,
+  mixedRoutes,
+  isRoutePrivate,
+  isRouteMixed,
+  isRoutePublic
+} from './routes'

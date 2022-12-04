@@ -1,97 +1,91 @@
-import Fields from './Fields'
 import { Formik } from 'formik'
-import { props } from './types'
-import { useRouter } from 'next/router'
 import { validation } from './validation'
-import React, { FC, useRef, useState } from 'react'
-import SpinIcon from '../../../pages/share/assets/icons/SpinIcon'
+import { Select } from 'pages/share/components'
+import { SpinIcon } from 'pages/share/assets'
+import React, { FC, ReactElement, useRef, useState } from 'react'
 
-import { useAuth } from '../../../structure/Auth/types'
-// import { useCatalogStore } from '../../../store/catalog'
-import { useSetUtils } from 'structure/Utils/types'
-import { ModalForm } from 'structure/Utils/Modal/Form/ModalWrap'
+interface AddModalType {
+  closeModal: () => void
+  onSubmit: (data: { catalogType: string }) => Promise<void>
+}
 
-const UpdateItem: FC<props> = ({ dataItem, setCatalogList }) => {
-    const { modal, alert, popSave } = useSetUtils()
-    const [loading, setLoading] = useState(false)
-    const { user } = useAuth()
-    // const store = useCatalogStore()
-    const { query } = useRouter()
-    const state = query.type as string
-    const btnRef = useRef<HTMLButtonElement>(null)
+const UpdateItem: FC<AddModalType> = ({ closeModal, onSubmit }) => {
+  const [loading, setLoading] = useState(false)
+  const btnRef = useRef<HTMLButtonElement>(null)
+  const Spin = <SpinIcon className="positive -top-1" />
+  const BtnSend = (): ReactElement => (!loading ? <span>Send</span> : Spin)
 
-    const Spin = <SpinIcon className="positive -top-1" />
-    const BtnSend = !loading ? <span>Update</span> : Spin
+  async function handleSubmit(data: { catalogType: string }): Promise<void> {
+    setLoading(true)
+    await onSubmit(data)
+    setLoading(false)
+  }
 
-    function handleUpdate(data: { thumb: string; state: string }): void {
-        try {
-            if (user == null) throw new Error('User not identified')
-            if (loading) return
+  return (
+    <Formik
+      initialValues={{ catalogType: 'illdo' }}
+      validationSchema={validation}
+      validateOnChange={false}
+      validateOnBlur={false}
+      onSubmit={async (data, { validateForm }) => {
+        await validateForm()
+        handleSubmit(data)
+      }}
+    >
+      {formik => (
+        <form onSubmit={formik.handleSubmit}>
+          <h3 className="mb-2 text-xl text-white font-bold mt-1">
+            Add new item
+          </h3>
 
-            const newTable = data.state
-            const oldTable = state
-            const isTheSameTable = oldTable === newTable
+          <p className="mb-5 text-white">
+            Search for the work you want on google, select
+            images, choose one, select &quot;copy link&quot;
+            and paste here.
+          </p>
 
-            if (!isTheSameTable) {
-                // const oldTableData = store.data[state]
-                // const newTableData = store.data[data.state]
-                const ifHasTheSameIndex = (_: any, index: number): boolean =>
-                    index !== dataItem.index
-                // const changeOldTable = oldTableData.filter(ifHasTheSameIndex)
-                // const changeNewTable = [...newTableData, data]
+          <div className="mt-3 md:grid grid-cols-2 gap-x-8">
+            <Select
+              label="Type"
+              className="mb-9"
+              name="catalogType"
+              onChange={formik.handleChange}
+              error={formik.errors.catalogType}
+              defaultValue={formik.values.catalogType}
+            >
+              <option
+                className="bg-primary text-white"
+                value={'doing'}
+              >
+                Doing
+              </option>
+              <option
+                className="bg-primary text-white"
+                value={'illdo'}
+              >
+                I&apos;ll do
+              </option>
+              <option
+                className="bg-primary text-white"
+                value={'did'}
+              >
+                Did
+              </option>
+            </Select>
+          </div>
 
-                // store.setData(changeOldTable, state)
-                // store.setData(changeNewTable, data.state)
-                // setCatalogList(state, user.uid, changeOldTable)
-                // setCatalogList(data.state, user.uid, changeNewTable)
-            } else {
-                // store.updateItem(dataItem.index, data, state)
-                // const newData = [...store.data[state]]
-                // setCatalogList(state, user.uid, newData)
-            }
-
-            setLoading(true)
-            popSave.open()
-            modal.close()
-        } catch (e) {
-            console.log(e, 'error')
-            alert.open('Sorry, but something went wrong. Try again', 2)
-        } finally {
-            setLoading(false)
-            popSave.close(2000)
-        }
-    }
-
-    return (
-        <div data-cy="form-alterItem">
-            <ModalForm>
-                <Formik
-                    initialValues={{ thumb: dataItem.thumb, state: state }}
-                    validationSchema={validation}
-                    validateOnChange={false}
-                    validateOnBlur={false}
-                    onSubmit={async (data, { validateForm }) => {
-                        await validateForm()
-                        handleUpdate(data)
-                    }}
-                >
-                    {formik => (
-                        <form
-                            className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700"
-                            onSubmit={formik.handleSubmit}
-                        >
-                            <Fields
-                                formik={formik}
-                                loading={loading}
-                                btnRef={btnRef}
-                                BtnSend={BtnSend}
-                            />
-                        </form>
-                    )}
-                </Formik>
-            </ModalForm>
-        </div>
-    )
+          <button
+            className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
+            type="submit"
+            disabled={!!loading}
+            ref={btnRef}
+          >
+            <BtnSend />
+          </button>
+        </form>
+      )}
+    </Formik>
+  )
 }
 
 export { UpdateItem }

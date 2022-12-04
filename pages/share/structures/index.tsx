@@ -3,11 +3,12 @@ import { useRouter } from 'next/router'
 import { LoadContext, useAuth } from '../contexts'
 import { PublicStruct } from './Public/PublicStructure'
 import { PrivateStruct } from './Private/PrivateStruct'
-import { isMixedRoute, isPrivate, isPublic } from '../settings/routes'
+import { isRouteMixed, isRoutePrivate, isRoutePublic } from '../settings/routes'
 
 interface IStructureProps { children: ReactNode }
 
 const Structure: FC<IStructureProps> = ({ children }) => {
+  // console.log('Struct')
   const { user } = useAuth()
   const router = useRouter()
 
@@ -24,10 +25,12 @@ const Structure: FC<IStructureProps> = ({ children }) => {
     </PrivateStruct>
   )
 
-  if (isMixedRoute(router.route) && user) return privateStruct
-  if (isMixedRoute(router.route) && !user) return publicStruct
-  if (isPrivate(router.route)) return privateStruct
-  if (isPublic(router.route)) return publicStruct
+  // console.log(console.log(router.route))
+  // return privateStruct
+  if (isRouteMixed(router.route) && user) return privateStruct
+  if (isRouteMixed(router.route) && !user) return publicStruct
+  if (isRoutePrivate(router.route)) return privateStruct
+  if (isRoutePublic(router.route)) return publicStruct
   return null
 }
 
