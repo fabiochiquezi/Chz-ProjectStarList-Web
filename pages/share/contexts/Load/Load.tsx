@@ -1,5 +1,5 @@
 import { FC, ReactNode, useEffect, useState } from 'react'
-import { Loading } from '../../../../components'
+import { Loading } from '../../components'
 import { LoadUseContext } from './useLoad'
 import { NextRouter } from 'next/router'
 

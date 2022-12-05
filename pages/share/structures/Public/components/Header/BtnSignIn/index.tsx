@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { SpinIcon, GoogleIcon } from '../../../../assets'
+import { SpinIcon, GoogleIcon } from '../../../../../assets'
 
 export interface IBtnSignInProps {
   className?: string
@@ -17,12 +17,11 @@ const BtnSignIn: FC<IBtnSignInProps> = ({ className = '', onClick }) => {
 
   return (
     <button
-      onClick={handleOnClick}
+      disabled={!!loading}
       data-cy="btn-signIn1"
       data-testid="BtnSignIn"
-      disabled={!!loading}
-      className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md
-                flex justify-center items-center ${className} h-[44px] w-[112px]`}
+      onClick={handleOnClick}
+      className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md flex justify-center items-center ${className} h-[44px] w-[112px]`}
     >
       {loading ? BtnLoad : BtnIcon}
     </button>

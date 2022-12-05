@@ -1,4 +1,4 @@
-import { CloseIcon, HamburgerIcon } from '../../../../assets'
+import { CloseIcon, HamburgerIcon } from '../../../../../assets'
 import { FC } from 'react'
 
 export interface IBtnHamburgerProps {

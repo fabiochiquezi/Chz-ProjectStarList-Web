@@ -1,9 +1,9 @@
+import { isRouteMixed, isRoutePrivate, isRoutePublic } from '../settings/routes'
+import { PrivateStruct } from './Private'
+import { useRouter } from 'next/router'
+import { PublicStruct } from './Public'
 import { FC, ReactNode } from 'react'
 import { useAuth } from '../contexts'
-import { useRouter } from 'next/router'
-import { PublicStruct } from './Public/PublicStructure'
-import { PrivateStruct } from './Private/PrivateStruct'
-import { isRouteMixed, isRoutePrivate, isRoutePublic } from '../settings/routes'
 
 interface IStructureProps { children: ReactNode }
 

@@ -57,10 +57,8 @@ const Auth: IAuth = useRouter => useAlert => Auth =>
     async function signOut(): Promise<void> {
       try {
         await Auth.signOut()
-        setLogTransition(true)
         setUser(null)
         await router.push(routes.login)
-        setLogTransition(false)
       } catch (e) {
         alert.error('Somenthing went wrong')
       }

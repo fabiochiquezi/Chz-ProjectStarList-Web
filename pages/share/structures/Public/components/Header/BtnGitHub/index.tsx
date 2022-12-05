@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { GithubIcon2 } from '../../../../assets'
+import { GithubIcon2 } from '../../../../../assets'
 
 export interface IBtnGitHubProps {
   href: string
