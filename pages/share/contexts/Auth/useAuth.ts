@@ -2,7 +2,7 @@ import { User } from 'pages/share/types'
 import { createContext, useContext } from 'react'
 
 export interface IUseAuth {
-  user: null | User
+  user: null | User | undefined
   signIn: () => Promise<void>
   signOut: () => Promise<void>
 }

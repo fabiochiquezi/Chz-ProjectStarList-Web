@@ -1,24 +1,42 @@
 import { FC, ReactNode, useEffect, useState } from 'react'
-import { Loading } from '../../components'
+import { Loading } from '../../../../components'
 import { LoadUseContext } from './useLoad'
 import { NextRouter } from 'next/router'
-import { IUseAuth } from '../Auth/useAuth'
 
 type ILoadContext =
   (router: () => NextRouter) =>
-    (useAuth: () => IUseAuth) =>
-      FC<{ children: ReactNode }>
+    FC<{ children: ReactNode }>
 
-const LoadContext: ILoadContext = useRouter => useAuth =>
+const LoadContext: ILoadContext = useRouter =>
   function Provider({ children }: { children: ReactNode }) {
-    const { user } = useAuth()
     const router = useRouter()
+    const asPath = router.asPath
     const [loading, setLoading] = useState(false)
 
+    function isException(url: string): boolean {
+      // Disable for the route "new"
+      function isRouteNew(): boolean {
+        const isPathNew = router.asPath.includes('/new')
+        const isUrlNew = url.includes('/new')
+        if (isPathNew && isUrlNew) return true
+        return false
+      }
+
+      function isQueryChange(): boolean {
+        const urlQuery = url.split('?')[0]
+        const path = asPath.split('?')[0]
+        const isQueryChange = urlQuery === path
+        if (isQueryChange) return true
+        return false
+      }
+
+      if (isRouteNew() || isQueryChange()) return true
+      return false
+    }
 
     useEffect(() => {
-      const handleStart = (url: string): void => { if (url !== router.asPath) setLoading(true) }
-      const handleComplete = (url: string): void => { if (url === router.asPath) setLoading(false) }
+      const handleStart = (url: string): unknown => (isException(url) ? null : setLoading(true))
+      const handleComplete = (): void => setLoading(false)
       router.events.on('routeChangeStart', handleStart)
       router.events.on('routeChangeComplete', handleComplete)
       router.events.on('routeChangeError', handleComplete)

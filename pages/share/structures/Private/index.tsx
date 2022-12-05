@@ -3,7 +3,7 @@ import { Logo } from '../../assets'
 import { NextRouter } from 'next/router'
 import { IUseAuth } from '../../contexts'
 import { Footer } from '../components/Footer'
-import { BtnLink } from './components/BtnLink'
+import { LoadContext } from './contexts/Load'
 import { BtnSignOut } from './components/BtnSignOut'
 import { BtnHamburger } from './components/BtnHamburger'
 import { FC, ReactNode, useEffect, useState } from 'react'
@@ -16,8 +16,8 @@ type IPrivateStruct =
 const GetStruct: IPrivateStruct = useRouter => useAuth =>
   function Struct({ children }: { children: ReactNode }) {
     const router = useRouter()
+    const { route } = router
     const { user, signOut } = useAuth()
-    const { route, push } = router
     const [menu, setMenu] = useState(false)
     const menuOpenClass = menu ? 'fixed' : 'hidden'
     const displayName = user?.displayName
@@ -32,11 +32,6 @@ const GetStruct: IPrivateStruct = useRouter => useAuth =>
       const body = document.querySelector('html') as HTMLElement
       body.style.overflow = menu ? 'hidden' : 'auto'
     }, [menu])
-
-    function onChangeMenu(newRoute: string): void {
-      setMenu(false)
-      push(newRoute)
-    }
 
     return (
       <div data-testid="StructPrivate">
@@ -59,20 +54,24 @@ const GetStruct: IPrivateStruct = useRouter => useAuth =>
                 <ul className="flex flex-col items-center text-center text-2xl lg:flex-row lg:mt-[2px]">
                   <li className="w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none">
                     <Link href="/new/movies">
-                      <BtnLink
-                        isActive={route === '/new/[type]'}
-                        onClick={() => { }}
-                        text="NEW"
-                      />
+                      <a
+                        data-testid="BtnLink"
+                        className={`md:text-3xl lg:text-[14px] lg:mr-6 w-full lg:w-auto py-4 inline-block md:py-10 lg:py-0 anim-button ${route === '/new/[type]' && 'text-orange-400'
+                          }`}
+                      >
+                        NEW
+                      </a>
                     </Link>
                   </li>
                   <li className="w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none">
                     <Link href={`/${user?.userName ?? ''}`} >
-                      <BtnLink
-                        isActive={route === '/[user]'}
-                        onClick={() => { }}
-                        text="MY LIST"
-                      />
+                      <a
+                        data-testid="BtnLink"
+                        className={`md:text-3xl lg:text-[14px] lg:mr-6 w-full lg:w-auto py-4 inline-block md:py-10 lg:py-0 anim-button ${route === '/[user]' && 'text-orange-400'
+                          }`}
+                      >
+                        MY LIST
+                      </a>
                     </Link>
                   </li>
                 </ul>
@@ -102,7 +101,9 @@ const GetStruct: IPrivateStruct = useRouter => useAuth =>
         </header >
         <div className="mb-48 sm:mb-36 lg:mb-24">
           <div className="pb-32 md:pb-28 pt-28 md:pt-32 lg:pt-36">
-            {children}
+            <LoadContext>
+              {children}
+            </LoadContext>
           </div>
         </div>
         <Footer />
