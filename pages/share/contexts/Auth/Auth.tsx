@@ -5,9 +5,10 @@ import { IUseAlert } from '../../portals'
 import { AuthUseContext } from './useAuth'
 import { FC, ReactNode, useState } from 'react'
 import { getUserName } from './fns/getUserName'
-import { isRoutePrivate, paths, routes } from '../../settings'
+import { Loading } from 'pages/share/components'
 import { ProtectRoute } from './components/Protect'
 import { User as UserFirebase } from 'firebase/auth'
+import { isRoutePrivate, paths, routes } from '../../settings'
 
 type IAuth =
   (useRouter: () => NextRouter) =>
@@ -19,13 +20,14 @@ const Auth: IAuth = useRouter => useAlert => Auth =>
     const alert = useAlert()
     const router = useRouter()
     const [user, setUser] = useState<User | null | undefined>()
-    const isPrivate = isRoutePrivate(router.route)
+    const [logTransition, setLogTransition] = useState(false)
 
     Auth.state(async (userFirebase: UserFirebase | null) => {
       await verifyCanAccessContent(userFirebase)
       await defineUser(userFirebase)
 
       async function verifyCanAccessContent(userFirebase: UserFirebase | null): Promise<void> {
+        const isPrivate = isRoutePrivate(router.route)
         const noUserAndPrivate = isPrivate && !userFirebase
         if (noUserAndPrivate) await router.push(paths.login)
       }
@@ -43,8 +45,10 @@ const Auth: IAuth = useRouter => useAlert => Auth =>
     async function signIn(): Promise<void> {
       try {
         const userFirebase = await Auth.signIn()
+        setLogTransition(true)
         const userName = getUserName(String(userFirebase.email))
         await router.push(`/${userName}`)
+        setLogTransition(false)
       } catch (e) {
         alert.error('Somenthing went wrong')
       }
@@ -53,8 +57,10 @@ const Auth: IAuth = useRouter => useAlert => Auth =>
     async function signOut(): Promise<void> {
       try {
         await Auth.signOut()
+        setLogTransition(true)
         setUser(null)
         await router.push(routes.login)
+        setLogTransition(false)
       } catch (e) {
         alert.error('Somenthing went wrong')
       }
@@ -62,9 +68,8 @@ const Auth: IAuth = useRouter => useAlert => Auth =>
 
     return (
       <AuthUseContext.Provider value={{ user, signIn, signOut }} data-testid="auth-provider">
-        <ProtectRoute user={user}>
-          {children}
-        </ProtectRoute>
+        {logTransition && <Loading />}
+        {!logTransition && <ProtectRoute user={user}>{children}</ProtectRoute>}
       </AuthUseContext.Provider>
     )
   }
