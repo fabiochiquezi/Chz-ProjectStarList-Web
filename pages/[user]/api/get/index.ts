@@ -3,7 +3,9 @@ import { getCatalogDid } from '../get/catalogDid'
 import { getCatalogDoing } from '../get/catalogDoing'
 import { getCatalogIlldo } from '../get/catalogIlldo'
 
-type IRequestData = (catalog: string, userURI: string) => Promise<Array<Movie | Serie>>
+type IRequestData =
+  (catalog: 'doing' | 'done' | 'illdo', userURI: string) =>
+    Promise<Array<Movie | Serie>>
 
 const getList: IRequestData = async (catalog, userURI) => {
   const requests = {

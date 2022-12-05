@@ -1,19 +1,12 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import { useList } from './useList'
-import { useModal } from './useModal'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
-import { Menu } from './components/Menu'
-import { List } from './components/List'
-import { UpdateItem } from './components/Form/Upd'
-import { DeleteItem } from './components/Form/Del'
-import { Loading, Modal } from '../share/components'
-import { Movie } from '../share/types/Catalog/Movie'
-import { Serie } from '../share/types/Catalog/Serie'
+import { Movie, Serie } from '../share/types'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { validCatalogURI } from './fns/validCatalogURI'
-import { SimpleForm } from 'pages/share/components/Modals/Boxes/SimpleForm'
+import { useList, useModal, validCatalogURI } from './fns'
+import { Loading, Modal, SimpleForm } from '../share/components'
+import { Menu, List, UpdateItem, DeleteItem } from './components'
 
 export type IList = Array<Movie | Serie> | null
 
@@ -22,9 +15,10 @@ const Catalog: FC = () => {
   const userName = typeof query.user !== 'string' ? '' : query.user
   const catalogURI = typeof query.catalog !== 'string' ? 'doing' : query.catalog
   const { list, setList } = useList(catalogURI, userName, asPath)
-  const { modal, closeModal, openUpdateModal, openDeleteModal } = useModal()
+  const { modal, closeModal, openModalUpdate, openModalDelete } = useModal()
 
   validCatalogURI(catalogURI)
+
   return (
     <div>
       <Head>
@@ -43,6 +37,8 @@ const Catalog: FC = () => {
               list={list}
               setList={setList}
               catalogType={catalogURI}
+              openModalUpdate={openModalUpdate}
+              openModalDelete={openModalDelete}
             />
           </DndProvider>
         )}

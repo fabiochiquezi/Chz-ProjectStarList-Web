@@ -11,9 +11,11 @@ interface props {
   catalogType: string
   list: Array<Movie | Serie>
   setList: Dispatch<SetStateAction<IList>>
+  openModalUpdate: () => void
+  openModalDelete: () => void
 }
 
-const List: FC<props> = ({ catalogType, list, setList }) => {
+const List: FC<props> = ({ catalogType, list, setList, openModalUpdate, openModalDelete }) => {
   const [limit, setLimit] = useState(15)
   const max = list.length ?? 0
   const shouldShowBtnLoad = limit < max && list.length
@@ -26,7 +28,6 @@ const List: FC<props> = ({ catalogType, list, setList }) => {
         return item
       })
       setList(newData)
-      // setCatalogList(type, user.uid, newData)
     } catch (e) {
       console.log(e, 'error')
     }
@@ -41,6 +42,8 @@ const List: FC<props> = ({ catalogType, list, setList }) => {
         max={max - 1}
         thumb={card.thumb}
         moveCard={moveCard}
+        openModalUpdate={openModalUpdate}
+        openModalDelete={openModalDelete}
       />
     ), [])
 
@@ -52,7 +55,10 @@ const List: FC<props> = ({ catalogType, list, setList }) => {
       >
         {!max
           ? <TitleEmpty />
-          : <Title title={getTitle(catalogType).title} description={getTitle(catalogType).description} />
+          : <Title
+            title={getTitle(catalogType).title}
+            description={getTitle(catalogType).description}
+          />
         }
         {list.map((card, i: number) => {
           const hasExcedLimit = i >= limit

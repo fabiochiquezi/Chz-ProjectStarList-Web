@@ -1,20 +1,26 @@
 import { useState } from 'react'
 
+type IModal = () => {
+  modal: { type: string, state: boolean };
+  closeModal: () => void;
+  openModalUpdate: () => void;
+  openModalDelete: () => void;
+}
 
-const useModal = () => {
+const useModal: IModal = () => {
   const [modal, setModal] = useState({ type: '', state: false })
 
   function closeModal(): void {
     setModal(prev => ({ ...prev, state: false }))
   }
-  function openUpdateModal(): void {
+  function openModalUpdate(): void {
     setModal(prev => ({ type: 'update', state: true }))
   }
-  function openDeleteModal(): void {
+  function openModalDelete(): void {
     setModal(prev => ({ type: 'delete', state: true }))
   }
 
-  return { modal, closeModal, openUpdateModal, openDeleteModal }
+  return { modal, closeModal, openModalUpdate, openModalDelete }
 }
 
 export { useModal }

@@ -6,5 +6,6 @@ export { SelectButton } from './Forms/Select/Button'
 export { Loading } from './Loadings/Default'
 
 export { Modal } from './Modals/Default'
+export { SimpleForm } from './Modals/Boxes/SimpleForm'
 
 export { AddThumb } from './Thumbs/Add'

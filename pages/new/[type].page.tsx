@@ -38,17 +38,13 @@ const New: FC<SRRData> = ({ data }) => {
 
   const alert = useAlert()
   const router = useRouter()
-  const { unloadUI, loadingUI } = useAppStore()
+
   const { setLoad, load } = useLoad()
 
   const { user } = useAuth()
   const { results, total_pages: totalPages } = request.workList
   const { page, type, search, genre } = router.query
   const [addModal, setAddModal] = useState({ state: false, item: '' })
-
-  useEffect(() => {
-    unloadUI()
-  }, [])
 
   const changeCatalog = (e: any): void => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
