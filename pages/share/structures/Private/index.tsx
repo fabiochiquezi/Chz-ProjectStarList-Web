@@ -1,7 +1,8 @@
 import { FC, ReactNode } from 'react'
-import Header from './components/Header'
 import { LoadContext } from '../../contexts'
 import { Footer } from '../components/Footer'
+import { Header } from './components/Header/extended'
+
 
 interface IPrivateStructProps { children: ReactNode }
 

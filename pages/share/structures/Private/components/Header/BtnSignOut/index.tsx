@@ -1,6 +1,6 @@
 import React from 'react'
 
-interface IBtnSignOutProps {
+export interface IBtnSignOutProps {
   onClick: () => void | Promise<void>
 }
 

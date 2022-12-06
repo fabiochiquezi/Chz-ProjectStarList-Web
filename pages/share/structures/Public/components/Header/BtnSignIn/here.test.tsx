@@ -1,11 +1,11 @@
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, screen } from '@testing-library/react'
+import { act } from 'react-dom/test-utils'
 import { BtnSignIn } from './index'
 
 describe('BtnSignIn', () => {
   const props = {
     className: 'test',
-    onClick: jest.fn(),
-    loading: false
+    onClick: jest.fn()
   }
 
   describe('className', () => {
@@ -25,12 +25,16 @@ describe('BtnSignIn', () => {
   })
 
   describe('loading', () => {
-    it('loading true', () => {
+    it.only('loading true', () => {
       render(<BtnSignIn {...props} />)
-      const loading = document.querySelector('[data-testid="btn-load"]')
-      const text = document.querySelector('[data-testid="btn-icon"]')
-      expect(loading).toBeInTheDocument()
-      expect(text).not.toBeInTheDocument()
+      act(() => {
+        const button = screen.getByTestId('BtnSignIn')
+        fireEvent.click(button)
+      })
+      // const loading = screen.getByTestId('btn-load')
+      // const text = screen.queryByTestId('btn-icon')
+      // expect(loading).toBeInTheDocument()
+      // expect(screen.queryByTestId('btn-icon')).not.toBeInTheDocument()
     })
 
     it('loading false', () => {

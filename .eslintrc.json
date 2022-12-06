@@ -25,6 +25,7 @@
     "rules": {
         // Mine
         "multiline-ternary": "off",
+        "react/display-name": "off",
         // TS
         "@typescript-eslint/indent": "off",
         "react/react-in-jsx-scope": "off",

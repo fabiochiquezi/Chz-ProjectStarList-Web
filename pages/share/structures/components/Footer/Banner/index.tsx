@@ -14,7 +14,6 @@ const Banner: FC = () => (
           If you liked this project, help me recommending me for some company
         </p>
       </div>
-
       <div className="flex flex-col items-center sm:flex-row justify-center">
         <a
           target="_blank"
@@ -24,7 +23,6 @@ const Banner: FC = () => (
         >
           Portfolio
         </a>
-
         <a
           target="_blank"
           rel="noreferrer"
