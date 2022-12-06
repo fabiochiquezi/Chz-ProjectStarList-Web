@@ -1,21 +1,20 @@
 import Link from 'next/link'
 import { MidMenu } from './MidMenu'
 import RightMenu from './RightMenu'
-import { NextRouter } from 'next/router'
+import { User } from 'pages/share/types'
 import { BtnSignOut } from './BtnSignOut'
 import { Logo } from '../../../..//assets'
 import { BtnHamburger } from './BtnHamburger'
-import { IUseAuth } from '../../../../contexts'
-import { ReactElement, useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 
-type IHeader =
-  (useRouter: () => NextRouter) => (useAuth: () => IUseAuth) =>
-    () => ReactElement
 
-const Header: IHeader = (useRouter) => (useAuth) => () => {
-  const router = useRouter()
-  const { route } = router
-  const { user, signOut } = useAuth()
+interface IHeaderProps {
+  route: string
+  user: User | null | undefined
+  signOut: () => Promise<void>
+}
+
+const HeaderPrivate: FC<IHeaderProps> = ({ route, user, signOut }) => {
   const userName = user?.userName ?? ''
   const [menu, setMenu] = useState(false)
   const menuOpenClass = menu ? 'fixed' : 'hidden'
@@ -60,4 +59,4 @@ const Header: IHeader = (useRouter) => (useAuth) => () => {
   )
 }
 
-export { Header }
+export { HeaderPrivate }

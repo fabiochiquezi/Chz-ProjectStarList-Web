@@ -1,13 +1,14 @@
-import React from 'react'
 import Link from 'next/link'
+import React, { FC } from 'react'
 import { BtnGitHub } from './BtnGitHub'
 import { BtnSignIn } from './BtnSignIn'
-import { Logo } from 'pages/share/assets'
-import { useAuth } from 'pages/share/contexts'
+import { Logo } from '../../../../share/assets'
 
-const Header: React.FC = () => {
-  const { signIn } = useAuth()
+interface IHeaderProps {
+  signIn: () => Promise<void>
+}
 
+const HeaderPublic: FC<IHeaderProps> = ({ signIn }) => {
   return (
     <header className="absolute w-full" data-testid="HeaderPublic">
       <div className="flex justify-between items-center container mx-auto px-4 py-6 bg-transparent">
@@ -29,4 +30,5 @@ const Header: React.FC = () => {
   )
 }
 
-export default Header
+
+export { HeaderPublic }

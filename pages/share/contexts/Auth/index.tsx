@@ -1,7 +1,76 @@
-import { Auth } from './Auth'
-import { useAlert } from '../../portals'
-import { useRouter } from 'next/router'
-import { AuthFirebaseAPI } from './api'
+import { User } from '../../types'
+import { IAuthFirebaseAPI } from './api'
+import { NextRouter } from 'next/router'
+import { IUseAlert } from '../../portals'
+import { AuthUseContext } from './useAuth'
+import { FC, ReactNode, useState } from 'react'
+import { getUserName } from './fns/getUserName'
+import { Loading } from 'pages/share/components'
+import { ProtectRoute } from './components/Protect'
+import { User as UserFirebase } from 'firebase/auth'
+import { isRoutePrivate, paths, routes } from '../../settings'
 
-export const AuthNext = Auth(useRouter)
-export const AuthContextFirebase = AuthNext(useAlert)(AuthFirebaseAPI)
+type IAuth =
+  (Auth: IAuthFirebaseAPI) =>
+    (useRouter: () => NextRouter) =>
+      (useAlert: IUseAlert) =>
+        FC<{ children: ReactNode }>
+
+const Auth: IAuth = Auth => useRouter => useAlert =>
+  function Provider({ children }: { children: ReactNode }) {
+    const alert = useAlert()
+    const router = useRouter()
+    const [user, setUser] = useState<User | null | undefined>()
+    const [logTransition, setLogTransition] = useState(false)
+
+    Auth.state(async (userFirebase: UserFirebase | null) => {
+      await verifyCanAccessContent(userFirebase)
+      await defineUser(userFirebase)
+
+      async function verifyCanAccessContent(userFirebase: UserFirebase | null): Promise<void> {
+        const isPrivate = isRoutePrivate(router.route)
+        const noUserAndPrivate = isPrivate && !userFirebase
+        if (noUserAndPrivate) await router.push(paths.login)
+      }
+
+      async function defineUser(userFirebase: UserFirebase | null): Promise<void> {
+        const noUserButLogged = !user && userFirebase
+        if (noUserButLogged) {
+          const userName = getUserName(String(userFirebase.email))
+          setUser({ ...userFirebase, userName })
+        }
+        if (!userFirebase) setUser(null)
+      }
+    })
+
+    async function signIn(): Promise<void> {
+      try {
+        const userFirebase = await Auth.signIn()
+        setLogTransition(true)
+        const userName = getUserName(String(userFirebase.email))
+        await router.push(`/${userName}`)
+        setLogTransition(false)
+      } catch (e) {
+        alert.error('Somenthing went wrong')
+      }
+    }
+
+    async function signOut(): Promise<void> {
+      try {
+        await Auth.signOut()
+        setUser(null)
+        await router.push(routes.login)
+      } catch (e) {
+        alert.error('Somenthing went wrong')
+      }
+    }
+
+    return (
+      <AuthUseContext.Provider value={{ user, signIn, signOut }} data-testid="auth-provider">
+        {logTransition && <Loading />}
+        {!logTransition && <ProtectRoute route={router.route} user={user}>{children}</ProtectRoute>}
+      </AuthUseContext.Provider>
+    )
+  }
+
+export { Auth }

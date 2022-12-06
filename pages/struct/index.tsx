@@ -1,9 +1,9 @@
-import { isRouteMixed, isRoutePrivate, isRoutePublic } from '../settings'
+import { Footer, HeaderPrivate, HeaderPublic } from './components'
+import { isRouteMixed, isRoutePrivate } from '../share/settings'
 import { PrivateStruct, PublicStruct } from './controllers'
-import { HeaderPrivate, HeaderPublic } from './components'
+import { LoadContext, useAuth } from '../share/contexts'
 import { useRouter } from 'next/router'
 import { FC, ReactNode } from 'react'
-import { useAuth } from '../contexts'
 
 interface IStructureProps {
   children: ReactNode
@@ -16,9 +16,8 @@ const Structure: FC<IStructureProps> = ({ children }) => {
   const publicStruct = (
     <PublicStruct
       route={route}
-      Header={
-        <HeaderPublic signIn={signIn} />
-      }
+      Footer={<Footer />}
+      Header={<HeaderPublic signIn={signIn} />}
     >
       {children}
     </PublicStruct>
@@ -26,6 +25,7 @@ const Structure: FC<IStructureProps> = ({ children }) => {
 
   const privateStruct = (
     <PrivateStruct
+      Footer={<Footer />}
       Header={
         <HeaderPrivate
           route={route}
@@ -33,15 +33,16 @@ const Structure: FC<IStructureProps> = ({ children }) => {
           user={user} />
       }
     >
-      {children}
+      <LoadContext>
+        {children}
+      </LoadContext>
     </PrivateStruct>
   )
 
   if (isRouteMixed(route) && user) return privateStruct
   if (isRouteMixed(route) && !user) return publicStruct
   if (isRoutePrivate(route)) return privateStruct
-  if (isRoutePublic(route)) return publicStruct
-  return null
+  return publicStruct
 }
 
 export { Structure }
