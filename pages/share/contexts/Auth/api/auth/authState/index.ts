@@ -1,4 +1,4 @@
-import { auth } from '../../../../../settings'
+import { auth } from '../../../../../settings/firebase'
 import { onAuthStateChanged, User } from 'firebase/auth'
 
 type CallBack = (userGoogle: User | null) => void

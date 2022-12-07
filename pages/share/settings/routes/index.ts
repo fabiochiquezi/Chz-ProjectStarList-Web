@@ -19,12 +19,12 @@ export const isPathMixed = (path: string): boolean => mixedPaths.includes(path)
 export const routes = {
   notFound: '/404',
   login: '/home',
-  catalog: '/[user]',
+  user: '/[user]',
   new: '/new/[type]'
 }
 export const publicRoutes = [routes.login]
 export const privateRoutes = [routes.new]
-export const mixedRoutes = [routes.catalog, routes.notFound]
+export const mixedRoutes = [routes.user, routes.notFound]
 export const isRoutePublic = (route: string): boolean => publicRoutes.includes(route)
 export const isRoutePrivate = (route: string): boolean => privateRoutes.includes(route)
 export const isRouteMixed = (route: string): boolean => mixedRoutes.includes(route)

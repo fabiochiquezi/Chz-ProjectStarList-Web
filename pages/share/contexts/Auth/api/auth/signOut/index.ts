@@ -1,4 +1,4 @@
-import { auth } from '../../../../../settings'
+import { auth } from '../../../../../settings/firebase'
 
 export type SignOut = () => Promise<void>
 

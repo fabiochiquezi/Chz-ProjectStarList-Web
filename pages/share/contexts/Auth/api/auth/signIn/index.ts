@@ -1,5 +1,5 @@
 import { signUp } from '../signUp'
-import { auth } from '../../../../../settings'
+import { auth } from '../../../../../settings/firebase'
 import { getUser as getUserFirebase } from '../../user/get'
 import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
 

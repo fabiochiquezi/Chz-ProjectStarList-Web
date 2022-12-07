@@ -66,7 +66,7 @@ const Auth: IAuth = Auth => useRouter => useAlert =>
     }
 
     return (
-      <AuthUseContext.Provider value={{ user, signIn, signOut }} data-testid="auth-provider">
+      <AuthUseContext.Provider value={{ user, signIn, signOut }} data-testid="AuthProvider">
         {logTransition && <Loading />}
         {!logTransition && <ProtectRoute route={router.route} user={user}>{children}</ProtectRoute>}
       </AuthUseContext.Provider>

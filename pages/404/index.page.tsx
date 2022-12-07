@@ -6,7 +6,7 @@ import { routes } from 'pages/share/settings'
 
 const Page404: FC = () => {
   const { user } = useAuth()
-  const homeLink = user ? routes.catalog : routes.login
+  const homeLink = user ? routes.new : routes.login
 
   return (
     <div>

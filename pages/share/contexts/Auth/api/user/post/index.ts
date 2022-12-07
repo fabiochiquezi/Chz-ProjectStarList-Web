@@ -1,6 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore'
 import { User } from '../../../../../types/Users'
-import { db } from '../../../../../settings'
+import { db } from '../../../../../settings/firebase'
 
 export type PostUser = (uid: string, data: User) => Promise<void>
 
