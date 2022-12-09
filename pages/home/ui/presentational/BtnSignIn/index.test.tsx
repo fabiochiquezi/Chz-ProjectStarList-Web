@@ -1,12 +1,11 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { BtnSignIn } from './index'
 
 describe('BtnSignIn', () => {
     const props = {
         className: 'test',
         id: 'test',
-        onClick: jest.fn(),
-        loading: true
+        onClick: jest.fn()
     }
 
     it('data', () => {
@@ -19,16 +18,20 @@ describe('BtnSignIn', () => {
 
     it('load', () => {
         render(<BtnSignIn {...props} />)
-        const btnLoad = document.querySelector('[data-testid="BtnLoad"]')
-        const btnIcon = document.querySelector('[data-testid="BtnIcon"]')
-        expect(btnLoad).toBeInTheDocument()
-        expect(btnIcon).not.toBeInTheDocument()
+        const el = screen.getByTestId('BtnSignIn')
+        fireEvent.click(el)
+        waitFor(() => {
+            const btnLoad = screen.queryByTestId('BtnLoad')
+            const btnIcon = screen.queryByTestId('BtnIcon')
+            expect(btnLoad).toBeInTheDocument()
+            expect(btnIcon).not.toBeInTheDocument()
+        })
     })
 
     it('icon', () => {
         render(<BtnSignIn {...props} />)
-        const btnLoad = document.querySelector('[data-testid="BtnLoad"]')
-        const btnIcon = document.querySelector('[data-testid="BtnIcon"]')
+        const btnLoad = screen.queryByTestId('BtnLoad')
+        const btnIcon = screen.getByTestId('BtnIcon')
         expect(btnLoad).not.toBeInTheDocument()
         expect(btnIcon).toBeInTheDocument()
     })
@@ -36,7 +39,7 @@ describe('BtnSignIn', () => {
     it('onClick', () => {
         render(<BtnSignIn {...props} />)
         const el = screen.getByTestId('BtnSignIn')
-        if (el) fireEvent.click(el)
+        fireEvent.click(el)
         expect(props.onClick).toHaveBeenCalledTimes(1)
     })
 })

@@ -1,5 +1,4 @@
-import { render, fireEvent, screen } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+import { render, fireEvent, screen, waitFor } from '@testing-library/react'
 import { BtnSignIn } from './index'
 
 describe('BtnSignIn', () => {
@@ -11,7 +10,7 @@ describe('BtnSignIn', () => {
   describe('className', () => {
     test('className', () => {
       render(<BtnSignIn {...props} />)
-      const el = document.querySelector('button')
+      const el = screen.getByTestId('BtnSignIn')
       expect(el).toBeInTheDocument()
       expect(el).toHaveClass(props.className)
     })
@@ -24,32 +23,32 @@ describe('BtnSignIn', () => {
     })
   })
 
-  describe('loading', () => {
-    it('loading true', () => {
-      render(<BtnSignIn {...props} />)
-      act(() => {
-        const button = screen.getByTestId('BtnSignIn')
-        fireEvent.click(button)
-      })
-      // const loading = screen.getByTestId('btn-load')
-      // const text = screen.queryByTestId('btn-icon')
-      // expect(loading).toBeInTheDocument()
-      // expect(screen.queryByTestId('btn-icon')).not.toBeInTheDocument()
+  test('loading true', () => {
+    render(<BtnSignIn {...props} />)
+    const button = screen.getByTestId('BtnSignIn')
+    fireEvent.click(button)
+    waitFor(() => {
+      const loading = screen.getByTestId('BtnLoad')
+      const text = screen.queryByTestId('BtnIcon')
+      expect(loading).toBeInTheDocument()
+      expect(text).not.toBeInTheDocument()
     })
+  })
 
-    test('loading false', () => {
-      render(<BtnSignIn {...props} />)
-      const loading = document.querySelector('[data-testid="btn-load"]')
-      const text = document.querySelector('[data-testid="btn-icon"]')
-      expect(loading).not.toBeInTheDocument()
-      expect(text).toBeInTheDocument()
-    })
+  test('loading false', () => {
+    render(<BtnSignIn {...props} />)
+    const loading = screen.queryByTestId('BtnLoad')
+    const text = screen.getByTestId('BtnIcon')
+    expect(loading).not.toBeInTheDocument()
+    expect(text).toBeInTheDocument()
   })
 
   test('onClick', () => {
     render(<BtnSignIn {...props} />)
-    const el = document.querySelector('button')
-    if (el) fireEvent.click(el)
-    expect(props.onClick).toHaveBeenCalledTimes(1)
+    waitFor(() => {
+      const el = screen.getByTestId('BtnSignIn')
+      fireEvent.click(el)
+      expect(props.onClick).toHaveBeenCalledTimes(1)
+    })
   })
 })

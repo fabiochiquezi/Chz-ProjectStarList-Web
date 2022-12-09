@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { Data } from './types'
-import ErrorPage from '../error'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Menu } from './components/Menu'
@@ -10,7 +9,7 @@ import { useAuth } from '../share/contexts'
 import { useLoad } from './hooks/useLoad/idex'
 import { getServerSideProps } from './api/ssr'
 import { Movie, Serie, Resp } from '../share/types'
-import { Loading, Modal } from '../share/components'
+import { Error, Loading, Modal } from '../share/components'
 import { Pagination } from './components/Pagination'
 import { FC, useCallback, useState } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
@@ -28,11 +27,11 @@ interface SRRData {
 }
 
 const New: FC<SRRData> = ({ data }) => {
+  const router = useRouter()
   const { ok, request } = data
-  if (!ok) return <ErrorPage />
+  if (!ok) return <Error />
 
   const alert = useAlert()
-  const router = useRouter()
   const { user } = useAuth()
   const { setLoad, load } = useLoad()
 

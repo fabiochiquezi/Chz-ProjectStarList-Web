@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { GoogleIcon, SpinIcon } from '../../../share/assets'
+import { GoogleIcon, SpinIcon } from '../../../../share/assets'
 
 export interface BtnSignInType {
   className?: string

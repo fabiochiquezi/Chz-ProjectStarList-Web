@@ -2,11 +2,11 @@ import Link from 'next/link'
 import Head from 'next/head'
 import React, { FC } from 'react'
 import { useAuth } from '../share/contexts'
-import { routes } from 'pages/share/settings'
+import { paths } from 'pages/share/settings'
 
 const Page404: FC = () => {
   const { user } = useAuth()
-  const homeLink = user ? routes.new : routes.login
+  const homeLink = user ? paths.newMovies : paths.login
 
   return (
     <div>

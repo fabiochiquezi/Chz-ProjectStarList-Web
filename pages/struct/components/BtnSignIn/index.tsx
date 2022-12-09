@@ -18,7 +18,7 @@ const BtnSignIn: FC<IBtnSignInProps> = ({ className = '', onClick }) => {
   return (
     <button
       disabled={!!loading}
-      data-cy="btn-signIn1"
+      data-cy="BtnSignIn"
       data-testid="BtnSignIn"
       onClick={handleOnClick}
       className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md flex justify-center items-center ${className} h-[44px] w-[112px]`}
@@ -29,14 +29,14 @@ const BtnSignIn: FC<IBtnSignInProps> = ({ className = '', onClick }) => {
 }
 
 const BtnLoad = (
-  <div className="mt-[7px]" data-testid="btn-load">
+  <div className="mt-[7px]" data-testid="BtnLoad">
     <SpinIcon />
   </div>
 )
 
 const BtnIcon = (
   <>
-    <span className="md:text-sm lg:text-md" data-testid="btn-icon">
+    <span className="md:text-sm lg:text-md" data-testid="BtnIcon">
       Sign In
     </span>
     <GoogleIcon width={20} height={20} className="ml-1 mt-[-3px]" />

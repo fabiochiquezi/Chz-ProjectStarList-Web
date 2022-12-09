@@ -21,7 +21,7 @@ const Auth: IAuth = Auth => useRouter => useAlert =>
     const alert = useAlert()
     const router = useRouter()
     const [user, setUser] = useState<User | null | undefined>()
-    const [logTransition, setLogTransition] = useState(false)
+    const [transition, setTransition] = useState(false)
 
     Auth.state(async (userFirebase: UserFirebase | null) => {
       await verifyCanAccessContent(userFirebase)
@@ -46,10 +46,10 @@ const Auth: IAuth = Auth => useRouter => useAlert =>
     async function signIn(): Promise<void> {
       try {
         const userFirebase = await Auth.signIn()
-        setLogTransition(true)
+        setTransition(true)
         const userName = getUserName(String(userFirebase.email))
+        setTransition(false)
         await router.push(`/${userName}`)
-        setLogTransition(false)
       } catch (e) {
         alert.error('Somenthing went wrong')
       }
@@ -57,8 +57,10 @@ const Auth: IAuth = Auth => useRouter => useAlert =>
 
     async function signOut(): Promise<void> {
       try {
+        setTransition(true)
         await Auth.signOut()
         setUser(null)
+        setTransition(false)
         await router.push(routes.login)
       } catch (e) {
         alert.error('Somenthing went wrong')
@@ -67,8 +69,8 @@ const Auth: IAuth = Auth => useRouter => useAlert =>
 
     return (
       <AuthUseContext.Provider value={{ user, signIn, signOut }} data-testid="AuthProvider">
-        {logTransition && <Loading />}
-        {!logTransition && <ProtectRoute route={router.route} user={user}>{children}</ProtectRoute>}
+        {transition && <Loading />}
+        {!transition && <ProtectRoute route={router.route} user={user}>{children}</ProtectRoute>}
       </AuthUseContext.Provider>
     )
   }

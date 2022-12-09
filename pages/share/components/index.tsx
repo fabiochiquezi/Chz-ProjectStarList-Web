@@ -1,3 +1,5 @@
+export { Error } from './Errors/Boxes/Default'
+
 export { Input } from './Forms/Inputs/Default'
 export { Search } from './Forms/Search/Default'
 export { Select } from './Forms/Select/Default'

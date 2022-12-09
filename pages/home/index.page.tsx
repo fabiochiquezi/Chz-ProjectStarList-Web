@@ -1,13 +1,13 @@
-import { Title, BtnSignIn, Thumb } from './components'
+import { Title, BtnSignIn, Thumb, List, Hero } from './ui'
 import { useAuth } from '../share/contexts'
 import catalog from './data/catalog.json'
 import type { NextPage } from 'next'
-import { List } from './sections/List'
-import { Hero } from './sections/Hero'
 import Head from 'next/head'
 
 const Home: NextPage = () => {
   const { signIn } = useAuth()
+  const btnSignIn = <BtnSignIn onClick={signIn} />
+  const title = <Title title="YOUR VIRTUAL MEMORY LIST" description="From watching, reading or playing..." />
 
   return (
     <div>
@@ -20,17 +20,15 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Hero
+          BtnSignIn={btnSignIn}
           title="Your' list of great works souvenirs"
           description="Mount your own list of movies, cartoons, series, books and games."
-          BtnSignIn={<BtnSignIn onClick={signIn} />}
         />
-        <div className="pt-12 lg:pt-16 pb-16">
-          <List
-            list={catalog}
-            Thumb={(props) => <Thumb {...props} />}
-            Title={<Title title="YOUR VIRTUAL MEMORY LIST" description="From watching, reading or playing..." />}
-          />
-        </div>
+        <List
+          Title={title}
+          list={catalog}
+          Thumb={(props) => <Thumb {...props} />}
+        />
       </main>
     </div>
   )
