@@ -4,8 +4,11 @@ import { useRouter } from 'next/router'
 import { Movie, Serie } from '../share/types'
 import { useList, useModal, validCatalogURI } from './fns'
 import { Modal, SimpleForm } from '../share/components'
-import { Menu, UpdateItem, DeleteItem } from './components'
+import { Menu, UpdateItem, DeleteItem, List } from './components'
 import { HocList } from './components/HocList'
+import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
 export type IList = Array<Movie | Serie> | null
 
@@ -29,13 +32,17 @@ const Catalog: FC = () => {
       </Head>
       <main>
         <Menu userName={userName} catalogType={catalogURI} />
-        <HocList
-          list={list}
-          setList={setList}
-          catalogType={catalogURI}
-          openModalUpdate={openModalUpdate}
-          openModalDelete={openModalDelete}
-        />
+        <LoadingHOC data={list}>
+          <DndProvider backend={HTML5Backend}>
+            <List
+              list={list}
+              setList={setList}
+              catalogType={catalogURI}
+              openModalUpdate={openModalUpdate}
+              openModalDelete={openModalDelete}
+            />
+          </DndProvider>
+        </LoadingHOC>
         {modal.state &&
           <Modal closeModal={closeModal}>
             <SimpleForm closeModal={closeModal}>

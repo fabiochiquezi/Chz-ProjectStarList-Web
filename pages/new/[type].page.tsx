@@ -9,10 +9,11 @@ import { useAuth } from '../share/contexts'
 import { useLoad } from './hooks/useLoad/idex'
 import { getServerSideProps } from './api/ssr'
 import { Movie, Serie, Resp } from '../share/types'
-import { Error, Loading, Modal } from '../share/components'
+import { ErrorDefault, Loading, Modal } from '../share/components'
 import { Pagination } from './components/Pagination'
 import { FC, useCallback, useState } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
+import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
 
 const AddModal = dynamic(
   async () => await import('./components/AddModal').then(m => m.AddModal)
@@ -29,11 +30,11 @@ interface SRRData {
 const New: FC<SRRData> = ({ data }) => {
   const router = useRouter()
   const { ok, request } = data
-  if (!ok) return <Error />
+  if (!ok) return <ErrorDefault />
 
   const alert = useAlert()
   const { user } = useAuth()
-  const { setLoad, load } = useLoad()
+  const { setLoad, loadProcess } = useLoad()
 
   const { results, total_pages: totalPages } = request.workList
   const { page, type, search, genre } = router.query
@@ -91,8 +92,7 @@ const New: FC<SRRData> = ({ data }) => {
           resetSearch={resetSearch}
           genreFilter={genreFilter}
         />
-        {load && <Loading />}
-        {!load ? (
+        <LoadingHOC data={loadProcess}>
           <List
             list={results ?? []}
             title={type as string}
@@ -101,7 +101,7 @@ const New: FC<SRRData> = ({ data }) => {
               setAddModal({ state: true, item: String(id) })
             }}
           />
-        ) : null}
+        </LoadingHOC>
         <Pagination
           page={parseInt(String(page)) || 1}
           maxPages={totalPages ?? 1}
