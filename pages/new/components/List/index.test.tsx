@@ -9,7 +9,7 @@ describe('List', () => {
         onClick: jest.fn()
     }
 
-    it('data', () => {
+    test('data', () => {
         render(<List {...props} />)
         const title = screen.getByText(props.title)
         const description = screen.getByText(props.description)
@@ -19,14 +19,14 @@ describe('List', () => {
         expect(thumbs.length).toBeGreaterThan(0)
     })
 
-    it('onClick', () => {
+    test('onClick', () => {
         render(<List {...props} />)
         const thumb = screen.getAllByTestId('Thumb')[0]
         fireEvent.click(thumb)
         expect(props.onClick).toHaveBeenCalledTimes(1)
     })
 
-    it('limit', () => {
+    test('limit', () => {
         render(
             <List
                 {...props}

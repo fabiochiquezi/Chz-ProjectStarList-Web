@@ -15,7 +15,7 @@ describe('api/watch/getMovies', () => {
         mockedAxios.get.mockResolvedValue({ data })
     })
 
-    it('getMovies"', async () => {
+    test('getMovies"', async () => {
         const list = await getMovies('1')
         expect(list.total_pages).not.toBeNull()
         expect(list.total_results).not.toBeNull()

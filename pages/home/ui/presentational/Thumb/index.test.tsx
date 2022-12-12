@@ -7,7 +7,7 @@ describe('Thumb', () => {
     title: 'title'
   }
 
-  it('data', () => {
+  test('data', () => {
     const Elem = <Thumb {...props} />
     render(Elem)
     const el = screen.getByTestId('Thumb')

@@ -8,7 +8,7 @@ describe('Thumb', () => {
         onClick: jest.fn()
     }
 
-    it('data', () => {
+    test('data', () => {
         render(<Thumb {...props} />)
         const el = screen.getByTestId('Thumb')
         const img = screen.getByRole<HTMLImageElement>('img')
@@ -20,7 +20,7 @@ describe('Thumb', () => {
         expect(img.title).toBe(props.title)
     })
 
-    it('onClick', () => {
+    test('onClick', () => {
         render(<Thumb {...props} />)
         const el = screen.getByTestId('Thumb')
         fireEvent.click(el)

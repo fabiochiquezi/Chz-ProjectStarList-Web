@@ -8,7 +8,7 @@ describe('BtnSignIn', () => {
         onClick: jest.fn()
     }
 
-    it('data', () => {
+    test('data', () => {
         render(<BtnSignIn {...props} />)
         const el = screen.getByTestId('BtnSignIn')
         expect(el).toBeInTheDocument()
@@ -16,7 +16,7 @@ describe('BtnSignIn', () => {
         expect(el.id).toBe(props.id)
     })
 
-    it('load', () => {
+    test('load', () => {
         render(<BtnSignIn {...props} />)
         const el = screen.getByTestId('BtnSignIn')
         fireEvent.click(el)
@@ -28,7 +28,7 @@ describe('BtnSignIn', () => {
         })
     })
 
-    it('icon', () => {
+    test('icon', () => {
         render(<BtnSignIn {...props} />)
         const btnLoad = screen.queryByTestId('BtnLoad')
         const btnIcon = screen.getByTestId('BtnIcon')
@@ -36,7 +36,7 @@ describe('BtnSignIn', () => {
         expect(btnIcon).toBeInTheDocument()
     })
 
-    it('onClick', () => {
+    test('onClick', () => {
         render(<BtnSignIn {...props} />)
         const el = screen.getByTestId('BtnSignIn')
         fireEvent.click(el)

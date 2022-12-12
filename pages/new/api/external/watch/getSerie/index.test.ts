@@ -15,7 +15,7 @@ describe('api/watch/getSerie', () => {
         mockedAxios.get.mockResolvedValue({ data })
     })
 
-    it('getSerie"', async () => {
+    test('getSerie"', async () => {
         const list = await getSerie('dragon', '1')
         expect(list.total_pages).not.toBeNull()
         expect(list.total_results).not.toBeNull()

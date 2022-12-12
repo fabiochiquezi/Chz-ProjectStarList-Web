@@ -4,7 +4,7 @@ import React from 'react'
 
 
 describe('PrivateRoute', () => {
-  it('public', () => {
+  test('public', () => {
     const props: any = { isPublic: true, user: { name: 'user' } }
     render(<ProtectRoute {...props}><p>test</p></ProtectRoute>)
     const el = screen.getByTestId('ProtectRoute')
@@ -16,7 +16,7 @@ describe('PrivateRoute', () => {
   })
 
 
-  it('private w/ no user', () => {
+  test('private w/ no user', () => {
     const props: any = { isPublic: false, user: null }
     render(<ProtectRoute {...props}><p>test</p></ProtectRoute>)
     const el = screen.getByTestId('ProtectRoute')
@@ -27,7 +27,7 @@ describe('PrivateRoute', () => {
     expect(loading).toBeInTheDocument()
   })
 
-  it('private w/ user', () => {
+  test('private w/ user', () => {
     const props: any = { isPublic: false, user: true }
     render(<ProtectRoute {...props}><p>test</p></ProtectRoute>)
     const el = screen.getByTestId('ProtectRoute')

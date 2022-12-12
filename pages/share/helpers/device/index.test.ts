@@ -6,7 +6,7 @@ describe('front/device', () => {
   const desktopMatch = '(min-width: 1025px)'
 
   describe('if true', () => {
-    it('isMobile', () => {
+    test('isMobile', () => {
       const matchMedia = jest.fn(data => {
         if (data === mobileMatch) return { matches: true }
         return { matches: false }
@@ -20,7 +20,7 @@ describe('front/device', () => {
       expect.assertions(3)
     })
 
-    it('isTablet', () => {
+    test('isTablet', () => {
       const matchMedia = jest.fn(data => {
         if (data === tabletMatch) return { matches: true }
         return { matches: false }
@@ -35,7 +35,7 @@ describe('front/device', () => {
       expect.assertions(4)
     })
 
-    it('isDesktop', () => {
+    test('isDesktop', () => {
       const matchMedia = jest.fn(data => {
         if (data === desktopMatch) return { matches: true }
         return { matches: false }
@@ -53,7 +53,7 @@ describe('front/device', () => {
   })
 
   describe('if false', () => {
-    it('isMobile', () => {
+    test('isMobile', () => {
       const matchMedia = jest.fn(data => {
         if (data === tabletMatch) return { matches: true }
         return { matches: false }
@@ -67,7 +67,7 @@ describe('front/device', () => {
       expect.assertions(3)
     })
 
-    it('isTablet', () => {
+    test('isTablet', () => {
       const matchMedia = jest.fn(data => {
         if (data === desktopMatch) return { matches: true }
         return { matches: false }
@@ -81,7 +81,7 @@ describe('front/device', () => {
       expect.assertions(3)
     })
 
-    it('isDesktop', () => {
+    test('isDesktop', () => {
       const matchMedia = jest.fn(data => {
         if (data === mobileMatch) return { matches: true }
         return { matches: false }

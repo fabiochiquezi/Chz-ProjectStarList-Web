@@ -1,7 +1,7 @@
 import { format } from './format'
 
 describe('/api/watch/_helpers/format', () => {
-    it('format', () => {
+    test('format', () => {
         const test = ''
         const results = [{ poster_path: 'test01' }]
         const data = { test, results }

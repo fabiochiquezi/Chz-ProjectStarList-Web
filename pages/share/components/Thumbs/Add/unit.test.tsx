@@ -2,13 +2,13 @@ import { render, fireEvent, screen } from '@testing-library/react'
 import { AddThumb } from './index'
 
 describe('AddThumb', () => {
-  it('data', () => {
+  test('data', () => {
     render(<AddThumb onClick={jest.fn()} />)
     const el = screen.getByTestId('AddThumb')
     expect(el).toBeInTheDocument()
   })
 
-  it('onClick', () => {
+  test('onClick', () => {
     const callBack = jest.fn()
     render(<AddThumb onClick={callBack} />)
     const el = screen.getByTestId('AddThumb')

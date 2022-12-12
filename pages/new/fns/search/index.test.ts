@@ -7,7 +7,7 @@ describe('search', () => {
     const setLoad = jest.fn(data => data)
     const routerPage = 'routerPage'
 
-    it('call function correctly', () => {
+    test('call function correctly', () => {
         search(setLoad, routerPage)('test')
         expect(setLoad).toBeCalledTimes(1)
         expect(setLoad).toHaveBeenCalledWith(true)

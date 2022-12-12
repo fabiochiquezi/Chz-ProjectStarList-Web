@@ -8,7 +8,7 @@ describe('submitModal', () => {
     const idSelected = '2'
     const userName = 'userName'
 
-    it('type wrong', async () => {
+    test('type wrong', async () => {
         const data: any = { catalogType: 'wrong' }
         const submitModalFn = submitModal(postDoing, postDid, postIlldo)
         const submitFn = submitModalFn(list, idSelected, userName)
@@ -21,7 +21,7 @@ describe('submitModal', () => {
         expect.assertions(1)
     })
 
-    it('didnt find item at the list', async () => {
+    test('didnt find item at the list', async () => {
         expect.assertions(1)
         const data: any = { catalogType: 'doing' }
         const submitModalFn = submitModal(postDoing, postDid, postIlldo)
@@ -33,19 +33,19 @@ describe('submitModal', () => {
         }
     })
 
-    it('calls postDoing', async () => {
+    test('calls postDoing', async () => {
         const data: any = { catalogType: 'doing' }
         submitModal(postDid, postDoing, postIlldo)(list, '2', userName)(data)
         expect(postDoing).toBeCalledTimes(1)
     })
 
-    it('calls postDid', async () => {
+    test('calls postDid', async () => {
         const data: any = { catalogType: 'did' }
         submitModal(postDid, postDoing, postIlldo)(list, '2', userName)(data)
         expect(postDid).toBeCalledTimes(1)
     })
 
-    it('calls postIlldo', async () => {
+    test('calls postIlldo', async () => {
         const data: any = { catalogType: 'illdo' }
         submitModal(postDoing, postDid, postIlldo)(list, '2', userName)(data)
         expect(postIlldo).toBeCalledTimes(1)

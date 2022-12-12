@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { Pagination } from './index'
 
 describe('Pagination', () => {
-    it('changePage', () => {
+    test('changePage', () => {
         const props = { page: 1, changePage: jest.fn(), maxPages: 10 }
         render(<Pagination {...props} />)
         const li2 = screen.getByText(2)
@@ -12,7 +12,7 @@ describe('Pagination', () => {
         expect(props.changePage).toBeCalledTimes(2)
     })
 
-    it('data 01', () => {
+    test('data 01', () => {
         const props = { page: 1, changePage: jest.fn(), maxPages: 10 }
         render(<Pagination {...props} />)
         const el = screen.getByTestId('Pagination')
@@ -22,7 +22,7 @@ describe('Pagination', () => {
         expect(screen.getByText(3)).toBeInTheDocument()
     })
 
-    it('data 02', () => {
+    test('data 02', () => {
         const props = { page: 4, changePage: jest.fn(), maxPages: 10 }
         render(<Pagination {...props} />)
         expect(screen.getByText(3)).toBeInTheDocument()
@@ -30,7 +30,7 @@ describe('Pagination', () => {
         expect(screen.getByText(5)).toBeInTheDocument()
     })
 
-    it('data 03', () => {
+    test('data 03', () => {
         const props = { page: 10, changePage: jest.fn(), maxPages: 10 }
         render(<Pagination {...props} />)
         expect(screen.getByText(9)).toBeInTheDocument()

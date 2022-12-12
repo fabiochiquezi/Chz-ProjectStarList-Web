@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { Title, TitleEmpty } from '.'
 
 describe('Titles', () => {
-  it('Title', () => {
+  test('Title', () => {
     const props = { title: 'title', description: 'description' }
     render(<Title {...props} />)
     const title = screen.getByText(props.title)
@@ -10,7 +10,7 @@ describe('Titles', () => {
     expect(title).toBeInTheDocument()
     expect(description).toBeInTheDocument()
   })
-  it('TitleEmpty', () => {
+  test('TitleEmpty', () => {
     const props = {
       title: 'YOUR LIST IS EMPTY',
       description: 'Start adding movies, books... Go at the menu to "New" right now!'

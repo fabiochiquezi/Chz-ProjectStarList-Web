@@ -1,7 +1,7 @@
 import { getUserName } from '.'
 
 describe('getUserName', () => {
-  it('return ok', () => {
+  test('return ok', () => {
     const email = 'test@test.com'
     expect(getUserName(email)).toBe('test')
   })

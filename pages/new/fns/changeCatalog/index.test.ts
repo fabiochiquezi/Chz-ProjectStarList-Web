@@ -8,7 +8,7 @@ describe('changeCatalog', () => {
     const setLoad = jest.fn(data => data)
     const e: any = { target: { value: 'test' } }
 
-    it('call function correctly', () => {
+    test('call function correctly', () => {
         changeCatalog(setLoad)(e)
         expect(global.scrollTo).toBeCalledTimes(1)
         expect(setLoad).toBeCalledTimes(1)

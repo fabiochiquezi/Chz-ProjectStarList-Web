@@ -9,7 +9,7 @@ describe('usePortalPopSave', () => {
     if (Pop) close()
   })
 
-  it('open', () => {
+  test('open', () => {
     open()
     const pop = screen.getByTestId('PopSave')
     const spin = screen.getByTestId('PopSaveSpin')
@@ -22,13 +22,13 @@ describe('usePortalPopSave', () => {
     })
   })
 
-  it('open w/ message', () => {
+  test('open w/ message', () => {
     open('open')
     const pop = screen.getByTestId('PopSave')
     expect(pop.textContent?.trim()).toBe('open')
   })
 
-  it('open w/ spin', () => {
+  test('open w/ spin', () => {
     open('open', null, { color: '#ddd', width: 10, height: 10 })
     const spin = screen.getByTestId('PopSaveSpin')
     expect(spin).toHaveStyle('width: 10px; height: 10px;')
@@ -39,7 +39,7 @@ describe('usePortalPopSave', () => {
     })
   })
 
-  it('close', () => {
+  test('close', () => {
     open()
     const pop = screen.getByTestId('PopSave')
     expect(pop).toBeInTheDocument()
@@ -48,14 +48,14 @@ describe('usePortalPopSave', () => {
     expect.assertions(2)
   })
 
-  it('classID from outside', () => {
+  test('classID from outside', () => {
     const pop = usePopSave('test')
     pop.open()
     const PopSave = screen.getByTestId('PopSave')
     expect(PopSave).toHaveClass('test')
   })
 
-  it('shoudnt add two times', () => {
+  test('shoudnt add two times', () => {
     open()
     open()
     const Pop = screen.getAllByTestId('PopSave')

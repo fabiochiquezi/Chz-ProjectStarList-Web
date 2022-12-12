@@ -1,7 +1,7 @@
 import { generalFormat } from '.'
 
 describe('firebase/_helpers/format', () => {
-  it('generalFormat', () => {
+  test('generalFormat', () => {
     const data = (): { test: string } => ({ test: 'test' })
     const req = { id: 'testID', data }
     const formated = generalFormat(req)

@@ -12,7 +12,7 @@ describe('Menu', () => {
     }
     const El = (newProps: any): any => <Menu {...props} {...newProps} />
 
-    it('Menu', () => {
+    test('Menu', () => {
         render(<El />)
         const Menu = screen.getByTestId('Menu')
         const genreOption = screen.getByText('Genres')
@@ -28,7 +28,7 @@ describe('Menu', () => {
         expect(gamesOption).toBeInTheDocument()
     })
 
-    it('routerType', () => {
+    test('routerType', () => {
         render(<El routerType="series" />)
         const selectType: HTMLSelectElement | null = document.querySelector(
             'select[name="typeSearch"]'
@@ -36,7 +36,7 @@ describe('Menu', () => {
         expect(selectType?.value).toBe('series')
     })
 
-    it('searchFn', () => {
+    test('searchFn', () => {
         render(<El />)
         const el = document.querySelector('[data-testid="SearchMenu"] input')
         if (!el) return
@@ -47,7 +47,7 @@ describe('Menu', () => {
         expect(props.searchFn).toHaveBeenCalledTimes(1)
     })
 
-    it('resetFn', async () => {
+    test('resetFn', async () => {
         render(<El />)
         const el: HTMLSelectElement | null = document.querySelector(
             '[data-testid="SearchMenu"] input'
@@ -58,7 +58,7 @@ describe('Menu', () => {
         expect(props.resetSearch).toHaveBeenCalledTimes(1)
     })
 
-    it('changeSelect', () => {
+    test('changeSelect', () => {
         render(<El />)
         const el = document.querySelector('[data-testid="selectType"] select')
         if (!el) return

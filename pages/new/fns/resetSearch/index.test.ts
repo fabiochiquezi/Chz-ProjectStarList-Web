@@ -8,7 +8,7 @@ describe('resetSearch', () => {
     const setLoad = jest.fn(data => data)
     const routerPage = 'routerPage'
 
-    it('call function correctly', () => {
+    test('call function correctly', () => {
         resetSearch(setLoad, routerPage)()
         expect(global.scrollTo).toBeCalledTimes(1)
         expect(setLoad).toBeCalledTimes(1)

@@ -7,7 +7,7 @@ describe('Modal', () => {
     closeModal: jest.fn()
   }
 
-  it('data', () => {
+  test('data', () => {
     render(<SimpleForm {...props}><p>test</p></SimpleForm>)
     const el = screen.getByTestId('SimpleForm')
     const children = screen.getByText('test')
@@ -15,7 +15,7 @@ describe('Modal', () => {
     expect(children).toBeInTheDocument()
   })
 
-  it('closeModal click', () => {
+  test('closeModal click', () => {
     render(<SimpleForm {...props}><p>test</p></SimpleForm>)
     const el = screen.getByTestId('closeIcon')
     if (el) fireEvent.click(el)

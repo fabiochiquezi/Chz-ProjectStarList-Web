@@ -8,7 +8,7 @@ describe('Hero', () => {
         BtnSignIn: <button>BtnSignIn</button>
     }
 
-    it('data', () => {
+    test('data', () => {
         render(<Hero {...props} />)
         const title = document.querySelector('h1')
         const description = document.querySelector('p')

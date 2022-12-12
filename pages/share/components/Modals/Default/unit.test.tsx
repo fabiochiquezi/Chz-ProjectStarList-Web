@@ -7,7 +7,7 @@ describe('Modal', () => {
     closeModal: jest.fn()
   }
 
-  it('data', () => {
+  test('data', () => {
     render(<Modal {...props}><p>test</p></Modal>)
     const el = screen.getByTestId('Modal')
     const children = screen.getByText('test')
@@ -15,14 +15,14 @@ describe('Modal', () => {
     expect(children).toBeInTheDocument()
   })
 
-  it('closeModal click', () => {
+  test('closeModal click', () => {
     render(<Modal {...props}><p>test</p></Modal>)
     const el = document.querySelector('.absolute')
     if (el) fireEvent.click(el)
     expect(props.closeModal).toBeCalledTimes(1)
   })
 
-  it('closeModal keyboard', () => {
+  test('closeModal keyboard', () => {
     render(<Modal {...props}><p>test</p></Modal>)
     const el = screen.getByTestId('Modal')
     fireEvent.keyDown(el, {

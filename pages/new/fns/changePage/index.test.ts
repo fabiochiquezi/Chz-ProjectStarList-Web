@@ -10,7 +10,7 @@ describe('changePage', () => {
     const routerPage = 'routerPage'
     const setLoad = jest.fn(data => data)
 
-    it('routerSearch', () => {
+    test('routerSearch', () => {
         changePage(setLoad, routerSearch, routerGenre, routerPage)(1)
         expect(global.scrollTo).toBeCalledTimes(1)
         expect(Router.push).toHaveBeenCalledTimes(1)
@@ -19,7 +19,7 @@ describe('changePage', () => {
         )
     })
 
-    it('routerGenre', () => {
+    test('routerGenre', () => {
         changePage(setLoad, '', routerGenre, routerPage)(2)
         expect(global.scrollTo).toBeCalledTimes(1)
         expect(Router.push).toHaveBeenCalledTimes(1)
@@ -28,7 +28,7 @@ describe('changePage', () => {
         )
     })
 
-    it('routerPage', () => {
+    test('routerPage', () => {
         changePage(setLoad, '', '', routerPage)(3)
         expect(global.scrollTo).toBeCalledTimes(1)
         expect(Router.push).toHaveBeenCalledTimes(1)

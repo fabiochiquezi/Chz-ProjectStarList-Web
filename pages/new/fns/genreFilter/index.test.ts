@@ -9,7 +9,7 @@ describe('genreFilter', () => {
     const setLoad = jest.fn()
     const e: any = { target: { value: 'test' } }
 
-    it('call function correctly', () => {
+    test('call function correctly', () => {
         genreFilter(setLoad, routerPage)(e)
         expect(global.scrollTo).toBeCalledTimes(1)
         expect(setLoad).toBeCalledTimes(1)

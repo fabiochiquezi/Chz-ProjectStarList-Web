@@ -14,7 +14,7 @@ describe('Search', () => {
   }
   const children = <><option value='1'>1</option> <option value='2'>2</option></>
 
-  it('elements and props', () => {
+  test('elements and props', () => {
     render(<Select {...props} >{children}</Select>)
 
     const div = screen.getByTestId('Select')
@@ -33,20 +33,20 @@ describe('Search', () => {
     expect(error.textContent).toBe(`* ${props.error}`)
   })
 
-  it('miss propperties', () => {
+  test('miss propperties', () => {
     render(<Select {...props} className="">{children}</Select>)
     const div = screen.getByTestId('Select')
     expect(div.className).toBe('relative w-full h-8 ')
   })
 
-  it('onFocus', () => {
+  test('onFocus', () => {
     render(<Select {...props} >{children}</Select>)
     const el = screen.getByDisplayValue(props.defaultValue)
     fireEvent.focus(el)
     expect(el.classList.contains('border-green-700')).toBeTruthy()
   })
 
-  it('onBlur', () => {
+  test('onBlur', () => {
     render(<Select {...props} >{children}</Select>)
     const el = screen.getByDisplayValue(props.defaultValue)
     fireEvent.focus(el)
@@ -54,7 +54,7 @@ describe('Search', () => {
     expect(el.classList.contains('border-green-700')).toBeFalsy()
   })
 
-  it('onChange', () => {
+  test('onChange', () => {
     render(<Select {...props} >{children}</Select>)
     const el = screen.getByDisplayValue(props.defaultValue)
     fireEvent.change(el, { target: { value: '2' } })

@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { BtnLoad } from './index'
 
 describe('ButtonLoad', () => {
-  it('data', () => {
+  test('data', () => {
     const onClick = jest.fn()
     render(<BtnLoad onClick={onClick} />)
     const btn = screen.getByTestId('BtnLoad')
@@ -11,7 +11,7 @@ describe('ButtonLoad', () => {
     expect(span).toBeInTheDocument()
   })
 
-  it('onClick', () => {
+  test('onClick', () => {
     const onClick = jest.fn()
     render(<BtnLoad onClick={onClick} />)
     const btn = screen.getByTestId('BtnLoad')

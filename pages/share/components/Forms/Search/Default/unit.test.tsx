@@ -11,7 +11,7 @@ describe('components/Form/Search/Default', () => {
     callReset: jest.fn(() => 'callReset')
   }
 
-  it('elements and props', () => {
+  test('elements and props', () => {
     render(<Search {...props} />)
     const div = screen.getByTestId('Search')
     const input = screen.getByDisplayValue(props.value)
@@ -22,27 +22,27 @@ describe('components/Form/Search/Default', () => {
     expect(icon).toBeInTheDocument()
   })
 
-  it('miss propperties', () => {
+  test('miss propperties', () => {
     render(<Search {...props} className="" />)
     const div = screen.getByTestId('Search')
     expect(div.className).toBe('flex relative w-full h-8 ')
   })
 
-  it('onChange', () => {
+  test('onChange', () => {
     render(<Search {...props} />)
     const el = screen.getByDisplayValue(props.value)
     fireEvent.change(el, { target: { value: 'test' } })
     expect(props.onChange).toHaveBeenCalledTimes(1)
   })
 
-  it('onFocus', () => {
+  test('onFocus', () => {
     render(<Search {...props} />)
     const el = screen.getByDisplayValue(props.value)
     fireEvent.focus(el)
     expect(el.classList.contains('border-green-700')).toBeTruthy()
   })
 
-  it('onSearch', () => {
+  test('onSearch', () => {
     render(<Search {...props} />)
     const el = screen.getByDisplayValue(props.value)
     fireEvent.focus(el)
@@ -51,7 +51,7 @@ describe('components/Form/Search/Default', () => {
     expect(props.callSearch).toHaveBeenLastCalledWith(props.value)
   })
 
-  it('onCallSearch w/ KeyBoard', async () => {
+  test('onCallSearch w/ KeyBoard', async () => {
     render(<Search {...props} />)
     const el = screen.getByDisplayValue(props.value)
     await waitFor(async () => el.focus())
@@ -59,7 +59,7 @@ describe('components/Form/Search/Default', () => {
     expect(props.callSearch).toHaveBeenCalledTimes(1)
   })
 
-  it('callReset', async () => {
+  test('callReset', async () => {
     render(<Search {...props} value="" />)
     const el = screen.getByTestId('input')
     await waitFor(async () => el.focus())
