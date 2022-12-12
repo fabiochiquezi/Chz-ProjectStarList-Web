@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'reset';
+@import 'components/alert';
+@import 'components/buttons';
+@import 'components/modal';
+@import 'components/popSave';
+@import 'components/skeleton';
+@import 'components/spinner';

@@ -23,6 +23,7 @@
     "next": "12.2.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.56.2",
     "yup": "^0.32.11"
   },
   "devDependencies": {

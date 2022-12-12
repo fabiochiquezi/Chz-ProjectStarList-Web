@@ -1,0 +1,42 @@
+.popSave-anim-in {
+  animation: PopSaveAnimIn 300ms forwards;
+
+  @keyframes PopSaveAnimIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+
+.popSave-anim-out {
+  animation: PopSaveAnimOut 300ms forwards;
+
+  @keyframes PopSaveAnimOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+@layer components {
+  .popSave {
+    @apply popSave-anim-in fixed right-10 bottom-[40px] z-[100] rounded-lg w-[198px] h-[52px] flex items-center justify-center bg-black;
+
+    .spinnerDefault {
+      @apply top-[0px] left-[-4px];
+    }
+
+    p {
+      @apply text-white text-sm relative left-[0px]  top-[1px];
+    }
+  }
+}
+
+

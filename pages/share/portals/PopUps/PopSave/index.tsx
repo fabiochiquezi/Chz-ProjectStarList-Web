@@ -1,13 +1,14 @@
 interface Spin { color: string, width: number, height: number }
 
 type ICloseFn = () => void
-type IOpenFn = (message?: string, delay?: number | null, spin?: Spin) => void
+type IOpenFn = (message?: string | null, delay?: number | null, spin?: Spin) => void
 export type IUsePopSave = (outsideId?: string) => { open: IOpenFn, close: ICloseFn }
 
 const usePopSave: IUsePopSave = outsideId => {
+  const options = { classRemoveAnim: 'popSave-anim-out', duration: 300 }
   const ID = 'PopSavePortal'
 
-  const getHTML = (message?: string, spin?: Spin): string => `
+  const getHTML = (message?: string | null, spin?: Spin): string => `
     <div
         class="spinnerDefault"
         data-testid="PopSaveSpin"
@@ -51,8 +52,11 @@ const usePopSave: IUsePopSave = outsideId => {
   const close: ICloseFn = () => {
     const elem = document.getElementById(ID)
     if (!elem) return
-    const parent = elem?.parentNode
-    if (parent) parent.removeChild(elem)
+    elem.classList.add(options.classRemoveAnim)
+    setTimeout(() => {
+      const parent = elem?.parentNode
+      if (parent) parent.removeChild(elem)
+    }, options.duration)
   }
 
   const open: IOpenFn = (message, delay, spin) => {

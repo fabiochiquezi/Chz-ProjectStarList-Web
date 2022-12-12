@@ -5,8 +5,9 @@ describe('usePortalPopSave', () => {
   const { open, close } = usePopSave()
 
   afterEach(() => {
-    const Pop = screen.queryByTestId('PopSave')
-    if (Pop) close()
+    const Pop = document.getElementById('PopSavePortal')
+    const parent = Pop?.parentNode
+    if (parent) parent.removeChild(Pop)
   })
 
   test('open', () => {
@@ -39,11 +40,13 @@ describe('usePortalPopSave', () => {
     })
   })
 
-  test('close', () => {
+  test('close', async () => {
     open()
     const pop = screen.getByTestId('PopSave')
     expect(pop).toBeInTheDocument()
     close()
+    // eslint-disable-next-line
+    await new Promise((r) => setTimeout(r, 300))
     expect(pop).not.toBeInTheDocument()
     expect.assertions(2)
   })

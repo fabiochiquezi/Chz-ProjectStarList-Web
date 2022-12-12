@@ -1,5 +1,5 @@
-import './index.css'
 import '@fontsource/roboto'
+import './share/styles/index.scss'
 import { ReactElement } from 'react'
 import { Structure } from './struct'
 import { useRouter } from 'next/router'

@@ -5,8 +5,9 @@ describe('usePortalAlert', () => {
   const { success, error, open, close } = useAlert()
 
   afterEach(() => {
-    const Alert = screen.queryByTestId('Alert')
-    if (Alert) close()
+    const Alert = document.getElementById('AlertPortal')
+    const parent = Alert?.parentNode
+    if (parent) parent.removeChild(Alert)
   })
 
   test('success', () => {
@@ -37,11 +38,13 @@ describe('usePortalAlert', () => {
     expect(Alert).toHaveStyle('backgroundColor: #dc2626')
   })
 
-  test('close', () => {
+  test('close', async () => {
     open('success', 'yes')
     const Alert = screen.getByTestId('Alert')
     expect(Alert).toBeInTheDocument()
     close()
+    // eslint-disable-next-line
+    await new Promise((r) => setTimeout(r, 300))
     expect(Alert).not.toBeInTheDocument()
   })
 

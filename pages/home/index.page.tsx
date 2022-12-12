@@ -9,6 +9,7 @@ const Home: NextPage = () => {
   const btnSignIn = <BtnSignIn onClick={signIn} />
   const title = <Title title="YOUR VIRTUAL MEMORY LIST" description="From watching, reading or playing..." />
 
+
   return (
     <div>
       <Head>

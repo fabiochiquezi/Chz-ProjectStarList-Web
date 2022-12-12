@@ -11,11 +11,12 @@ export type IUseAlert = (classID?: string) => {
 }
 
 const useAlert: IUseAlert = classID => {
+  const options = { classRemoveAnim: 'alert-anim-out', duration: 300 }
   const modeClass = { error: '#dc2626', success: '#16a34a' }
   const ID = 'AlertPortal'
 
   const getHTML = (message: string): string => `
-    <p class="text-lg text-white mr-2 ml-2">${message}</p>
+    <p>${message}</p>
     <div class="close">
         <svg
             width="20"
@@ -45,8 +46,11 @@ const useAlert: IUseAlert = classID => {
   const close: ICloseFn = () => {
     const elem = document.getElementById(ID)
     if (!elem) return
-    const parent = elem?.parentNode
-    if (parent) parent.removeChild(elem)
+    elem.classList.add(options.classRemoveAnim)
+    setTimeout(() => {
+      const parent = elem?.parentNode
+      if (parent) parent.removeChild(elem)
+    }, options.duration)
   }
 
   const open: IOpenFn = (mode, message, delay) => {
