@@ -1,9 +1,5 @@
-import { FC, ReactNode, useEffect } from 'react'
-
-export interface IModalProps {
-  closeModal: () => void
-  children?: ReactNode
-}
+import { FC, useEffect } from 'react'
+import { IModalProps } from '../type'
 
 const Modal: FC<IModalProps> = ({ children, closeModal }) => {
   function closeWithKey(event: KeyboardEvent): void {

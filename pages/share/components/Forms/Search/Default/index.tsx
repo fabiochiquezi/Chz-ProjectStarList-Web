@@ -1,13 +1,7 @@
+import { ISearchProps } from '../type'
 import { SearchIcon } from '../../../../assets'
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react'
+import { FC, useEffect, useRef, useState } from 'react'
 
-export interface ISearchProps {
-  value: string
-  className?: string
-  callReset: () => void
-  callSearch: (search: string) => Promise<void> | void
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
-}
 
 const Search: FC<ISearchProps> = ({
   value,
@@ -50,8 +44,8 @@ const Search: FC<ISearchProps> = ({
         onChange={onChange}
         placeholder="Search ..."
         className={`
-                    ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8
-                    bg-transparent border-b-[1px] border-gray-600 text-sm pb-1 ${inputCSS}`}
+        ease-in-out duration-300 w-full max-w-full absolute left-0 top-0 h-8
+        bg-transparent border-b-[1px] border-gray-600 text-sm pb-1 ${inputCSS}`}
         onFocus={() => {
           setActive(true)
           ref.current?.classList.add('border-green-700')

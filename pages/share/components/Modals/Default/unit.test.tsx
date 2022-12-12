@@ -18,7 +18,7 @@ describe('Modal', () => {
   it('closeModal click', () => {
     render(<Modal {...props}><p>test</p></Modal>)
     const el = document.querySelector('.absolute')
-    fireEvent.click(el)
+    if (el) fireEvent.click(el)
     expect(props.closeModal).toBeCalledTimes(1)
   })
 

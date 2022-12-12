@@ -1,29 +1,27 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { Select } from './index'
 
-const props = {
-  label: 'label',
-  className: 'className',
-  placeholder: 'placeholder',
-  name: 'name',
-  onChange: jest.fn(() => 'onChange'),
-  error: 'error',
-  defaultValue: '1'
-}
 
 describe('Search', () => {
+  const props = {
+    label: 'label',
+    className: 'className',
+    placeholder: 'placeholder',
+    name: 'name',
+    onChange: jest.fn(() => 'onChange'),
+    error: 'error',
+    defaultValue: '1'
+  }
   const children = <><option value='1'>1</option> <option value='2'>2</option></>
-  const Elem = (<Select {...props} >{children}</Select>)
-
 
   it('elements and props', () => {
-    render(Elem)
+    render(<Select {...props} >{children}</Select>)
 
-    const div = document.querySelector('.className')
-    const label = document.querySelector('.className label')
-    const select = document.querySelector('.className select')
+    const div = screen.getByTestId('Select')
+    const label = screen.getByText(props.label)
+    const select: HTMLSelectElement = screen.getByDisplayValue(props.defaultValue)
     const options = document.querySelectorAll('.className option')
-    const error = document.querySelector('.className p')
+    const error = screen.getByText(`* ${props.error}`)
 
     expect(div).toBeInTheDocument()
     expect(div.classList.contains(props.className)).toBeTruthy()
@@ -36,30 +34,29 @@ describe('Search', () => {
   })
 
   it('miss propperties', () => {
-    const Elem = (<Select {...props} className="">{children}</Select>)
-    render(Elem)
-    const div = document.querySelector('label').parentElement
+    render(<Select {...props} className="">{children}</Select>)
+    const div = screen.getByTestId('Select')
     expect(div.className).toBe('relative w-full h-8 ')
   })
 
   it('onFocus', () => {
-    render(Elem)
-    const el = document.querySelector('.className select')
+    render(<Select {...props} >{children}</Select>)
+    const el = screen.getByDisplayValue(props.defaultValue)
     fireEvent.focus(el)
     expect(el.classList.contains('border-green-700')).toBeTruthy()
   })
 
   it('onBlur', () => {
-    render(Elem)
-    const el = document.querySelector('.className select')
+    render(<Select {...props} >{children}</Select>)
+    const el = screen.getByDisplayValue(props.defaultValue)
     fireEvent.focus(el)
     fireEvent.blur(el)
     expect(el.classList.contains('border-green-700')).toBeFalsy()
   })
 
   it('onChange', () => {
-    render(Elem)
-    const el = document.querySelector('.className select')
+    render(<Select {...props} >{children}</Select>)
+    const el = screen.getByDisplayValue(props.defaultValue)
     fireEvent.change(el, { target: { value: '2' } })
     expect(props.onChange).toHaveBeenCalledTimes(1)
   })
