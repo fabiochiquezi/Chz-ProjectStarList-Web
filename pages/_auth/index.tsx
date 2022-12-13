@@ -1,14 +1,14 @@
 import { IAuthFirebaseAPI } from './api'
-import { NextRouter, useRouter } from 'next/router'
-import { IUseAlert, useAlert } from '../../portals'
-import { AuthUseContext } from './useAuth'
+import { useRouter } from 'next/router'
+import { useAlert } from '../share/portals'
 import { getUserName } from './fns/getUserName'
 import { initialState, reducer } from './state'
 import { ProtectRoute } from './components/Protect'
 import { auth } from 'pages/share/settings/firebase'
 import { User as UserFirebase } from 'firebase/auth'
 import { FC, ReactNode, useEffect, useReducer } from 'react'
-import { isRoutePrivate, paths, routes } from '../../settings'
+import { AuthUseContext } from '../share/contexts/Auth/useAuth'
+import { isRoutePrivate, paths, routes } from '../share/settings'
 import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
 
 type IAuth =
