@@ -6,14 +6,13 @@ import { initialState, reducer } from './state'
 import { ProtectRoute } from './components/Protect'
 import { auth } from 'pages/share/settings/firebase'
 import { User as UserFirebase } from 'firebase/auth'
+import { isRoutePrivate, paths } from '../share/settings'
 import { FC, ReactNode, useEffect, useReducer } from 'react'
 import { AuthUseContext } from '../share/contexts/Auth/useAuth'
-import { isRoutePrivate, paths, routes } from '../share/settings'
+import { waitAnimEnd } from 'pages/share/settings/general/animation'
 import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
 
-type IAuth =
-  (Auth: IAuthFirebaseAPI) =>
-    FC<{ children: ReactNode }>
+type IAuth = (Auth: IAuthFirebaseAPI) => FC<{ children: ReactNode }>
 
 const Auth: IAuth = Auth =>
   function Provider({ children }: { children: ReactNode }) {
@@ -29,6 +28,7 @@ const Auth: IAuth = Auth =>
     function authStateChanged(): void {
       Auth.state(async (userFirebase: UserFirebase | null) => {
         await verifyAccess(userFirebase)
+        await verifyAlreadyLogged(userFirebase)
         await verifyUser(userFirebase)
       })
 
@@ -37,16 +37,18 @@ const Auth: IAuth = Auth =>
         const noUserAndPrivate = isPrivate && !userFirebase
         if (noUserAndPrivate) await router.push(paths.login)
       }
-
+      async function verifyAlreadyLogged(userFirebase: UserFirebase | null): Promise<void> {
+        const alreadyVerified = user.load === false
+        const logged = !user.data && userFirebase
+        if (alreadyVerified || !logged) return
+        const userName = getUserName(String(userFirebase.email))
+        const payload = { ...userFirebase, userName }
+        dispatch({ type: 'defineUser', payload })
+      }
       async function verifyUser(userFirebase: UserFirebase | null): Promise<void> {
-        if (user.load === false) return
-        const noUserButLogged = !user.data && userFirebase
-        if (noUserButLogged) {
-          const userName = getUserName(String(userFirebase.email))
-          const payload = { ...userFirebase, userName }
-          dispatch({ type: 'defineUser', payload })
-        }
-        if (!userFirebase) dispatch({ type: 'defineNoUser' })
+        const alreadyVerified = user.load === false
+        if (alreadyVerified || userFirebase) return
+        dispatch({ type: 'defineNoUser' })
       }
     }
 
@@ -56,6 +58,7 @@ const Auth: IAuth = Auth =>
         const userName = getUserName(String(userFirebase.email))
         const payload = { ...userFirebase, userName }
         dispatch({ type: 'signingIn', payload })
+        waitAnimEnd()
         await router.push(`/${userName}`)
       } catch (e) {
         alert.error('Somenthing went wrong')
@@ -66,11 +69,9 @@ const Auth: IAuth = Auth =>
 
     async function signOut(): Promise<void> {
       try {
-        await Auth.signOut()
         dispatch({ type: 'loading' })
-        await new Promise((resolve, reject) => { setTimeout(() => { resolve(true) }, 2000) })
-        dispatch({ type: 'signingOut' })
-        await router.push(routes.login)
+        waitAnimEnd()
+        await Auth.signOut()
       } catch (e) {
         alert.error('Somenthing went wrong')
       } finally {

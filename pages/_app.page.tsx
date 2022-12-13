@@ -3,7 +3,7 @@ import './share/styles/index.scss'
 import { ReactElement } from 'react'
 import { Structure } from './struct'
 import type { AppProps } from 'next/app'
-import { AuthFirebase } from './share/contexts'
+import { AuthFirebase } from './_auth/extended'
 
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
