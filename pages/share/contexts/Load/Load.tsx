@@ -1,5 +1,4 @@
 import { FC, ReactNode, useEffect, useState } from 'react'
-import { Loading } from '../../components'
 import { LoadUseContext } from './useLoad'
 import { NextRouter } from 'next/router'
 import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
@@ -57,7 +56,6 @@ const LoadContext: ILoadContext = useRouter =>
         <LoadingHOC data={loading}>
           {children}
         </LoadingHOC>
-        {/* {loading ? <Loading /> : children} */}
       </LoadUseContext.Provider>
     )
   }

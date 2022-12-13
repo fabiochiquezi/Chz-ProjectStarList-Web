@@ -32,11 +32,11 @@ const LoadingHOC: FC<ILoadingHOC> = ({ data, children, animChildren }) => {
     el?.classList.add(animOutClass)
     await new Promise((resolve, reject) => {
       setTimeout(() => {
-        el?.classList.remove('display-block')
-        el?.classList.add('display-none')
         resolve(true)
       }, options.duration)
     })
+    el?.classList.remove('display-block')
+    el?.classList.add('display-none')
   }
 
   function show(appearAnim: IAnimData): void {
