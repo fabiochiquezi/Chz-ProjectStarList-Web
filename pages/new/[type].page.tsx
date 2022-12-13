@@ -92,7 +92,13 @@ const New: FC<SRRData> = ({ data }) => {
           resetSearch={resetSearch}
           genreFilter={genreFilter}
         />
-        <LoadingHOC data={loadProcess}>
+        <LoadingHOC
+          data={loadProcess}
+          animChildren={{
+            animInClass: 'to-left-in',
+            animOutClass: 'to-left-out'
+          }}
+        >
           <List
             list={results ?? []}
             title={type as string}
@@ -108,7 +114,7 @@ const New: FC<SRRData> = ({ data }) => {
           changePage={changePage}
         />
       </div>
-    </div>
+    </div >
   )
 }
 

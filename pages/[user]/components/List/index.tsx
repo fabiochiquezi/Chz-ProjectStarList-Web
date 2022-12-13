@@ -17,7 +17,7 @@ interface props {
 
 const List: FC<props> = ({ catalogType, list, setList, openModalUpdate, openModalDelete }) => {
   const [limit, setLimit] = useState(15)
-  const max = list.length ?? 0
+  const max = list ? list.length : 0
   const shouldShowBtnLoad = limit < max && list.length
 
   const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {

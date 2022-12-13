@@ -5,7 +5,6 @@ import { Movie, Serie } from '../share/types'
 import { useList, useModal, validCatalogURI } from './fns'
 import { Modal, SimpleForm } from '../share/components'
 import { Menu, UpdateItem, DeleteItem, List } from './components'
-import { HocList } from './components/HocList'
 import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -35,7 +34,7 @@ const Catalog: FC = () => {
         <LoadingHOC data={list}>
           <DndProvider backend={HTML5Backend}>
             <List
-              list={list}
+              list={list ?? []}
               setList={setList}
               catalogType={catalogURI}
               openModalUpdate={openModalUpdate}

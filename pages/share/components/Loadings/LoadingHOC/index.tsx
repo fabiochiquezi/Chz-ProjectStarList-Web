@@ -1,56 +1,73 @@
-import { FC, ReactElement, useEffect, useRef } from 'react'
+import { FC, ReactElement, ReactNode, useEffect, useRef } from 'react'
 import { Loading } from '../Default'
 
 export interface ILoadingHOC {
   data: unknown
-  children: ReactElement
+  children: ReactElement | ReactNode
+  animChildren?: {
+    animInClass: 'fade-in' | 'to-left-in'
+    animOutClass: 'fade-out' | 'to-left-out'
+  }
 }
 
-const LoadingHOC: FC<ILoadingHOC> = ({ data, children }) => {
+interface IAnimData {
+  el: HTMLElement | null,
+  animInClass: string
+  animOutClass: string
+}
+
+const LoadingHOC: FC<ILoadingHOC> = ({ data, children, animChildren }) => {
   const loadingRef = useRef<HTMLDivElement>(null)
   const childrenRef = useRef<HTMLDivElement>(null)
-  const invalidData = data === null || data === undefined || data === true
-  const options = { duration: 600 }
+  const options = { duration: 250 }
 
-  function remove(elem: HTMLDivElement | null): void {
-    setTimeout(() => {
-      elem?.classList.remove('block')
-      elem?.classList.add('take-on')
-    }, options.duration)
+  async function animation(removeAnim: IAnimData, appearAnim: IAnimData): Promise<void> {
+    await remove(removeAnim)
+    show(appearAnim)
   }
 
-  function appear(elem: HTMLDivElement | null): void {
-    elem?.classList.remove('take-off')
-    elem?.classList.add('take-on')
+  async function remove(removeAnim: IAnimData): Promise<void> {
+    const { el, animInClass, animOutClass } = removeAnim
+    el?.classList.remove(animInClass)
+    el?.classList.add(animOutClass)
+    await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        el?.classList.remove('display-block')
+        el?.classList.add('display-none')
+        resolve(true)
+      }, options.duration)
+    })
   }
 
-  function showLoad(): void {
-    childrenRef.current?.classList.add('fade-out')
-    childrenRef.current?.classList.remove('fade-in')
-    loadingRef.current?.classList.remove('fade-out')
-    loadingRef.current?.classList.add('fade-in')
-    remove(childrenRef.current)
-    appear(loadingRef.current)
-  }
-
-  function showChildren(): void {
-    childrenRef.current?.classList.remove('fade-out')
-    childrenRef.current?.classList.add('fade-in')
-    loadingRef.current?.classList.add('fade-out')
-    loadingRef.current?.classList.remove('fade-in')
-    remove(loadingRef.current)
-    appear(childrenRef.current)
+  function show(appearAnim: IAnimData): void {
+    const { el, animInClass, animOutClass } = appearAnim
+    el?.classList.remove(animOutClass)
+    el?.classList.remove('display-none')
+    el?.classList.add(animInClass)
+    el?.classList.add('display-block')
   }
 
   useEffect(() => {
-    if (invalidData) showLoad()
-    if (!invalidData) showChildren()
+    const loadingDataAnim = {
+      el: loadingRef.current,
+      animInClass: 'fade-in',
+      animOutClass: 'fade-out'
+    }
+    const childrenDataAnim = {
+      el: childrenRef.current,
+      animInClass: animChildren?.animInClass ?? 'fade-in',
+      animOutClass: animChildren?.animOutClass ?? 'fade-out'
+    }
+    const invalidData = data === null || data === undefined || data === true
+    if (invalidData) animation(childrenDataAnim, loadingDataAnim)
+    if (!invalidData) animation(loadingDataAnim, childrenDataAnim)
   }, [data])
 
   return (
     <div>
-      <div ref={loadingRef}><Loading height="h-[550px]" /></div>
-      <div ref={childrenRef}>{children}</div>
+      <div ref={loadingRef}><Loading /></div>
+      {/* <div ref={loadingRef}><Loading height="h-[550px]" /></div> */}
+      <div ref={childrenRef} className="display-none fade-out">{children}</div>
     </div>
   )
 }

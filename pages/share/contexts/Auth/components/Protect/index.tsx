@@ -1,6 +1,5 @@
-import { Loading } from '../../../../components'
-import { User } from '../../../../types'
 import React from 'react'
+import { User } from '../../../../types'
 import { isRouteMixed, isRoutePrivate, isRoutePublic } from 'pages/share/settings'
 
 interface IProtectRoute {
@@ -16,8 +15,8 @@ const ProtectRoute = (props: IProtectRoute): any => {
   const isPrivate = isRoutePrivate(route)
 
   if (isPublic) return children
-  if (isMixed && user === undefined) return <Loading />
-  if (isPrivate && !user) return <Loading />
+  if (isMixed && user === undefined) return null
+  if (isPrivate && !user) return null
   return children
 }
 

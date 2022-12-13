@@ -5,10 +5,11 @@ import { IUseAlert } from '../../portals'
 import { AuthUseContext } from './useAuth'
 import { FC, ReactNode, useState } from 'react'
 import { getUserName } from './fns/getUserName'
-import { Loading } from 'pages/share/components'
+// import { Loading } from 'pages/share/components'
 import { ProtectRoute } from './components/Protect'
 import { User as UserFirebase } from 'firebase/auth'
 import { isRoutePrivate, paths, routes } from '../../settings'
+import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
 
 type IAuth =
   (Auth: IAuthFirebaseAPI) =>
@@ -21,11 +22,12 @@ const Auth: IAuth = Auth => useRouter => useAlert =>
     const alert = useAlert()
     const router = useRouter()
     const [user, setUser] = useState<User | null | undefined>()
-    const [transition, setTransition] = useState(false)
+    const [transition, setTransition] = useState(true)
 
     Auth.state(async (userFirebase: UserFirebase | null) => {
       await verifyCanAccessContent(userFirebase)
       await defineUser(userFirebase)
+      setTransition(false)
 
       async function verifyCanAccessContent(userFirebase: UserFirebase | null): Promise<void> {
         const isPrivate = isRoutePrivate(router.route)
@@ -69,8 +71,9 @@ const Auth: IAuth = Auth => useRouter => useAlert =>
 
     return (
       <AuthUseContext.Provider value={{ user, signIn, signOut }} data-testid="AuthProvider">
-        {transition && <Loading />}
-        {!transition && <ProtectRoute route={router.route} user={user}>{children}</ProtectRoute>}
+        <LoadingHOC data={transition}>
+          <ProtectRoute route={router.route} user={user}>{children}</ProtectRoute>
+        </LoadingHOC>
       </AuthUseContext.Provider>
     )
   }
