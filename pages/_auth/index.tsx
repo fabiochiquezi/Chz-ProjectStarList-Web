@@ -1,5 +1,5 @@
-import { IAuthFirebaseAPI } from './api'
 import { useRouter } from 'next/router'
+import { IAuthFirebaseAPI } from './api'
 import { useAlert } from '../share/portals'
 import { getUserName } from './fns/getUserName'
 import { initialState, reducer } from './state'
@@ -19,17 +19,18 @@ const Auth: IAuth = Auth =>
     const alert = useAlert()
     const router = useRouter()
     const [user, dispatch] = useReducer(reducer, initialState)
+    console.log('mount')
 
     useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(authStateChanged)
+      const unsubscribe = auth.onAuthStateChanged(rules)
       return unsubscribe
     })
 
-    function authStateChanged(): void {
+    function rules(): void {
       Auth.state(async (userFirebase: UserFirebase | null) => {
         await verifyAccess(userFirebase)
-        await verifyAlreadyLogged(userFirebase)
-        await verifyUser(userFirebase)
+        await signInRule(userFirebase)
+        await signOutRule(userFirebase)
       })
 
       async function verifyAccess(userFirebase: UserFirebase | null): Promise<void> {
@@ -37,45 +38,42 @@ const Auth: IAuth = Auth =>
         const noUserAndPrivate = isPrivate && !userFirebase
         if (noUserAndPrivate) await router.push(paths.login)
       }
-      async function verifyAlreadyLogged(userFirebase: UserFirebase | null): Promise<void> {
+      async function signInRule(userFirebase: UserFirebase | null): Promise<void> {
         const alreadyVerified = user.load === false
         const logged = !user.data && userFirebase
         if (alreadyVerified || !logged) return
         const userName = getUserName(String(userFirebase.email))
         const payload = { ...userFirebase, userName }
-        dispatch({ type: 'defineUser', payload })
+        dispatch({ type: 'signingIn', payload })
+        await waitAnimEnd(1000)
+        if (router.pathname === '/home') await router.push(`/${userName}`)
+        dispatch({ type: 'unloading' })
       }
-      async function verifyUser(userFirebase: UserFirebase | null): Promise<void> {
+      async function signOutRule(userFirebase: UserFirebase | null): Promise<void> {
         const alreadyVerified = user.load === false
         if (alreadyVerified || userFirebase) return
+        await waitAnimEnd(1000)
         dispatch({ type: 'defineNoUser' })
       }
     }
 
     async function signIn(): Promise<void> {
       try {
-        const userFirebase = await Auth.signIn()
-        const userName = getUserName(String(userFirebase.email))
-        const payload = { ...userFirebase, userName }
-        dispatch({ type: 'signingIn', payload })
-        waitAnimEnd()
-        await router.push(`/${userName}`)
+        await Auth.signIn()
       } catch (e) {
         alert.error('Somenthing went wrong')
-      } finally {
-        dispatch({ type: 'unloading' })
+        if (user.load) dispatch({ type: 'unloading' })
       }
     }
 
     async function signOut(): Promise<void> {
       try {
         dispatch({ type: 'loading' })
-        waitAnimEnd()
+        await waitAnimEnd(1000)
         await Auth.signOut()
       } catch (e) {
         alert.error('Somenthing went wrong')
-      } finally {
-        dispatch({ type: 'unloading' })
+        if (user.load) dispatch({ type: 'unloading' })
       }
     }
 

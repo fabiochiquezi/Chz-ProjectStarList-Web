@@ -65,7 +65,7 @@ const LoadingHOC: FC<ILoadingHOC> = ({ data, children, animChildren }) => {
 
   return (
     <div>
-      <div ref={loadingRef}><Loading /></div>
+      <div ref={loadingRef} className="display-none fade-out"><Loading /></div>
       {/* <div ref={loadingRef}><Loading height="h-[550px]" /></div> */}
       <div ref={childrenRef} className="display-none fade-out">{children}</div>
     </div>
