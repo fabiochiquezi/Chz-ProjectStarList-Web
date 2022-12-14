@@ -3,16 +3,21 @@ import { LoadUseContext } from './useLoad'
 import { NextRouter } from 'next/router'
 import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
 import { Loading } from 'pages/share/components'
+import { waitAnimEnd } from 'pages/share/settings/general/animation'
 
-type ILoadContext =
-  (router: () => NextRouter) =>
-    FC<{ children: ReactNode }>
+type ILoadContext = (router: () => NextRouter) => FC<{ children: ReactNode }>
 
 const LoadContext: ILoadContext = useRouter =>
   function Provider({ children }: { children: ReactNode }) {
     const router = useRouter()
     const asPath = router.asPath
     const [loading, setLoading] = useState(false)
+
+    async function load(callBack: any): Promise<void> {
+      setLoading(true)
+      await waitAnimEnd(600)
+      callBack()
+    }
 
     function isException(url: string): boolean {
       // Disable for the route "new"
@@ -51,7 +56,7 @@ const LoadContext: ILoadContext = useRouter =>
 
     return (
       <LoadUseContext.Provider
-        value={{ loading }}
+        value={{ loading, load }}
         data-testid="Load"
       >
         <LoadingHOC data={loading} loading={<Loading height="h-[550px]" />}>
