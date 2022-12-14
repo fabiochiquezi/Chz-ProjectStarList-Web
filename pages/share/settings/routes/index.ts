@@ -7,6 +7,7 @@ export const paths = {
   newSeries: '/new/series',
   newBooks: '/new/books',
   newGames: '/new/games',
+  user: (userName: string) => `/${userName}`,
   userDoing: (userName: string) => `/${userName}?catalog=doing`,
   userIlldo: (userName: string) => `/${userName}?catalog=illdo`,
   userDone: (userName: string) => `/${userName}?catalog=done`

@@ -1,9 +1,12 @@
+import { waitAnimEnd } from 'pages/share/settings/general/animation'
 import { FC, ReactElement, ReactNode, useEffect, useRef } from 'react'
 import { Loading } from '../Default'
 
 export interface ILoadingHOC {
   data: unknown
   children: ReactElement | ReactNode
+  loading?: ReactElement
+  callBack?: any
   animChildren?: {
     animInClass: 'fade-in' | 'to-left-in'
     animOutClass: 'fade-out' | 'to-left-out'
@@ -16,10 +19,30 @@ interface IAnimData {
   animOutClass: string
 }
 
-const LoadingHOC: FC<ILoadingHOC> = ({ data, children, animChildren }) => {
+const LoadingHOC: FC<ILoadingHOC> = ({ data, children, loading, animChildren, callBack }) => {
   const loadingRef = useRef<HTMLDivElement>(null)
   const childrenRef = useRef<HTMLDivElement>(null)
-  const options = { duration: 250 }
+
+  useEffect(() => {
+    controlAnimation()
+  }, [data])
+
+  async function controlAnimation(): Promise<void> {
+    const loadingDataAnim = {
+      el: loadingRef.current,
+      animInClass: 'fade-in',
+      animOutClass: 'fade-out'
+    }
+    const childrenDataAnim = {
+      el: childrenRef.current,
+      animInClass: animChildren?.animInClass ?? 'fade-in',
+      animOutClass: animChildren?.animOutClass ?? 'fade-out'
+    }
+    const invalidData = data === null || data === undefined || data === true
+    if (invalidData) await animation(childrenDataAnim, loadingDataAnim)
+    if (!invalidData) await animation(loadingDataAnim, childrenDataAnim)
+    if (callBack) await callBack()
+  }
 
   async function animation(removeAnim: IAnimData, appearAnim: IAnimData): Promise<void> {
     await remove(removeAnim)
@@ -30,11 +53,7 @@ const LoadingHOC: FC<ILoadingHOC> = ({ data, children, animChildren }) => {
     const { el, animInClass, animOutClass } = removeAnim
     el?.classList.remove(animInClass)
     el?.classList.add(animOutClass)
-    await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(true)
-      }, options.duration)
-    })
+    await waitAnimEnd()
     el?.classList.remove('display-block')
     el?.classList.add('display-none')
   }
@@ -47,26 +66,9 @@ const LoadingHOC: FC<ILoadingHOC> = ({ data, children, animChildren }) => {
     el?.classList.add('display-block')
   }
 
-  useEffect(() => {
-    const loadingDataAnim = {
-      el: loadingRef.current,
-      animInClass: 'fade-in',
-      animOutClass: 'fade-out'
-    }
-    const childrenDataAnim = {
-      el: childrenRef.current,
-      animInClass: animChildren?.animInClass ?? 'fade-in',
-      animOutClass: animChildren?.animOutClass ?? 'fade-out'
-    }
-    const invalidData = data === null || data === undefined || data === true
-    if (invalidData) animation(childrenDataAnim, loadingDataAnim)
-    if (!invalidData) animation(loadingDataAnim, childrenDataAnim)
-  }, [data])
-
   return (
     <div>
-      <div ref={loadingRef} className="display-none fade-out"><Loading /></div>
-      {/* <div ref={loadingRef}><Loading height="h-[550px]" /></div> */}
+      <div ref={loadingRef} className="display-none fade-out">{loading ?? <Loading />}</div>
       <div ref={childrenRef} className="display-none fade-out">{children}</div>
     </div>
   )

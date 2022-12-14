@@ -2,6 +2,7 @@ import { FC, ReactNode, useEffect, useState } from 'react'
 import { LoadUseContext } from './useLoad'
 import { NextRouter } from 'next/router'
 import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
+import { Loading } from 'pages/share/components'
 
 type ILoadContext =
   (router: () => NextRouter) =>
@@ -46,14 +47,14 @@ const LoadContext: ILoadContext = useRouter =>
         router.events.off('routeChangeComplete', handleComplete)
         router.events.off('routeChangeError', handleComplete)
       }
-    })
+    }, [])
 
     return (
       <LoadUseContext.Provider
         value={{ loading }}
         data-testid="Load"
       >
-        <LoadingHOC data={loading}>
+        <LoadingHOC data={loading} loading={<Loading height="h-[550px]" />}>
           {children}
         </LoadingHOC>
       </LoadUseContext.Provider>

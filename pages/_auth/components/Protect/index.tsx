@@ -15,8 +15,8 @@ const ProtectRoute = (props: IProtectRoute): any => {
   const isPrivate = isRoutePrivate(route)
 
   if (isPublic) return children
-  if (isMixed && user === undefined) return null
   if (isPrivate && !user) return null
+  if (isMixed && user === undefined) return null
   return children
 }
 
