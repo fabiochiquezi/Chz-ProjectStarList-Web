@@ -1,5 +1,5 @@
+import { SearchIcon } from './icons'
 import { ISearchProps } from '../type'
-import { SearchIcon } from '../../../../assets'
 import { FC, useEffect, useRef, useState } from 'react'
 
 

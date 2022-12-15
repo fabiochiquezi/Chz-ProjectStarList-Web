@@ -1,6 +1,6 @@
-import { waitAnimEnd } from 'pages/share/settings/general/animation'
-import { FC, ReactElement, ReactNode, useEffect, useRef } from 'react'
 import { Loading } from '../Default'
+import { waitAnimEnd } from 'pages/animation'
+import { FC, ReactElement, ReactNode, useEffect, useRef } from 'react'
 
 export interface ILoadingHOC {
   data: unknown

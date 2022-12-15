@@ -1,6 +1,6 @@
 import React from 'react'
 import { User } from '../../../share/types'
-import { isRouteMixed, isRoutePrivate, isRoutePublic } from 'pages/share/settings'
+import { isRouteMixed, isRoutePrivate, isRoutePublic } from '../../../routes'
 
 interface IProtectRoute {
   children: React.ReactNode

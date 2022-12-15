@@ -1,5 +1,5 @@
 import { onAuthStateChanged, User } from 'firebase/auth'
-import { auth } from '../../../../share/settings/firebase'
+import { auth } from '../../../../firebase'
 
 type CallBack = (userGoogle: User | null) => void
 export type AuthState = (callBack: CallBack) => void

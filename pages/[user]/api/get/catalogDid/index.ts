@@ -1,8 +1,8 @@
-import { db } from '../../../../share/settings/firebase'
+import { db } from '../../../../firebase'
 import { collection, getDocs } from 'firebase/firestore'
 import { SerieDB } from '../../../../share/types/Catalog/Serie'
 import { MovieDB } from '../../../../share/types/Catalog/Movie'
-import { generalFormat } from '../../../../share/helpers/format'
+import { formatToDB } from '../../../../share/helpers'
 
 export type GetCatalogDid = (
   userName: string
@@ -11,7 +11,7 @@ export type GetCatalogDid = (
 const getCatalogDid: GetCatalogDid = async userName => {
   const collect = collection(db, 'catalog', userName, 'did')
   const querySnapshot = await getDocs(collect)
-  const list = querySnapshot.docs.map<MovieDB | SerieDB>(generalFormat)
+  const list = querySnapshot.docs.map<MovieDB | SerieDB>(formatToDB)
   return list
 }
 

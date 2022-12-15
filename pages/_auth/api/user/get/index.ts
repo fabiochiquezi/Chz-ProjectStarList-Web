@@ -1,6 +1,6 @@
 import { User } from '../../../../share/types'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../../../../share/settings/firebase'
+import { db } from '../../../../firebase'
 
 export type GetUser = (id: string) => Promise<User | undefined>
 

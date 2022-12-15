@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import React, { FC } from 'react'
+import { paths } from '../routes'
 import { useAuth } from '../share/contexts'
-import { paths } from 'pages/share/settings'
 
 const Page404: FC = () => {
   const { user } = useAuth()

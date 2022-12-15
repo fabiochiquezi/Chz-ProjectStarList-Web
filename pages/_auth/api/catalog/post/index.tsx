@@ -1,5 +1,5 @@
 import { doc, setDoc } from 'firebase/firestore'
-import { db } from '../../../../share/settings/firebase'
+import { db } from '../../../../firebase'
 
 export type PostCatalog = (userName: string) => Promise<void>
 

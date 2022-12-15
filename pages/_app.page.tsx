@@ -1,10 +1,9 @@
 import '@fontsource/roboto'
-import './share/styles/index.scss'
+import './styles.scss'
 import { ReactElement } from 'react'
-import { Structure } from './struct'
+import { Structure } from './_struct'
 import type { AppProps } from 'next/app'
 import { AuthFirebase } from './_auth/extended'
-
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
   return (

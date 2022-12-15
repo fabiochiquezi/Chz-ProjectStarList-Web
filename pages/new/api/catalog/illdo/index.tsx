@@ -1,5 +1,5 @@
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
-import { db } from 'pages/share/settings/firebase'
+import { db } from 'pages/firebase'
 import { v4 as uuidv4 } from 'uuid'
 
 const postCatalogIlldo = async (data: any, userId: string): Promise<void> => {

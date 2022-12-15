@@ -1,2 +1,4 @@
-export { isMobile, isTablet, isDesktop } from './device'
-export { generalFormat } from './format'
+export { getTimeNow } from './general/getDate'
+export { formatToDB } from './firebase/format/formatToDB'
+export { isString, isUndefined } from './general/testTypes'
+export { isMobile, isTablet, isDesktop } from './device/testDevice'
