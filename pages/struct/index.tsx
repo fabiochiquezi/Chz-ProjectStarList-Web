@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
-import { Structure } from './_struct'
-import { AuthFirebase } from './_auth/extended'
+import { Structure } from './struct'
+import { AuthFirebase } from './auth/extended'
 
 const Struct: FC<{ children: ReactNode }> = ({ children }) => (
   <AuthFirebase>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Movie, Serie } from 'pages/share/types'
+import { Movie, Serie } from 'core'
 import { getList } from '../api/get'
 
 export type IList = Array<Movie | Serie> | null

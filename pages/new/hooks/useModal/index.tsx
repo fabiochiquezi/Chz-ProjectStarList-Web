@@ -1,6 +1,6 @@
 import { AddModal } from 'pages/new/components/AddModal'
-import { Modal } from 'pages/share/components'
-import { useAlert } from 'pages/share/portals'
+import { Modal } from 'pages/_share/components'
+import { useAlert } from 'pages/_share/portals'
 import React, { useCallback, useState } from 'react'
 
 // import { Container } from './styles';

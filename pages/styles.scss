@@ -70,10 +70,10 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-@import 'share/portals/Alerts/Default/styles';
-@import 'share/portals/PopUps/PopSave/styles';
-@import 'share/assets/icons/SpinIcon';
-@import 'share/components/buttons/styles';
-@import 'share/components/Modals/styles';
-@import 'share/components/Thumbs/styles';
-@import 'share/components/Loadings/LoadingHOC/styles/index';
+@import '_share/portals/Alerts/Default/styles';
+@import '_share/portals/PopUps/PopSave/styles';
+@import '_share/assets/icons/SpinIcon';
+@import '_share/components/buttons/styles';
+@import '_share/components/Modals/styles';
+@import '_share/components/Thumbs/styles';
+@import '_share/components/Loadings/LoadingHOC/styles/index';

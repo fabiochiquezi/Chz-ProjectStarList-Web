@@ -1,5 +1,5 @@
 import { Title, BtnSignIn, Thumb, List, Hero } from './ui'
-import { useAuth } from '../share/contexts'
+import { useAuth } from '../_share/contexts'
 import catalog from './data/catalog.json'
 import type { NextPage } from 'next'
 import Head from 'next/head'

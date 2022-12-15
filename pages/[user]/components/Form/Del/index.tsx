@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { SpinIcon } from 'pages/share/assets'
+import { SpinIcon } from 'pages/_share/assets'
 
 const DeleteItem: FC = () => {
   const [loading, setLoading] = useState(false)

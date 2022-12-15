@@ -1,4 +1,4 @@
-import { SelectButton, Search } from '../../../share/components'
+import { SelectButton, Search } from '../../../_share/components'
 import React, { ChangeEvent, FC, useState } from 'react'
 import { Genre } from 'pages/new/types'
 

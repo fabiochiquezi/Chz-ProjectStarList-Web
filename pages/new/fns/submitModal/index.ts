@@ -1,19 +1,19 @@
-import { Movie, Serie } from '../../../share/types'
+import { Movie, Serie } from 'core'
 
 type OnSubmitAddModal = (
-    postDid: any,
-    postDoing: any,
-    postIlldo: any
+  postDid: any,
+  postDoing: any,
+  postIlldo: any
 ) => (
-    list: Array<Movie | Serie>,
-    iDSelected: string,
-    userName: string
+  list: Array<Movie | Serie>,
+  iDSelected: string,
+  userName: string
 ) => (data: { catalogType: string }) => Promise<void>
 
 const submitModal: OnSubmitAddModal =
-    (postDid, postDoing, postIlldo) =>
+  (postDid, postDoing, postIlldo) =>
     (list, idSelected, userName) =>
-    async data => {
+      async data => {
         const permitedTypes = ['doing', 'illdo', 'did']
         const { catalogType } = data
 
@@ -24,16 +24,16 @@ const submitModal: OnSubmitAddModal =
         if (!sendData) throw new Error('Something went wrong')
 
         switch (catalogType) {
-            case 'doing':
-                await postDoing(sendData, userName)
-                break
-            case 'did':
-                await postDid(sendData, userName)
-                break
-            case 'illdo':
-                await postIlldo(sendData, userName)
-                break
+          case 'doing':
+            await postDoing(sendData, userName)
+            break
+          case 'did':
+            await postDid(sendData, userName)
+            break
+          case 'illdo':
+            await postIlldo(sendData, userName)
+            break
         }
-    }
+      }
 
 export { submitModal }

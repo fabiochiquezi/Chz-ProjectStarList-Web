@@ -3,7 +3,7 @@ import { ArrowRight1 } from './icons'
 import styles from './styles.module.css'
 import type { Identifier } from 'dnd-core'
 import { useDrag, useDrop } from 'react-dnd'
-import { CloseIcon } from '../../../../share/assets'
+import { CloseIcon } from '../../../../_share/assets'
 
 interface IUseDropCollect {
   handlerId: Identifier | null;

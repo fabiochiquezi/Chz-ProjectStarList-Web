@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import { validation } from './validation'
-import { Select } from 'pages/share/components'
-import { CloseIcon, SpinIcon } from 'pages/share/assets'
+import { Select } from 'pages/_share/components'
+import { CloseIcon, SpinIcon } from 'pages/_share/assets'
 import React, { FC, memo, ReactElement, useRef, useState } from 'react'
 
 interface AddModalType {

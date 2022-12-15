@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Loading } from 'pages/share/components'
+import { Loading } from 'pages/_share/components'
 import { useEffect, useState } from 'react'
 
 function useLoad(): any {

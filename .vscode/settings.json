@@ -20,7 +20,7 @@
         "tailwind.config.js": true,
         "package.json": true,
         ".env*": true,
-        // "design": true,
+        "design": true,
         "jest.config.ts": true,
         "setupTests.ts": true,
         "todo.log.example.md": true,

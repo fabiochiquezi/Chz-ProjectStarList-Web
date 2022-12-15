@@ -1,7 +1,6 @@
 import { db } from '../../../../firebase'
 import { collection, getDocs } from 'firebase/firestore'
-
-import { formatToDB } from '../../../../share/helpers'
+import { formatToDB } from '../../../../_share/helpers'
 import { MovieDB, SerieDB } from 'core'
 
 export type GetCatalogDid = (

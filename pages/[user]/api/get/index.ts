@@ -1,4 +1,4 @@
-import { Movie, Serie } from '../../../share/types'
+import { Movie, Serie } from 'core'
 import { getCatalogDid } from '../get/catalogDid'
 import { getCatalogDoing } from '../get/catalogDoing'
 import { getCatalogIlldo } from '../get/catalogIlldo'
