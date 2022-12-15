@@ -3,8 +3,7 @@ import { BtnLoad } from './BtnLoad'
 import { getTitle } from './getTitle'
 import { IList } from '../../index.page'
 import { Title, TitleEmpty } from './Title'
-import { Serie } from 'pages/share/types/Catalog/Serie'
-import { Movie } from '../../../share/types/Catalog/Movie'
+import { Serie, Movie } from 'core'
 import React, { Dispatch, FC, SetStateAction, useCallback, useState } from 'react'
 
 interface props {

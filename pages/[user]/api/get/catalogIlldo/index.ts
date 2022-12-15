@@ -1,8 +1,7 @@
 import { db } from '../../../../firebase'
 import { collection, getDocs } from 'firebase/firestore'
-import { MovieDB } from '../../../../share/types/Catalog/Movie'
-import { SerieDB } from '../../../../share/types/Catalog/Serie'
 import { formatToDB } from '../../../../share/helpers'
+import { MovieDB, SerieDB } from 'core'
 
 export type getListIlldo = (
   userName: string

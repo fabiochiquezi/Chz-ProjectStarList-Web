@@ -8,12 +8,13 @@ import { useAlert } from '../share/portals'
 import { useAuth } from '../share/contexts'
 import { useLoad } from './hooks/useLoad/idex'
 import { getServerSideProps } from './api/ssr'
-import { Movie, Serie, Resp } from '../share/types'
+import { Movie, Serie } from '../share/types'
 import { ErrorDefault, Loading, Modal } from '../share/components'
 import { Pagination } from './components/Pagination'
 import { FC, useCallback, useState } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import { LoadingHOC } from 'pages/share/components/Loadings/LoadingHOC'
+import { Resp } from 'pages/types'
 
 const AddModal = dynamic(
   async () => await import('./components/AddModal').then(m => m.AddModal)
