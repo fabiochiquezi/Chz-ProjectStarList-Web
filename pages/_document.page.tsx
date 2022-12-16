@@ -44,7 +44,6 @@ export default class MyDocument extends Document {
     return (
       <Html className="dark" lang="en-US">
         <Head>
-          <title>Star List</title>
           <link rel="icon" type="image/x-icon" href="/favicon.png" />
         </Head>
         <body className="bg-primary">

@@ -3,12 +3,20 @@ import '@fontsource/roboto'
 import { Struct } from './struct'
 import { ReactElement } from 'react'
 import type { AppProps } from 'next/app'
+import GlobalStyles from './GlobalStyles'
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
   return (
-    <Struct>
-      <Component {...pageProps} />
-    </Struct>
+    <>
+      <Head>
+        <title>Star List</title>
+      </Head>
+      <GlobalStyles />
+      <Struct>
+        <Component {...pageProps} />
+      </Struct>
+    </>
   )
 }
 

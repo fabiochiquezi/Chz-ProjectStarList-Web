@@ -49,11 +49,15 @@
         "cypress/support/index.d.ts": true,
         "serviceAccount.json": true,
         // Project
-        // "pages/_document.page.tsx": true,
+        "pages/_document.page.tsx": true,
         // "pages/new/api/external/keys.example.ts": true,
         // "pages/_app.tsx": true,
         "public": true,
         // "cypress": true,
-        "api/keys.ts": true
+        "api/keys.ts": true,
+        ".babelrc": true,
+        "babel-plugin-macros.config.js": true,
+        "withTwin.js": true,
+        "types": true
     }
 }
