@@ -1,5 +1,3 @@
-export { GoogleIcon } from './icons/socialMedia/GoogleIcon'
-
 export { SpinIcon } from './icons/SpinIcon'
 export { CloseIcon, CloseIconOrange } from './icons/CloseIcon'
 

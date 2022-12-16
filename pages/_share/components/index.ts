@@ -9,7 +9,7 @@ export { Select } from './Forms/Select/Default'
 export { SelectButton } from './Forms/Select/Button'
 export type { ISelectProps } from './Forms/Select/type'
 
-export { Loading } from './Loadings/Default'
+export { LoadingPage } from './Loadings/LoadingPage'
 
 export { Modal } from './Modals/Default'
 export { SimpleForm } from './Modals/Boxes/SimpleForm'

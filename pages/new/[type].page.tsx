@@ -9,7 +9,7 @@ import { useAuth } from '../_share/contexts'
 import { useLoad } from './hooks/useLoad/idex'
 import { getServerSideProps } from './api/ssr'
 import { Movie, Serie } from 'core'
-import { ErrorDefault, Loading, Modal } from '../_share/components'
+import { ErrorDefault, LoadingPage, Modal } from '../_share/components'
 import { Pagination } from './components/Pagination'
 import { FC, useCallback, useState } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
@@ -21,7 +21,7 @@ const AddModal = dynamic(
 )
 const List = dynamic(
   async () => await import('./components/List').then(m => m.List),
-  { loading: () => <Loading /> }
+  { loading: () => <LoadingPage /> }
 )
 
 interface SRRData {

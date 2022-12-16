@@ -1,4 +1,4 @@
-import { Loading } from '../Default'
+import { LoadingPage } from '../LoadingPage'
 import { waitLoadingHOCAnim } from './animation'
 import { FC, ReactElement, ReactNode, useEffect, useRef } from 'react'
 
@@ -68,7 +68,7 @@ const LoadingHOC: FC<ILoadingHOC> = ({ data, children, loading, animChildren, ca
 
   return (
     <div>
-      <div ref={loadingRef} className="display-none fade-out">{loading ?? <Loading />}</div>
+      <div ref={loadingRef} className="display-none fade-out">{loading ?? <LoadingPage />}</div>
       <div ref={childrenRef} className="display-none fade-out">{children}</div>
     </div>
   )

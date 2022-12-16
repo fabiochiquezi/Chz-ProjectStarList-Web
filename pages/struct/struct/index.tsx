@@ -1,7 +1,7 @@
 import { LoadingHOC } from 'pages/_share/components/Loadings/LoadingHOC'
 import { isRouteMixed, isRoutePrivate } from '../../routes'
 import { useLoadPage } from './hooks/usePageLoad'
-import { Loading } from 'pages/_share/components'
+import { LoadingPage } from 'pages/_share/components'
 import { useAuth } from '../../_share/contexts'
 import { useRouter } from 'next/router'
 import { FC, ReactNode } from 'react'
@@ -46,7 +46,7 @@ const Structure: FC<IStructureProps> = ({ children }) => {
 
   const privateStruct = (
     <PrivateStruct Footer={<Footer />} Header={headerPrivate}>
-      <LoadingHOC data={loading} loading={<Loading height="h-[550px]" />}>
+      <LoadingHOC data={loading} loading={<LoadingPage height="h-[550px]" />}>
         {children}
       </LoadingHOC>
     </PrivateStruct>

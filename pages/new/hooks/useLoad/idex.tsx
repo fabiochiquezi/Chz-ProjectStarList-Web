@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Loading } from 'pages/_share/components'
+import { LoadingPage } from 'pages/_share/components'
 import { useEffect, useState } from 'react'
 
 function useLoad(): any {
@@ -12,7 +12,7 @@ function useLoad(): any {
 
   return {
     loadProcess: load,
-    load: load ? <Loading /> : null,
+    load: load ? <LoadingPage /> : null,
     setLoad: () => setLoad(true),
     unsetLoad: () => setLoad(false)
   }
