@@ -1,13 +1,7 @@
-import { FC, ReactElement } from 'react'
+import { IHero } from '../design'
 import styles from './index.module.css'
 
-interface IHeroProps {
-  title: string
-  description: string
-  BtnSignIn: ReactElement
-}
-
-const Hero: FC<IHeroProps> = ({ title, description, BtnSignIn }) => (
+const Hero: IHero = ({ title, description, BtnSignIn }) => (
   <section
     className={`${styles.heroWrapper} skeleton`}
     data-cy="Hero"

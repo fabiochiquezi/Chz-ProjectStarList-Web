@@ -20,11 +20,17 @@ interface ResponseError {
 }
 type Resp<T> = ResponseSuccess<T> | ResponseError
 
+// Presentational Components
+interface IPresentComponent {
+  className?: string
+}
+
 //
 export type {
   DocumentDBExtraProps,
   DocumentFromDB,
   ResponseSuccess,
   ResponseError,
-  Resp
+  Resp,
+  IPresentComponent
 }

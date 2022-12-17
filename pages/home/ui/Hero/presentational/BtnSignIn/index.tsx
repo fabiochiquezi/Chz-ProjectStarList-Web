@@ -1,14 +1,10 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import { GoogleIcon } from './GoogleIcon'
+import { IBtnSignIn } from '../../design'
 import { SpinIcon } from '../../../../../_share/assets'
 
-export interface BtnSignInType {
-  className?: string
-  onClick: () => Promise<void>
-  id?: string
-}
 
-const BtnSignIn: FC<BtnSignInType> = ({ className = '', id = '', onClick }) => {
+const BtnSignIn: IBtnSignIn = ({ className = '', onClick }) => {
   const [loading, setLoading] = useState(false)
 
   async function handleOnClick(): Promise<void> {
@@ -19,7 +15,6 @@ const BtnSignIn: FC<BtnSignInType> = ({ className = '', id = '', onClick }) => {
 
   return (
     <button
-      id={id}
       onClick={handleOnClick}
       data-cy="btn-signIn2"
       data-testid="BtnSignIn"

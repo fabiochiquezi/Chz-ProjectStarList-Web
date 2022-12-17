@@ -1,12 +1,6 @@
-import { FC } from 'react'
+import { IThumb } from '../../design'
 
-export interface IThumbProps {
-  thumb: string
-  title: string
-  className?: string
-}
-
-const Thumb: FC<IThumbProps> = ({ thumb, title, className = '' }) => (
+const Thumb: IThumb = ({ thumb, title, className = '' }) => (
   <div
     data-testid="Thumb"
     data-cy="thumb-default"
