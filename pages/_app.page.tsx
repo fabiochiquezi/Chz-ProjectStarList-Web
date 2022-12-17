@@ -7,6 +7,7 @@ import GlobalStyles from './GlobalStyles'
 import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
+  console.log('ok')
   return (
     <>
       <Head>
