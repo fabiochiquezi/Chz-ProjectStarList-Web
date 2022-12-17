@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "commit": "git-cz",
     "emulators": "firebase emulators:start --import=./emulators-data",
     "emulators:data": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
     "development": "next dev",
@@ -12,8 +13,7 @@
     "e2e": "concurrently --kill-others \"yarn development\" \"yarn cypress\"",
     "cypress": "cypress open",
     "test": "jest --runInBand --watch",
-    "test:coverage": "jest --coverage --runInBand --watch",
-    "prepare": "husky install"
+    "test:coverage": "jest --coverage --runInBand --watch"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
@@ -50,10 +50,12 @@
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-styled-components": "^2.0.7",
     "chromedriver": "^105.0.1",
+    "commitizen": "^4.2.6",
     "concurrently": "^7.4.0",
     "cross-env": "^7.0.3",
     "cypress": "^10.7.0",
     "cypress-firebase": "^2.2.2",
+    "cz-conventional-changelog": "3.3.0",
     "eslint": "^8.0.1",
     "eslint-config-next": "12.2.5",
     "eslint-config-standard-with-typescript": "^22.0.0",
@@ -76,5 +78,10 @@
     "ts-node": "^10.9.1",
     "twin.macro": "^3.1.0",
     "typescript": "*"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
