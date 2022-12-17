@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { GoogleIcon } from './GoogleIcon'
-import { IBtnSignIn } from '../../design'
-import { SpinIcon } from '../../../../../_share/assets'
+import { IBtnSignInProps } from '../type'
+import { SpinIcon } from '../../../assets'
 
-
-const BtnSignIn: IBtnSignIn = ({ className = '', onClick }) => {
+const BtnSignIn: FC<IBtnSignInProps> = ({ className = '', onClick }) => {
   const [loading, setLoading] = useState(false)
 
   async function handleOnClick(): Promise<void> {

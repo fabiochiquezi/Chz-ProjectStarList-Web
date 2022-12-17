@@ -1,7 +1,8 @@
-import { Title, BtnSignIn, Thumb, List, Hero } from './ui'
+import { Thumb, BtnSignIn } from '../_share/components'
 import { useAuth } from '../_share/contexts'
+import { Title, List, Hero } from './ui'
+import catalog from './data/index.json'
 import type { NextPage } from 'next'
-import catalog from './data.json'
 import Head from 'next/head'
 
 const Home: NextPage = () => {

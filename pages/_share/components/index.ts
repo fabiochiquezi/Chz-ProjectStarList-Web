@@ -1,3 +1,5 @@
+export { BtnSignIn } from './Buttons/BtnSignIn'
+
 export { ErrorDefault } from './Errors/Boxes/Default'
 export type { IErrorProps } from './Errors/Boxes/type'
 
@@ -16,3 +18,4 @@ export { SimpleForm } from './Modals/Boxes/SimpleForm'
 export type { IModalProps } from './Modals/type'
 
 export { AddThumb } from './Thumbs/Add'
+export { Thumb } from './Thumbs/Default'
