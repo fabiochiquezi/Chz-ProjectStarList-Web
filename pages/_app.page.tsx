@@ -1,10 +1,10 @@
 import './styles.scss'
 import '@fontsource/roboto'
+import Head from 'next/head'
 import { Struct } from './struct'
 import { ReactElement } from 'react'
 import type { AppProps } from 'next/app'
 import GlobalStyles from './GlobalStyles'
-import Head from 'next/head'
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
   return (

@@ -16,9 +16,15 @@
     "test:watch": "jest --runInBand --watch",
     "test:coverage": "jest --coverage --runInBand --watch"
   },
+  "husky":{
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "lint-staged":{
     "pages/**/*.{js,ts,jsx,tsx}": [
       "eslint --fix",
+      "yarn test --bail --findRelatedTests",
       "git add"
     ]
   },
