@@ -1,15 +1,16 @@
-import { IHero } from '../design'
-import styles from './index.module.css'
+import { IHero } from '../../design'
+import { Section } from './styles'
 
 const Hero: IHero = ({ title, description, BtnSignIn }) => (
-  <section
-    className={`${styles.heroWrapper} skeleton`}
-    data-cy="Hero"
-    data-tesid="Hero"
+  <Section
+    data-testid="Hero"
+    className="skeleton"
+    backgroundDesktop="./banners/hero-desktop.jpg"
+    backgroundMobile="./banners/hero-mobile.jpg"
   >
-    <div className={styles.overlayAll}></div>
-    <div className={styles.overlayBottom}></div>
-    <div className={styles.overlayTop}></div>
+    <div className="overlayAll"></div>
+    <div className="overlayBottom"></div>
+    <div className="overlayTop"></div>
     <div className="lg:container lg:mx-auto lg:relative lg:h-full w-full">
       <div className="w-full absolute z-10 bottom-[90px] px-3 md:px-6 md:bottom-[48px] lg:bottom-[50%] lg:mb-[-300px] lg:w-[720px]">
         <main className="max-w-[360px] md:max-w-[480px] lg:max-w-[720px] mx-auto flex flex-col items-center text-center lg:text-left lg:items-start">
@@ -26,7 +27,7 @@ const Hero: IHero = ({ title, description, BtnSignIn }) => (
         </main>
       </div>
     </div>
-  </section>
+  </Section>
 )
 
 export { Hero }

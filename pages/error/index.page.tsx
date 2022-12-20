@@ -4,11 +4,7 @@ import { NextPage } from 'next'
 const ErrorPage: NextPage = () => (
   <div>
     <Head>
-      <title>Star List | My List</title>
-      <meta
-        name="description"
-        content="See all of your memories about movies, series, animations, books and games"
-      />
+      <title>Star List | Error</title>
     </Head>
 
     <main>
@@ -21,7 +17,7 @@ const ErrorPage: NextPage = () => (
             ERROR ;(
           </span>
           <br />
-          Sorry, but something went wrong
+          <span>Sorry, but something went wrong</span>
         </p>
       </div>
     </main>

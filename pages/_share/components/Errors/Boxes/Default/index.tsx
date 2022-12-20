@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { IErrorProps } from '../type'
 
-export type IErroDefaultProps = {
+export type IErroDefault = FC<{
   [P in keyof IErrorProps]?: IErrorProps[P];
-}
+}>
 
-const ErrorDefault: FC<IErroDefaultProps> = ({
+const ErrorDefault: IErroDefault = ({
   title = 'ERROR ;(',
   message = 'Sorry, but something went wrong'
 }) => (

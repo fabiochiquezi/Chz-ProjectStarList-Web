@@ -35,7 +35,7 @@ const Modal: FC<AddModalType> = ({ closeModal, onSubmit }) => {
         <CloseIcon width={22} height={16} />
       </div>
 
-      <div data-cy="form-addNewItem">
+      <div>
         <Formik
           initialValues={{ catalogType: 'illdo' }}
           validationSchema={validation}

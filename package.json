@@ -10,8 +10,6 @@
     "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\"",
     "build": "rm -rf out && next build",
     "start": "next start",
-    "e2e": "concurrently --kill-others \"yarn development\" \"yarn cypress\"",
-    "cypress": "cypress open",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watch",
     "test:unit": "jest --runInBand -- unit",

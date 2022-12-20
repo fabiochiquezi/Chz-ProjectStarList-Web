@@ -1,4 +1,4 @@
-import { ITitle } from '../design'
+import { ITitle } from '../../../design'
 
 const Title: ITitle = ({ title, description }) => (
   <h1

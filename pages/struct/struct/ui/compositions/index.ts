@@ -1,5 +1,0 @@
-export { Footer } from './Footers/Default'
-export { HeaderPrivate } from './Headers/Private'
-export { HeaderPublic } from './Headers/Public'
-export { PublicStruct } from './Structures/Public'
-export { PrivateStruct } from './Structures/Private'

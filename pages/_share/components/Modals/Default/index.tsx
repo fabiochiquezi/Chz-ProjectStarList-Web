@@ -1,7 +1,9 @@
 import { FC, useEffect } from 'react'
 import { IModalProps } from '../type'
 
-const Modal: FC<IModalProps> = ({ children, closeModal }) => {
+export type IModal = FC<IModalProps>
+
+const Modal: IModal = ({ children, closeModal }) => {
   function closeWithKey(event: KeyboardEvent): void {
     event.preventDefault()
     const esc = event.key === 'Escape'

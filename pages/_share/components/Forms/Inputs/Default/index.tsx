@@ -1,12 +1,12 @@
 import { FC, useEffect, useRef, useState } from 'react'
 import { IInputProps } from '../type'
 
-interface IInputDefaultProps extends IInputProps {
+export type IInputDefault = FC<IInputProps & {
   label: string,
   placeholder?: string
-}
+}>
 
-const Input: FC<IInputDefaultProps> = ({
+const Input: IInputDefault = ({
   name,
   label,
   error,

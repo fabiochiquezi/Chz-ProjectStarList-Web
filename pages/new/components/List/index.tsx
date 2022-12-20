@@ -15,11 +15,7 @@ const List: FC<ListType> = ({ list, title, description, onClick }) => {
 
   return (
     <main
-      data-cy="section-list"
-      className="container mx-auto px-4 grid
-            sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7
-            justify-items-center lg:justify-items-end 2xl:justify-items-center"
-    >
+      className="container mx-auto px-4 grid sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 xl:grid-cols-7 justify-items-center lg:justify-items-end 2xl:justify-items-center">
       <Title title={title} description={description} />
       {list?.map((data, index) => {
         if (index >= limit) return null

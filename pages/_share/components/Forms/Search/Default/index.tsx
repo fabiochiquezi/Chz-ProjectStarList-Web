@@ -2,8 +2,9 @@ import { SearchIcon } from './icons'
 import { ISearchProps } from '../type'
 import { FC, useEffect, useRef, useState } from 'react'
 
+export type ISearchDefault = FC<ISearchProps>
 
-const Search: FC<ISearchProps> = ({
+const Search: ISearchDefault = ({
   value,
   onChange,
   callReset,

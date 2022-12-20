@@ -1,10 +1,10 @@
 import React, { FC } from 'react'
 
-export interface IAddThumbProps {
+export type IAddThumb = FC<{
   onClick: () => void
-}
+}>
 
-const AddThumb: FC<IAddThumbProps> = ({ onClick }) => (
+const AddThumb: IAddThumb = ({ onClick }) => (
   <div
     onClick={onClick}
     data-testid="AddThumb"

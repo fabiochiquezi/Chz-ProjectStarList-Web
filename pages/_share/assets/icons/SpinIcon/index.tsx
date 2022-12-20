@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { IIconProps } from '../type'
+import { Div } from './styles'
 
 const SpinIcon: FC<IIconProps> = ({
   className = '',
@@ -8,9 +9,9 @@ const SpinIcon: FC<IIconProps> = ({
   color = '#fff',
   stroke = 2
 }) => (
-  <div
+  <Div
     data-testid="SpinIcon"
-    className={`spinnerDefault ${className}`}
+    className={className}
     style={{ width: width + 20, height: height + 20 }}
   >
     <div
@@ -45,7 +46,7 @@ const SpinIcon: FC<IIconProps> = ({
         borderColor: `${color} transparent transparent transparent`
       }}
     ></div>
-  </div>
+  </Div>
 )
 
 

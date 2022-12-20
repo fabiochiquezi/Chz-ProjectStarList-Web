@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import { IThumbProps } from '../type'
 
-const Thumb: FC<IThumbProps> = ({ thumb, title, className = '' }) => (
+export type IThumb = FC<IThumbProps>
+
+const Thumb: IThumb = ({ thumb, title, className = '' }) => (
   <div
     data-testid="Thumb"
-    data-cy="thumb-default"
     className={`thumb mb-14 lg:mb-16 w-[170px] order-3 lg:col-span-1 xl:scale-90 2xl:scale-100 ${className}`}
   >
     <div className="w-[170px] h-[220px] overflow-hidden">

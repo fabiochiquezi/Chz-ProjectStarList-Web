@@ -1,9 +1,14 @@
-import { FC, useState } from 'react'
+import { FC, ReactEventHandler, useState } from 'react'
 import { GoogleIcon } from './GoogleIcon'
-import { IBtnSignInProps } from '../type'
+import { IBtnProps } from '../type'
 import { SpinIcon } from '../../../assets'
+import { IPresentComponent } from 'pages/types'
 
-const BtnSignIn: FC<IBtnSignInProps> = ({ className = '', onClick }) => {
+export type IBtnSignIn = FC<IBtnProps & IPresentComponent & {
+  onClick: (e?: ReactEventHandler) => unknown
+}>
+
+const BtnSignIn: IBtnSignIn = ({ className = '', onClick }) => {
   const [loading, setLoading] = useState(false)
 
   async function handleOnClick(): Promise<void> {
@@ -15,7 +20,6 @@ const BtnSignIn: FC<IBtnSignInProps> = ({ className = '', onClick }) => {
   return (
     <button
       onClick={handleOnClick}
-      data-cy="btn-signIn2"
       data-testid="BtnSignIn"
       disabled={!!loading}
       className={`btn-transparent py-[12px] px-8 border-orange-400 text-orange-400

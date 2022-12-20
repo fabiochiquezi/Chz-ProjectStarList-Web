@@ -1,11 +1,11 @@
 import { useEffect, useState, useRef, FC } from 'react'
-import { ISelectDefaultProps } from '../Default'
+import { ISelectProps } from '../type'
 
-export interface ISelectButtonProps extends ISelectDefaultProps {
+export type ISelectButton = FC<ISelectProps & {
   colorClass?: string
-}
+}>
 
-const SelectButton: FC<ISelectButtonProps> = props => {
+const SelectButton: ISelectButton = props => {
   const { name, error, children, onChange, colorClass, className = '', defaultValue = '' } = props
   const ref = useRef<HTMLSelectElement | null>(null)
   const [active, setActive] = useState(false)

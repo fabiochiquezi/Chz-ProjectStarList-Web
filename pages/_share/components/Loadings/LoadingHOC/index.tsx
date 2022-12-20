@@ -2,7 +2,7 @@ import { LoadingPage } from '../LoadingPage'
 import { waitLoadingHOCAnim } from './animation'
 import { FC, ReactElement, ReactNode, useEffect, useRef } from 'react'
 
-export interface ILoadingHOC {
+export type ILoadingHOC = FC<{
   data: unknown
   children: ReactElement | ReactNode
   loading?: ReactElement
@@ -11,7 +11,7 @@ export interface ILoadingHOC {
     animInClass: 'fade-in' | 'to-left-in'
     animOutClass: 'fade-out' | 'to-left-out'
   }
-}
+}>
 
 interface IAnimData {
   el: HTMLElement | null,
@@ -19,7 +19,7 @@ interface IAnimData {
   animOutClass: string
 }
 
-const LoadingHOC: FC<ILoadingHOC> = ({ data, children, loading, animChildren, callBack }) => {
+const LoadingHOC: ILoadingHOC = ({ data, children, loading, animChildren, callBack }) => {
   const loadingRef = useRef<HTMLDivElement>(null)
   const childrenRef = useRef<HTMLDivElement>(null)
 

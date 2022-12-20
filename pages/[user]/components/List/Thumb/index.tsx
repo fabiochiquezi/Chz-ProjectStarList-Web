@@ -63,7 +63,6 @@ const Thumb: FC<ThumbProps> = (props) => {
       ref={ref}
       key={index}
       style={{ opacity: isOver ? 0 : 1 }}
-      data-cy="thumb-default"
       data-handler-id={handlerId}
       data-testid="thumb-default"
       className={`thumb mb-20 w-[170px] order-3 cursor-pointer lg:mb-16 lg:col-span-1 xl:scale-90 2xl:scale-100 relative ${styles.Box}`}
@@ -99,7 +98,6 @@ const Thumb: FC<ThumbProps> = (props) => {
           <ArrowRight1 color="#333" />
         </div>
         <div
-          data-cy="btnOpen-delForm"
           className={styles.CloseIcon}
           onClick={() => openModalDelete(id)}
         >

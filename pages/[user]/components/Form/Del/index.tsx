@@ -31,7 +31,6 @@ const DeleteItem: FC = () => {
         className="btn-solid bg-red-600 py-[8px] h-[39px] w-[90px] relative left-6 md:top-1 text-sm self-end"
         disabled={!!loading}
         onClick={handleDelete}
-        data-cy="btn-delete"
       >
         {!loading ? <span>Delete</span> : <SpinIcon className="positive -top-1" />}
       </button>

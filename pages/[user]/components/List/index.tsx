@@ -50,7 +50,6 @@ const List: FC<props> = ({ catalogType, list, setList, openModalUpdate, openModa
     <div>
       <main
         className="container mx-auto px-4 grid justify-items-center sm:grid-cols-3 lg:grid-cols-5 lg:justify-items-end xl:grid-cols-6 xl:grid-cols-7 2xl:justify-items-center"
-        data-cy="section-list"
       >
         {!max
           ? <TitleEmpty />

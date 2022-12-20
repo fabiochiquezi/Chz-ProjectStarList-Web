@@ -1,12 +1,12 @@
 import { useEffect, useState, useRef, FC } from 'react'
 import { ISelectProps } from '../type'
 
-export interface ISelectDefaultProps extends ISelectProps {
+export type ISelectDefault = FC<ISelectProps & {
   label: string
   placeholder?: string
-}
+}>
 
-const Select: FC<ISelectDefaultProps> = props => {
+const Select: ISelectDefault = props => {
   const ref = useRef<HTMLSelectElement | null>(null)
   const [active, setActive] = useState(false)
   const selectCSS = active && 'border-green-700'
