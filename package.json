@@ -14,19 +14,9 @@
     "cypress": "cypress open",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watch",
+    "test:unit": "jest --runInBand -- unit",
+    "test:integration": "jest --runInBand -- integration",
     "test:coverage": "jest --coverage --runInBand --watch"
-  },
-  "husky":{
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged":{
-    "pages/**/*.{js,ts,jsx,tsx}": [
-      "eslint --fix",
-      "yarn test --bail --findRelatedTests",
-      "git add"
-    ]
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",

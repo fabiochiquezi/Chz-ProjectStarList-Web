@@ -60,6 +60,6 @@
         "withTwin.js": true,
         "types": true,
         "commitlint.config.js": true,
-        // ".husky": true
+        ".husky": true
     }
 }
