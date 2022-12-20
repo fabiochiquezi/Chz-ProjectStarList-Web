@@ -12,8 +12,15 @@
     "start": "next start",
     "e2e": "concurrently --kill-others \"yarn development\" \"yarn cypress\"",
     "cypress": "cypress open",
-    "test": "jest --runInBand --watch",
+    "test": "jest --runInBand",
+    "test:watch": "jest --runInBand --watch",
     "test:coverage": "jest --coverage --runInBand --watch"
+  },
+  "lint-staged":{
+    "pages/**/*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",

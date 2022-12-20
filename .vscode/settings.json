@@ -58,6 +58,8 @@
         ".babelrc": true,
         "babel-plugin-macros.config.js": true,
         "withTwin.js": true,
-        "types": true
+        "types": true,
+        "commitlint.config.js": true,
+        // ".husky": true
     }
 }
