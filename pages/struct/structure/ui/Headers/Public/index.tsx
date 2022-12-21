@@ -16,7 +16,7 @@ const HeaderPublic: IHeaderPublic = ({ BtnSignIn }) => (
       <div className="z-10 flex items-center">
         <BtnGitHub
           href="https://github.com/fabiochiquezi/Chz-ProjectStarList-Web"
-          className="md:mr-3"
+          className="md:mr-3 hidden md:flex"
         />
         {BtnSignIn}
       </div>
