@@ -1,4 +1,4 @@
-import { AddModal } from 'pages/new/components/FormAddFields'
+import { AddModal } from 'pages/new/components/FormAdd'
 import { Modal } from 'pages/_share/components'
 import { useAlert } from 'pages/_share/portals'
 import React, { useCallback, useState } from 'react'

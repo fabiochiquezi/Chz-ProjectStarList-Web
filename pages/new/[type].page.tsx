@@ -14,9 +14,9 @@ import { FC } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import { LoadingHOC } from 'pages/_share/components/Loadings/LoadingHOC'
 import { Resp } from 'pages/types'
-import { validation } from './components/FormAddFields/validation'
-import { FormAddFields } from './components/FormAddFields'
+import { FormAddFields, initialValues, validation } from './components/FormAdd'
 import useModalForm from 'pages/_share/hooks/useModalForm'
+import { FormikHOC } from 'pages/_share/HOC'
 
 
 const List = dynamic(
@@ -35,12 +35,12 @@ const New: FC<SRRData> = ({ data }) => {
 
   const { user } = useAuth()
   const { setLoad, loadProcess } = useLoad()
+  const addModal = useModalForm(ModalBox, FormikHOC)
 
   const { results, total_pages: totalPages } = request.workList
   const { page, type, search, genre } = router.query
   const { changeCatalog, changePage, genreFilter, resetSearch, searchFn } = useMenu(setLoad, search, type, genre)
 
-  const addModal = useModalForm(validation, { catalogType: 'doing' })
 
   return (
     <div>
@@ -53,8 +53,9 @@ const New: FC<SRRData> = ({ data }) => {
       </Head>
       <div>
         <addModal.ModalFormHOC
-          ModalBox={ModalBox}
           Fields={FormAddFields}
+          validation={validation}
+          initialValues={initialValues}
           onSubmit={submitModalFirebase(results, addModal.modalData, String(user?.userName))}
         />
         <Menu

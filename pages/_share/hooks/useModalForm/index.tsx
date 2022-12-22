@@ -1,34 +1,32 @@
-import React, { FC } from 'react'
-import { IFields, useForm } from '../useForm/Formik'
 import { IOpenModal, useModal, IModalBox } from '../useModal'
+import { FormikHOC, IFields } from 'pages/_share/HOC'
+import React, { FC } from 'react'
 
 type IModalFormHOC = FC<{
-  ModalBox: IModalBox,
   Fields: IFields,
+  validation: any,
+  initialValues: Record<string, string>
   onSubmit: (data: Record<string, string>) => Promise<void>
 }>
 
-type IUseModalForm = (
-  validation: any,
-  initialValues: Record<string, string>
-) => {
+type IUseModalForm = (ModalBox: IModalBox, FormHOC: typeof FormikHOC) => {
   modalData: Record<string, string>;
   openModal: IOpenModal;
   ModalFormHOC: IModalFormHOC;
 }
 
-const useModalForm: IUseModalForm = (validation: any, initialValues: any) => {
+const useModalForm: IUseModalForm = (ModalBox, FormHOC) => {
   const { modalState, ModalHOC, openModal, closeModal } = useModal()
-  const { FormHOC } = useForm({ validation, initialValues })
 
-  const ModalFormHOC: IModalFormHOC = ({ ModalBox, Fields, onSubmit }) => {
+  const ModalFormHOC: IModalFormHOC = (props) => {
     async function handleSubmit(data: Record<string, string>): Promise<void> {
-      await onSubmit(data)
+      await props.onSubmit(data)
       closeModal()
     }
+
     return (
       <ModalHOC ModalBox={ModalBox}>
-        <FormHOC onSubmit={handleSubmit} Fields={Fields} />
+        <FormHOC {...props} onSubmit={handleSubmit} />
       </ModalHOC>
     )
   }

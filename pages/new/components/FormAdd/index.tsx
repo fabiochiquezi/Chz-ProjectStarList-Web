@@ -1,13 +1,18 @@
 import { FormikProps } from 'formik'
 import { Select } from 'pages/_share/components'
 import { FC } from 'react'
+import * as Yup from 'yup'
 
-export interface IFormAddFields {
+export const validation = Yup.object({
+  catalogType: Yup.string().required('Required')
+})
+
+export const initialValues = { catalogType: 'doing' }
+
+const FormAddFields: FC<{
   formik: FormikProps<Record<string, string>>
   BtnSubmit?: FC<{ title?: string }>
-}
-
-const FormAddFields: FC<IFormAddFields> = ({ formik, BtnSubmit }) => {
+}> = ({ formik, BtnSubmit }) => {
   return (
     <div>
       <h3 className="mb-2 text-xl text-white font-bold mt-1">
