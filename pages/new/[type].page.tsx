@@ -1,23 +1,20 @@
+import { FC } from 'react'
 import Head from 'next/head'
 import { Data } from './types'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/router'
-import { Menu } from './components/Menu'
-import { useMenu } from './hooks/useMenu'
-import { useAuth } from '../_share/contexts'
-import { useLoad } from './hooks/useLoad/idex'
-import { getServerSideProps } from './api/ssr'
-import { Movie, Serie } from 'core'
-import { ErrorDefault, LoadingPage, ModalBox } from '../_share/components'
-import { Pagination } from './components/Pagination'
-import { FC } from 'react'
-import { submitModalFirebase } from './fns/submitModal/firebase'
-import { LoadingHOC } from 'pages/_share/components/Loadings/LoadingHOC'
 import { Resp } from 'pages/types'
-import { FormAddFields, initialValues, validation } from './components/FormAdd'
-import useModalForm from 'pages/_share/hooks/useModalForm'
+import { Movie, Serie } from 'core'
+import { useRouter } from 'next/router'
+import { useAuth } from '../_share/contexts'
 import { FormikHOC } from 'pages/_share/HOC'
-
+import { getServerSideProps } from './api/ssr'
+import { Menu, Pagination } from './components'
+import { useLoadPage } from '../_share/hooks'
+import { LoadingHOC } from 'pages/_share/components'
+import useModalForm from 'pages/_share/hooks/useModalForm'
+import { submitModalFirebase } from './fns/submitModal/firebase'
+import { ErrorDefault, LoadingPage, ModalBox } from '../_share/components'
+import { FormAddFields, initialValues, validation } from './components/FormAdd'
 
 const List = dynamic(
   async () => await import('./components/List').then(m => m.List),
@@ -29,18 +26,14 @@ interface SRRData {
 }
 
 const New: FC<SRRData> = ({ data }) => {
-  const router = useRouter()
   const { ok, request } = data
   if (!ok) return <ErrorDefault />
 
+  const router = useRouter()
   const { user } = useAuth()
-  const { setLoad, loadProcess } = useLoad()
+  const loadContent = useLoadPage()
   const addModal = useModalForm(ModalBox, FormikHOC)
-
-  const { results, total_pages: totalPages } = request.workList
-  const { page, type, search, genre } = router.query
-  const { changeCatalog, changePage, genreFilter, resetSearch, searchFn } = useMenu(setLoad, search, type, genre)
-
+  const { workList, genreList } = request
 
   return (
     <div>
@@ -56,35 +49,33 @@ const New: FC<SRRData> = ({ data }) => {
           Fields={FormAddFields}
           validation={validation}
           initialValues={initialValues}
-          onSubmit={submitModalFirebase(results, addModal.modalData, String(user?.userName))}
+          onSubmit={submitModalFirebase(
+            workList.results,
+            addModal.modalData,
+            String(user?.userName)
+          )}
         />
         <Menu
-          genreList={request.genreList}
-          routerType={String(type)}
-          routerGenre={String(genre)}
-          searchFn={searchFn}
-          changeCatalog={changeCatalog}
-          resetSearch={resetSearch}
-          genreFilter={genreFilter}
+          query={router.query}
+          genreList={genreList}
+          loadPage={loadContent.loadPage}
         />
         <LoadingHOC
-          data={loadProcess}
-          animChildren={{
-            animInClass: 'to-left-in',
-            animOutClass: 'to-left-out'
-          }}
+          data={loadContent.load}
+          animChildren={{ animInClass: 'to-left-in', animOutClass: 'to-left-out' }}
         >
           <List
-            list={results ?? []}
-            title={type as string}
+            list={workList.results ?? []}
             description="add + to your list"
+            title={router.query.type as string}
             onClick={(id: string | number) => addModal.openModal({ id })}
           />
         </LoadingHOC>
         <Pagination
-          page={parseInt(String(page)) || 1}
-          maxPages={totalPages ?? 1}
-          changePage={changePage}
+          query={router.query}
+          push={router.push}
+          maxPages={workList.total_pages ?? 1}
+          load={() => loadContent.setLoad(true)}
         />
       </div>
     </div >

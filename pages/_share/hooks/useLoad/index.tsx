@@ -1,8 +1,14 @@
 import { useRouter } from 'next/router'
-import { LoadingPage } from 'pages/_share/components'
-import { useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-function useLoadPage(): any {
+export type IUseLoadPage = () => {
+  load: boolean;
+  setLoad: Dispatch<SetStateAction<boolean>>
+  loadPage: (url: string) => void;
+  loadPageScroll: (url: string, position?: number) => void;
+}
+
+const useLoadPage: IUseLoadPage = () => {
   const router = useRouter()
   const [load, setLoad] = useState(false)
 
@@ -11,10 +17,8 @@ function useLoadPage(): any {
   }, [router])
 
   return {
-    loadProcess: load,
-    load: load ? <LoadingPage /> : null,
-    setLoad: () => setLoad(true),
-    unsetLoad: () => setLoad(false),
+    load,
+    setLoad,
     loadPage: (url: string) => {
       setLoad(true)
       router.push(url)
