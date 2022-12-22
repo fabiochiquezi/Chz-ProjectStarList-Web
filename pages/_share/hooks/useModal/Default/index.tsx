@@ -1,5 +1,5 @@
 import { FC, useEffect } from 'react'
-import { IModalProps } from '../type'
+import { IModalProps } from '../../../components/Modals/type'
 
 export type IModal = FC<IModalProps>
 

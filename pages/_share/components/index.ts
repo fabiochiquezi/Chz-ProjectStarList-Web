@@ -1,3 +1,6 @@
+export { ModalBox } from './Boxes/SimpleModalBox'
+export type { IModalBox } from './Boxes/SimpleModalBox'
+
 export { NavMenu } from './Menus/NavMenu'
 export type { INavMenu } from './Menus/NavMenu/index'
 export { SettingMenu } from './Menus/SettingMenu'
@@ -36,12 +39,6 @@ export type { ILoadingPage } from './Loadings/LoadingPage/index'
 export { LoadingHOC } from './Loadings/LoadingHOC'
 export type { ILoadingHOC } from './Loadings/LoadingHOC/index'
 export { waitLoadingHOCAnim } from './Loadings/LoadingHOC/animation'
-
-export { Modal } from './Modals/Default'
-export type { IModal } from './Modals/Default'
-export { SimpleForm } from './Modals/Boxes/SimpleForm'
-export type { ISimpleForm } from './Modals/Boxes/SimpleForm/index'
-export type { IModalProps } from './Modals/type'
 
 export { AddThumb } from './Thumbs/Add'
 export type { IAddThumb } from './Thumbs/Add/index'

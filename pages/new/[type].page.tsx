@@ -4,21 +4,21 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Menu } from './components/Menu'
 import { useMenu } from './hooks/useMenu'
-import { useAlert } from '../_share/portals'
 import { useAuth } from '../_share/contexts'
 import { useLoad } from './hooks/useLoad/idex'
 import { getServerSideProps } from './api/ssr'
 import { Movie, Serie } from 'core'
-import { ErrorDefault, LoadingPage, Modal } from '../_share/components'
+import { ErrorDefault, LoadingPage, ModalBox } from '../_share/components'
 import { Pagination } from './components/Pagination'
-import { FC, useCallback, useState } from 'react'
+import { FC } from 'react'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import { LoadingHOC } from 'pages/_share/components/Loadings/LoadingHOC'
 import { Resp } from 'pages/types'
+import { validation } from './components/FormAddFields/validation'
+import { FormAddFields } from './components/FormAddFields'
+import useModalForm from 'pages/_share/hooks/useModalForm'
 
-const AddModal = dynamic(
-  async () => await import('./components/AddModal').then(m => m.AddModal)
-)
+
 const List = dynamic(
   async () => await import('./components/List').then(m => m.List),
   { loading: () => <LoadingPage /> }
@@ -33,45 +33,14 @@ const New: FC<SRRData> = ({ data }) => {
   const { ok, request } = data
   if (!ok) return <ErrorDefault />
 
-  const alert = useAlert()
   const { user } = useAuth()
   const { setLoad, loadProcess } = useLoad()
 
   const { results, total_pages: totalPages } = request.workList
   const { page, type, search, genre } = router.query
-  const [addModal, setAddModal] = useState({ state: false, item: '' })
-  const {
-    changeCatalog,
-    changePage,
-    genreFilter,
-    resetSearch,
-    searchFn
-  } = useMenu(setLoad, search, type, genre)
+  const { changeCatalog, changePage, genreFilter, resetSearch, searchFn } = useMenu(setLoad, search, type, genre)
 
-  const closeModal = (): void => setAddModal(prev => ({ ...prev, state: false }))
-
-  const AddModalWork = useCallback(() => {
-    return addModal.state ? (
-      <Modal closeModal={closeModal}>
-        <AddModal
-          closeModal={closeModal}
-          onSubmit={async data => {
-            try {
-              const userName = String(user?.userName)
-              const itemId = addModal.item
-              await submitModalFirebase(results, itemId, userName)(data)
-              alert.success('okkkk')
-            } catch (e) {
-              console.log(e)
-              alert.error('noooooo')
-            } finally {
-              // closeModal(setAddModal)
-            }
-          }}
-        />
-      </Modal>
-    ) : null
-  }, [addModal.state])
+  const addModal = useModalForm(validation, { catalogType: 'doing' })
 
   return (
     <div>
@@ -83,7 +52,11 @@ const New: FC<SRRData> = ({ data }) => {
         />
       </Head>
       <div>
-        <AddModalWork />
+        <addModal.ModalFormHOC
+          ModalBox={ModalBox}
+          Fields={FormAddFields}
+          onSubmit={submitModalFirebase(results, addModal.modalData, String(user?.userName))}
+        />
         <Menu
           genreList={request.genreList}
           routerType={String(type)}
@@ -104,9 +77,7 @@ const New: FC<SRRData> = ({ data }) => {
             list={results ?? []}
             title={type as string}
             description="add + to your list"
-            onClick={(id: string | number) => {
-              setAddModal({ state: true, item: String(id) })
-            }}
+            onClick={(id: string | number) => addModal.openModal({ id })}
           />
         </LoadingHOC>
         <Pagination
