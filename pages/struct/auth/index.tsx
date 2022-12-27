@@ -12,6 +12,7 @@ import { AuthUseContext } from '../../_share/contexts'
 
 import { LoadingHOC } from 'pages/_share/components/Loadings/LoadingHOC'
 import { waitLoadingHOCAnim } from 'pages/_share/components/Loadings/LoadingHOC/animation'
+import { AuthFirebase } from 'fireCases/Auth'
 
 type IAuth = (Auth: IAuthFirebaseAPI) => FC<{ children: ReactNode }>
 
@@ -22,7 +23,7 @@ const Auth: IAuth = Auth =>
     const [user, dispatch] = useReducer(reducer, initialState)
 
     useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(async (userFirebase) => {
+      const unsubscribe = AuthFirebase.authState(async (userFirebase) => {
         await verifyAccess(userFirebase)
         await signInRule(userFirebase)
         await signOutRule(userFirebase)
@@ -67,7 +68,7 @@ const Auth: IAuth = Auth =>
       try {
         dispatch({ type: 'loading' })
         await waitLoadingHOCAnim(1000)
-        await Auth.signOut()
+        await AuthFirebase.signOut()
       } catch (e) {
         alert.error('Somenthing went wrong')
         if (user.load) dispatch({ type: 'unloading' })
