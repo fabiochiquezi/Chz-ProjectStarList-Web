@@ -1,7 +1,5 @@
 import { User as UserFirebase } from 'firebase/auth'
-import { IOverwrite } from '../../_helpers'
 
-export type User = IOverwrite<UserFirebase, { email: string | null }> & {
-  userName: string
-  email: string
-}
+export interface User { userName: string; email: string }
+export type UserAuth = UserFirebase
+export type UserFull = UserAuth & User

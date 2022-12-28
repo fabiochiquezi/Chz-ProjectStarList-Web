@@ -1,6 +1,13 @@
-export type { DBIndex, DBTime, DBUID } from './utils/DB'
+export type {
+  DBIndex,
+  DBTime,
+  DBUID,
+  fromDB,
+  fromDBwithTime,
+  fromDBwithIndex,
+  fromDBfull
+} from './_utils/DB'
 
-export type { User } from './entities/Users'
-export type { Serie } from './entities/CatalogSerie'
-export type { Movie } from './entities/CatalogMovie'
-
+export type { User, UserAuth, UserFull } from './entities/Users'
+export type { Serie, Movie, GenreWatch } from './entities/CatalogWatch'
+export type { GetList } from './aggregates/Catalog'

@@ -10,7 +10,7 @@ import { FC, ReactNode, useEffect, useReducer } from 'react'
 
 import { LoadingHOC } from '../../_share/components/Loadings/LoadingHOC'
 import { waitLoadingHOCAnim } from '../../_share/components/Loadings/LoadingHOC/animation'
-import { AuthFirebase } from '../../../events'
+import { AuthFirebase } from '../../../firebase'
 
 
 const Auth: FC<{ children: ReactNode }> = ({ children }) => {
