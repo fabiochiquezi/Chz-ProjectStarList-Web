@@ -1,6 +1,6 @@
-import { db } from '../../../../../firebase/settings'
+import { db } from '../../../settings'
 import { collection, getDocs } from 'firebase/firestore'
-import { formatToDB } from '../../../../../firebase/_helpers'
+import { formatToDB } from '../../../_helpers/'
 import { MovieDB, SerieDB } from 'core'
 
 export type getListIlldo = (

@@ -1,8 +1,9 @@
 import './styles.scss'
 import '@fontsource/roboto'
 import Head from 'next/head'
-import { Struct } from './struct'
+import { Auth } from './_auth'
 import { ReactElement } from 'react'
+import { Structure } from './_struct'
 import type { AppProps } from 'next/app'
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
@@ -11,9 +12,11 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
       <Head>
         <title>Star List</title>
       </Head>
-      <Struct>
-        <Component {...pageProps} />
-      </Struct>
+      <Auth>
+        <Structure>
+          <Component {...pageProps} />
+        </Structure>
+      </Auth>
     </>
   )
 }

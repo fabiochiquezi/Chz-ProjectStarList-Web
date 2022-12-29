@@ -1,4 +1,4 @@
-import { Movie, Serie } from 'core'
+import { Movie, Serie } from 'src/domain'
 import { useAlert } from '../../../_share/portals'
 
 type OnSubmitAddModal = (

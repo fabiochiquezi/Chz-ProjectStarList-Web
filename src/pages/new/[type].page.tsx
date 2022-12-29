@@ -1,8 +1,6 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import { Data } from './types'
 import dynamic from 'next/dynamic'
-import { Resp } from '../types'
 import { useRouter } from 'next/router'
 import { useAuth } from '../_share/contexts'
 import { FormikHOC } from '../_share/HOC'
@@ -13,15 +11,20 @@ import { LoadingHOC, ErrorDefault, LoadingPage, ModalBox } from '../_share/compo
 import useModalForm from '../_share/hooks/useModalForm'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import { FormAddFields, initialValues, validation } from './components/FormAdd'
+import { GenreWatch, GetList, Movie, Serie } from 'src/domain'
+import { Resp } from 'src/_helpers'
 
 const List = dynamic(
   async () => await import('./components/List').then(m => m.List),
   { loading: () => <LoadingPage /> }
 )
 
-interface SRRData {
-  data: Resp<Data<Movie | Serie>>
+export interface Data<T extends Movie | Serie> {
+  workList: GetList<T>
+  genreList: GenreWatch[]
 }
+
+interface SRRData { data: Resp<Data<Movie | Serie>> }
 
 const New: FC<SRRData> = ({ data }) => {
   const { ok, request } = data

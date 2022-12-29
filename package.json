@@ -4,17 +4,18 @@
   "private": true,
   "scripts": {
     "commit": "git-cz",
-    "emulators": "firebase emulators:start --import=./emulators-data",
-    "emulators:data": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
-    "development": "next dev",
-    "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\"",
-    "build": "rm -rf out && next build",
-    "start": "next start",
+    "emulators": "firebase emulators:start",
+    "emulators:impData": "firebase emulators:start --import=./emulators-data",
+    "emulators:expData": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watch",
     "test:unit": "jest --runInBand -- unit",
     "test:integration": "jest --runInBand -- integration",
-    "test:coverage": "jest --coverage --runInBand --watch"
+    "test:coverage": "jest --coverage --runInBand --watch",
+    "development": "next dev",
+    "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\"",
+    "build": "rm -rf out && next build",
+    "start": "next start"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",

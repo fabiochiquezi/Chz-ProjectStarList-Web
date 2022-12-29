@@ -1,4 +1,4 @@
-import { auth } from '../settings'
+import { auth } from '../../settings'
 import {
   GoogleAuthProvider,
   signInWithPopup,

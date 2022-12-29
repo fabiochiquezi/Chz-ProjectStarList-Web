@@ -1,17 +1,17 @@
-import { db } from '../../../../../firebase/settings'
+import { db } from '../../../settings'
 import { collection, getDocs } from 'firebase/firestore'
-import { formatToDB } from '../../../../../firebase/_helpers'
+import { formatToDB } from '../../../_helpers/'
 import { MovieDB, SerieDB } from 'core'
 
-export type GetCatalogDid = (
+export type GetListDoing = (
   userName: string
 ) => Promise<Array<MovieDB | SerieDB>>
 
-const getCatalogDid: GetCatalogDid = async userName => {
-  const collect = collection(db, 'catalog', userName, 'did')
+const getCatalogDoing: GetListDoing = async userName => {
+  const collect = collection(db, 'catalog', userName, 'doing')
   const querySnapshot = await getDocs(collect)
   const list = querySnapshot.docs.map<MovieDB | SerieDB>(formatToDB)
   return list
 }
 
-export { getCatalogDid }
+export { getCatalogDoing }

@@ -1,6 +1,6 @@
-import { db } from '../../../../firebase'
+import { db } from '../../../../../firebase/settings'
 import { collection, getDocs } from 'firebase/firestore'
-import { formatToDB } from '../../../../_share/helpers'
+import { formatToDB } from '../../../../../firebase/_helpers'
 import { MovieDB, SerieDB } from 'core'
 
 export type GetListDoing = (

@@ -1,4 +1,4 @@
-import { db } from '../settings'
+import { db } from '../../settings'
 import {
   doc,
   getDoc,

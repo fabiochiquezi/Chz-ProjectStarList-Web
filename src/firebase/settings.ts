@@ -21,12 +21,3 @@ if (isDevMode) {
   connectFirestoreEmulator(db, 'localhost', 8080)
   connectAuthEmulator(auth, 'http://localhost:9099')
 }
-
-// Cypress Config
-// declare global {
-//   interface Window {
-//     Cypress: any
-//   }
-// }
-// const isWindowDefinned = typeof window !== 'undefined'
-// const isntCypress = isWindowDefinned && window.Cypress === undefined
