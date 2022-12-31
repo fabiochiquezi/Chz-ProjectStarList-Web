@@ -2,7 +2,7 @@ import { LoadingPage, SettingMenu, BtnSignOut, BtnSignIn2, NavMenu, LoadingHOC }
 import { HeaderPrivate, PrivateStruct, HeaderPublic, PublicStruct, Footer } from './ui'
 import { isRouteMixed, isRoutePrivate } from '../routes'
 import { useLoadPage } from './hooks/usePageLoad'
-import { useAuth } from '../_share/contexts'
+import { useAuth } from '../_auth/useAuth'
 import { useRouter } from 'next/router'
 import { FC, ReactNode } from 'react'
 

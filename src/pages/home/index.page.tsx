@@ -1,5 +1,5 @@
 import { Thumb, BtnSignIn } from '../_share/components'
-import { useAuth } from '../_share/contexts'
+import { useAuth } from '../_auth/useAuth'
 import { Title, List, Hero } from './ui'
 import type { NextPage } from 'next'
 import catalog from './data.json'

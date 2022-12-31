@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import React, { FC } from 'react'
 import { paths } from '../routes'
-import { useAuth } from '../_share/contexts'
+import { useAuth } from '../_auth/useAuth'
 
 const Page404: FC = () => {
   const { user } = useAuth()
