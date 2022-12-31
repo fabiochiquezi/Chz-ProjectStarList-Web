@@ -1,5 +1,5 @@
 import { getUserNameFromEmail } from './../../_utils/getUserName'
-import { narrowString } from '../../../../_helpers/'
+import { narrowString } from '../../../../../libs/_helpers/'
 import { setUser } from './../../User/setUser'
 import { User } from 'firebase/auth'
 

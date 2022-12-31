@@ -1,5 +1,5 @@
 import { Movie, Serie } from 'src/domain'
-import { useAlert } from '../../../_share/portals'
+import { useAlert } from '../../../../../libs/frontend/portals'
 
 type OnSubmitAddModal = (
   postDid: any,

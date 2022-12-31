@@ -1,5 +1,5 @@
 import { AuthFirebase } from 'src/firebase'
-import { useAlert as callAlert } from 'src/pages/_share/portals'
+import { useAlert as callAlert } from '../../../../../libs/frontend/portals'
 
 type IUnloading = () => void
 export type ISignIn = (unloading: IUnloading) => () => Promise<void>

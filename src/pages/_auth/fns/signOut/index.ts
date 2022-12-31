@@ -1,6 +1,6 @@
 import { AuthFirebase } from 'src/firebase'
 import { waitLoadingHOCAnim } from 'src/pages/_share/components'
-import { useAlert as callAlert } from 'src/pages/_share/portals'
+import { useAlert as callAlert } from '../../../../../libs/frontend/portals'
 
 type ILoading = () => void
 type IUnloading = () => void

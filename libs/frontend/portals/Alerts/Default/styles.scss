@@ -1,0 +1,42 @@
+.portals-alert-anim-in {
+  animation: AlertAnimIn 300ms ease-in-out;
+
+  @keyframes AlertAnimIn {
+    from {
+      left: 48%;
+      opacity: 0;
+    }
+    to {
+      left: 50%;
+      opacity: 1;
+    }
+  }
+}
+
+.portals-alert-anim-out {
+  animation: AlertAnimOut 300ms forwards;
+
+  @keyframes AlertAnimOut {
+    from {
+      left: 50%;
+      opacity: 1;
+    }
+    to {
+      left: 48%;
+      opacity: 0;
+    }
+  }
+}
+
+@layer components {
+  .Alert {
+    @apply portals-alert-anim-in fixed left-[0px] ml-[5%] top-10 w-[90%] mx-auto text-left rounded py-4 px-4 z-50 flex justify-between items-center sm:max-w-[420px] sm:left-[50%] sm:ml-[-210px] cursor-pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  .Alert p {
+    @apply text-lg text-white mr-2 ml-2;
+  }
+  .Alert .close {
+    @apply relative left-1 anim-button;
+  }
+}

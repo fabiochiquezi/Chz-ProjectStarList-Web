@@ -12,7 +12,7 @@ import useModalForm from '../_share/hooks/useModalForm'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import { FormAddFields, initialValues, validation } from './components/FormAdd'
 import { GenreWatch, GetList, Movie, Serie } from 'src/domain'
-import { Resp } from 'src/_helpers'
+import { Resp } from '../../../libs/_helpers'
 
 const List = dynamic(
   async () => await import('./components/List').then(m => m.List),

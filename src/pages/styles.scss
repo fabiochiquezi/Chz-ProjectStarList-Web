@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../../libs/frontend/portals/Alerts/Default/styles';
+@import '../../libs/frontend/portals/PopUps/PopSave/styles';
+
 * {
   box-sizing: border-box;
 }
@@ -70,8 +73,6 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-@import '_share/portals/Alerts/Default/styles';
-@import '_share/portals/PopUps/PopSave/styles';
 @import '_share/hooks/useModal/styles';
 @import '_share/components/buttons/styles';
 @import '_share/components/Thumbs/styles';
