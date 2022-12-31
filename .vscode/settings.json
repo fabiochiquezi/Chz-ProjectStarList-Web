@@ -17,7 +17,7 @@
         ".editorconfig": true,
         ".prettierrc": true,
         "postcss.config.js": true,
-        "tailwind.config.js": true,
+        // "tailwind.config.js": true,
         // "package.json": true,
         ".env*": true,
         "design": true,
@@ -29,6 +29,7 @@
         "firebase.json":true,
         ".firebase": true,
         ".firebaserc": true,
+        "fireSettings.ts": true,
         "firestore.indexes.json": true,
         "firebase-debug.log": true,
         "firestore-debug.log": true,
@@ -50,10 +51,7 @@
         "serviceAccount.json": true,
         "cypress": true,
         // Project
-        "src/pages/_document.page.tsx": true,
-        "src/pages/_app.page.tsx": true,
         // "pages/new/api/external/keys.example.ts": true,
-        "pages/_app.tsx": true,
         "public": true,
         "api/keys.ts": true,
         ".babelrc": true,
@@ -61,6 +59,11 @@
         "withTwin.js": true,
         "types": true,
         "commitlint.config.js": true,
-        ".husky": true
+        ".husky": true,
+        "src/pages/_document.page.tsx": true,
+        "src/pages/_app.page.tsx": true,
+        "src/pages/home.page.ts": true,
+        "src/pages/404.page.ts": true,
+        "src/pages/error.page.ts": true
     }
 }

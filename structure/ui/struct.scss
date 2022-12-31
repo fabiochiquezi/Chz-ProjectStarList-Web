@@ -1,0 +1,68 @@
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Roboto';
+  overflow-x: hidden !important;
+  color: #fff;
+}
+a {
+  text-decoration: none;
+  transition: all 250ms ease;
+}
+a:active {
+  transition: transform 50ms ease;
+  transform: scale(0.95);
+}
+/* ScrollBar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgb(237, 237, 237);
+  border-radius: 40px;
+}
+::-webkit-scrollbar-track {
+  background-color: #39577f;
+}
+/* Placeholder */
+::-webkit-input-placeholder {
+  color: red;
+  font-size: 15px;
+}
+:-ms-input-placeholder {
+  color: red;
+  font-size: 15px;
+}
+::placeholder {
+  color: red;
+  font-size: 15px;
+}
+textarea:focus,
+input:focus,
+select:focus {
+  outline: none;
+}
+input,
+select,
+textarea {
+  color: #fff;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  color: #fff;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px rgb(23 23 23) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}

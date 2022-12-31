@@ -1,5 +1,5 @@
+import { Search as SearchInput } from '../../../../../../libs/frontend/components'
 import { FC, useState } from 'react'
-import { Search as SearchInput } from '../../../../_share/components'
 
 export type ISearch = FC<{
   onSearch: (search: string) => void,

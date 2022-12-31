@@ -2,7 +2,7 @@ import React, { Dispatch, FC, SetStateAction } from 'react'
 import { List } from '../List'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
-import { LoadingPage } from 'pages/_share/components'
+import { LoadingPage } from '../../../../../libs/frontend/components'
 import { IList } from 'pages/[user]/index.page'
 
 interface props {

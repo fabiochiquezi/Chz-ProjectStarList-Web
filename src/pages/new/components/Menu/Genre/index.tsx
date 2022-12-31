@@ -1,5 +1,5 @@
+import { SelectButton } from '../../../../../../libs/frontend/components'
 import { Genre as IGenreDomain } from '../../../../new/types'
-import { SelectButton } from '../../../../_share/components'
 import React, { ChangeEvent, FC } from 'react'
 
 type IGenre = FC<{

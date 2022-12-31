@@ -1,7 +1,7 @@
+import { Select } from '../../../../../libs/frontend/components'
 import { FormikProps } from 'formik'
-import { Select } from '../../../_share/components'
-import { FC } from 'react'
 import * as Yup from 'yup'
+import { FC } from 'react'
 
 export const validation = Yup.object({
   catalogType: Yup.string().required('Required')

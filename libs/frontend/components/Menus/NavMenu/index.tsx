@@ -1,6 +1,6 @@
 import Router from 'next/router'
 import React, { FC } from 'react'
-import { paths } from '../../../../routes'
+import { paths } from '../../../../../src/pages/routes'
 
 export type INavMenu = FC<{
   route: string

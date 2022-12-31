@@ -1,4 +1,4 @@
-import { SelectButton } from '../../../../_share/components'
+import { SelectButton } from '../../../../../../libs/frontend/components'
 import React, { ChangeEvent, FC } from 'react'
 
 export type ICatalog = FC<{
