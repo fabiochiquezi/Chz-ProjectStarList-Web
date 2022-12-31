@@ -1,5 +1,10 @@
 import React from 'react'
-import { ILogoProps } from '../type'
+
+export interface ILogoProps {
+  className?: string
+  width?: string,
+  height?: string
+}
 
 const Logo: React.FC<ILogoProps> = ({ className, width = '132', height = '35' }) => (
   <svg

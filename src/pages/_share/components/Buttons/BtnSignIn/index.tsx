@@ -1,7 +1,7 @@
 import { FC, ReactEventHandler, useState } from 'react'
 import { GoogleIcon } from './GoogleIcon'
 import { IBtnProps } from '../type'
-import { SpinIcon } from '../../../assets'
+import { SpinIcon } from '../../../../../../libs/frontend/assets'
 import { IPresentComponent } from 'pages/types'
 
 export type IBtnSignIn = FC<IBtnProps & IPresentComponent & {

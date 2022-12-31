@@ -1,5 +1,5 @@
 import { Formik, FormikProps } from 'formik'
-import { SpinIcon } from '../../../_share/assets'
+import { SpinIcon } from '../../assets'
 import { useState, FC } from 'react'
 
 export type IFormHOC = FC<{

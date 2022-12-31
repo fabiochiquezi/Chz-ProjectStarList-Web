@@ -1,6 +1,6 @@
 import { IBtnProps } from '../type'
 import { GoogleIcon } from './GoogleIcon'
-import { SpinIcon } from '../../../assets'
+import { SpinIcon } from '../../../../../../libs/frontend/assets'
 import { IPresentComponent } from 'pages/types'
 import React, { FC, ReactEventHandler, useState } from 'react'
 

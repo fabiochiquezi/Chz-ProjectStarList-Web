@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import { CloseIcon } from '../../../assets'
+import { CloseIcon } from '../../../../../../libs/frontend/assets'
 
 export type IModalBox = FC<{
   closeModal: () => void

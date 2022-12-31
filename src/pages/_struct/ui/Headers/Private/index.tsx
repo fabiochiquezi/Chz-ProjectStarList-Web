@@ -1,9 +1,10 @@
 import Link from 'next/link'
+import { Logo } from '../../Logo'
 import { useEffect, useState } from 'react'
 import { BtnHamburger } from './BtnHamburger'
 import { paths } from '../../../../routes'
 import { IHeaderPrivate } from '../../../design'
-import { Logo } from '../../../../_share/assets'
+
 
 const HeaderPrivate: IHeaderPrivate = ({ NavMenu, SettingMenu }) => {
   const [menu, setMenu] = useState(false)

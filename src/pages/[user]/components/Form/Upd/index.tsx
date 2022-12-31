@@ -1,7 +1,7 @@
 import { Formik } from 'formik'
 import { validation } from './validation'
 import { Select } from '../../../../_share/components'
-import { SpinIcon } from '../../../../_share/assets'
+import { SpinIcon } from '../../../../../../libs/frontend/assets'
 import React, { FC, ReactElement, useRef, useState } from 'react'
 
 interface AddModalType {

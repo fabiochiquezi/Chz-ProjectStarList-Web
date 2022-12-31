@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { SpinIcon } from '../../../../_share/assets'
+import { SpinIcon } from '../../../../../../libs/frontend/assets'
 
 const DeleteItem: FC = () => {
   const [loading, setLoading] = useState(false)

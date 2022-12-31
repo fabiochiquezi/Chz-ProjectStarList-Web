@@ -4,6 +4,7 @@
 
 @import '../../libs/frontend/portals/Alerts/Default/styles';
 @import '../../libs/frontend/portals/PopUps/PopSave/styles';
+@import '../../libs/frontend/hooks/useModal/styles';
 
 * {
   box-sizing: border-box;
@@ -73,7 +74,6 @@ select:-webkit-autofill:focus {
   transition: background-color 5000s ease-in-out 0s;
 }
 
-@import '_share/hooks/useModal/styles';
 @import '_share/components/buttons/styles';
 @import '_share/components/Thumbs/styles';
 @import '_share/components/Loadings/LoadingHOC/styles/index';

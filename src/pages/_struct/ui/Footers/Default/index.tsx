@@ -1,8 +1,8 @@
 import { DiscordIcon, GithubIcon, WhatsAppIcon } from './icons'
-import { Logo } from '../../../../_share/assets'
 import { IFooter } from '../../../design'
 import { getTimeNow } from './getDate'
 import { Banner } from './Banner'
+import { Logo } from '../../Logo'
 
 const Footer: IFooter = () => (
   <div

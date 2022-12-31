@@ -1,4 +1,4 @@
-import { SpinIcon } from '../../../assets'
+import { SpinIcon } from '../../../../../../libs/frontend/assets'
 import React, { FC } from 'react'
 
 export type ILoadingPage = FC<{

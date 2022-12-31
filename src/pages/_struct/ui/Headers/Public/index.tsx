@@ -1,8 +1,8 @@
 import Link from 'next/link'
+import { Logo } from '../../Logo'
 import { BtnGitHub } from './BtnGitHub'
 import { paths } from '../../../../routes'
 import { IHeaderPublic } from '../../../design'
-import { Logo } from '../../../../_share/assets'
 
 const HeaderPublic: IHeaderPublic = ({ BtnSignIn }) => (
   <header className="absolute w-full" data-testid="HeaderPublic">

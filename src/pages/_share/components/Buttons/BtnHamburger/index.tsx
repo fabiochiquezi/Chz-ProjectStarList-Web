@@ -1,4 +1,4 @@
-import { CloseIcon } from '../../../assets'
+import { CloseIcon } from '../../../../../../libs/frontend/assets'
 import { HamburgerIcon } from './icons'
 import { FC } from 'react'
 import { IBtnProps } from '../type'
