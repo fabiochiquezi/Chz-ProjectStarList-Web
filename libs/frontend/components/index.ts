@@ -1,3 +1,5 @@
+
+
 export { ModalBox } from './Boxes/SimpleModalBox'
 export type { IModalBox } from './Boxes/SimpleModalBox'
 
@@ -33,6 +35,8 @@ export type { ISelectButton } from './Forms/Select/Button/index'
 export { Select } from './Forms/Select/Default'
 export type { ISelectDefault } from './Forms/Select/Default/index'
 export type { ISelectProps } from './Forms/Select/type'
+
+export { SEO } from './SEO/default'
 
 export { LoadingPage } from './Loadings/LoadingPage'
 export type { ILoadingPage } from './Loadings/LoadingPage/index'

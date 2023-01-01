@@ -1,11 +1,11 @@
 import { FC } from 'react'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useList, useModal, validCatalogURI } from './fns'
-import { Modal, SimpleForm, LoadingHOC } from '../.././../libs/frontend/components'
+import { Modal, SimpleForm, LoadingHOC, SEO } from '../.././../libs/frontend/components'
 import { Menu, UpdateItem, DeleteItem, List } from './components'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { settingsSEO } from '../settings'
 
 export type IList = Array<Movie | Serie> | null
 
@@ -20,13 +20,7 @@ const Catalog: FC = () => {
 
   return (
     <div>
-      <Head>
-        <title>Star List | My List</title>
-        <meta
-          name="description"
-          content="See all of your memories about movies, series, animations, books and games"
-        />
-      </Head>
+      <SEO {...settingsSEO.catalog} />
       <main>
         <Menu userName={userName} catalogType={catalogURI} />
         <LoadingHOC data={list}>

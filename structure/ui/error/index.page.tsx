@@ -1,12 +1,11 @@
-import Head from 'next/head'
+import { SEO } from 'libs/frontend/components'
 import { NextPage } from 'next'
+import { settingsSEO } from 'src/pages/settings'
+
 
 const ErrorPage: NextPage = () => (
   <div>
-    <Head>
-      <title>Star List | Error</title>
-    </Head>
-
+    <SEO title={settingsSEO.error.title} />
     <main>
       <div
         className="relative h-[50vh] lg:h-[50vh] w-full"

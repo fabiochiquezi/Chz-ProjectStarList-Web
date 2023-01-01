@@ -1,9 +1,9 @@
-import { Thumb, BtnSignIn } from '../../../libs/frontend/components'
+import { Thumb, BtnSignIn, SEO } from '../../../libs/frontend/components'
+import { settingsSEO } from 'src/pages/settings'
 import { useAuth } from '../_auth/useAuth'
 import { Title, List, Hero } from './ui'
 import type { NextPage } from 'next'
 import catalog from './data.json'
-import Head from 'next/head'
 
 const Home: NextPage = () => {
   const { signIn } = useAuth()
@@ -12,13 +12,10 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <Head>
-        <title>Star List | Home</title>
-        <meta
-          name="description"
-          content="Create your album of memories about movies, series, animations, books and games"
-        />
-      </Head>
+      <SEO
+        title={settingsSEO.home.title}
+        description={settingsSEO.home.description}
+      />
       <main>
         <Hero
           BtnSignIn={btnSignIn}

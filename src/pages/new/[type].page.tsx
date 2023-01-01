@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Resp } from '../../../libs/helpers'
@@ -12,7 +11,8 @@ import { GenreWatch, GetList, Movie, Serie } from 'src/domain'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import useModalForm from '../../../libs/frontend/hooks/useModalForm'
 import { FormAddFields, initialValues, validation } from './components/FormAdd'
-import { LoadingHOC, ErrorDefault, LoadingPage, ModalBox } from '../../../libs/frontend/components'
+import { LoadingHOC, ErrorDefault, LoadingPage, ModalBox, SEO } from '../../../libs/frontend/components'
+import { settingsSEO } from '../settings'
 
 const List = dynamic(
   async () => await import('./components/List').then(m => m.List),
@@ -38,13 +38,7 @@ const New: FC<SRRData> = ({ data }) => {
 
   return (
     <div>
-      <Head>
-        <title>Star List | New Works</title>
-        <meta
-          name="description"
-          content="Search for new works to add to your list"
-        />
-      </Head>
+      <SEO {...settingsSEO.new} />
       <div>
         <addModal.ModalFormHOC
           Fields={FormAddFields}

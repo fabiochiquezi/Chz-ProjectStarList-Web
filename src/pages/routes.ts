@@ -1,5 +1,5 @@
-
 export const routes = {
+  // Structure
   notFound: {
     path: '/404',
     route: '/404',
@@ -15,6 +15,7 @@ export const routes = {
     route: '/home',
     state: 'public'
   },
+  // Project
   newMovies: {
     path: '/new/movies',
     route: '/new/[type]',
@@ -57,3 +58,4 @@ export const routes = {
   }
 }
 
+export const homeSystem = routes.newSeries
