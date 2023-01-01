@@ -52,7 +52,7 @@
         "cypress": true,
         // Project
         // "pages/new/api/external/keys.example.ts": true,
-        "public": true,
+        // "public": true,
         "api/keys.ts": true,
         ".babelrc": true,
         "babel-plugin-macros.config.js": true,

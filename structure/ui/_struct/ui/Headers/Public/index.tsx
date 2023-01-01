@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { Logo } from '../../Logo'
 import { BtnGitHub } from './BtnGitHub'
 import { IHeaderPublic } from '../../../design'
+import { Logo } from '../../../../../../src/pages/Logo'
 import { routes } from '../../../../../../src/pages/routes'
 
 const HeaderPublic: IHeaderPublic = ({ BtnSignIn }) => (

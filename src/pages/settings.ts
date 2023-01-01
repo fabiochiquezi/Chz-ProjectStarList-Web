@@ -1,5 +1,4 @@
 export const settingsSEO = {
-  // Structure
   home: {
     title: 'Star List | Home',
     description: 'Create your album of memories about movies, series, animations, books and games'
@@ -10,7 +9,6 @@ export const settingsSEO = {
   404: {
     title: 'Star List | 404'
   },
-  // Project
   new: {
     title: 'Star List | New Works',
     description: 'Search for new works to add to your list'

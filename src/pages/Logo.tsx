@@ -6,7 +6,7 @@ export interface ILogoProps {
   height?: string
 }
 
-const Logo: React.FC<ILogoProps> = ({ className, width = '132', height = '35' }) => (
+export const Logo: React.FC<ILogoProps> = ({ className, width = '132', height = '35' }) => (
   <svg
     width={width}
     height={height}
@@ -23,5 +23,3 @@ const Logo: React.FC<ILogoProps> = ({ className, width = '132', height = '35' })
   </svg>
 )
 
-
-export { Logo }
