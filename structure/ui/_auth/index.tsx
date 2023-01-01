@@ -6,7 +6,8 @@ import { FC, ReactNode, useEffect } from 'react'
 import { useReducerAuth } from './useReducerAuth'
 import { ProtectRoute } from './components/Protect'
 import { LoadingHOC } from '../../../libs/frontend/components'
-import { isCurrentPathPrivate, paths } from '../../../src/pages/routes'
+import { routes } from '../../../src/pages/routes'
+import { isCurrentPathPrivate } from 'libs/helpers/front/path'
 
 const Auth: FC<{ children: ReactNode }> = ({ children }) => {
   const router = useRouter()
@@ -17,7 +18,7 @@ const Auth: FC<{ children: ReactNode }> = ({ children }) => {
 
   type IRulePrivateRoute = (userFire: UserAuth | null) => Promise<boolean>
   const rulePrivateRoute: IRulePrivateRoute = async userFire =>
-    (isCurrentPathPrivate() && !userFire) && await router.push(paths.login)
+    (isCurrentPathPrivate(routes) && !userFire) && await router.push(routes.home.path)
 
   type IRuleUserOn = (userFire: UserAuth | null) => Promise<unknown>
   const ruleUserOn: IRuleUserOn = async userFire =>

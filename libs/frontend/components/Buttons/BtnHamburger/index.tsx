@@ -1,7 +1,7 @@
 import { CloseIcon } from '../../../assets'
 import { HamburgerIcon } from './icons'
-import { FC } from 'react'
 import { IBtnProps } from '../type'
+import { FC } from 'react'
 
 export type IBtnHamburger = FC<IBtnProps & {
   opened: boolean

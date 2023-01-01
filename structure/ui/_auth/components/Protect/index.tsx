@@ -1,6 +1,7 @@
 import React from 'react'
+import { routes } from 'src/pages/routes'
 import { User } from '../../../../domain'
-import { isRouteMixed, isRoutePrivate, isRoutePublic } from '../../../../../src/pages/routes'
+import { isRouteMixed, isRoutePrivate, isRoutePublic } from 'libs/helpers/front/route'
 
 interface IProtectRoute {
   children: React.ReactNode
@@ -10,9 +11,9 @@ interface IProtectRoute {
 
 const ProtectRoute = (props: IProtectRoute): any => {
   const { children, user, route } = props
-  const isPublic = isRoutePublic(route)
-  const isMixed = isRouteMixed(route)
-  const isPrivate = isRoutePrivate(route)
+  const isPublic = isRoutePublic(routes)(route)
+  const isMixed = isRouteMixed(routes)(route)
+  const isPrivate = isRoutePrivate(routes)(route)
 
   if (isPublic) return children
   if (isPrivate && !user) return null

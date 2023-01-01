@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import Head from 'next/head'
 import React, { FC } from 'react'
-import { paths } from '../routes'
 import { useAuth } from '../_auth/useAuth'
+import { routes } from 'src/pages/routes'
 
 const Page404: FC = () => {
   const { user } = useAuth()
-  const homeLink = user ? paths.newMovies : paths.login
+  const homeLink = user ? routes.newMovies.path : routes.home.path
 
   return (
     <div>

@@ -3,8 +3,7 @@ import { Logo } from '../../Logo'
 import { useEffect, useState } from 'react'
 import { BtnHamburger } from './BtnHamburger'
 import { IHeaderPrivate } from '../../../design'
-import { paths } from '../../../../../../src/pages/routes'
-
+import { routes } from 'src/pages/routes'
 
 const HeaderPrivate: IHeaderPrivate = ({ NavMenu, SettingMenu }) => {
   const [menu, setMenu] = useState(false)
@@ -24,7 +23,7 @@ const HeaderPrivate: IHeaderPrivate = ({ NavMenu, SettingMenu }) => {
       data-testid="HeaderPrivate"
       className="flex justify-center lg:justify-between items-center container mx-auto px-4 py-8 lg:pt-8 mb-8 lg:mb-0 h-[43px] absolute sm:left-2/4 sm:-ml-[320px] md:-ml-[384px] lg:-ml-[512px] xl:-ml-[640px] 2xl:-ml-[768px] bg-transparent"
     >
-      <Link href={paths.newMovies}>
+      <Link href={routes.newMovies.path}>
         <a className="logo z-10 hover:opacity-80">
           <Logo />
         </a>

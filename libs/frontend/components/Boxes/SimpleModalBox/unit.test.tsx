@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { SimpleModalBox } from './index'
+import { ModalBox } from './index'
 
 describe('Modal', () => {
   const props = {
@@ -8,7 +8,7 @@ describe('Modal', () => {
   }
 
   test('data', () => {
-    render(<SimpleModalBox {...props}><p>test</p></SimpleModalBox>)
+    render(<ModalBox {...props}><p>test</p></ModalBox>)
     const el = screen.getByTestId('SimpleForm')
     const children = screen.getByText('test')
     expect(el).toBeInTheDocument()
@@ -16,7 +16,7 @@ describe('Modal', () => {
   })
 
   test('closeModal click', () => {
-    render(<SimpleModalBox {...props}><p>test</p></SimpleModalBox>)
+    render(<ModalBox {...props}><p>test</p></ModalBox>)
     const el = screen.getByTestId('closeIcon')
     if (el) fireEvent.click(el)
     expect(props.closeModal).toBeCalledTimes(1)

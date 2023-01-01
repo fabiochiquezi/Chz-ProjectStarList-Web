@@ -1,8 +1,8 @@
 import { FC, ReactEventHandler, useState } from 'react'
+import { IPresentComponent } from '../../types'
+import { SpinIcon } from '../../../assets'
 import { GoogleIcon } from './GoogleIcon'
 import { IBtnProps } from '../type'
-import { SpinIcon } from '../../../assets'
-import { IPresentComponent } from 'pages/types'
 
 export type IBtnSignIn = FC<IBtnProps & IPresentComponent & {
   onClick: (e?: ReactEventHandler) => unknown
