@@ -1,7 +1,7 @@
-import React from 'react'
+import { isRouteMixed, isRoutePrivate, isRoutePublic } from 'libs/helpers/front/route'
 import { routes } from 'src/pages/routes'
 import { User } from '../../../../domain'
-import { isRouteMixed, isRoutePrivate, isRoutePublic } from 'libs/helpers/front/route'
+import React from 'react'
 
 interface IProtectRoute {
   children: React.ReactNode

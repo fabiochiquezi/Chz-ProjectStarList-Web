@@ -38,22 +38,22 @@ export const routes = {
   user: {
     path: (userName: string) => `/${userName}`,
     route: '/[user]',
-    state: 'private'
+    state: 'mixed'
   },
   userDoing: {
     path: (userName: string) => `/${userName}?catalog=doing`,
     route: '/[user]',
-    state: 'private'
+    state: 'mixed'
   },
   userIlldo: {
     path: (userName: string) => `/${userName}?catalog=illdo`,
     route: '/[user]',
-    state: 'private'
+    state: 'mixed'
   },
   userDone: {
     path: (userName: string) => `/${userName}?catalog=done`,
     route: '/[user]',
-    state: 'private'
+    state: 'mixed'
   }
 }
 

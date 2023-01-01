@@ -1,7 +1,7 @@
-type IGetRoutes = (routes: Record<string, string>) =>
+type IGetRoutes = (routes: Record<any, any>) =>
   Array<string | ((route: string) => string)>
 
-type ITestRoute = (routeList: Record<string, string>) =>
+type ITestRoute = (routeList: Record<any, any>) =>
   (route: string) => boolean
 
 interface IRoute {
@@ -11,7 +11,7 @@ interface IRoute {
   state: string
 }
 
-const routesToArray = <T>(obj: Record<string, string>): T => Object
+const routesToArray = <T>(obj: Record<any, any>): T => Object
   .entries(obj)
   .map((el: any) => ({ name: el[0], ...el[1] })) as T
 
