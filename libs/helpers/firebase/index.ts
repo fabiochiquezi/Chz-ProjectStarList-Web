@@ -1,4 +1,4 @@
-export { formatToDB } from './format/formatToDB'
+export { formatDataFromDB } from './format/formatDataFromDB'
 
 export { getFireFns } from './functions'
 export { signInWithGoogle } from './signIn'

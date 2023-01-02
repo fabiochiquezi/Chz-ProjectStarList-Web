@@ -2,9 +2,9 @@ import { DocumentData } from 'firebase/firestore'
 
 type IGeneralFormat = <T>(doc: DocumentData) => T
 
-const formatToDB: IGeneralFormat = doc => {
+const formatDataFromDB: IGeneralFormat = doc => {
   const data = doc.data()
-  return { ...data, firebaseUID: doc.id }
+  return { ...data, uid: doc.id }
 }
 
-export { formatToDB }
+export { formatDataFromDB }
