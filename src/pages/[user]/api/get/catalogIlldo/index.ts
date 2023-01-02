@@ -1,6 +1,6 @@
 import { db } from '../../../../../../fireSettings'
 import { collection, getDocs } from 'firebase/firestore'
-import { formatToDB } from '../../../../../../libs/helpers'
+import { formatDataFromDB } from '../../../../../../libs/helpers'
 import { MovieDB, SerieDB } from 'core'
 
 export type getListIlldo = (
@@ -10,7 +10,7 @@ export type getListIlldo = (
 const getCatalogIlldo: getListIlldo = async (userName: string) => {
   const collect = collection(db, 'catalog', userName, 'illdo')
   const querySnapshot = await getDocs(collect)
-  const list = querySnapshot.docs.map<MovieDB | SerieDB>(formatToDB)
+  const list = querySnapshot.docs.map<MovieDB | SerieDB>(formatDataFromDB)
   return list
 }
 
