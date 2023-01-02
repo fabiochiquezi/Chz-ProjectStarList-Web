@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "commit": "git-cz",
+    "//": "----------------------------------------------------------------------------------------",
     "emulators": "firebase emulators:start",
     "emulators:impData": "firebase emulators:start --import=./emulators-data",
     "emulators:expData": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
@@ -13,9 +14,9 @@
     "test:integration": "jest --runInBand -- integration",
     "test:coverage": "jest --coverage --runInBand --watch",
     "development": "next dev",
-    "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\"",
+    "start": "next start",
     "build": "rm -rf out && next build",
-    "start": "next start"
+    "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\""
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
@@ -32,6 +33,7 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.7",
     "@babel/plugin-syntax-typescript": "^7.20.0",
     "@babel/preset-typescript": "^7.18.6",
     "@commitlint/cli": "^17.3.0",

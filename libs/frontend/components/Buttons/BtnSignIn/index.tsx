@@ -22,8 +22,7 @@ const BtnSignIn: IBtnSignIn = ({ className = '', onClick }) => {
       onClick={handleOnClick}
       data-testid="BtnSignIn"
       disabled={!!loading}
-      className={`btn-transparent py-[12px] px-8 border-orange-400 text-orange-400
-            flex justify-center items-center text-lg h-[56px] w-[166px] ${className}`}
+      className={`btn-transparent py-[12px] px-8 border-orange-400 text-orange-400 flex justify-center items-center text-lg h-[56px] w-[166px] ${className}`}
     >
       {loading ? BtnLoad : BtnIcon}
     </button>

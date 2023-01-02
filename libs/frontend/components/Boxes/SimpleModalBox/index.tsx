@@ -7,11 +7,10 @@ export type IModalBox = FC<{
   children?: ReactNode
 } & IPresentComponent>
 
-const ModalBox: IModalBox = ({ children, closeModal, className, ref }) => (
+const ModalBox: IModalBox = ({ children, closeModal, className }) => (
   <div
     data-testid="SimpleForm"
     className={`absolute w-[316px] mx-auto z-50 left-[50%] ml-[-158px] top-[10%] sm:max-w-[440px] sm:ml-[-220px] sm:top-[10%] sm:w-full md:max-w-[600px] md:ml-[-300px] md:top-[20%] lg:top-[25%] modal-anim-2 ${className}`}
-    ref={ref || null}
   >
     <div
       onClick={closeModal}
