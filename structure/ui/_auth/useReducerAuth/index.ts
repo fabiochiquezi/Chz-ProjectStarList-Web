@@ -1,20 +1,14 @@
+import { waitLoadingHOCAnim } from '../../../../libs/frontend/components'
+import { redirectToSystem } from './redirectToSystem'
+import { AuthFirebase } from '../../../events'
+import { User } from '../../../domain'
+import { signOut } from './signOut'
 import { useReducer } from 'react'
-import { User } from '../../domain'
-import { AuthFirebase } from '../../events'
-import { redirectToSystem, signIn, signOut } from './fns'
-import { waitLoadingHOCAnim } from '../../../libs/frontend/components'
+import { signIn } from './signIn'
 
-export interface IState {
-  data: User | null | undefined,
-  load: boolean
-}
-
-export interface IAction {
-  type: string,
-  payload?: User | null | undefined
-}
-
-export type IUseUser = () => {
+interface IState { data: User | null | undefined, load: boolean }
+interface IAction { type: string, payload?: User | null | undefined }
+type IUseUser = () => {
   signIn: () => Promise<void>
   signOut: () => Promise<void>
   defineNoUser: () => Promise<void>;
@@ -27,6 +21,7 @@ export const useReducerAuth: IUseUser = () => {
   const initialState: IState = { data: undefined, load: true }
   const [user, dispatch] = useReducer(reducer, initialState)
   const { getUserNameFromEmail } = AuthFirebase
+  const getUserName = (userFire: any): string => getUserNameFromEmail(String(userFire.email))
 
   function reducer(state: IState, action: IAction): any {
     const payload = action.payload
@@ -47,6 +42,7 @@ export const useReducerAuth: IUseUser = () => {
 
   const unloading = (): void => user.load && dispatch({ type: 'unloading' })
   const loading = (): void => dispatch({ type: 'loading' })
+
   const signInFn = signIn(unloading)
   const signOutFn = signOut(loading, unloading)
 
@@ -54,11 +50,10 @@ export const useReducerAuth: IUseUser = () => {
     await waitLoadingHOCAnim(1000)
     dispatch({ type: 'defineNoUser' })
   }
-
   const defineUser = async (userFire: any): Promise<void> => {
     loading()
     await waitLoadingHOCAnim(1000)
-    const payload = { ...userFire, userName: getUserNameFromEmail(String(userFire.email)) }
+    const payload = { ...userFire, userName: getUserName(userFire) }
     dispatch({ type: 'defineUser', payload })
     await redirectToSystem(userFire)
     unloading()

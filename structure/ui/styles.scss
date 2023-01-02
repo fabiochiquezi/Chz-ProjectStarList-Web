@@ -16,9 +16,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Roboto';
   overflow-x: hidden !important;
-  color: #fff;
 }
 a {
   text-decoration: none;
@@ -27,30 +25,6 @@ a {
 a:active {
   transition: transform 50ms ease;
   transform: scale(0.95);
-}
-/* ScrollBar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-thumb {
-  background-color: rgb(237, 237, 237);
-  border-radius: 40px;
-}
-::-webkit-scrollbar-track {
-  background-color: #39577f;
-}
-/* Placeholder */
-::-webkit-input-placeholder {
-  color: red;
-  font-size: 15px;
-}
-:-ms-input-placeholder {
-  color: red;
-  font-size: 15px;
-}
-::placeholder {
-  color: red;
-  font-size: 15px;
 }
 textarea:focus,
 input:focus,

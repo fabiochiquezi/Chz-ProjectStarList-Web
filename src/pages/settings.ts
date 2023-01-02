@@ -1,4 +1,7 @@
 export const settingsSEO = {
+  default: {
+    title: 'Star List'
+  },
   home: {
     title: 'Star List | Home',
     description: 'Create your album of memories about movies, series, animations, books and games'

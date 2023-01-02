@@ -1,14 +1,18 @@
-import { Thumb, BtnSignIn, SEO } from '../../../libs/frontend/components'
+import { BtnSignIn, SEO } from '../../../libs/frontend/components'
 import { settingsSEO } from 'src/pages/settings'
 import { useAuth } from '../_auth/useAuth'
-import { Title, List, Hero } from './ui'
-import type { NextPage } from 'next'
-import catalog from './data.json'
+import { FC, ReactNode } from 'react'
+import { Hero } from './Hero'
 
-const Home: NextPage = () => {
+type IHomeStructure = FC<{
+  children: ReactNode
+  heroBgDesktop: string
+  heroBgMobile: string
+}>
+
+const HomeStructure: IHomeStructure = ({ children, heroBgDesktop, heroBgMobile }) => {
   const { signIn } = useAuth()
   const btnSignIn = <BtnSignIn onClick={signIn} />
-  const title = <Title title="YOUR VIRTUAL MEMORY LIST" description="From watching, reading or playing..." />
 
   return (
     <div>
@@ -21,15 +25,13 @@ const Home: NextPage = () => {
           BtnSignIn={btnSignIn}
           title="Your' list of great works souvenirs"
           description="Mount your own list of movies, cartoons, series, books and games."
+          backgroundDesktop={heroBgDesktop}
+          backgroundMobile={heroBgMobile}
         />
-        <List
-          Title={title}
-          list={catalog}
-          Thumb={(props) => <Thumb {...props} />}
-        />
+        {children}
       </main>
     </div>
   )
 }
 
-export default Home
+export { HomeStructure }

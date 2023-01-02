@@ -62,7 +62,7 @@
         ".husky": true,
         "src/pages/_document.page.tsx": true,
         "src/pages/_app.page.tsx": true,
-        "src/pages/home.page.ts": true,
+        // "src/pages/home.page.ts": true,
         "src/pages/404.page.ts": true,
         "src/pages/error.page.ts": true
     }

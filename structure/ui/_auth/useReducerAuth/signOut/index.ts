@@ -9,7 +9,8 @@ export type ISignOut = (loading: ILoading, unloading: IUnloading) => () => Promi
 export const signOut: ISignOut = (loading, unloading) => async () => {
   loading()
   await waitLoadingHOCAnim(1000)
-  await AuthFirebase.signOut()
+  await AuthFirebase
+    .signOut()
     .catch(() => {
       callAlert().error('Somenthing went wrong')
       unloading()

@@ -1,12 +1,20 @@
-import { IHero } from '../../design'
+import { FC, ReactElement } from 'react'
 import { Section } from './styles'
 
-const Hero: IHero = ({ title, description, BtnSignIn }) => (
+export type IHero = FC<{
+  title: string,
+  description: string,
+  BtnSignIn: ReactElement
+  backgroundDesktop: string
+  backgroundMobile: string
+}>
+
+const Hero: IHero = ({ title, description, BtnSignIn, backgroundDesktop, backgroundMobile }) => (
   <Section
     data-testid="Hero"
     className="skeleton"
-    backgroundDesktop="./banners/hero-desktop.jpg"
-    backgroundMobile="./banners/hero-mobile.jpg"
+    backgroundDesktop={backgroundDesktop}
+    backgroundMobile={backgroundMobile}
   >
     <div className="overlayAll"></div>
     <div className="overlayBottom"></div>
