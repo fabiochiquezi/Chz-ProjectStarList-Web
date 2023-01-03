@@ -1,8 +1,9 @@
+import { BtnOutline } from '../../../../libs/frontend/components/Buttons/BtnOutline'
+import { IPresentComponent } from '../../../../libs/frontend/components/types'
+import { IBtnProps } from '../../../../libs/frontend/components/Buttons/type'
+import { SpinIcon } from '../../../../libs/frontend/assets'
 import { FC, ReactEventHandler, useState } from 'react'
-import { IPresentComponent } from '../../types'
-import { SpinIcon } from '../../../assets'
 import { GoogleIcon } from './GoogleIcon'
-import { IBtnProps } from '../type'
 
 export type IBtnSignIn = FC<IBtnProps & IPresentComponent & {
   onClick: (e?: ReactEventHandler) => unknown
@@ -18,14 +19,14 @@ const BtnSignIn: IBtnSignIn = ({ className = '', onClick }) => {
   }
 
   return (
-    <button
+    <BtnOutline
       onClick={handleOnClick}
       data-testid="BtnSignIn"
       disabled={!!loading}
-      className={`btn-transparent py-[12px] px-8 border-orange-400 text-orange-400 flex justify-center items-center text-lg h-[56px] w-[166px] ${className}`}
+      className={`border-orange-400 text-orange-400 text-lg h-[56px] w-[166px] ${className}`}
     >
       {loading ? BtnLoad : BtnIcon}
-    </button>
+    </BtnOutline>
   )
 }
 

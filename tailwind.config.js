@@ -9,23 +9,24 @@ module.exports = {
   ],
   theme: {
     extend: {
-      textColor: {
+      colors: {
         skin: {
-          'base-primary': 'var(--text-base-primary)',
-          'base-secondary': 'var(--text-base-secondary)',
-          primary: 'var(--text-color-primary)',
-          secondary: 'var(--text-color-secondary)'
-        }
-      },
-      backgroundColor: {
-        skin: {
-          'base-primary': '#171717',
-          'base-secondary': '#111111',
-          primary: '#4f46e5',
-          secondary: '#ea580c',
-          danger: '#dc2626',
-          success: '#16a34a',
-          caution: '#ca8a04'
+          primary: 'var(--primary)',
+          secondary: 'var(--secondary)',
+          'secondary-v2': 'var(--secondary-v2)',
+
+          'font-primary': 'var(--font-primary)',
+          'font-secondary': 'var(--font-secondary)',
+          'font-clear': 'var(--font-clear)',
+          'font-dark': 'var(--font-dark)',
+
+          'base-primary': 'var(--base-primary)',
+          'base-primary-inverse': 'var(--base-primary-inverse)',
+          'base-secondary': 'var(--base-secondary)',
+
+          danger: 'var(--danger)',
+          success: 'var(--success)',
+          caution: 'var(--caution)'
         }
       },
       screens: {

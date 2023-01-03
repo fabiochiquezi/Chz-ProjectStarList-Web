@@ -3,6 +3,8 @@ import styled from 'styled-components'
 interface IProps {
   backgroundDesktop: string
   backgroundMobile: string
+  bgFrom: string
+  bgTo: string
 }
 
 export const Section = styled.section<IProps>`
@@ -21,8 +23,8 @@ export const Section = styled.section<IProps>`
   .overlayAll {
     background-image: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0),
-      rgba(23, 23, 23, 1)
+      ${props => props.bgFrom},
+      ${props => props.bgTo}
     );
     width: 100%;
     height: 70%;
@@ -34,8 +36,8 @@ export const Section = styled.section<IProps>`
     .overlayAll {
       background-image: linear-gradient(
         to left,
-        rgba(0, 0, 0, 0),
-        rgba(23, 23, 23, 1)
+        ${props => props.bgFrom},
+        ${props => props.bgTo}
       );
       width: 50%;
       height: 100%;
@@ -45,8 +47,8 @@ export const Section = styled.section<IProps>`
   .overlayBottom {
     background-image: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0),
-      rgba(23, 23, 23, 1)
+      ${props => props.bgFrom},
+      ${props => props.bgTo}
     );
     width: 100%;
     height: 100%;
@@ -58,8 +60,8 @@ export const Section = styled.section<IProps>`
   .overlayTop {
     background-image: linear-gradient(
       to top,
-      rgba(0, 0, 0, 0),
-      rgba(23, 23, 23, 1)
+      ${props => props.bgFrom},
+      ${props => props.bgTo}
     );
     width: 100%;
     height: 20%;

@@ -1,4 +1,10 @@
-import { IPrivateStruct } from '../../../design'
+import { FC, ReactElement, ReactNode } from 'react'
+
+export type IPrivateStruct = FC<{
+  children: ReactNode
+  Header: ReactElement
+  Footer: ReactElement
+}>
 
 const PrivateStruct: IPrivateStruct = ({ children, Header, Footer }) => (
   <div data-testid="PrivateStruct">

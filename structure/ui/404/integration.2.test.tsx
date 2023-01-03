@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react'
+import { routes } from '../../../src/pages/routes'
 import Page404 from './index.page'
 
-jest.mock('../_share/contexts', () => ({
-  useAuth: () => ({ user: 'test' })
+jest.mock('../_auth/useAuth', () => ({
+  useAuth: () => ({ user: null })
 }))
 
 describe('ErrorPage', () => {
@@ -14,10 +15,10 @@ describe('ErrorPage', () => {
     expect(button).toBeInTheDocument()
   })
 
-  test('user logged', () => {
+  test('no user', () => {
     render(<Page404 />)
     const button = screen.getByText('Go back home')
     expect(button).toBeInTheDocument()
-    expect(button.getAttribute('href')).toBe('/new/movies')
+    expect(button.getAttribute('href')).toBe(routes.home.path)
   })
 })

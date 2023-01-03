@@ -1,26 +1,24 @@
-import { SEO } from 'libs/frontend/components'
+import { settingsSEO } from '../../../src/pages/settings'
+import { SEO } from '../../../libs/frontend/components'
 import { NextPage } from 'next'
-import { settingsSEO } from 'src/pages/settings'
-
 
 const ErrorPage: NextPage = () => (
-  <div>
+  <main>
     <SEO title={settingsSEO.error.title} />
-    <main>
-      <div
-        className="relative h-[50vh] lg:h-[50vh] w-full"
-        data-testid="ErrorPage"
-      >
-        <p className="text-red-600 text-2xl absolute left-[50%] top-[50%] ml-[-150px] mt-[-125px] md:mt-[-50px] max-w-[300px] mx-auto text-center">
-          <span className="text-5xl mb-6 font-bold inline-block">
-            ERROR ;(
-          </span>
-          <br />
-          <span>Sorry, but something went wrong</span>
-        </p>
-      </div>
-    </main>
-  </div>
+    <div
+      className="relative h-[50vh] lg:h-[50vh] w-full"
+      data-testid="ErrorPage"
+    >
+      <p className="text-skin-danger text-2xl absolute left-[50%] top-[50%] ml-[-150px] mt-[-125px] md:mt-[-50px] max-w-[300px] mx-auto text-center">
+        <span className="text-5xl mb-6 font-bold inline-block">
+          ERROR ;(
+        </span>
+        <br />
+        <span className='text-skin-base-secondary'>Sorry, but something went wrong</span>
+      </p>
+    </div>
+
+  </main>
 )
 
 

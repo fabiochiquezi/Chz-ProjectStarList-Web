@@ -1,5 +1,3 @@
-
-
 export { ModalBox } from './Boxes/SimpleModalBox'
 export type { IModalBox } from './Boxes/SimpleModalBox'
 
@@ -8,12 +6,10 @@ export type { INavMenu } from './Menus/NavMenu/index'
 export { SettingMenu } from './Menus/SettingMenu'
 export type { ISettingMenu } from './Menus/SettingMenu/index'
 
-export { BtnSignIn2 } from './Buttons/BtnSignIn2'
-export type { IBtnSignIn2 } from './Buttons/BtnSignIn2/index'
-export { BtnSignIn } from './Buttons/BtnSignIn'
-export type { IBtnSignIn } from './Buttons/BtnSignIn/index'
-export { BtnSignOut } from './Buttons/BtnSignOut'
-export type { IBtnSignOut } from './Buttons/BtnSignOut/index'
+export { BtnSolid } from './Buttons/BtnSolid'
+export type { IBtnSolid } from './Buttons/BtnSolid/index'
+export { BtnOutline } from './Buttons/BtnOutline'
+export type { IBtnOutline } from './Buttons/BtnOutline/index'
 export { BtnHamburger } from './Buttons/BtnHamburger'
 export type { IBtnHamburger } from './Buttons/BtnHamburger/index'
 export type { IBtnProps } from './Buttons/type'

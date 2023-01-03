@@ -1,11 +1,11 @@
-import { IBtnProps } from '../type'
-import { GoogleIcon } from './GoogleIcon'
-import { SpinIcon } from '../../../assets'
-import { IPresentComponent } from 'pages/types'
+import { BtnSolid, IBtnProps } from '../../../../../../../libs/frontend/components'
+import { SpinIcon } from '../../../../../../../libs/frontend/assets'
 import React, { FC, ReactEventHandler, useState } from 'react'
+import { GoogleIcon } from './GoogleIcon'
 
-export type IBtnSignIn2 = FC<IBtnProps & IPresentComponent & {
+export type IBtnSignIn2 = FC<IBtnProps & {
   onClick: (e?: ReactEventHandler) => unknown
+  className?: string
 }>
 
 const BtnSignIn2: IBtnSignIn2 = ({ className = '', onClick }) => {
@@ -18,14 +18,14 @@ const BtnSignIn2: IBtnSignIn2 = ({ className = '', onClick }) => {
   }
 
   return (
-    <button
+    <BtnSolid
       disabled={!!loading}
       data-testid="BtnSignIn"
       onClick={handleOnClick}
-      className={`btn-solid bg-blue-800 py-[10px] pt-[10px] px-4 text-md flex justify-center items-center ${className} h-[44px] w-[112px]`}
+      className={`bg-skin-secondary-v2 h-[44px] w-[112px] ${className}`}
     >
       {loading ? BtnLoad : BtnIcon}
-    </button>
+    </BtnSolid>
   )
 }
 

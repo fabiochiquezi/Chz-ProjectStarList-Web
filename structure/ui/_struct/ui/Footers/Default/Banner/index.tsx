@@ -5,7 +5,7 @@ const Banner: FC = () => (
     className="container mx-auto mt-[-340px] mb-20 p-6 sm:mt-[-250px] sm:mb-24 sm:p-0 lg:mt-[-195px] lg:p-0 2xl:px-32"
     data-testid="Banner"
   >
-    <div className="bg-indigo-800 p-6 py-10 justify-between rounded-sm lg:px-12 xl:px-14 lg:flex">
+    <div className="bg-skin-secondary-v2 text-skin-font-clear p-6 py-10 justify-between rounded-sm lg:px-12 xl:px-14 lg:flex">
       <div className="mx-auto mb-10 lg:mb-0 w-[90%] text-center max-w-[400px] sm:w-[400px] lg:text-left lg:ml-0 lg:w-[400px] xl:w-[440px]">
         <h2 className="text-4xl font-bold mb-3 leading-[150%] xl:text-4xl">
           I&apos;m looking for a job!

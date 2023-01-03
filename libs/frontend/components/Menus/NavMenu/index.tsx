@@ -1,14 +1,15 @@
 import Router from 'next/router'
 import React, { FC } from 'react'
-import { routes } from 'src/pages/routes'
+
 
 export type INavMenu = FC<{
   route: string
   userName?: string
+  routes: Record<any, any>
   onChangePage: (callBack: any) => void
 }>
 
-const NavMenu: INavMenu = ({ route, userName = '', onChangePage }) => (
+const NavMenu: INavMenu = ({ route, routes, userName = '', onChangePage }) => (
   <nav data-testid="NavMenu">
     <ul className="flex flex-col items-center text-center text-2xl lg:flex-row lg:mt-[2px]">
       <li className="w-3/4 lg:w-auto border-b-2 border-gray-800 lg:border-none">

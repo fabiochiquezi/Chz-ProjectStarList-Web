@@ -1,5 +1,5 @@
-import { LoadingPage, SettingMenu, BtnSignOut, BtnSignIn2, NavMenu, LoadingHOC } from '../../../libs/frontend/components'
-import { HeaderPrivate, PrivateStruct, HeaderPublic, PublicStruct, Footer } from './ui'
+import { HeaderPrivate, PrivateStruct, HeaderPublic, PublicStruct, Footer, BtnSignIn2, BtnSignOut } from './ui'
+import { LoadingPage, SettingMenu, NavMenu, LoadingHOC } from '../../../libs/frontend/components'
 import { isRouteMixed, isRoutePrivate } from 'libs/helpers/front/route'
 import { routes } from '../../../src/pages/routes'
 import { useLoadPage } from './hooks/usePageLoad'
@@ -18,7 +18,7 @@ const Structure: FC<{ children: ReactNode }> = ({ children }) => {
   const btnSignIn = <BtnSignIn2 onClick={signIn} />
   const btnSignOut = <BtnSignOut onClick={signOut} />
   const settingMenu = <SettingMenu userName={userName} BtnSignOut={btnSignOut} />
-  const navMenu = <NavMenu userName={userName} route={route} onChangePage={loadPage} />
+  const navMenu = <NavMenu routes={routes} userName={userName} route={route} onChangePage={loadPage} />
 
   const footer = <Footer />
   const headerPublic = <HeaderPublic BtnSignIn={btnSignIn} />

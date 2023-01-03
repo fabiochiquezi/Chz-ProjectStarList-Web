@@ -56,4 +56,4 @@ export const routes = {
   }
 }
 
-export const homeSystem = routes.newSeries
+export const homeSystem = routes.newMovies

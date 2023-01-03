@@ -1,8 +1,12 @@
 import Link from 'next/link'
 import { BtnGitHub } from './BtnGitHub'
-import { IHeaderPublic } from '../../../design'
 import { Logo } from '../../../../../../src/pages/Logo'
 import { routes } from '../../../../../../src/pages/routes'
+import { FC, ReactElement } from 'react'
+
+export type IHeaderPublic = FC<{
+  BtnSignIn: ReactElement
+}>
 
 const HeaderPublic: IHeaderPublic = ({ BtnSignIn }) => (
   <header className="absolute w-full" data-testid="HeaderPublic">

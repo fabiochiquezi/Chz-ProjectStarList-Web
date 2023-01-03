@@ -17,7 +17,7 @@ const BtnGitHub: FC<IBtnGitHubProps> = ({
     rel="noreferrer"
     data-testid="BtnGitHub"
     target={target ? '_blank' : ''}
-    className={`${className} btn-transparent boder-gray-900 px-4 py-1 flex items-center`}
+    className={`${className} uppercase text-center border-2 rounded-md anim-button inline-block boder-gray-900 px-4 py-1 flex items-center`}
   >
     <span className="mr-1 text-sm mt-[1px]">GitHub</span>
     <GithubIcon />

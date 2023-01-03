@@ -1,4 +1,11 @@
-import { IPublicStruct } from '../../../design'
+import { FC, ReactElement, ReactNode } from 'react'
+
+export type IPublicStruct = FC<{
+  children: ReactNode
+  Header: ReactElement
+  Footer: ReactElement
+  isRouteMixed: boolean
+}>
 
 const PublicStruct: IPublicStruct = ({ children, Header, Footer, isRouteMixed }) => (
   <div data-testid="PublicStruct">

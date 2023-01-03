@@ -5,7 +5,9 @@ describe('Hero', () => {
   const props = {
     title: 'Test Title',
     description: 'Test Description',
-    BtnSignIn: <button>BtnSignIn</button>
+    BtnSignIn: <button>BtnSignIn</button>,
+    backgroundDesktop: '',
+    backgroundMobile: ''
   }
 
   test('data', () => {

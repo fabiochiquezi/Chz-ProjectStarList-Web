@@ -7,14 +7,18 @@ export type IHero = FC<{
   BtnSignIn: ReactElement
   backgroundDesktop: string
   backgroundMobile: string
+  bgFrom: string
+  bgTo: string
 }>
 
-const Hero: IHero = ({ title, description, BtnSignIn, backgroundDesktop, backgroundMobile }) => (
+const Hero: IHero = ({ title, description, BtnSignIn, backgroundDesktop, backgroundMobile, bgFrom, bgTo }) => (
   <Section
     data-testid="Hero"
     className="skeleton"
     backgroundDesktop={backgroundDesktop}
     backgroundMobile={backgroundMobile}
+    bgFrom={bgFrom}
+    bgTo={bgTo}
   >
     <div className="overlayAll"></div>
     <div className="overlayBottom"></div>

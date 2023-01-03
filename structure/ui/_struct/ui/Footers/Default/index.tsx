@@ -6,7 +6,7 @@ import { Banner } from './Banner'
 
 const Footer: IFooter = () => (
   <div
-    className="bg-[#111] py-24 lg:pb-16 relative z-10"
+    className="bg-skin-base-secondary py-24 lg:pb-16 relative z-10"
     data-testid="Footer"
   >
     <Banner />
@@ -14,7 +14,7 @@ const Footer: IFooter = () => (
       <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between lg:flex-row lg:items-start 2xl:w-5/6">
         <div className="text-sm lg:mt-1 lg:mb-0 order-4 lg:order-1 box">
           <Logo />
-          <p className="mt-3 text-gray-400">
+          <p className="mt-3 text-skin-font-secondary">
             © All rights reserved - <span className="italic">{getTimeNow()}</span>
           </p>
         </div>
@@ -23,7 +23,7 @@ const Footer: IFooter = () => (
           <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
             Links
           </h3>
-          <ul>
+          <ul className='text-skin-font-secondary'>
             <li>
               <a
                 target="_blank"
@@ -41,7 +41,7 @@ const Footer: IFooter = () => (
           <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
             GitHub
           </h3>
-          <p className="mb-2">
+          <p className="mb-2 text-skin-font-secondary">
             This is an open source project, feel free to have your own version
             or help make this project even better!
           </p>
@@ -63,7 +63,7 @@ const Footer: IFooter = () => (
             <li className="mr-4 xl:mr-2">
               <div className="relative">
                 <DiscordIcon />
-                <span className="absolute -bottom-5 -left-2 text-xs mt-2">
+                <span className="absolute -bottom-5 -left-2 text-xs mt-2 text-skin-font-secondary">
                   Chiquezi#3816
                 </span>
               </div>
