@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../../src/pages/fontStyle';
 @import '../../libs/frontend/portals/Alerts/Default/styles';
 @import '../../libs/frontend/portals/PopUps/PopSave/styles';
 @import '../../libs/frontend/hooks/useModal/styles';

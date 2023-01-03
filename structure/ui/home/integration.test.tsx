@@ -6,7 +6,9 @@ describe('Home', () => {
     heroBgMobile: './banners/hero-mobile.jpg',
     heroBgDesktop: './banners/hero-desktop.jpg',
     heroTitle: 'heroTitle',
-    heroDescription: 'heroDescription'
+    heroDescription: 'heroDescription',
+    bgFrom: '#fff',
+    bgTo: '#fff'
   }
 
   test('Hero', () => {

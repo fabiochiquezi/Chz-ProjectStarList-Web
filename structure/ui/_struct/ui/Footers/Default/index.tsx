@@ -1,10 +1,10 @@
 import { DiscordIcon, GithubIcon, WhatsAppIcon } from './icons'
 import { Logo } from '../../../../../../src/pages/Logo'
-import { IFooter } from '../../../design'
 import { getTimeNow } from './getDate'
 import { Banner } from './Banner'
+import { FC } from 'react'
 
-const Footer: IFooter = () => (
+const Footer: FC = () => (
   <div
     className="bg-skin-base-secondary py-24 lg:pb-16 relative z-10"
     data-testid="Footer"
