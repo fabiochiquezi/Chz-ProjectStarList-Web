@@ -1,10 +1,7 @@
-import React, { FC, ReactEventHandler, ReactNode } from 'react'
-import { IPresentComponent } from '../../types'
+import React, { FC, ReactNode } from 'react'
 import { IBtnProps } from '../type'
 
-export type IBtnOutline = FC<IBtnProps & IPresentComponent & {
-  onClick: (e?: ReactEventHandler) => unknown
-  disabled: boolean
+export type IBtnOutline = FC<IBtnProps & {
   children: ReactNode
 }>
 

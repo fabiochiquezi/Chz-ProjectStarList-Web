@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import { routes } from 'src/pages/routes'
-import { FC, ReactElement, useEffect, useState } from 'react'
 import { BtnHamburger } from './BtnHamburger'
 import { Logo } from '../../../../../../src/pages/Logo'
+import { routes } from '../../../../../../src/pages/routes'
+import { FC, ReactElement, useEffect, useState } from 'react'
 
 export type IHeaderPrivate = FC<{
   NavMenu: ReactElement

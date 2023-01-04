@@ -18,14 +18,16 @@ const BtnSignIn2: IBtnSignIn2 = ({ className = '', onClick }) => {
   }
 
   return (
-    <BtnSolid
-      disabled={!!loading}
-      data-testid="BtnSignIn"
-      onClick={handleOnClick}
-      className={`bg-skin-secondary-v2 h-[44px] w-[112px] ${className}`}
-    >
-      {loading ? BtnLoad : BtnIcon}
-    </BtnSolid>
+    <div data-testid="BtnSignIn">
+      <BtnSolid
+        disabled={!!loading}
+
+        onClick={handleOnClick}
+        className={`bg-skin-secondary-v2 h-[44px] w-[112px] ${className}`}
+      >
+        {loading ? BtnLoad : BtnIcon}
+      </BtnSolid>
+    </div>
   )
 }
 

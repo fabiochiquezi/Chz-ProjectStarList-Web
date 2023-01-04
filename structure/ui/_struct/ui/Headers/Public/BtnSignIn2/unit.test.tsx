@@ -10,7 +10,7 @@ describe('BtnSignIn', () => {
   describe('className', () => {
     test('className', () => {
       render(<BtnSignIn2 {...props} />)
-      const el = screen.getByTestId('BtnSignIn')
+      const el = document.querySelector('button')
       expect(el).toBeInTheDocument()
       expect(el).toHaveClass(props.className)
     })

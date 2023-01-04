@@ -1,6 +1,6 @@
 import { HeaderPrivate, PrivateStruct, HeaderPublic, PublicStruct, Footer, BtnSignIn2, BtnSignOut } from './ui'
 import { LoadingPage, SettingMenu, NavMenu, LoadingHOC } from '../../../libs/frontend/components'
-import { isRouteMixed, isRoutePrivate } from 'libs/helpers/front/route'
+import { isRouteMixed, isRoutePrivate } from '../../../libs/helpers/front/route'
 import { routes } from '../../../src/pages/routes'
 import { useLoadPage } from './hooks/usePageLoad'
 import { useAuth } from '../_auth/useAuth'

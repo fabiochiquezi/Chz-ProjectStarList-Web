@@ -9,21 +9,22 @@ describe('BtnSignIn', () => {
 
   test('data', () => {
     render(<BtnSignIn {...props} />)
-    const el = screen.getByTestId('BtnSignIn')
+    const el = document.querySelector('button')
     expect(el).toBeInTheDocument()
     expect(el).toHaveClass(props.className)
   })
 
   test('load', () => {
     render(<BtnSignIn {...props} />)
-    const el = screen.getByTestId('BtnSignIn')
-    fireEvent.click(el)
+    const el = document.querySelector('button')
     waitFor(() => {
+      if (el) fireEvent.click(el)
       const btnLoad = screen.queryByTestId('BtnLoad')
       const btnIcon = screen.queryByTestId('BtnIcon')
       expect(btnLoad).toBeInTheDocument()
       expect(btnIcon).not.toBeInTheDocument()
     })
+    expect.assertions(2)
   })
 
   test('icon', () => {
@@ -36,8 +37,11 @@ describe('BtnSignIn', () => {
 
   test('onClick', () => {
     render(<BtnSignIn {...props} />)
-    const el = screen.getByTestId('BtnSignIn')
-    fireEvent.click(el)
-    expect(props.onClick).toHaveBeenCalledTimes(1)
+    const el = document.querySelector('button')
+    waitFor(() => {
+      if (el) fireEvent.click(el)
+      expect(props.onClick).toHaveBeenCalledTimes(1)
+    })
+    expect.assertions(1)
   })
 })

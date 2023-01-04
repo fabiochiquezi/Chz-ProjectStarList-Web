@@ -29,7 +29,7 @@ describe('BtnGitHub', () => {
     expect(span?.textContent).toBe('GitHub')
     expect(el).toHaveAttribute('target', '_blank')
     expect(el?.className).toBe(
-      ' btn-transparent boder-gray-900 px-4 py-1 flex items-center'
+      ' uppercase text-center border-2 rounded-md anim-button inline-block boder-gray-900 px-4 py-1 flex items-center'
     )
   })
 })

@@ -26,11 +26,6 @@ export const GlobalStyles = createGlobalStyle`
     }
   `)}
 
-  html,
-  body {
-    font-family: 'Roboto';
-  }
-
   /* ScrollBar */
   ::-webkit-scrollbar {
     width: 4px;
@@ -60,4 +55,18 @@ export const GlobalStyles = createGlobalStyle`
     color: ${themeBase.red};
     font-size: 15px;
   }
+
+  /* Skeleton */
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 20%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 30%);
+    }
+  }
+}
 `

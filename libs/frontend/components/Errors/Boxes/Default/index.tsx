@@ -1,10 +1,9 @@
 import { FC } from 'react'
 import { IErrorProps } from '../type'
-import { IPresentComponent } from '../../../types'
 
 export type IErroDefault = FC<{
   [P in keyof IErrorProps]?: IErrorProps[P];
-} & IPresentComponent>
+}>
 
 const ErrorDefault: IErroDefault = ({
   title = 'ERROR ;(',

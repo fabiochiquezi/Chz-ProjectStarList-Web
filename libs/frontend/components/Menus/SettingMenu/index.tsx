@@ -10,9 +10,7 @@ const SettingMenu: ISettingMenu = ({ userName = '', BtnSignOut }) => (
     data-testid="SettingMenu"
     className="flex flex-col mt-16 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-[0px] lg:w-auto lg:mx-0 lg:flex-row text-center"
   >
-    <div
-      className="flex mt-8 lg:mt-0 items-center"
-    >
+    <div className="flex mt-8 lg:mt-0 items-center">
       <li className="pt-1 lg:p-0 lg:m-0 lg:ml-8 mb-2 mt-4 text-sm">
         <span>{userName.length > 9 ? `${userName.substring(0, 9)}...` : userName}</span>
       </li>

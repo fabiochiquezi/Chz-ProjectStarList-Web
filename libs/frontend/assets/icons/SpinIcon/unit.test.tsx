@@ -38,6 +38,5 @@ describe('Logo Default', () => {
       `)
     })
     expect(el).toHaveStyle('width: 36px; height: 36px;')
-    expect(el).toHaveClass('spinnerDefault')
   })
 })

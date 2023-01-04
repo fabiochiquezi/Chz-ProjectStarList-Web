@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { NavMenu } from '.'
 
 describe('SettingMenu', () => {
-  const props = {
+  const props: any = {
     route: 'route',
     userName: 'userName',
     onChangePage: jest.fn()

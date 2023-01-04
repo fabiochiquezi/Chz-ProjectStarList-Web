@@ -1,8 +1,8 @@
 import { ChangeEvent, ReactNode } from 'react'
+import { IPresentComponent } from '../../types'
 
-export interface ISelectProps {
+export interface ISelectProps extends IPresentComponent {
   name: string
-  className?: string
   children: ReactNode
   defaultValue: string
   error?: string | undefined
