@@ -1,9 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { NavMenu } from '.'
+import { routesToArray } from '../../../../helpers/front/path'
+import { routes } from '../../../../../src/pages/routes'
+import { IRoute, NavMenu } from '.'
+
+const routesLength: any = (routes: Record<any, any>) => routesToArray<IRoute[]>(routes)
+  .filter((route: any) => route.menuSystem).length
 
 describe('SettingMenu', () => {
   const props: any = {
-    route: 'route',
+    routes: routes,
+    currentRoute: routes.user.route,
     userName: 'userName',
     onChangePage: jest.fn()
   }
@@ -11,32 +17,25 @@ describe('SettingMenu', () => {
   test('elements', async () => {
     render(<NavMenu {...props} />)
     const el = screen.getByTestId('NavMenu')
-    const item01 = screen.getByText('NEW')
-    const item02 = screen.getByText('MY LIST')
+    const list = el.querySelectorAll('li')
+
+    expect(list).toHaveLength(routesLength(routes))
     expect(el).toBeInTheDocument()
-    expect(item01).toBeInTheDocument()
-    expect(item02).toBeInTheDocument()
   })
 
   test('links', async () => {
     render(<NavMenu {...props} />)
-    const item01 = screen.getByText('NEW')
-    const item02 = screen.getByText('MY LIST')
-    fireEvent.click(item01)
-    fireEvent.click(item02)
-    expect(props.onChangePage).toBeCalledTimes(2)
+    const el = screen.getByTestId('NavMenu')
+    const list = el.querySelectorAll('li a')
+    list.forEach(item => {
+      fireEvent.click(item)
+    })
+    expect(props.onChangePage).toBeCalledTimes(routesLength(routes))
   })
 
-  describe('activeLink', () => {
-    test('01', async () => {
-      render(<NavMenu {...props} route="/new/[type]" />)
-      const item01 = screen.getByText('NEW')
-      expect(item01).toHaveClass('text-orange-400')
-    })
-    test('02', async () => {
-      render(<NavMenu {...props} route="/[user]" />)
-      const item02 = screen.getByText('MY LIST')
-      expect(item02).toHaveClass('text-orange-400')
-    })
+  test('activeLink', async () => {
+    render(<NavMenu {...props} />)
+    const item = screen.getByText(routes.user.title)
+    expect(item).toHaveClass('text-orange-400')
   })
 })

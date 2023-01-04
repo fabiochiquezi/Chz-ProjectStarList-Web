@@ -49,28 +49,28 @@ export const routes = {
     menuSystem: false
   },
   user: {
-    path: (userName: string) => `/${userName}`,
+    getPath: (userName: string) => `/${userName}`,
     route: '/[user]',
     state: 'mixed',
     title: 'MY LIST',
     menuSystem: true
   },
   userDoing: {
-    path: (userName: string) => `/${userName}?catalog=doing`,
+    getPath: (userName: string) => `/${userName}?catalog=doing`,
     route: '/[user]',
     state: 'mixed',
     title: '404',
     menuSystem: false
   },
   userIlldo: {
-    path: (userName: string) => `/${userName}?catalog=illdo`,
+    getPath: (userName: string) => `/${userName}?catalog=illdo`,
     route: '/[user]',
     state: 'mixed',
     title: '404',
     menuSystem: false
   },
   userDone: {
-    path: (userName: string) => `/${userName}?catalog=done`,
+    getPath: (userName: string) => `/${userName}?catalog=done`,
     route: '/[user]',
     state: 'mixed',
     title: '404',

@@ -19,7 +19,7 @@ const Structure: FC<{ children: ReactNode }> = ({ children }) => {
   const btnSignIn = <BtnSignIn2 onClick={signIn} />
   const btnSignOut = <BtnSignOut onClick={signOut} />
   const settingMenu = <SettingMenu userName={userName} BtnSignOut={btnSignOut} />
-  const navMenu = <NavMenu routes={routes} userName={userName} route={route} onChangePage={loadPage} />
+  const navMenu = <NavMenu routes={routes} userName={userName} currentRoute={route} onChangePage={loadPage} />
 
   const footer = <Footer />
   const headerPublic = <HeaderPublic BtnSignIn={btnSignIn} />
