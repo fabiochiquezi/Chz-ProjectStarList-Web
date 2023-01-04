@@ -39,9 +39,9 @@ const LoadingHOC: ILoadingHOC = ({ condition, children, loading, animChildren, c
       animInClass: animChildren?.animInClass ?? 'fade-in',
       animOutClass: animChildren?.animOutClass ?? 'fade-out'
     }
-    const invalidData = !condition
-    if (invalidData) await animation(childrenDataAnim, loadingDataAnim)
-    if (!invalidData) await animation(loadingDataAnim, childrenDataAnim)
+
+    if (condition) await animation(childrenDataAnim, loadingDataAnim)
+    if (!condition) await animation(loadingDataAnim, childrenDataAnim)
     if (callBack) await callBack()
   }
 

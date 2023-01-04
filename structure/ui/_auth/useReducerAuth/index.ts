@@ -1,4 +1,4 @@
-import { waitLoadingHOCAnim } from '../../../../libs/frontend/components'
+import { waitLoadingHOCAnim } from '../../../../libs/frontend/HOC'
 import { redirectToSystem } from './redirectToSystem'
 import { AuthFirebase } from '../../../events'
 import { User } from '../../../domain'

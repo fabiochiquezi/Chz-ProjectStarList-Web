@@ -1,4 +1,4 @@
-import { waitLoadingHOCAnim } from '../../../../libs/frontend/components'
+import { waitLoadingHOCAnim } from '../../../../libs/frontend/HOC'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 

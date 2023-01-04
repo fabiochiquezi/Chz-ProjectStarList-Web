@@ -5,9 +5,9 @@ import { AuthFirebase } from '../../events'
 import { FC, ReactNode, useEffect } from 'react'
 import { useReducerAuth } from './useReducerAuth'
 import { routes } from '../../../src/pages/routes'
+import { LoadingHOC } from '../../../libs/frontend/HOC'
 import { isRouteMixed, isRoutePrivate } from 'libs/helpers'
 import { pipeArg } from 'libs/helpers/functional/asyncPipe'
-import { LoadingHOC } from '../../../libs/frontend/components'
 import { isCurrentPathPrivate } from 'libs/helpers/front/path'
 
 const Auth: FC<{ children: ReactNode }> = ({ children }) => {
@@ -50,7 +50,7 @@ const Auth: FC<{ children: ReactNode }> = ({ children }) => {
       data-testid="AuthProvider"
       value={{ user: user.data, signIn, signOut }}
     >
-      <LoadingHOC data={user.load}>
+      <LoadingHOC condition={user.load}>
         {getView()}
       </LoadingHOC>
     </AuthUseContext.Provider >

@@ -1,11 +1,12 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { useList, useModal, validCatalogURI } from './fns'
-import { Modal, SimpleForm, LoadingHOC, SEO } from '../.././../libs/frontend/components'
+import { Modal, SimpleForm, SEO } from '../.././../libs/frontend/components'
 import { Menu, UpdateItem, DeleteItem, List } from './components'
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { settingsSEO } from '../settings'
+import { LoadingHOC } from 'libs/frontend/HOC'
 
 export type IList = Array<Movie | Serie> | null
 
@@ -23,7 +24,7 @@ const Catalog: FC = () => {
       <SEO {...settingsSEO.catalog} />
       <main>
         <Menu userName={userName} catalogType={catalogURI} />
-        <LoadingHOC data={list}>
+        <LoadingHOC condition={!list}>
           <DndProvider backend={HTML5Backend}>
             <List
               list={list ?? []}

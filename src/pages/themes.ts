@@ -7,7 +7,7 @@ export const themeBase = {
 export const themes = [
   {
     name: 'luxury',
-    defaultTheme: false,
+    defaultTheme: true,
     state: 'dark',
 
     primary: '#ea580c',
@@ -32,7 +32,7 @@ export const themes = [
   },
   {
     name: 'corporate',
-    defaultTheme: true,
+    defaultTheme: false,
     state: 'clear',
 
     primary: '#fdba74',

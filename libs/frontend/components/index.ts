@@ -36,9 +36,6 @@ export { SEO } from './SEO/default'
 
 export { LoadingPage } from './Loadings/LoadingPage'
 export type { ILoadingPage } from './Loadings/LoadingPage/index'
-export { LoadingHOC } from './Loadings/LoadingHOC'
-export type { ILoadingHOC } from './Loadings/LoadingHOC/index'
-export { waitLoadingHOCAnim } from './Loadings/LoadingHOC/animation'
 
 export { AddThumb } from './Thumbs/Add'
 export type { IAddThumb } from './Thumbs/Add/index'

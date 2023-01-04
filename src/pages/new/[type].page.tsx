@@ -4,14 +4,14 @@ import { useRouter } from 'next/router'
 import { Resp } from '../../../libs/helpers'
 import { getServerSideProps } from './api/ssr'
 import { Menu, Pagination } from './components'
-import { FormikHOC } from '../../../libs/frontend/HOC'
+import { FormikHOC, LoadingHOC } from '../../../libs/frontend/HOC'
 import { useLoadPage } from '../../../libs/frontend/hooks'
 import { useAuth } from '../../../structure/ui/_auth/useAuth'
 import { GenreWatch, GetList, Movie, Serie } from 'src/domain'
 import { submitModalFirebase } from './fns/submitModal/firebase'
 import useModalForm from '../../../libs/frontend/hooks/useModalForm'
 import { FormAddFields, initialValues, validation } from './components/FormAdd'
-import { LoadingHOC, ErrorDefault, LoadingPage, ModalBox, SEO } from '../../../libs/frontend/components'
+import { ErrorDefault, LoadingPage, ModalBox, SEO } from '../../../libs/frontend/components'
 import { settingsSEO } from '../settings'
 
 const List = dynamic(
@@ -56,7 +56,7 @@ const New: FC<SRRData> = ({ data }) => {
           loadPage={loadContent.loadPage}
         />
         <LoadingHOC
-          data={loadContent.load}
+          condition={loadContent.load}
           animChildren={{ animInClass: 'to-left-in', animOutClass: 'to-left-out' }}
         >
           <List
