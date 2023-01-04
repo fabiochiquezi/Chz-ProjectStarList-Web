@@ -1,8 +1,9 @@
 import { HomeStructure } from '../../../structure/ui/home/index.page'
 import { Thumb } from '../../../libs/frontend/components'
 import { currentTheme } from '../themes'
-import { Title, List } from './ui'
+import { Title } from './List/Title'
 import catalog from './data.json'
+import { List } from './List'
 import { FC } from 'react'
 
 const Home: FC = () => {
