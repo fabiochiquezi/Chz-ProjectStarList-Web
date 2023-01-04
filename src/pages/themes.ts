@@ -56,5 +56,7 @@ export const themes = [
     'scrollbar-track': '#fff'
   }
 ]
-
 export default themes
+
+export const currentTheme = themes.filter(theme => theme.defaultTheme)[0]
+

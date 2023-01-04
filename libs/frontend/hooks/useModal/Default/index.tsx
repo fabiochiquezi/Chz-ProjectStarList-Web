@@ -1,7 +1,10 @@
-import { FC, useEffect } from 'react'
-import { IModalProps } from '../../../components/Modals/type'
+import { FC, ReactNode, useEffect } from 'react'
+import { Div } from './styles'
 
-export type IModal = FC<IModalProps>
+export type IModal = FC<{
+  children: ReactNode,
+  closeModal: () => void
+}>
 
 const Modal: IModal = ({ children, closeModal }) => {
   function closeWithKey(event: KeyboardEvent): void {
@@ -21,8 +24,8 @@ const Modal: IModal = ({ children, closeModal }) => {
   }, [])
 
   return (
-    <div
-      className="modal-anim fixed w-full h-full left-0 top-0 z-40 overflow-y-scroll overflow-x-hidden"
+    <Div
+      className="fixed w-full h-full left-0 top-0 z-40 overflow-y-scroll overflow-x-hidden"
       data-testid="Modal"
     >
       <div
@@ -30,7 +33,7 @@ const Modal: IModal = ({ children, closeModal }) => {
         onClick={closeModal}
       ></div>
       {children}
-    </div>
+    </Div>
   )
 }
 

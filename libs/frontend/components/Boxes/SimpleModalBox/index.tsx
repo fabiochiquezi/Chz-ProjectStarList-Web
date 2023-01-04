@@ -10,7 +10,7 @@ export type IModalBox = FC<{
 const ModalBox: IModalBox = ({ children, closeModal, className }) => (
   <div
     data-testid="SimpleForm"
-    className={`absolute w-[316px] mx-auto z-50 left-[50%] ml-[-158px] top-[10%] sm:max-w-[440px] sm:ml-[-220px] sm:top-[10%] sm:w-full md:max-w-[600px] md:ml-[-300px] md:top-[20%] lg:top-[25%] modal-anim-2 ${className}`}
+    className={`fadeIn-comeFromLeft absolute w-[316px] mx-auto z-50 left-[50%] ml-[-158px] top-[10%] sm:max-w-[440px] sm:ml-[-220px] sm:top-[10%] sm:w-full md:max-w-[600px] md:ml-[-300px] md:top-[20%] lg:top-[25%] ${className}`}
   >
     <div
       onClick={closeModal}
@@ -19,10 +19,10 @@ const ModalBox: IModalBox = ({ children, closeModal, className }) => (
     >
       <CloseIcon width={22} height={16} />
     </div>
-    <div className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700">
+    <div className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-indigo-700 bg-skin-base-primary">
       {children}
     </div>
-  </div >
+  </div>
 )
 
 

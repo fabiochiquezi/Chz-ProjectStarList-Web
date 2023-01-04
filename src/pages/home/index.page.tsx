@@ -1,6 +1,6 @@
 import { HomeStructure } from '../../../structure/ui/home/index.page'
-import { currentTheme } from '../../../structure/ui/themeStyles'
 import { Thumb } from '../../../libs/frontend/components'
+import { currentTheme } from '../themes'
 import { Title, List } from './ui'
 import catalog from './data.json'
 import { FC } from 'react'
