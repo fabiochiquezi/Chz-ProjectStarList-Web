@@ -1,30 +1,30 @@
 import { FC } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { Resp } from '../../../libs/helpers'
-import { getServerSideProps } from './api/ssr'
-import { Menu, Pagination } from './components'
-import { FormikHOC, LoadingHOC } from '../../../libs/frontend/HOC'
-import { useLoadPage } from '../../../libs/frontend/hooks'
-import { useAuth } from '../../../structure/ui/_auth/useAuth'
-import { GenreWatch, GetList, Movie, Serie } from 'src/domain'
-import { submitModalFirebase } from './fns/submitModal/firebase'
-import useModalForm from '../../../libs/frontend/hooks/useModalForm'
-import { FormAddFields, initialValues, validation } from './components/FormAdd'
-import { ErrorDefault, LoadingPage, ModalBox, SEO } from '../../../libs/frontend/components'
+import { Menu } from './Menu/composition'
+import { Pagination } from './Pagination'
 import { settingsSEO } from '../settings'
+import { Resp } from '../../../libs/helpers'
+import { getServerSideProps } from './getData'
+import { useAlert } from 'libs/frontend/portals'
+import { getDataByID } from './sendData/getDataByID'
+import { useLoadPage } from '../../../libs/frontend/hooks'
+import { postCatalog } from 'src/events/Catalog/postCatalog'
+import { useAuth } from '../../../structure/ui/_auth/useAuth'
+import { IDataForm, sendData, TypesAllowed } from './sendData'
+import { GenreWatch, GetList, Movie, Serie } from 'src/domain'
+import { FormAddFields, initialValues, validation } from './Form'
+import { FormikHOC, LoadingHOC } from '../../../libs/frontend/HOC'
+import useModalForm from '../../../libs/frontend/hooks/useModalForm'
+import { ErrorDefault, LoadingPage, ModalBox, SEO } from '../../../libs/frontend/components'
+const List = dynamic(async () => await import('./List').then(m => m.List), { loading: () => <LoadingPage /> })
 
-const List = dynamic(
-  async () => await import('./components/List').then(m => m.List),
-  { loading: () => <LoadingPage /> }
-)
-
-export interface Data<T extends Movie | Serie> {
-  workList: GetList<T>
-  genreList: GenreWatch[]
+interface SRRData {
+  data: Resp<{
+    workList: GetList<Movie | Serie>
+    genreList: GenreWatch[]
+  }>
 }
-
-interface SRRData { data: Resp<Data<Movie | Serie>> }
 
 const New: FC<SRRData> = ({ data }) => {
   const { ok, request } = data
@@ -33,8 +33,12 @@ const New: FC<SRRData> = ({ data }) => {
   const router = useRouter()
   const { user } = useAuth()
   const loadContent = useLoadPage()
-  const addModal = useModalForm(ModalBox, FormikHOC)
   const { workList, genreList } = request
+  const addModal = useModalForm(ModalBox, FormikHOC)
+
+  const postData = async ({ catalogType, username, list, IDSelected }: IDataForm): Promise<void> =>
+    await postCatalog(catalogType, username)(getDataByID(list)(IDSelected) as TypesAllowed)
+  const submitToCatalog = sendData(useAlert())(postData)
 
   return (
     <div>
@@ -44,11 +48,12 @@ const New: FC<SRRData> = ({ data }) => {
           Fields={FormAddFields}
           validation={validation}
           initialValues={initialValues}
-          onSubmit={submitModalFirebase(
-            workList.results,
-            addModal.modalData,
-            String(user?.userName)
-          )}
+          onSubmit={async ({ catalogType }) => await submitToCatalog({
+            catalogType,
+            list: workList.results,
+            IDSelected: String(addModal.modalData.id),
+            username: String(user?.userName)
+          })}
         />
         <Menu
           query={router.query}

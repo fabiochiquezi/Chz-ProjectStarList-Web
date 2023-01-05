@@ -16,7 +16,7 @@ const SelectButton: ISelectButton = props => {
   }, [defaultValue])
 
   return (
-    <div className={`relative w-full h-8 ${className}`}>
+    <div className={`relative w-full h-8 ${className}`} data-testid="SelectButton">
       <div className={`w-[84px] h-10  px-2 rounded-lg ${colorClass ?? 'bg-indigo-600'}`}>
         <select
           name={name}
