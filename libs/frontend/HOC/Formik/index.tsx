@@ -1,6 +1,7 @@
 import { Formik, FormikProps } from 'formik'
 import { SpinIcon } from '../../assets'
 import { useState, FC } from 'react'
+import { BtnSolid } from 'libs/frontend/components'
 
 export type IFormHOC = FC<{
   Fields: IFields,
@@ -25,13 +26,11 @@ const FormikHOC: IFormHOC = ({ Fields, onSubmit, validation, initialValues }) =>
     setLoading(false)
   }
 
-  const BtnSubmit: IButtonSend = ({ title = 'send' }) => <button
-    type="submit"
-    disabled={!!loadingForm}
-    className="btn-solid bg-green-700 py-[8px] h-[39px] w-[90px] self-end items-center relative left-6 md:top-1 text-sm"
-  >
-    {!loadingForm ? <span>{title}</span> : <SpinIcon className="positive -top-1" />}
-  </button>
+  const BtnSubmit: IButtonSend = ({ title = 'send' }) =>
+    <BtnSolid disabled={!!loadingForm} className="bg-skin-success py-[8px] h-[39px] w-[90px] self-end justify-self-end flex">
+      {!loadingForm ? <span>{title}</span> : <SpinIcon className="positive -top-[-2px]" />}
+    </BtnSolid>
+
 
   return (
     <Formik

@@ -13,7 +13,7 @@ const FormAddFields: IFormAddFields = ({ formik, BtnSubmit }) => (
       Add new item
     </h3>
 
-    <p className="mb-5 text-white">
+    <p className="mb-8 text-white">
       Search for the work you want on google, select
       images, choose one, select &quot;copy link&quot;
       and paste here.

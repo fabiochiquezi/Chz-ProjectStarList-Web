@@ -18,15 +18,13 @@ export type IUseModal = () => {
 const useModal: IUseModal = () => {
   const [modalState, setModalState] = useState({ state: false, data: {} })
 
-  const closeModal: ICloseModal = () => setModalState(prev => ({ ...prev, state: false }))
+  const closeModal: ICloseModal = () =>
+    setModalState(prev => ({ ...prev, state: false }))
 
-  const openModal: IOpenModal = (data) => {
-    if (data) {
-      setModalState({ state: true, data: data })
-      return
-    }
-    setModalState(prev => ({ ...prev, state: true }))
-  }
+  const openModal: IOpenModal = (data) => (data
+    ? setModalState({ state: true, data: data })
+    : setModalState(prev => ({ ...prev, state: true }))
+  )
 
   const ModalHOC: IModalHOC = ({ children, ModalBox }) => (modalState.state ? (
     <Modal closeModal={closeModal}>
