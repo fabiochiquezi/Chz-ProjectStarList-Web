@@ -1,1 +1,0 @@
-export { CatalogFirebase } from './Catalog'

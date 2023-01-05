@@ -8,8 +8,9 @@ import { settingsSEO } from './settings'
 import { Auth } from '../../structure/ui/_auth'
 import { Structure } from '../../structure/ui/_struct'
 import '../../structure/ui/__share/styles/tailwind.scss'
-import { Styles } from '../../structure/ui/__share/styles/styles'
 import { isRouteMixed, isRoutePrivate } from 'libs/helpers'
+import { Styles } from '../../structure/ui/__share/styles/styles'
+import { initiateCatalog } from 'src/events/Catalog/initiateCatalog'
 import { useLoadPage } from '../../structure/ui/_struct/hooks/usePageLoad'
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
@@ -17,25 +18,27 @@ function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const { loading, loadPage } = useLoadPage(router)
 
   return (
-    <div className='default-theme'>
+    <>
       <Styles />
-      <div className='bg-skin-base-primary text-skin-font-primary'>
-        <Head>
-          <title>{settingsSEO.default.title}</title>
-        </Head>
-        <Auth>
-          <Structure
-            isRouteMixed={isRouteMixed(routes)(router.route)}
-            isRoutePrivate={isRoutePrivate(routes)(router.route)}
-            loadPage={loadPage}
-            loading={loading}
-            route={router.route}
-          >
-            <Component {...pageProps} />
-          </Structure>
-        </Auth>
+      <Head>
+        <title>{settingsSEO.default.title}</title>
+      </Head>
+      <div className='default-theme'>
+        <div className='bg-skin-base-primary text-skin-font-primary'>
+          <Auth afterSignUpCB={initiateCatalog}>
+            <Structure
+              isRouteMixed={isRouteMixed(routes)(router.route)}
+              isRoutePrivate={isRoutePrivate(routes)(router.route)}
+              loadPage={loadPage}
+              loading={loading}
+              route={router.route}
+            >
+              <Component {...pageProps} />
+            </Structure>
+          </Auth>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

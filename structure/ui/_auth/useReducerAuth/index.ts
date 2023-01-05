@@ -2,15 +2,13 @@ import { waitLoadingHOCAnim } from '../../../../libs/frontend/HOC'
 import { redirectToSystem } from './redirectToSystem'
 import { AuthFirebase } from '../../../events'
 import { User } from '../../../domain'
-import { signOut } from './signOut'
 import { useReducer } from 'react'
-import { signIn } from './signIn'
 
 interface IState { data: User | null | undefined, load: boolean }
 interface IAction { type: string, payload?: User | null | undefined }
 type IUseUser = () => {
-  signIn: () => Promise<void>
-  signOut: () => Promise<void>
+  loading: () => void
+  unloading: () => void
   defineNoUser: () => Promise<void>;
   defineUser: (payload: unknown) => void;
   user: IState
@@ -43,9 +41,6 @@ export const useReducerAuth: IUseUser = () => {
   const unloading = (): void => user.load && dispatch({ type: 'unloading' })
   const loading = (): void => dispatch({ type: 'loading' })
 
-  const signInFn = signIn(unloading)
-  const signOutFn = signOut(loading, unloading)
-
   const defineNoUser = async (): Promise<void> => {
     await waitLoadingHOCAnim(1000)
     dispatch({ type: 'defineNoUser' })
@@ -59,5 +54,5 @@ export const useReducerAuth: IUseUser = () => {
     unloading()
   }
 
-  return { signIn: signInFn, signOut: signOutFn, defineNoUser, defineUser, user }
+  return { unloading, loading, defineNoUser, defineUser, user }
 }

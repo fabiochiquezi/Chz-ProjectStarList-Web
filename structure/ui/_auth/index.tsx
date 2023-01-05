@@ -1,3 +1,6 @@
+import { signIn } from './signIn'
+import { signOut } from './signOut'
+import { User } from 'firebase/auth'
 import { UserAuth } from '../../domain'
 import { useRouter } from 'next/router'
 import { AuthUseContext } from './useAuth'
@@ -10,10 +13,15 @@ import { isRouteMixed, isRoutePrivate } from 'libs/helpers'
 import { pipeArg } from 'libs/helpers/functional/asyncPipe'
 import { isCurrentPathPrivate } from 'libs/helpers/front/path'
 
-const Auth: FC<{ children: ReactNode }> = ({ children }) => {
+type IAuth = FC<{
+  children: ReactNode
+  afterSignUpCB: (user: User) => Promise<User>
+}>
+
+const Auth: IAuth = ({ children, afterSignUpCB }) => {
   const { push, route } = useRouter()
   const { authState } = AuthFirebase
-  const { signIn, signOut, defineNoUser, defineUser, user } = useReducerAuth()
+  const { unloading, loading, defineNoUser, defineUser, user } = useReducerAuth()
 
   useEffect(() => {
     type IRuleFn = (userFire: UserAuth | null) => Promise<boolean> | Promise<unknown>
@@ -48,7 +56,11 @@ const Auth: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <AuthUseContext.Provider
       data-testid="AuthProvider"
-      value={{ user: user.data, signIn, signOut }}
+      value={{
+        user: user.data,
+        signIn: signIn(afterSignUpCB)(unloading),
+        signOut: signOut(loading, unloading)
+      }}
     >
       <LoadingHOC condition={user.load}>
         {getView()}

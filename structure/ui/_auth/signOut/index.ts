@@ -1,6 +1,6 @@
-import { AuthFirebase } from '../../../../events'
-import { waitLoadingHOCAnim } from '../../../../../libs/frontend/HOC'
-import { useAlert as callAlert } from '../../../../../libs/frontend/portals'
+import { AuthFirebase } from '../../../events'
+import { waitLoadingHOCAnim } from '../../../../libs/frontend/HOC'
+import { useAlert as callAlert } from '../../../../libs/frontend/portals'
 
 type ILoading = () => void
 type IUnloading = () => void
