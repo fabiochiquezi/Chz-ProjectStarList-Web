@@ -1,11 +1,9 @@
 import { Movie, Serie } from '../../../domain'
 import { db } from '../../../../../fireSettings'
-import { formatDataFromDB } from '../../../../libs/helpers'
 import { collection, getDocs } from 'firebase/firestore'
+import { formatDataFromDB } from '../../../../libs/firebase'
 
-export type GetListDoing = (
-  userName: string
-) => Promise<Array<Movie | Serie>>
+export type GetListDoing = (userName: string) => Promise<Array<Movie | Serie>>
 
 const getCatalogDoing: GetListDoing = async userName => {
   const collect = collection(db, 'catalog', userName, 'doing')

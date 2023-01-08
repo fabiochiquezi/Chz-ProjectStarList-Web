@@ -1,4 +1,4 @@
-import { routesToArray } from '../../../../helpers/front/path'
+import { routesToArray } from '../../../../frontend/fns'
 import React, { FC } from 'react'
 import Router from 'next/router'
 

@@ -9,9 +9,8 @@ import { FC, ReactNode, useEffect } from 'react'
 import { useReducerAuth } from './useReducerAuth'
 import { LoadingHOC } from '../../../libs/frontend/HOC'
 import { routes } from '../../../appShare/settings/routes'
-import { isRouteMixed, isRoutePrivate } from '../../../libs/helpers'
-import { pipeArg } from './../../../libs/helpers/functional/asyncPipe'
-import { isCurrentPathPrivate } from './../../../libs/helpers/front/path'
+import { pipeArg } from './../../../libs/functional/asyncPipe'
+import { isRouteMixed, isRoutePrivate, isCurrentPathPrivate } from '../../../libs/frontend/fns'
 
 type IAuth = FC<{
   children: ReactNode

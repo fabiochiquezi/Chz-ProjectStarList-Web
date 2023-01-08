@@ -1,0 +1,1 @@
+export { asyncPipe } from './asyncPipe'

@@ -1,4 +1,4 @@
-import { asyncPipe } from './../../../../../libs/helpers'
+import { asyncPipe } from './../../../../../libs/functional'
 import { User as UserFirebase } from 'firebase/auth'
 import { getUser } from '../../../User/getUser'
 import { signUp } from './../../signUp/index'

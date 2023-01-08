@@ -1,5 +1,5 @@
 import { doc, getDoc, setDoc, DocumentData, DocumentReference, DocumentSnapshot } from 'firebase/firestore'
-import { db } from '../../../../../fireSettings'
+import { db } from '../../../../fireSettings'
 
 type IGetDocRef = (id: string) => DocumentReference<DocumentData>
 type IGetDocSnap = (id: string) => Promise<DocumentSnapshot<DocumentData>>

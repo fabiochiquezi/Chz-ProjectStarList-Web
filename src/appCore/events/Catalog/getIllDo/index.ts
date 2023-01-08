@@ -1,4 +1,4 @@
-import { formatDataFromDB } from '../../../../libs/helpers'
+import { formatDataFromDB } from '../../../../libs/firebase'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../../../../fireSettings'
 import { Movie, Serie } from '../../../domain'

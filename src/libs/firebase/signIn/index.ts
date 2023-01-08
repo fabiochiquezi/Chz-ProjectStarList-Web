@@ -1,4 +1,4 @@
-import { auth } from '../../../../../fireSettings'
+import { auth } from '../../../../fireSettings'
 import { GoogleAuthProvider, signInWithPopup, User } from 'firebase/auth'
 
 export const signInWithGoogle = async (callBack: (user: User) => unknown): Promise<void> => {

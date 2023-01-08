@@ -1,7 +1,7 @@
 import { Movie, Serie } from '../../../../../domain'
 import { db } from '../../../../../../../fireSettings'
 import { collection, getDocs } from 'firebase/firestore'
-import { formatDataFromDB } from '../../../../../../libs/helpers'
+import { formatDataFromDB } from '../../../../../../libs/firebase'
 
 export type GetCatalogDid = (
   userName: string
