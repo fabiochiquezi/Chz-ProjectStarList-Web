@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../../../../appCore/ui/fontStyle';
+@import '../../../../libs/frontend/portals/Alerts/Default/styles';
+@import '../../../../libs/frontend/portals/PopUps/PopSave/styles';
+
+.anim-button {
+  transition: all 200ms ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+  &:active {
+    transition: transform 50ms ease;
+    transform: scale(0.95);
+  }
+}
+
