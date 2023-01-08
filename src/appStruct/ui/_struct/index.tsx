@@ -1,7 +1,7 @@
 import { HeaderPrivate, PrivateStruct, HeaderPublic, PublicStruct, Footer, BtnSignIn2, BtnSignOut } from './ui'
 import { LoadingPage, SettingMenu, NavMenu } from '../../../libs/frontend/components'
+import { routes } from '../../../appShare/settings/routes'
 import { LoadingHOC } from '../../../libs/frontend/HOC'
-import { routes } from '../../../appCore/ui/routes'
 import { useAuth } from '../_auth/useAuth'
 import { FC, ReactNode } from 'react'
 

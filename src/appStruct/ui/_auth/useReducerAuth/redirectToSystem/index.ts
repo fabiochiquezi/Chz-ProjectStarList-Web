@@ -1,6 +1,6 @@
 import Router from 'next/router'
 import { User } from 'firebase/auth'
-import { routes } from '../../../../../appCore/ui/routes'
+import { routes } from '../../../../../appShare/settings/routes'
 import { isCurrentPathPublic } from '../../../../../libs/helpers/front/path'
 import { getUserNameFromEmail } from '../../../../events/_utils/getUserName'
 

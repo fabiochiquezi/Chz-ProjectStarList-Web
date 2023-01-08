@@ -1,4 +1,4 @@
-import { settingsSEO } from '../../../appCore/ui/settings'
+import { settingsSEO } from '../../../appShare/settings/seo'
 import { SEO } from '../../../libs/frontend/components'
 import { useAuth } from '../_auth/useAuth'
 import { BtnSignIn } from './BtnSignIn'

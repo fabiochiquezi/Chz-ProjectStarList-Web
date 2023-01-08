@@ -2,8 +2,8 @@ import Link from 'next/link'
 import React, { FC } from 'react'
 import { useAuth } from '../_auth/useAuth'
 import { SEO } from '../../../libs/frontend/components'
-import { settingsSEO } from '../../../appCore/ui/settings'
-import { homeSystem, routes } from '../../../appCore/ui/routes'
+import { settingsSEO } from '../../../appShare/settings/seo'
+import { homeSystem, routes } from '../../../appShare/settings/routes'
 
 const Page404: FC = () => {
   const { user } = useAuth()

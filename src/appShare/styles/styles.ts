@@ -1,6 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { themes, themeBase, currentTheme } from '../../../../appCore/ui/themes'
-
+import { themes, themeBase, currentTheme } from '../settings/themes'
 
 export const Styles = createGlobalStyle`
 /* Themes */

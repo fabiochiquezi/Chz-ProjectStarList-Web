@@ -1,5 +1,5 @@
 import React from 'react'
-import { currentTheme } from './themes'
+import { currentTheme } from '../settings/themes'
 
 export interface ILogoProps {
   className?: string

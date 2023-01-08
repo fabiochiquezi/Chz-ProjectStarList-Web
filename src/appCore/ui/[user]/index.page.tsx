@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import { DndProvider } from 'react-dnd'
-import { settingsSEO } from '../settings'
 import { Movie, Serie } from '../../domain'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { LoadingHOC } from '../../../libs/frontend/HOC'
 import { useList, useModal, validCatalogURI } from './fns'
+import { settingsSEO } from '../../../appShare/settings/seo'
 import { Menu, UpdateItem, DeleteItem, List } from './components'
 import { Modal, SimpleForm, SEO } from '../.././../libs/frontend/components'
 

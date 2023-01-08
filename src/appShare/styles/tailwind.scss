@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../../../../appCore/ui/fontStyle';
-@import '../../../../libs/frontend/portals/Alerts/Default/styles';
-@import '../../../../libs/frontend/portals/PopUps/PopSave/styles';
+@import './fontStyle';
+@import '../../libs/frontend/portals/Alerts/Default/styles';
+@import '../../libs/frontend/portals/PopUps/PopSave/styles';
 
 .anim-button {
   transition: all 200ms ease;
