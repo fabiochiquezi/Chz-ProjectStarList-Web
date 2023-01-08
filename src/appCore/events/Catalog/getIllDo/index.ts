@@ -1,6 +1,6 @@
+import { db } from '../../../../appShare/settings/fireSettings'
 import { formatDataFromDB } from '../../../../libs/firebase'
 import { collection, getDocs } from 'firebase/firestore'
-import { db } from '../../../../../fireSettings'
 import { Movie, Serie } from '../../../domain'
 
 export type getListIlldo = (

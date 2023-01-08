@@ -4,7 +4,6 @@ const withTwin = require('./withTwin.js')
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  pageExtensions: ['page.tsx', 'page.ts', 'page.jsx', 'page.js'],
   async redirects() {
     return [
       {

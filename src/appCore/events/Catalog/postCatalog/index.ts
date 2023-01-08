@@ -1,7 +1,7 @@
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { db } from '../../../../appShare/settings/fireSettings'
 import { Movie, Serie } from '../../../domain'
 import { v4 as uuidv4 } from 'uuid'
-import { db } from 'fireSettings'
 
 const postCatalog = (catalogType: string, userId: string) =>
   async (data: Movie | Serie): Promise<void> => {

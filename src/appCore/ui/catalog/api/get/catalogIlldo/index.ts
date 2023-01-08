@@ -1,7 +1,7 @@
 import { Movie, Serie } from '../../../../../domain'
-import { db } from '../../../../../../../fireSettings'
 import { collection, getDocs } from 'firebase/firestore'
 import { formatDataFromDB } from '../../../../../../libs/firebase'
+import { db } from '../../../../../../appShare/settings/fireSettings'
 
 export type getListIlldo = (
   userName: string
