@@ -26,9 +26,7 @@ export const useData: IUseList = (signInProcess) => {
   const userName = getUserName(query)
   const catalogType = getCatalogType(query) as ICatalogTypes
 
-  console.log(signInProcess, 'body')
   useEffect(() => {
-    console.log(signInProcess, 'useEffect')
     initiateProcess()
   }, [asPath, signInProcess])
 
