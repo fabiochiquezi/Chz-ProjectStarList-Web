@@ -1,6 +1,6 @@
 import { settingsSEO } from '../../../appShare/settings/seo'
+import { useAuth } from '../../../appShare/contexts/useAuth'
 import { SEO } from '../../../libs/frontend/components'
-import { useAuth } from '../_auth/useAuth'
 import { BtnSignIn } from './BtnSignIn'
 import { FC, ReactNode } from 'react'
 import { Hero } from './Hero'

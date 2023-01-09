@@ -2,9 +2,10 @@ import { waitLoadingHOCAnim } from '../../HOC'
 import { useState, useEffect } from 'react'
 import { NextRouter } from 'next/router'
 
-export type IUseLoadPage = (router: NextRouter) => { loading: boolean; loadPage: (callBack: any) => Promise<void>; }
+export type IUseLoadPage = (routes: any[]) => (router: NextRouter) =>
+  { loading: boolean; loadPage: (callBack: any) => Promise<void>; }
 
-export const usePageTransition: IUseLoadPage = (router) => {
+export const usePageTransition: IUseLoadPage = routes => router => {
   const asPath = router.asPath
   const [loading, setLoading] = useState(false)
 
@@ -15,11 +16,9 @@ export const usePageTransition: IUseLoadPage = (router) => {
   }
 
   function isException(url: string): boolean {
-    // Disable for the route "new"
-    function isRouteNew(): boolean {
-      const isPathNew = router.asPath.includes('/new')
-      const isUrlNew = url.includes('/new')
-      if (isPathNew && isUrlNew) return true
+    function isRouteMultiContent(): boolean {
+      const route = routes.filter(item => item.route === router.route)
+      if (route && route[0].multiContent === true) return true
       return false
     }
 
@@ -31,7 +30,7 @@ export const usePageTransition: IUseLoadPage = (router) => {
       return false
     }
 
-    if (isRouteNew() || isQueryChange()) return true
+    if (isRouteMultiContent() || isQueryChange()) return true
     return false
   }
 

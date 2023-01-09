@@ -3,13 +3,13 @@ import { signOut } from './signOut'
 import { User } from 'firebase/auth'
 import { UserAuth } from '../../domain'
 import { useRouter } from 'next/router'
-import { AuthUseContext } from './useAuth'
 import { AuthFirebase } from '../../events'
-import { FC, ReactNode, useEffect } from 'react'
 import { useReducerAuth } from './useReducerAuth'
 import { LoadingHOC } from '../../../libs/frontend/HOC'
+import { FC, ReactNode, useEffect, useState } from 'react'
 import { routes } from '../../../appShare/settings/routes'
 import { pipeArg } from './../../../libs/functional/asyncPipe'
+import { AuthUseContext } from '../../../appShare/contexts/useAuth'
 import { isRouteMixed, isRoutePrivate, isCurrentPathPrivate } from '../../../libs/frontend/fns'
 
 type IAuth = FC<{
@@ -21,6 +21,8 @@ const Auth: IAuth = ({ children, afterSignUpCB }) => {
   const { push, route } = useRouter()
   const { authState } = AuthFirebase
   const { unloading, loading, defineNoUser, defineUser, user } = useReducerAuth()
+  const [signInProcess, setSignInProcess] = useState(false)
+  console.log(signInProcess, 'auth')
 
   useEffect(() => {
     type IRuleFn = (userFire: UserAuth | null) => Promise<boolean> | Promise<unknown>
@@ -56,8 +58,9 @@ const Auth: IAuth = ({ children, afterSignUpCB }) => {
     <AuthUseContext.Provider
       data-testid="AuthProvider"
       value={{
+        signInProcess: signInProcess,
         user: user.data,
-        signIn: signIn(afterSignUpCB)(unloading),
+        signIn: signIn(afterSignUpCB)(unloading, setSignInProcess),
         signOut: signOut(loading, unloading)
       }}
     >

@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { homeSystem } from '../../../appCore/ui/routes'
-import Page404 from './index.page'
+import Page404 from './index'
 
-jest.mock('../_auth/useAuth', () => ({
+jest.mock('../../../appShare/contexts/useAuth', () => ({
   useAuth: () => ({ user: 'test' })
 }))
 

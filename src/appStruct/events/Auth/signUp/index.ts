@@ -4,5 +4,5 @@ import { createUser } from './createUser'
 import { asyncPipe } from '../../../../libs/functional'
 
 export const signUp: ISignUp = afterSignUpCB => async (user) =>
-  asyncPipe<User, User>(createUser, afterSignUpCB)(user)
+  asyncPipe<User, User>(createUser, ...afterSignUpCB)(user)
 

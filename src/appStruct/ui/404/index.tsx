@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { FC } from 'react'
-import { useAuth } from '../_auth/useAuth'
 import { SEO } from '../../../libs/frontend/components'
+import { useAuth } from '../../../appShare/contexts/useAuth'
 import { settingsSEO } from '../../../appShare/settings/seo'
 import { homeSystem, routes } from '../../../appShare/settings/routes'
 

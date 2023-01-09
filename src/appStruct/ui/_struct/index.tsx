@@ -1,4 +1,5 @@
 import { LoadingPage, SettingMenu, NavMenu } from '../../../libs/frontend/components'
+import { useAuth } from '../../../appShare/contexts/useAuth'
 import { routes } from '../../../appShare/settings/routes'
 import { BtnSignOut } from './Headers/Private/BtnSignOut'
 import { BtnSignIn2 } from './Headers/Public/BtnSignIn2'
@@ -8,7 +9,6 @@ import { HeaderPrivate } from './Headers/Private'
 import { PublicStruct } from './Wrappers/Public'
 import { HeaderPublic } from './Headers/Public'
 import { Footer } from './Footers/Default'
-import { useAuth } from '../_auth/useAuth'
 import { FC, ReactNode } from 'react'
 
 type IStructure = FC<{

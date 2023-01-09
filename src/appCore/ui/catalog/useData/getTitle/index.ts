@@ -3,22 +3,22 @@ export function getTitle(query: string): Record<string, any> {
     case 'doing':
       return {
         title: 'ALL WORKS YOU ARE DOING',
-        subtitle: 'Dude, you got to finish this, keep going'
+        description: 'Dude, you got to finish this, keep going'
       }
     case 'illdo':
       return {
         title: 'YOU GOT TO START BRUH',
-        subtitle: 'The greatest works on your OneDayIWill'
+        description: 'The greatest works on your OneDayIWill'
       }
     case 'done':
       return {
         title: 'THIS IS ALL MY JOURNEY',
-        subtitle: 'Yeah pal, I finish all of them'
+        description: 'Yeah pal, I finish all of them'
       }
     default:
       return {
         title: 'GREAT WORKS',
-        subtitle: 'Exciting, emotional and unexpected'
+        description: 'Exciting, emotional and unexpected'
       }
   }
 }
