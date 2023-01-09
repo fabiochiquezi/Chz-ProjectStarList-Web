@@ -12,7 +12,7 @@ export const signOut: ISignOut = (loading, unloading) => async () => {
   await AuthFirebase
     .signOut()
     .catch(() => {
-      callAlert().error('Somenthing went wrong')
+      callAlert().error('Somenthing went wrong', 2000)
       unloading()
     })
 }

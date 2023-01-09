@@ -10,12 +10,12 @@ import { Structure } from '../src/appStruct/ui/_struct'
 import { routes } from '../src/appShare/settings/routes'
 import { settingsSEO } from '../src/appShare/settings/seo'
 import { isRouteMixed, isRoutePrivate } from '../src/libs/frontend/fns'
-import { useLoadPage } from '../src/appStruct/ui/_struct/hooks/usePageLoad'
 import { initiateCatalog } from '../src/appCore/events/Catalog/initiateCatalog'
+import { usePageTransition } from '../src/libs/frontend/hooks/usePageTransition'
 
 function MyApp({ Component, pageProps }: AppProps): ReactElement {
   const router = useRouter()
-  const { loading, loadPage } = useLoadPage(router)
+  const { loading, loadPage } = usePageTransition(router)
 
   return (
     <>

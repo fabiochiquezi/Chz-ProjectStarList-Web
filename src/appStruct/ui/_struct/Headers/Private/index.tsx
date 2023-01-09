@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { BtnHamburger } from './BtnHamburger'
-import { Logo } from '../../../../../../appShare/assets/Logo'
+import { Logo } from '../../../../../appShare/assets/Logo'
 import { FC, ReactElement, useEffect, useState } from 'react'
-import { routes } from '../../../../../../appShare/settings/routes'
+import { routes } from '../../../../../appShare/settings/routes'
 
 export type IHeaderPrivate = FC<{
   NavMenu: ReactElement

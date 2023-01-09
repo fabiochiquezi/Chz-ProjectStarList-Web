@@ -1,5 +1,5 @@
-import { BtnSolid, IBtnProps } from '../../../../../../../libs/frontend/components'
-import { SpinIcon } from '../../../../../../../libs/frontend/assets'
+import { BtnSolid, IBtnProps } from '../../../../../../libs/frontend/components'
+import { SpinIcon } from '../../../../../../libs/frontend/assets'
 import React, { FC, ReactEventHandler, useState } from 'react'
 import { GoogleIcon } from './GoogleIcon'
 

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
 import { Movie, Serie } from '../../../domain'
-import { getList } from '../api/get'
+import React, { useEffect, useState } from 'react'
+import { getCatalog } from 'src/appCore/events/Catalog/getCatalog'
 
 export type IList = Array<Movie | Serie> | null
 
@@ -18,7 +18,7 @@ const useList: IUseList = (catalogURI, userName, asPath) => {
 
   async function getData(): Promise<void> {
     try {
-      const newList = await getList(catalogURI, userName)
+      const newList = await getCatalog(catalogURI)(userName)
       setList(newList)
     } catch (e) {
       console.log(e)

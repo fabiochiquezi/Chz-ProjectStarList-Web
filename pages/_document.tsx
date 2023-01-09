@@ -36,7 +36,7 @@ export default class MyDocument extends Document {
 
   render(): ReactElement {
     return (
-      <Html className="dark" lang="en-US">
+      <Html lang="en-US">
         <Head>
           <link rel="icon" type="image/x-icon" href="/favicon.png" />
         </Head>

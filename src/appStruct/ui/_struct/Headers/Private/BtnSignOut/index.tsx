@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { IBtnProps } from '../../../../../../../libs/frontend/components/Buttons/type'
+import { IBtnProps } from '../../../../../../libs/frontend/components/Buttons/type'
 
 export type IBtnSignOut = FC<IBtnProps>
 

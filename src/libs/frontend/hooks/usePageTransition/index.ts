@@ -1,10 +1,10 @@
-import { waitLoadingHOCAnim } from '../../../../libs/frontend/HOC'
+import { waitLoadingHOCAnim } from '../../HOC'
 import { useState, useEffect } from 'react'
 import { NextRouter } from 'next/router'
 
 export type IUseLoadPage = (router: NextRouter) => { loading: boolean; loadPage: (callBack: any) => Promise<void>; }
 
-const useLoadPage: IUseLoadPage = (router) => {
+export const usePageTransition: IUseLoadPage = (router) => {
   const asPath = router.asPath
   const [loading, setLoading] = useState(false)
 
@@ -51,5 +51,3 @@ const useLoadPage: IUseLoadPage = (router) => {
 
   return { loading, loadPage }
 }
-
-export { useLoadPage }

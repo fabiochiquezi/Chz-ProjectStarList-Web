@@ -5,6 +5,6 @@ export const submitFail: ISubmitFail = alert => alert.error('Unseccesfull')
 
 export const submitSuccess: ISubmitSuccess = alert => async sendData => {
   await sendData()
-  alert.success('Succesfull')
+  alert.success('Succesfull', 1000)
 }
 

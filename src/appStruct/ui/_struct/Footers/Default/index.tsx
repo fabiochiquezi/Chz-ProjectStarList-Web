@@ -1,5 +1,5 @@
 import { DiscordIcon, GithubIcon, WhatsAppIcon } from './icons'
-import { Logo } from '../../../../../../appShare/assets/Logo'
+import { Logo } from '../../../../../appShare/assets/Logo'
 import { getTimeNow } from './getDate'
 import { Banner } from './Banner'
 import { FC } from 'react'

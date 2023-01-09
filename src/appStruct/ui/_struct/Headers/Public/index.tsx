@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { BtnGitHub } from './BtnGitHub'
 import { FC, ReactElement } from 'react'
-import { Logo } from '../../../../../../appShare/assets/Logo'
-import { routes } from '../../../../../../appShare/settings/routes'
+import { Logo } from '../../../../../appShare/assets/Logo'
+import { routes } from '../../../../../appShare/settings/routes'
 
 export type IHeaderPublic = FC<{
   BtnSignIn: ReactElement

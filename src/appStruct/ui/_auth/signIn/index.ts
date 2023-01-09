@@ -8,7 +8,7 @@ export type ISignIn = (afterSignUpCB: (user: User) => Promise<User>) => (unloadi
 export const signIn: ISignIn = afterSignUpCB => unloading => async () => {
   await AuthFirebase.signIn(afterSignUpCB)()
     .catch(() => {
-      callAlert().error('Somenthing went wrong')
+      callAlert().error('Somenthing went wrong', 2000)
       unloading()
     })
 }
