@@ -48,7 +48,7 @@ const Pagination: FC<PaginationType> = ({ maxPages, query, load, push }) => {
         </li>
       )}
       <li
-        className={`w-[72px] h-[72px] border-orange-600 text-orange-600 font-bold border-2 rounded-full flex justify-center items-center text-xl anim-button ${parsePage === 1 ? '' : 'ml-[16px]'
+        className={`w-[72px] h-[72px] border-skin-primary text-skin-primary font-bold border-2 rounded-full flex justify-center items-center text-xl anim-button ${parsePage === 1 ? '' : 'ml-[16px]'
           }`}
       >
         {parsePage}

@@ -6,6 +6,7 @@ export const Styles = createGlobalStyle`
   ${themes.map(theme => `
     .${theme.defaultTheme ? 'default-theme' : theme.name} {
       --primary: ${theme.primary};
+      --primary-v2: ${theme['primary-v2']};
       --secondary: ${theme.secondary};
       --secondary-v2: ${theme['secondary-v2']};
 

@@ -23,7 +23,7 @@ const BtnSignIn: IBtnSignIn = ({ className = '', onClick }) => {
       onClick={handleOnClick}
       data-testid="BtnSignIn"
       disabled={!!loading}
-      className={`border-orange-400 text-orange-400 text-lg h-[56px] w-[166px] ${className}`}
+      className={`border-skin-primary-v2 text-skin-primary-v2 text-lg h-[56px] w-[166px] ${className}`}
     >
       {loading ? BtnLoad : BtnIcon}
     </BtnOutline>

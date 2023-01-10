@@ -42,9 +42,9 @@ const FormAddFields: IFormAddFields = ({ formik, BtnSubmit }) => (
         </option>
         <option
           className="bg-primary text-white"
-          value={'did'}
+          value={'done'}
         >
-          Did
+          done
         </option>
       </Select>
       {BtnSubmit && <BtnSubmit />}

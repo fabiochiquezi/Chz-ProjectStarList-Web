@@ -34,7 +34,7 @@ const NavMenu: INavMenu = ({ currentRoute, routes, userName = '', onChangePage }
             <a
               data-testid="BtnLink"
               onClick={() => onChangePage(async () => await Router.push(getLink(route)(userName) ?? 'home'))}
-              className={`md:text-3xl lg:text-[14px] lg:mr-6 w-full lg:w-auto py-4 inline-block md:py-10 lg:py-0 anim-button ${route.route === currentRoute && 'text-orange-400'}`}
+              className={`md:text-3xl lg:text-[14px] lg:mr-6 w-full lg:w-auto py-4 inline-block md:py-10 lg:py-0 anim-button ${route.route === currentRoute && 'text-skin-primary-v2'}`}
             >
               {route.title}
             </a>

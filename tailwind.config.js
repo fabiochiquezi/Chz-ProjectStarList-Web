@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         skin: {
           primary: 'var(--primary)',
+          'primary-v2': 'var(--primary-v2)',
           secondary: 'var(--secondary)',
           'secondary-v2': 'var(--secondary-v2)',
 

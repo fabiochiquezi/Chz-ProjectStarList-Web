@@ -11,6 +11,7 @@ export const themes = [
     state: 'dark',
 
     primary: '#ea580c',
+    'primary-v2': '#fb923c',
     secondary: '#4f46e5',
     'secondary-v2': '#3730a3',
 
@@ -36,6 +37,7 @@ export const themes = [
     state: 'clear',
 
     primary: '#fdba74',
+    'primary-v2': '#fb923c',
     secondary: '#a5b4fc',
     'secondary-v2': '#3730a3',
 

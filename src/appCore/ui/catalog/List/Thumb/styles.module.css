@@ -1,0 +1,49 @@
+.BarIcons {
+  transition: all 0.3s ease;
+  position: absolute;
+  padding: 12px;
+  margin-top: -12px;
+  margin-left: -8px;
+  bottom: -80px;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  .BarIcons {
+    margin-left: -0px;
+  }
+}
+@media (min-width: 1024px) {
+  .BarIcons {
+    visibility: hidden;
+    opacity: 0;
+    animation: BarIconsHoverAnim 300ms forwards;
+  }
+}
+.BarIcons:hover {
+  transform: scale(0.9);
+}
+.BarIcons:active {
+  transform: scale(1);
+}
+@media (min-width: 1024px) {
+  .Box:hover .BarIcons {
+    animation: BarIconsShowsAnim 600ms forwards;
+  }
+}
+@keyframes BarIconsShowsAnim {
+  from {
+    visibility: hidden;
+    opacity: 0;
+    bottom: -60px;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+    bottom: -70px;
+  }
+}
+.CloseIcon {
+  margin-top: -24px;
+  padding: 24px;
+}

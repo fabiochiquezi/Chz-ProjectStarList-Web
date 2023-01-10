@@ -36,6 +36,6 @@ describe('SettingMenu', () => {
   test('activeLink', async () => {
     render(<NavMenu {...props} />)
     const item = screen.getByText(routes.user.title)
-    expect(item).toHaveClass('text-orange-400')
+    expect(item).toHaveClass('text-skin-primary-v2')
   })
 })

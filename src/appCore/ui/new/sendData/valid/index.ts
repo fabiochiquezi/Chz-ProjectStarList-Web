@@ -6,7 +6,7 @@ type IhasSelectedItem = (list: IList) => (IDSelected: string) => boolean
 type IvalidData = (data: IDataForm) => boolean
 
 export const isPermitedType: IisPermitedType = catalogType =>
-  (!!['doing', 'illdo', 'did'].includes(catalogType))
+  (!!['doing', 'illdo', 'done'].includes(catalogType))
 
 export const hasSelectedItem: IhasSelectedItem = list => IDSelected =>
   !!getDataByID(list)(IDSelected)

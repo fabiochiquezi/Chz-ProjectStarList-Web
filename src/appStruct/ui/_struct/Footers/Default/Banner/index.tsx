@@ -19,7 +19,7 @@ const Banner: FC = () => (
           target="_blank"
           rel="noreferrer"
           href="https://www.chiquezi.com/home"
-          className="text-xl bg-indigo-600 inline-block w-48 text-center p-4 mb-5 sm:mb-0 sm:mr-6 anim-button rounded-sm"
+          className="text-xl bg-skin-secondary inline-block w-48 text-center p-4 mb-5 sm:mb-0 sm:mr-6 anim-button rounded-sm"
         >
           Portfolio
         </a> */}
@@ -27,7 +27,7 @@ const Banner: FC = () => (
           target="_blank"
           rel="noreferrer"
           href="https://github.com/fabiochiquezi"
-          className="text-xl bg-indigo-600 inline-block w-48 text-center p-4 anim-button rounded-sm"
+          className="text-xl bg-skin-secondary inline-block w-48 text-center p-4 anim-button rounded-sm"
         >
           GitHub
         </a>

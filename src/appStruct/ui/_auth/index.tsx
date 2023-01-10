@@ -22,7 +22,6 @@ const Auth: IAuth = ({ children, afterSignUpCB }) => {
   const { authState } = AuthFirebase
   const { unloading, loading, defineNoUser, defineUser, user } = useReducerAuth()
   const [signInProcess, setSignInProcess] = useState(false)
-  console.log(signInProcess, 'auth')
 
   useEffect(() => {
     type IRuleFn = (userFire: UserAuth | null) => Promise<boolean> | Promise<unknown>

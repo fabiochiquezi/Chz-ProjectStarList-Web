@@ -13,7 +13,7 @@ const Genre: IGenre = ({ defaultValue, genreList, onChange }) => (
     name="genres"
     className="mr-3"
     onChange={onChange}
-    colorClass="bg-orange-600"
+    colorClass="bg-skin-primary"
     defaultValue={defaultValue}
   >
     <option
