@@ -17,7 +17,7 @@ export const HomePage: FC = () => (
     bgTo={currentTheme['base-primary']}
     heroBgMobile={heroBgMobile}
     heroBgDesktop={heroBgDesktop}
-    heroTitle="Your' list of great works souvenirs"
+    heroTitle="Your own list of great works"
     heroDescription='Mount your own list of movies, cartoons, series, books and games.'
   >
     <MainHome />

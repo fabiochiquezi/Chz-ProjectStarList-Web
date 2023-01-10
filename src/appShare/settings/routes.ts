@@ -5,7 +5,9 @@ export const routes = {
     state: 'mixed',
     title: '404',
     menuSystem: false,
-    multiContent: false
+    multiContent: false,
+    icon: null,
+    iconActive: null
   },
   error: {
     path: '/error',
@@ -13,7 +15,9 @@ export const routes = {
     state: 'mixed',
     title: '404',
     menuSystem: false,
-    multiContent: false
+    multiContent: false,
+    icon: null,
+    iconActive: null
   },
   home: {
     path: '/home',
@@ -21,7 +25,9 @@ export const routes = {
     state: 'public',
     title: '404',
     menuSystem: false,
-    multiContent: false
+    multiContent: false,
+    icon: null,
+    iconActive: null
   },
   newMovies: {
     path: '/new/movies',
@@ -29,7 +35,9 @@ export const routes = {
     state: 'private',
     title: 'NEW',
     menuSystem: true,
-    multiContent: true
+    multiContent: true,
+    icon: '../icons/IconList.svg',
+    iconActive: '../icons/IconListActive.svg'
   },
   newSeries: {
     path: '/new/series',
@@ -37,7 +45,9 @@ export const routes = {
     state: 'private',
     title: '404',
     menuSystem: false,
-    multiContent: true
+    multiContent: true,
+    icon: './icons/IconList.svg',
+    iconActive: './icons/IconListActive.svg'
   },
   newBooks: {
     path: '/new/books',
@@ -45,7 +55,9 @@ export const routes = {
     state: 'private',
     title: '404',
     menuSystem: false,
-    multiContent: true
+    multiContent: true,
+    icon: './icons/IconList.svg',
+    iconActive: './icons/IconListActive.svg'
   },
   newGames: {
     path: '/new/games',
@@ -53,7 +65,9 @@ export const routes = {
     state: 'private',
     title: '404',
     menuSystem: false,
-    multiContent: true
+    multiContent: true,
+    icon: './icons/IconList.svg',
+    iconActive: './icons/IconListActive.svg'
   },
   user: {
     getPath: (userName: string) => `/${userName}`,
@@ -61,7 +75,9 @@ export const routes = {
     state: 'mixed',
     title: 'MY LIST',
     menuSystem: true,
-    multiContent: true
+    multiContent: true,
+    icon: '../icons/IconStar.svg',
+    iconActive: '../icons/IconStarActive.svg'
   },
   userDoing: {
     getPath: (userName: string) => `/${userName}?catalog=doing`,
@@ -69,7 +85,9 @@ export const routes = {
     state: 'mixed',
     title: '404',
     menuSystem: false,
-    multiContent: true
+    multiContent: true,
+    icon: './icons/IconHome.svg',
+    iconActive: './icons/IconHomeActive.svg'
   },
   userIlldo: {
     getPath: (userName: string) => `/${userName}?catalog=illdo`,
@@ -77,7 +95,9 @@ export const routes = {
     state: 'mixed',
     title: '404',
     menuSystem: false,
-    multiContent: true
+    multiContent: true,
+    icon: './icons/IconHome.svg',
+    iconActive: './icons/IconHomeActive.svg'
   },
   userDone: {
     getPath: (userName: string) => `/${userName}?catalog=done`,
@@ -85,7 +105,9 @@ export const routes = {
     state: 'mixed',
     title: '404',
     menuSystem: false,
-    multiContent: true
+    multiContent: true,
+    icon: './icons/IconHome.svg',
+    iconActive: './icons/IconHomeActive.svg'
   }
 }
 

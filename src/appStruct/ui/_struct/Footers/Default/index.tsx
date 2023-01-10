@@ -6,20 +6,20 @@ import { FC } from 'react'
 
 const Footer: FC = () => (
   <div
-    className="bg-skin-base-secondary py-24 lg:pb-16 relative z-10"
+    className="bg-skin-base-secondary py-24 md:pb-0 lg:pb-16 relative z-10"
     data-testid="Footer"
   >
     <Banner />
     <div className="container mx-auto lg:px-4">
       <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between md:w-full md:flex-row md:flex-wrap md:items-start md:justify-center md:gap-x-16 lg:justify-between lg:gap-x-0 lg:flex-row lg:items-start 2xl:w-5/6">
-        <div className="text-sm lg:mt-1 lg:mb-0 order-4 lg:order-1 box">
+        <div className="text-sm lg:mt-1 lg:mb-0 order-4 md:order-1 box">
           <Logo />
           <p className="mt-3 text-skin-font-secondary">
             © All rights reserved - <span className="italic">{getTimeNow()}</span>
           </p>
         </div>
 
-        <div className="w-52 xl:w-64 w-52 mb-16 lg:mb-0 order-2 box">
+        <div className="w-52 xl:w-64 w-52 mb-16 lg:mb-0 order-2 box md:hidden lg:block">
           <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
             Links
           </h3>
@@ -37,7 +37,7 @@ const Footer: FC = () => (
           </ul>
         </div>
 
-        <div className="w-52 xl:w-64 mb-16 lg:mb-0 order-0 lg:order-2 box">
+        <div className="w-52 xl:w-64 mb-16 lg:mb-0 order-0 md:order-2 box">
           <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
             GitHub
           </h3>
@@ -55,7 +55,7 @@ const Footer: FC = () => (
           </a>
         </div>
 
-        <div className="w-52 mb-16 xl:w-64 order-1 lg:order-4 box">
+        <div className="w-52 mb-16 xl:w-64 order-1 md:order-4 box">
           <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
             Follow-me
           </h3>

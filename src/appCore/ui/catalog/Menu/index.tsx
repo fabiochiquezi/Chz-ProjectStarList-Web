@@ -5,15 +5,15 @@ type IMenu = FC<{ userName: string, catalogType: string }>
 
 export const Menu: IMenu = ({ userName, catalogType }) => (
   <header>
-    <ul className="container mx-auto px-4 lg:px-4 xl:px-6 2xl:px-10 flex justify-center mb-4 md:mb-10 lg:mb-11 lg:justify-end items-center">
-      <li>
+    <ul className="container mx-auto px-4 lg:px-4 xl:px-6 2xl:px-10 flex justify-end mb-8 md:mb-10 lg:mb-11 lg:justify-end items-center">
+      <li className='mr-4'>
         <BtnOutline
           href={`/${userName}?catalog=doing`}
           isActive={catalogType === 'doing' || !catalogType}
           text="DOING"
         />
       </li>
-      <li>
+      <li className='mr-4'>
         <BtnOutline
           href={`/${userName}?catalog=done`}
           isActive={catalogType === 'done'}

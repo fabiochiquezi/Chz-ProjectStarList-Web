@@ -28,7 +28,7 @@ const Pagination: FC<PaginationType> = ({ maxPages, query, load, push }) => {
 
   return (
     <ul
-      className="flex justify-center items-center"
+      className="flex justify-center items-center mb-16 md:mb-0"
       data-testid="Pagination"
     >
       {/* {page > 2 && (

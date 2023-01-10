@@ -11,18 +11,18 @@ const Banner: FC = () => (
           I&apos;m looking for a job!
         </h2>
         <p className="text-xl">
-          If you liked this project, help me recommending me for some company
+          Please, help me recommending me for some company and give me a star on GitHub
         </p>
       </div>
       <div className="flex flex-col items-center sm:flex-row justify-center">
-        {/* <a
+        <a
           target="_blank"
           rel="noreferrer"
-          href="https://www.chiquezi.com/home"
+          href="https://www.linkedin.com/in/fabiochiquezi/"
           className="text-xl bg-skin-secondary inline-block w-48 text-center p-4 mb-5 sm:mb-0 sm:mr-6 anim-button rounded-sm"
         >
-          Portfolio
-        </a> */}
+          LinkedIn
+        </a>
         <a
           target="_blank"
           rel="noreferrer"

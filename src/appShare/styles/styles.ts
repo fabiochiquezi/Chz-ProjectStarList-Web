@@ -135,4 +135,35 @@ export const Styles = createGlobalStyle`
       }
     }
   }
+
+  .fadeOut-comeFromLeft {
+    opacity: 1;
+    animation: fadeOutComeFromLeft 300ms forwards;
+
+    @keyframes fadeOutComeFromLeft {
+      from {
+        left: 50%;
+        opacity: 1;
+      }
+      to {
+          left: 48%;
+          opacity: 0;
+        }
+    }
+  }
+
+  .fade-out-anim {
+    opacity: 1;
+    transition: all 300ms ease;
+    animation: fadeOut 300ms forwards 150ms;
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+  }
 `

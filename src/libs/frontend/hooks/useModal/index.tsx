@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useState } from 'react'
+import React, { FC, ReactNode, useRef, useState } from 'react'
 import { Modal } from './Default'
 
 export type IModalHOC = React.FC<{ children: ReactNode, ModalBox: IModalBox }>
@@ -17,9 +17,19 @@ export type IUseModal = () => {
 
 const useModal: IUseModal = () => {
   const [modalState, setModalState] = useState({ state: false, data: {} })
+  const ref = useRef<HTMLDivElement>(null)
 
-  const closeModal: ICloseModal = () =>
-    setModalState(prev => ({ ...prev, state: false }))
+  const closeModal: ICloseModal = () => {
+    console.log(ref.current?.childNodes[0])
+    const el = ref.current?.childNodes[0] as HTMLDivElement
+    const box = el.querySelector('.fadeIn-comeFromLeft')
+    box?.classList.add('fadeOut-comeFromLeft')
+    box?.classList.remove('fadeIn-comeFromLeft')
+    el?.classList.add('fade-out-anim')
+    setTimeout(() => {
+      setModalState(prev => ({ ...prev, state: false }))
+    }, 450)
+  }
 
   const openModal: IOpenModal = (data) => (data
     ? setModalState({ state: true, data: data })
@@ -27,11 +37,13 @@ const useModal: IUseModal = () => {
   )
 
   const ModalHOC: IModalHOC = ({ children, ModalBox }) => (modalState.state ? (
-    <Modal closeModal={closeModal}>
-      <ModalBox closeModal={closeModal}>
-        {children}
-      </ModalBox>
-    </Modal>
+    <div ref={ref}>
+      <Modal closeModal={closeModal}>
+        <ModalBox closeModal={closeModal}>
+          {children}
+        </ModalBox>
+      </Modal>
+    </div>
   ) : null)
 
 
