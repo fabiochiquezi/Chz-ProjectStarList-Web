@@ -11,7 +11,7 @@ const BtnLoad: React.FC<props> = ({ onClick }) => (
     data-testid="BtnLoad"
   >
     <div className="border-skin-secondary border-2 w-[120px] h-[120px] rounded-full absolute opacity-50 hover:opacity-100"></div>
-    <span className="text-white text-secondary text-md">More</span>
+    <span className="text-white text-md">More</span>
   </button>
 )
 

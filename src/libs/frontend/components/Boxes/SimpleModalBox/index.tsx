@@ -19,7 +19,7 @@ const ModalBox: IModalBox = ({ children, closeModal, className }) => (
     >
       <CloseIcon width={22} height={16} />
     </div>
-    <div className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-skin-secondary bg-skin-base-primary">
+    <div className="flex flex-col mt-[-20px] px-10 py-5 md:py-6 bg-skin-base-primary rounded-lg relative overscroll-y-auto shadow-2xl border-l-8 border-skin-secondary bg-skin-base-primary">
       {children}
     </div>
   </div>

@@ -46,7 +46,7 @@ const Select: ISelectDefault = props => {
           if (noLength) setActive(false)
         }}
       >
-        <option className="bg-primary text-white" value="" disabled></option>
+        <option className="bg-skin-base-primary text-white" value="" disabled></option>
         {children}
       </select>
       {error ? (

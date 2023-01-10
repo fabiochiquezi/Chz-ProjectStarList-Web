@@ -29,19 +29,19 @@ const FormAddFields: IFormAddFields = ({ formik, BtnSubmit }) => (
         defaultValue={formik.values.catalogType}
       >
         <option
-          className="bg-primary text-white"
+          className="bg-skin-base-primary text-white"
           value={'doing'}
         >
           Doing
         </option>
         <option
-          className="bg-primary text-white"
+          className="bg-skin-base-primary text-white"
           value={'illdo'}
         >
           I&apos;ll do
         </option>
         <option
-          className="bg-primary text-white"
+          className="bg-skin-base-primary text-white"
           value={'done'}
         >
           done

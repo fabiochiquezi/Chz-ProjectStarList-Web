@@ -36,7 +36,7 @@ const HeaderPrivate: IHeaderPrivate = ({ NavMenu, SettingMenu }) => {
         opened={menu}
         onClick={() => setMenu(prev => !prev)}
       />
-      <div className={`h-screen bg-primary lg:bg-transparent bg-gray-100 w-screen left-0 top-0 md:pt-36 ${menuOpenClass} lg:block lg:w-[82%] xl:w-[86%] 2xl:w-[88%] lg:h-auto lg:bg-transparent lg:pt-0 lg:static z-20`}>
+      <div className={`h-screen bg-skin-base-primary lg:bg-transparent w-screen left-0 top-0 md:pt-36 ${menuOpenClass} lg:block lg:w-[82%] xl:w-[86%] 2xl:w-[88%] lg:h-auto lg:bg-transparent lg:pt-0 lg:static z-20`}>
         <div className="fixed lg:static w-full left-0 top-[50%] -mt-[225px] md:-mt-[325px] lg:-mt-0 lg:top-0 lg:flex lg:justify-between lg:items-center">
           {NavMenu}
           {SettingMenu}

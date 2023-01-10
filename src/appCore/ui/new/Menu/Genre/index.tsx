@@ -17,7 +17,7 @@ const Genre: IGenre = ({ defaultValue, genreList, onChange }) => (
     defaultValue={defaultValue}
   >
     <option
-      className="bg-primary text-white h-10"
+      className="bg-skin-base-primary text-white h-10"
       value={''}
       onSelect={() => console.log('ooooooooo')}
     >
@@ -25,7 +25,7 @@ const Genre: IGenre = ({ defaultValue, genreList, onChange }) => (
     </option>
     {genreList.map((el, index) => (
       <option
-        className="bg-primary text-white h-10"
+        className="bg-skin-base-primary text-white h-10"
         value={el.id}
         key={index}
       >

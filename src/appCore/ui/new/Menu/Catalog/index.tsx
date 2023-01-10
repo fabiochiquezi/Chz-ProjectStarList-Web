@@ -13,21 +13,21 @@ const Catalog: ICatalog = ({ onChange, defaultValue }) => (
     defaultValue={defaultValue}
   >
     <option
-      className="bg-primary text-white h-10"
+      className="bg-skin-base-primary text-white h-10"
       value="movies"
     >
       Movies
     </option>
     <option
-      className="bg-primary text-white h-10"
+      className="bg-skin-base-primary text-white h-10"
       value="series"
     >
       Series
     </option>
-    {/* <option className="bg-primary text-white" value="books">
+    {/* <option className="bg-skin-base-primary text-white" value="books">
       Books
     </option>
-    <option className="bg-primary text-white" value="books">
+    <option className="bg-skin-base-primary text-white" value="books">
       Games
     </option> */}
   </SelectButton>
