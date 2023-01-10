@@ -11,7 +11,7 @@ const Footer: FC = () => (
   >
     <Banner />
     <div className="container mx-auto lg:px-4">
-      <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between lg:flex-row lg:items-start 2xl:w-5/6">
+      <div className="w-72 mx-auto lg:w-auto flex flex-col justify-center items-center justify-between md:w-full md:flex-row md:flex-wrap md:items-start md:justify-center md:gap-x-16 lg:justify-between lg:gap-x-0 lg:flex-row lg:items-start 2xl:w-5/6">
         <div className="text-sm lg:mt-1 lg:mb-0 order-4 lg:order-1 box">
           <Logo />
           <p className="mt-3 text-skin-font-secondary">
@@ -59,7 +59,7 @@ const Footer: FC = () => (
           <h3 className="text-3xl font-bold mb-4 border-gray-400 border-b-2 pb-4 lg:mb-12">
             Follow-me
           </h3>
-          <ul className="flex mt-8 ml-0 md:mt-16 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 xl:justify-start">
+          <ul className="flex mt-8 ml-0 md:mt-4 justify-between items-center w-3/4 left-0 md:w-3/4 mx-auto lg:mt-0 lg:w-auto lg:mx-0 xl:justify-start">
             <li className="mr-4 xl:mr-2">
               <div className="relative">
                 <DiscordIcon />
