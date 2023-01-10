@@ -8,13 +8,16 @@
     "emulators": "firebase emulators:start",
     "emulators:impData": "firebase emulators:start --import=./emulators-data",
     "emulators:expData": "firebase emulators:start --import=./new-emulators-data --export-on-exit",
+    "//": "----------------------------------------------------------------------------------------",
     "test": "jest --runInBand",
     "test:watch": "jest --runInBand --watch",
     "test:unit": "jest --runInBand -- unit",
     "test:integration": "jest --runInBand -- integration",
     "test:coverage": "jest --coverage --runInBand --watch",
+    "//": "----------------------------------------------------------------------------------------",
     "development": "next dev",
     "start": "next start",
+    "//": "----------------------------------------------------------------------------------------",
     "build": "rm -rf out && next build",
     "dev": "concurrently --kill-others \"yarn emulators\" \"yarn development\""
   },
@@ -82,7 +85,6 @@
     "react-dnd-html5-backend": "^16.0.1",
     "tailwindcss": "^3.1.8",
     "ts-node": "^10.9.1",
-    "twin.macro": "^3.1.0",
     "typescript": "*"
   },
   "config": {
