@@ -3,16 +3,17 @@ import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { Menu } from './Menu/composition'
 import { Pagination } from './Pagination'
+import { Movie, Serie } from '../../domain'
 import { getServerSideProps } from './getData'
 import { Resp } from '../../../libs/typescript'
+import { IDataForm, sendData } from './sendData'
 import { getDataByID } from './sendData/getDataByID'
 import { useAlert } from '../../../libs/frontend/portals'
+import { Genre, GetList } from 'src/appCore/external/TMDB'
 import { useLoadPage } from '../../../libs/frontend/hooks'
 import { settingsSEO } from '../../../appShare/settings/seo'
 import { useAuth } from '../../../appShare/contexts/useAuth'
 import { postCatalog } from '../../events/Catalog/postCatalog'
-import { IDataForm, sendData, TypesAllowed } from './sendData'
-import { GenreWatch, GetList, Movie, Serie } from '../../domain'
 import { FormAddFields, initialValues, validation } from './Form'
 import { FormikHOC, LoadingHOC } from '../../../libs/frontend/HOC'
 import useModalForm from '../../../libs/frontend/hooks/useModalForm'
@@ -22,7 +23,7 @@ const List = dynamic(async () => await import('./List').then(m => m.List), { loa
 interface SRRData {
   data: Resp<{
     workList: GetList<Movie | Serie>
-    genreList: GenreWatch[]
+    genreList: Genre[]
   }>
 }
 
@@ -37,7 +38,7 @@ export const New: FC<SRRData> = ({ data }) => {
   const addModal = useModalForm(ModalBox, FormikHOC)
 
   const postData = async ({ catalogType, username, list, IDSelected }: IDataForm): Promise<void> =>
-    await postCatalog(catalogType, username)(getDataByID(list)(IDSelected))
+    await postCatalog(catalogType, username)(getDataByID(list)(IDSelected) as any)
   const submitToCatalog = sendData(useAlert())(postData)
 
   return (

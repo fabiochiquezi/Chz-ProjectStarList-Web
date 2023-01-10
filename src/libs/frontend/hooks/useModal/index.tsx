@@ -20,7 +20,6 @@ const useModal: IUseModal = () => {
   const ref = useRef<HTMLDivElement>(null)
 
   const closeModal: ICloseModal = () => {
-    console.log(ref.current?.childNodes[0])
     const el = ref.current?.childNodes[0] as HTMLDivElement
     const box = el.querySelector('.fadeIn-comeFromLeft')
     box?.classList.add('fadeOut-comeFromLeft')

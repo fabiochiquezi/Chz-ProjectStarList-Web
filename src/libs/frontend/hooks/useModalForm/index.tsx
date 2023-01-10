@@ -4,8 +4,8 @@ import React, { FC } from 'react'
 
 type IModalFormHOC = FC<{
   Fields: IFields,
-  validation: any,
-  initialValues: Record<string, string>
+  validation?: any,
+  initialValues?: Record<string, string>
   onSubmit: (data: Record<string, string>) => Promise<void>
 }>
 

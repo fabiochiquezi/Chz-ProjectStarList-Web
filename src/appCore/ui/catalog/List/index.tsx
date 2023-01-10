@@ -3,12 +3,13 @@ import { Thumb } from './Thumb'
 import React, { FC, useState } from 'react'
 import { Serie, Movie } from '../../../domain'
 import { BtnLoad } from './BtnLoad'
+import { fromDB } from '../../../../libs/typescript/types/DB'
 
 interface ListType {
   titleData: { title: string, description: string }
-  list: Array<Movie | Serie>
-  openModalUpdate: () => void
-  openModalDelete: () => void
+  list: Array<fromDB<Movie> | fromDB<Serie>>
+  openModalUpdate: (id: string | number) => void
+  openModalDelete: (id: string | number) => void
 }
 
 const List: FC<ListType> = ({ list, titleData, openModalUpdate, openModalDelete }) => {
@@ -30,7 +31,7 @@ const List: FC<ListType> = ({ list, titleData, openModalUpdate, openModalDelete 
         {list?.map((data, index) => (index >= limit ? null
           : (
             <Thumb
-              id={data.id}
+              id={data.uid}
               key={index}
               title={'title' in data ? data.title : data.name}
               thumb={data.thumb}
